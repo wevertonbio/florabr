@@ -84,7 +84,7 @@ check_names <- function(data = NULL, species = NULL, max_distance = 0.1,
 
   #Create columns
   spp$Spelling <- ifelse(is.na(spp$Distance), "Incorrect",
-                         ifelse(spp$Distance > 0, "Probably_incorret",
+                         ifelse(spp$Distance > 0, "Probably_incorrect",
                                 ifelse(spp$Distance == 0, "Correct", NA)))
   #Get information about Family, taxonomic and nomenclatural status
   d_info <- subset(data, species %in% spp$Suggested_name)
