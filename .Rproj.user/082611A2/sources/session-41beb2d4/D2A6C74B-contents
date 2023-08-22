@@ -1,0 +1,245 @@
+####Generate data to filter_florabR#####
+library(dplyr)
+library(data.table)
+library(terra)
+library(geobr)
+
+####Get Flora do Brazil dataset####
+my_dir <- "../BrazilianFlora"
+dir.create(my_dir)
+get_florabr(output_dir = my_dir)
+
+#Flora do Brazil data
+df <- load_florabr(data_dir = my_dir, type = "short")
+#Get only species and Plantae
+p <- df %>% filter(kingdom == "Plantae", taxonRank == "Species")
+#Get only accepted names
+pac <- p %>% filter(taxonomicStatus == "Accepted")
+#Subset some species
+bf_data <- pac
+usethis::use_data(bf_data, overwrite = TRUE)
+
+
+####Get species occurrences####
+spp <- c("Araucaria angustifolia", "Abatia americana", "Passiflora edmundoi",
+         "Myrcia hatschbachii", "Serjania pernambucensis", "Inga virescens",
+         "Solanum restingae")
+library(plantR)
+oc.gbif <- rgbif2(species = spp, force = TRUE, remove_na = TRUE, n.records = 100000)
+#Clean data
+library(CoordinateCleaner)
+oc_n <- oc.gbif %>% mutate(decimalLatitude = as.numeric(decimalLatitude),
+                           decimalLongitude = as.numeric(decimalLongitude))
+
+occ_f <- clean_coordinates(x = oc_n, lon = "decimalLongitude",
+                           lat = "decimalLatitude",
+                           species = "species", countries = "countryCode",
+                           tests = c("capitals", "centroids", "equal", "gbif",
+                                     "institutions","seas", "zeros"))
+#Select only valid records
+occ <- occ_f %>% filter(.summary == TRUE) %>%
+  dplyr::select(species, x = "decimalLongitude", y = "decimalLatitude")
+#Remove duplicates
+occ_dup <- cc_dupl(occ, species = "species", lon = "x", lat = "y")
+occurrences <- data.frame(occ_dup)
+usethis::use_data(occurrences)
+
+####Maps from geobr####
+br <- geobr::read_country() %>% vect()
+brazil <- terra::simplifyGeom(br, makeValid = TRUE) %>% wrap()
+
+#States
+states <- geobr::read_state()
+states$code_state <- NULL
+states$code_region <- NULL
+states <- terra::simplifyGeom(vect(states))
+#Correct states - remove accents
+library(stringi)
+states$name_state <- stri_trans_general(states$name_state, "Latin-ASCII")
+states <- wrap(states)
+
+#Biomes
+biomes_o <- geobr::read_biomes()
+biomes <- subset(biomes_o, biomes_o$name_biome != "Sistema Costeiro")
+biomes$year <- NULL
+biomes$code_biome <- NULL
+plot(biomes)
+#Rename biomes
+strsplit(fdata$phytogeographicDomain, ";") %>% unlist() %>% unique()
+biomes$name_biome[which(biomes$name_biome == "Amazônia")] <- "Amazon"
+biomes$name_biome[which(biomes$name_biome == "Mata Atlântica")] <- "Atlantic_Forest"
+biomes <- terra::simplifyGeom(vect(biomes))
+plot(biomes)
+biomes <- wrap(biomes)
+
+usethis::use_data(brazil, states, biomes)
+
+
+
+#Attributes
+#States
+states_d <- data.frame("Sigla_Acronym" = c("AC", "AM", "PA", "BA", "ES", "RJ",
+                                           "MT", "MA", "CE", "MG", "PE", "PI",
+                                           "SE", "MS", "PR", "RS", "SC", "SP",
+                                           "AL", "DF", "GO", "RO", "AP", "PB",
+                                           "RN", "RR", "TO"),
+                       "Nome_Name" = c("Acre", "Amazonas", "Para", "Bahia",
+                                       "Espirito Santo", "Rio de Janeiro",
+                                       "Mato Grosso", "Maranhao", "Ceara",
+                                       "Minas Gerais", "Pernambuco", "Piaui",
+                                       "Sergipe", "Mato Grosso do Sul",
+                                       "Parana", "Rio Grande do Sul",
+                                       "Santa Catarina", "Sao Paulo",
+                                       "Alagoas", "Distrito Federal",
+                                       "Goias", "Rondania", "Amapa", "Paraiba",
+                                       "Rio Grande do Norte", "Roraima",
+                                       "Tocantins"))
+
+#Biomes
+biomes_d <- data.frame("Biome" = c("Amazon", "Atlantic_Forest", "Caatinga",
+                                   "Cerrado", "Pampa", "Pantanal",
+                                   "Not_found_in_Brazil"),
+                       "Bioma" = c("Amazonia", "Mata_Atlantica", "Caatinga",
+                                   "Cerrado", "Pampa", "Pantanal",
+                                   "Nao_ocorre_no_Brasil"))
+#LifeForm
+lf_d <- data.frame("lifeForm" = c("Aquatic-Benthos", "Aquatic-Neuston",
+                                  "Aquatic-Plankton", "Shrub", "Tree", "Bamboo",
+                                  "Cushion", "Dendroid", "Unknown",
+                                  "Dracaenoid", "Endophyte", "Entomogenous",
+                                  "Herb", "Flabellate", "Foliose",
+                                  "Liana/scandent/vine", "Lichenized",
+                                  "Mycorrhizal", "Palm_tree", "Parasite",
+                                  "Pendent", "Saprobe", "Subshrub", "Succulent",
+                                  "Thallose", "Mat", "Weft", "Tuft"),
+                   "Forma_de_vida" = c("Aquatica-Bentos", "Aquatica-Neuston",
+                                       "Aquatica-Plancton", "Arbusto", "Arvore",
+                                       "Bambu", "Coxim", "Dendroide",
+                                       "Desconhecida", "Dracenoide",
+                                       "Endofitico", "Entomogeno", "Erva",
+                                       "Flabelado", "Folhosa",
+                                       "Liana/voluvel/trepadeira",
+                                       "Liquenizado", "Micorrizico",
+                                       "Palmeira", "Parasita", "Pendente",
+                                       "Saprobio", "Subarbusto", "Suculenta",
+                                       "Talosa", "Tapete", "Trama", "Tufo"))
+
+#Habitat
+habitat_d <- data.frame("habitat_en" = c("Water", "Dead_animal", "Living_animal",
+                                         "Aquatic", "Sand", "Corticolous",
+                                         "Unknown", "Edaphic", "Epiphyllous",
+                                         "Epiphytic", "Epixilous", "Dung_or_feces",
+                                         "Aerial_litter", "Submerged_litter",
+                                         "Hemiepiphyte", "Hemiparasite", "Other",
+                                         "Parasite", "Living_plant-stem_cortex",
+                                         "Living_plant-branch_cortex",
+                                         "Living plant-leaf",
+                                         "Living plant-fruit",
+                                         "Living_plant-inflorescence",
+                                         "Living_plant-root", "Rock",
+                                         "Rupicolous", "Saprophyte", "Saxicolous",
+                                         "Seed", "Symbiont", "Soil", "Subaerial",
+                                         "Terrestrial", "Decaying_wood",
+                                         "Living_plant", "Leaf_litter",
+                                         "Another_fungus"),
+                        "habitat_pt" = c("Agua", "Animal morto", "Animal vivo",
+                                         "Aquatica", "Areia", "Corticicola",
+                                         "Desconhecido", "Edafica", "Epifila",
+                                         "Epifita", "Epixila",
+                                         "Esterco ou Fezes", "Folhedo aereo",
+                                         "Folhedo submerso", "Hemiepifita",
+                                         "Hemiparasita", "Outro", "Parasita",
+                                         "Planta viva - cortex do caule",
+                                         "Planta viva - cortex galho",
+                                         "Planta viva - folha",
+                                         "Planta viva - fruto",
+                                         "Planta viva - inflorescencia",
+                                         "Planta viva - raiz", "Rocha",
+                                         "Rupicola", "Saprofita", "Saxicola",
+                                         "Semente",
+                                         "Simbionte (incluindo fungos liquenizados)",
+                                         "Solo", "Sub-aerea", "Terricola",
+                                         "Tronco em decomposicao", "Planta viva",
+                                         "Folhedo", "Outro fungo"))
+
+#Vegetation
+vegetation_d <- data.frame(
+  VegetationType = c("Anthropic_Area", "Caatinga",
+                     "Amazonian_Campinarana", "High_Altitude_Grassland",
+                     "Flooded_Field", "Grassland", "Highland_Rocky_Field",
+                     "Carrasco", "Cerrado", "Gallery_Forest",
+                     "Inundated_Forest_Igapo", "Terra_Firme_Forest",
+                     "Inundated_Forest", "Seasonallly_Deciduous_Forest",
+                     "Seasonal_Evergreen_Forest",
+                     "Seasonally_Semideciduous_Forest", "Rainforest",
+                     "Mixed_Ombrophyllous_Forest", "Mangrove", "Palm_Grove",
+                     "Restinga", "Amazonian_Savanna", "Aquatic_Vegetation",
+                     "Rock_outcrop_Vegetation", "Not_found_in_Brazil"),
+  TipoVegetacao = c("Area Antropica", "Caatinga (stricto sensu)", "Campinarana",
+                    "Campo de Altitude", "Campo de Varzea", "Campo Limpo",
+                    "Campo rupestre", "Carrasco", "Cerrado (lato sensu)",
+                    "Floresta Ciliar ou Galeria", "Floresta de Igapo",
+                    "Floresta de Terra Firme", "Floresta de Varzea",
+                    "Floresta Estacional Decidual",
+                    "Floresta Estacional Perenifolia",
+                    "Floresta Estacional Semidecidual",
+                    "Floresta Ombrofila (= Floresta Pluvial)",
+                    "Floresta Ombrofila Mista", "Manguezal", "Palmeiral",
+                    "Restinga", "Savana Amazonica", "Vegetacao Aquatica",
+                    "Vegetacao Sobre Afloramentos Rochosos",
+                    "Nao ocorre no Brasil"))
+
+#nomenclaturalStatus
+nomenclaturalStatus_d <- data.frame(
+  "nomenclaturalStatus" = c("Correct", "Legitimate_but_incorrect", "Correct_name_by_conservation", "Orthographical_variant", "Illegitimate", "Not_effectively_published", "Not_validly_published", "Uncertain_Application", "Rejected", "Misapplied"),
+  "statusNomenclatural" = c("NOME_CORRETO", "NOME_LEGITIMO_MAS_INCORRETO",
+                            "NOME_CORRETO_VIA_CONSERVACAO", "VARIANTE_ORTOGRAFICA",
+                            "NOME_ILEGITIMO", "NOME_NAO_EFETIVAMENTE_PUBLICADO",
+                            "NOME_NAO_VALIDAMENTE_PUBLICADO",
+                            "NOME_APLICACAO_INCERTA", "NOME_REJEITADO",
+                            "NOME_MAL_APLICADO"))
+#TaxonomicStatus
+taxonomicStatus_d <- data.frame(
+  "taxonomicStatus" = c("", "Accepted", "Synonym"),
+  "statusTaxonomico" = c("", "Nome_aceito", "Sinonimo"))
+
+#Endemism
+Endemism_d <- data.frame(Endemism = c("Unknown", "Non-endemic", "Endemic",
+                                      "Not_found_in_Brazil"),
+                         Endemismo = c("", "Nao endemica", "Endemica",
+                                       "Nao ocorre no Brasil"))
+
+#Origin
+Origin_d <- data.frame(Origin = c("Unknown", "Native", "Cultivated",
+                                  "Naturalized"),
+                       Origem = c("", "Nativa", "Cultivada",
+                                  "Naturalizada"))
+
+#Group
+Group_d <- data.frame(
+  "Group" = c("Fungi", "Angiosperms", "Gymnosperms",
+              "Ferns and Lycophytes",
+              "Bryophytes", "Algae"),
+  "Grupo" = c("Fungos", "Angiospermas", "Gimnospermas",
+              "Samambaias e licofitas",
+              "Briofitas", "Algas"))
+
+#Subgroup
+Subgroup_d <- data.frame(
+  "Subgroup" = c("stricto sensu", "lato sensu", NA, "Mosses", "Hornworts",
+                 "Liverworts"),
+  "Subgrupo" = c("Fungo stricto-sensu", "Fungo lato-sensu", NA, "Musgos",
+                 "Antoceros", "Hepaticas"
+  ))
+
+#Save all this thins in a list
+att_l <- list(states_d, biomes_d, vegetation_d, lf_d, habitat_d,
+              nomenclaturalStatus_d, taxonomicStatus_d, Endemism_d, Origin_d,
+              Group_d, Subgroup_d)
+names(att_l) <- c("States", "Biome", "vegetationType",
+                  "lifeForm", "habitat", "nomenclaturalStatus",
+                  "taxonomicStatus", "Endemism", "Origin", "Group",
+                  "Subgroup")
+Attributes <- att_l
+#Save object to use
+usethis::use_data(Attributes, overwrite = TRUE)

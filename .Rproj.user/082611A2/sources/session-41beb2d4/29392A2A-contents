@@ -1,0 +1,15 @@
+data = bf_data;
+include_subspecies = FALSE;
+include_variety = FALSE;
+Kingdom = "Plantae";
+Group = "All"; Subgroup = "All";
+Family = "All"; Genus = "All";
+LifeForm = "Tree"; filter_LifeForm = "only";
+Habitat = "All"; filter_Habitat = "in";
+Biome = c("Atlantic_Forest","Amazon");
+filter_Biome = "only";
+State = "All"; filter_State = "and";
+VegetationType = "All"; filter_Vegetation = "in";
+Endemism = "Endemic"; Origin = "Native";
+TaxonomicStatus = "All";
+NomenclaturalStatus = "All"

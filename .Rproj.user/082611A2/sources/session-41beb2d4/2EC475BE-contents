@@ -1,0 +1,50 @@
+t <- load_florabr(data_dir = my_dir, type = "complete")
+spp <- select_species(data = t, Family = c("Sapindaceae", "Rutaceae",
+                                           "Simaroubaceae", "Meliaceae",
+                                           "Burseraceae", "Anacardiaceae"))
+data <- spp
+x <- "family"
+
+
+summarize_bf <- function(data = NULL, x = NULL, fill = NULL, min_freq = 5,
+                         get_uniques = T){
+  d <- 
+  
+  
+  tdata <- data.frame(table(data[,x], data[,y]))
+  tdata <- subset(tdata, tdata$Freq >= min_freq)
+  
+}
+
+
+tdata_separados <- data.frame(Var1 = rep(tdata$Var1, sapply(strsplit(tdata$Var2, ";"), length)),
+                              Var2 = unlist(strsplit(tdata$Var2, ";")),
+                              Freq = rep(tdata$Freq, sapply(strsplit(tdata$Var2, ";"), length)))
+
+# Agrupar e resumir os dados para obter a soma da frequência por combinação única de Var1 e Var2
+linhas_separadas <- lapply(1:nrow(tdata), function(i) {
+  valores_var2 <- unlist(strsplit(as.character(tdata$Var2[i]), ";"))
+  data.frame(Var1 = rep(tdata$Var1[i], length(valores_var2)),
+             Var2 = valores_var2,
+             Freq = rep(tdata$Freq[i], length(valores_var2)))
+})
+
+# Combinar as linhas separadas em um novo dataframe
+dados_separados <- do.call(rbind, linhas_separadas)
+
+# Agrupar e resumir os dados para obter a soma da frequência por combinação única de Var1 e Var2
+dados_resumidos <- aggregate(Freq ~ Var1 + Var2, data = dados_separados, sum)
+
+
+
+dados_separados <- tdata %>%
+  separate_rows(Var2, sep = ";")
+
+library(ggplot2)
+
+ggplot(data = dados_resumidos, aes(x = Var1, y = Freq, fill = Var2)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = pals::alphabet2(26) %>% as.character())
+
+
+

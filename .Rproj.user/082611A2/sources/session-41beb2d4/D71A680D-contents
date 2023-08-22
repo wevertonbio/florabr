@@ -1,0 +1,3 @@
+Family = c("Sapindaceae", "Rutaceae")
+
+d <- subset(t, grepl(paste(Family, collapse = "|"), t$family))
