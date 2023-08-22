@@ -196,7 +196,7 @@ select_species <- function(data = NULL,
                The subgroups are only available for non-Plants:\n",
                paste(na.omit(unique(data$Subgroup)), collapse = ", ")))  }
 
-  if(Family != "All" & !(Family %in% unique(data$family))) {
+  if(!all(Family != "All") & !all(Family %in% unique(data$family))) {
     stop(paste("Family not valid.\n",
     "Check the available families with the function get_attributes()")) }
 

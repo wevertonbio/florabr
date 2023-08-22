@@ -302,7 +302,7 @@ checked_names
 #> 1 Araucaria brasiliana           Correct Araucaria brasiliana        0
 #> 2 Araucaria brasiliana           Correct Araucaria brasiliana        0
 #> 3    Solanum restingae           Correct    Solanum restingae        0
-#> 4  Butia cattarinensis Probably_incorret   Butia catarinensis        1
+#> 4  Butia cattarinensis Probably_incorrect   Butia catarinensis        1
 #> 5         Homo sapiens         Incorrect                 <NA>       NA
 #>   taxonomicStatus nomenclaturalStatus           acceptedName        family
 #> 1         Synonym                <NA> Araucaria angustifolia Araucariaceae
