@@ -4,6 +4,8 @@
 # florabr
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/wevertonbio/florabr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/wevertonbio/florabr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 [Brazilian Flora
