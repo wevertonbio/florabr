@@ -1,0 +1,149 @@
+---
+title: "Getting started with florabr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started with florabr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = F,
+  warning = FALSE
+)
+```
+
+## Introduction
+### What is Brazilian Flora 2020?
+Brazilian Flora 2020 is the most comprehensive work to reliably document Brazilian plant diversity. It involves the work of hundreds of taxonomists, integrating data from plant and fungi collected in Brazil during the last two centuries. The database contains detailed and standardized morphological descriptions, illustrations, nomenclatural data, geographic distribution, and keys for the identification of all native and non-native plants found in Brazil.
+
+The florabr package includes a collection of functions designed to retrieve, filter and spatialize data from the [Brazilian Flora 2020 dataset](https://floradobrasil.jbrj.gov.br/reflora/listaBrasil/PrincipalUC/PrincipalUC.do?lingua=en#CondicaoTaxonCP).
+
+## Overview of the functions:
+
++ `get_florabr`: download the latest or an older version of Brazilian Flora 2020 database.
++ `check_version`: check if you have the latest version of Brazilian Flora data available in a directory.
++ `load_florabr`: load Brazilian Flora database.
++ `get_attributes`: display all the options available to filter species by its characteristics.
++ `select_species`: filter species based on its characteristics and distribution.
++ `get_binomial`: extract the binomial name (Genus + specific epithet) from a Scientific Name.
++ `check_names`: check if the species names are correct.
++ `subset_species`: subset a list of species from Brazilian Flora 2020.
++ `get_spat_occ`: get Spatial polygons (SpatVectors) of species based on its distribution.
++ `filter_florabr`: removes or flags records outside of the species' natural ranges.
+
+
+## Installation
+You can install the released version of *florabr* from [github](https://github.com/wevertonbio/florabr) with:
+```{r, results='hide', message=FALSE}
+if(!require(devtools)){
+    install.packages("devtools")
+}
+
+if(!require(florabr)){
+devtools::install_github('wevertonbio/florabr')}
+
+library(florabr)
+```
+
+The package is also available in CRAN...
+
+## Get data from Brazilian Flora
+All data included in the Brazilian Flora (i.e., nomenclature, life form, and distribution) are stored in Darwin Core Archive data sets, which is updated weekly. Before downloading the data available in the Brazilian Flora 2020, we need to create a folder to save the data:
+
+```{r}
+#Create a folder in a temporary directory
+#Replace 'file.path(tempdir(), "florabr")' by a path folder to be create in your computer
+my_dir <- file.path(file.path(tempdir(), "florabr"))
+dir.create(my_dir)
+```
+
+You can now utilize the `get_florabr` function to retrieve the most recent version of the data:
+
+```{r, results='hide', message=FALSE, warning=FALSE}
+get_florabr(output_dir = my_dir, #directory to save the data
+            data_version = "latest", #get the most recent version available
+            overwrite = T) #Overwrite data, if it exists
+```
+
+The function will take a few seconds to download the data and a few minutes to merge the datasets into a single data.frame. Upon successful completion, you will find a folder named with the version of Brazilian Flora. This folder contains the downloaded raw dataset (TXT files in Portuguese) and a file named **CompleteBrazilianFlora.rds**. The latter represents the finalized dataset, merged and translated into English.
+
+You also have the option to download an older, specific version of the Brazilian Flora dataset. To explore the available versions, please refer to [this link](https://ipt.jbrj.gov.br/jbrj/resource?r=lista_especies_flora_brasil). For downloading a particular version, simply replace 'latest' with the desired version number. For example:
+
+```{r, results='hide', message=FALSE, warning=FALSE}
+get_florabr(output_dir = my_dir, #directory to save the data
+            data_version = "393.385", #Version 393.385, published on 2023-07-21
+            overwrite = T) #Overwrite data, if it exists
+```
+
+As previously mentioned, you will find a folder named '393.385' within the designated directory.
+
+To view the available versions in your specified directory, run:
+
+```{r}
+check_version(data_dir = my_dir)
+#> You have the following versions of Brazilian Flora:
+#>  393.385
+#> 393.389 
+#>  It includes the latest version:  393.389
+```
+
+## Loading the data
+In order to use the other functions of the package, you need to load the data into your environment. To achieve this, utilize the `load_florabr()` function. By default, the function will automatically search for the latest available version in your directory. However, you have the option to specify a particular version using the *data_version* parameter.
+Additionally, you can choose between two versions of the data: the 'short' version (containing the 19 columns required for run the other functions of the package) or the 'complete' version (with all original 39 columns). The function imports the 'short' version by default.
+
+```{r}
+#Short version
+bf <- load_florabr(data_dir = my_dir,
+                   data_version = "Latest_available",
+                   type = "short") #short
+#> Loading version 393.389
+colnames(bf) #See variables from short version
+#>  [1] "species"             "scientificName"      "acceptedName"       
+#>  [4] "kingdom"             "Group"               "Subgroup"           
+#>  [7] "family"              "genus"               "lifeForm"           
+#> [10] "habitat"             "Biome"               "States"             
+#> [13] "vegetationType"      "Origin"              "Endemism"           
+#> [16] "taxonomicStatus"     "nomenclaturalStatus" "vernacularName"     
+#> [19] "taxonRank"
+```
+Note that the complete version has 20 more columns:
+
+```{r}
+#Complete version
+bf_complete <- load_florabr(data_dir = my_dir,
+                   data_version = "Latest_available",
+                   type = "complete") #complete
+
+colnames(bf_complete) #See variables from complete version
+#>  [1] "id"                       "taxonID"                 
+#>  [3] "acceptedNameUsageID"      "parentNameUsageID"       
+#>  [5] "originalNameUsageID"      "Group"                   
+#>  [7] "Subgroup"                 "species"                 
+#>  [9] "acceptedName"             "scientificName"          
+#> [11] "acceptedNameUsage"        "parentNameUsage"         
+#> [13] "namePublishedIn"          "namePublishedInYear"     
+#> [15] "higherClassification"     "kingdom"                 
+#> [17] "phylum"                   "class"                   
+#> [19] "order"                    "family"                  
+#> [21] "genus"                    "specificEpithet"         
+#> [23] "infraspecificEpithet"     "taxonRank"               
+#> [25] "scientificNameAuthorship" "taxonomicStatus"         
+#> [27] "nomenclaturalStatus"      "vernacularName"          
+#> [29] "lifeForm"                 "habitat"                 
+#> [31] "vegetationType"           "Origin"                  
+#> [33] "Endemism"                 "Biome"                   
+#> [35] "States"                   "countryCode"             
+#> [37] "modified"                 "bibliographicCitation"   
+#> [39] "references"
+```
+
+If you want to save the datasets to open with an external editor (e.g. Excel), you can save the data.frame as a CSV file:
+```{r, eval=FALSE, warning=FALSE, message=FALSE, }
+write.csv(x = bf,
+          file = file.path(my_dir, "BrazilianFlora.csv"),
+          row.names = F)
+```
