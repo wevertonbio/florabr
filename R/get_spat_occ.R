@@ -1,4 +1,4 @@
-#' Get Spatial polygons (SpatVectors) of species based on its distribution (States and Biomes) according do Brazilian Flora 2020
+#' Get Spatial polygons (SpatVectors) of species based on its distribution (States and Biomes) according to Brazilian Flora 2020
 #'
 #' @param data (data.frame) the data.frame imported with the
 #' \code{\link{load_florabr}} function.
