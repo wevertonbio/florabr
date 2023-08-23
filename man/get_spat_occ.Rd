@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_spat_occ.R
 \name{get_spat_occ}
 \alias{get_spat_occ}
-\title{Get Spatial polygons (SpatVectors) of species based on its distribution (States and Biomes) according do Brazilian Flora 2020}
+\title{Get Spatial polygons (SpatVectors) of species based on its distribution (States and Biomes) according to Brazilian Flora 2020}
 \usage{
 get_spat_occ(
   data = NULL,
@@ -43,7 +43,7 @@ get_spat_occ(
 A list with SpatVectors of States and/or Biomes and/or Intersections for each specie.
 }
 \description{
-Get Spatial polygons (SpatVectors) of species based on its distribution (States and Biomes) according do Brazilian Flora 2020
+Get Spatial polygons (SpatVectors) of species based on its distribution (States and Biomes) according to Brazilian Flora 2020
 }
 \examples{
 library(terra)
