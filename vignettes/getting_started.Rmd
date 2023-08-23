@@ -49,13 +49,11 @@ devtools::install_github('wevertonbio/florabr')}
 library(florabr)
 ```
 
-The package is also available in CRAN...
-
 ## Get data from Brazilian Flora
 All data included in the Brazilian Flora (i.e., nomenclature, life form, and distribution) are stored in Darwin Core Archive data sets, which is updated weekly. Before downloading the data available in the Brazilian Flora 2020, we need to create a folder to save the data:
 
 ```{r}
-#Create a folder in a temporary directory
+#Creating a folder in a temporary directory
 #Replace 'file.path(tempdir(), "florabr")' by a path folder to be create in your computer
 my_dir <- file.path(file.path(tempdir(), "florabr"))
 dir.create(my_dir)
