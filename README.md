@@ -65,7 +65,7 @@ if(!require(devtools)){
     install.packages("devtools")
 }
 
-if(!require(florabR)){
+if(!require(florabr)){
 devtools::install_github('wevertonbio/florabr')}
 
 library(florabr)
