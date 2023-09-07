@@ -187,7 +187,7 @@ select_species <- function(data = NULL,
     stop(paste("Kingdom not valid. The Kingdoms availables are:\n",
                paste(unique(data$kingdom), collapse = ", ")))  }
 
-  if(Group != "All" & !(Group %in% unique(data$Group))) {
+  if(all(Group != "All") & !all(Group %in% unique(data$Group))) {
     stop(paste("Group not valid. The Groups availables are:\n",
                paste(unique(data$Group), collapse = ", ")))  }
 
@@ -234,9 +234,17 @@ select_species <- function(data = NULL,
     d <- subset(d, d$taxonRank %in% c("Species", "Subspecies", "Variety")) }
 
   #Group
-  if(Group == "All") {
+  if(all(Group == "All")) {
     d <- d } else {
-      d <- subset(d, d$Group %in% Group)
+      gr <- paste(Group, collapse = "|")
+      d <- subset(d, grepl(gr, d$Group))
+    }
+
+  #Subgroup
+  if(all(Subgroup == "All")) {
+    d <- d } else {
+      subgr <- paste(Subgroup, collapse = "|")
+      d <- subset(d, grepl(subgr, d$Subgroup))
     }
 
   #Subgroup
@@ -248,13 +256,15 @@ select_species <- function(data = NULL,
     #Family
   if(all(Family == "All")) {
     d <- d } else {
-    d <- subset(d, grepl(paste(Family, collapse = "|"), d$family))
+    ffam <- paste(Family, collapse = "|")
+    d <- subset(d, grepl(ffam, d$family))
     }
 
     #Genus
   if(all(Genus == "All")) {
     d <- d } else {
-      d <- subset(d, grepl(paste(Genus, collapse = "|"), d$genus))
+      ggen <- paste(Genus, collapse = "|")
+      d <- subset(d, grepl(ggen, d$genus))
     }
 
    #LifeForm ####
