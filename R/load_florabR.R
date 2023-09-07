@@ -64,7 +64,7 @@ load_florabr <- function(data_dir = NULL, data_version = "Latest_available",
       high_version <- max(as.numeric(gsub("393.", "", dir_versions)))
       version_data <- paste0("393.", high_version) } else {
         version_data <- 0
-      } }
+      } } else {version_data <-  data_version}
   #Stop if version_data = 0
   if (version_data == 0) {
     stop("There is no version of Flora do Brasil in the specified directory. Please check the directory or run the 'get_latest_version()' function to download the latest version of the data")
