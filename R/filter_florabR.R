@@ -300,13 +300,13 @@ filter_florabr <- function(data = NULL,
 
         #Get only records that fall inside Brazil
         occ_br <- occ_i[brazil]
-        occ_out <- mask(occ_i, brazil, inverse = TRUE)
+        occ_out <- terra::mask(occ_i, brazil, inverse = TRUE)
         occ_out$Inside_Biome <- NA
 
         #Get records that falls inside biomes
         occ_in_biomes <- occ_br[biomes_v]
         occ_in_biomes$Inside_Biome <- TRUE
-        occ_out_biomes <- mask(occ_br, biomes_v, inverse = TRUE)
+        occ_out_biomes <- terra::mask(occ_br, biomes_v, inverse = TRUE)
         occ_out_biomes$Inside_Biome <- FALSE
 
         #Merge data
@@ -357,19 +357,19 @@ filter_florabr <- function(data = NULL,
   if(isTRUE(keep_columns)) {
     occ_flag <- merge(occ_flag, occ, by = c("species", "id_f"))
     occ_flag$id_f <- NULL
-    occ_flag <- occ_flag[, c("species", "x", "y",
+    occ_flag <- occ_flag[, c(Species, Long, Lat,
                              colnames(occ_flag)[!(colnames(occ_flag) %in%
-                            c("species", "x", "y"))])]
+                            c(Species, Long, Lat))])]
 
-    colnames(occ_flag)[colnames(occ_flag) %in% c("species", "x", "y")] <- c(Species, Long, Lat)
+    colnames(occ_flag)[colnames(occ_flag) %in% c(Species, Long, Lat)] <- c(Species, Long, Lat)
   }
 
   if(isFALSE(keep_columns)) {
     occ_flag <- merge(occ_flag, occ[, c(Species, Lat, Long, "id_f")], by = c("species", "id_f"))
     occ_flag$id_f <- NULL
-    occ_flag <- occ_flag[, c("species", "x", "y", names(occ_flag)[!(names(occ_flag) %in%
-                                                                      c("species", "x", "y"))])]
-    colnames(occ_flag)[colnames(occ_flag) %in% c("species", "x", "y")] <- c(Species, Long, Lat)
+    occ_flag <- occ_flag[, c(Species, Long, Lat, names(occ_flag)[!(names(occ_flag) %in%
+                                                                      c(Species, Long, Lat))])]
+    colnames(occ_flag)[colnames(occ_flag) %in% c(Species, Long, Lat)] <- c(Species, Long, Lat)
   }
 
 
