@@ -13,7 +13,7 @@
 #' spp_new <- get_binomial(species_names = spp)
 #' spp_new
 #'
-get_binomial <- function(species_names = NULL) {
+get_binomial <- function(species_names) {
   if (!is.character(species_names)) {
     stop(paste0("Argument species_names must be a character, not ",
                 class(species_names)))

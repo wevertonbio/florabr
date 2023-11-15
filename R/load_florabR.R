@@ -31,7 +31,7 @@
 #' df <- load_florabr(data_dir = my_dir, data_version = "Latest_available",
 #' type = "short")
 #' }
-load_florabr <- function(data_dir = NULL, data_version = "Latest_available",
+load_florabr <- function(data_dir, data_version = "Latest_available",
                          type = "short"){
   #Set folder
   if (missing(data_dir)) {

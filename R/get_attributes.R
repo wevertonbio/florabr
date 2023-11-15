@@ -32,7 +32,7 @@
 #' # Get available states to filter species
 #' get_attributes(data = bf_data, Kingdom = "Plantae", attribute = "States")
 
-get_attributes <- function(data = NULL, attribute = NULL,
+get_attributes <- function(data, attribute,
                            Kingdom = "Plantae") {
 
   if (missing(data)) {

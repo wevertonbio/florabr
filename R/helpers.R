@@ -11,7 +11,7 @@ extract_between <- function(str, left, right) {
 
 
 #Translate lifeform from portuguese to english
-translate_lifeform <- function(lifeform = NULL) {
+translate_lifeform <- function(lifeform) {
   newlifeform <- gsub("Aquatica-Bentos", "Aquatic-Benthos", lifeform)
   newlifeform <- gsub("Aquatica-Neuston", "Aquatic-Neuston", newlifeform)
   newlifeform <- gsub("Aquatica-Plancton", "Aquatic-Plankton", newlifeform)
@@ -46,7 +46,7 @@ translate_lifeform <- function(lifeform = NULL) {
 }
 
 #Translate habitat from portuguese to english
-translate_habitat <- function(habitat = NULL) {
+translate_habitat <- function(habitat) {
   newhabitat <- gsub("Agua", "Water", habitat)
   newhabitat <- gsub("Animal morto", "Dead_animal", newhabitat)
   newhabitat <- gsub("Animal vivo", "Living_animal", newhabitat)
@@ -88,7 +88,7 @@ translate_habitat <- function(habitat = NULL) {
   }
 
 #Translate biome from portuguese to english
-translate_biome <- function(biome = NULL) {
+translate_biome <- function(biome) {
   newbiome <- gsub("Amazonia", "Amazon", biome)
   newbiome <- gsub("Mata Atlantica", "Atlantic_Forest", newbiome)
   newbiome <- gsub("Nao ocorre no Brasil", "Not_found_in_Brazil", newbiome)
@@ -96,7 +96,7 @@ translate_biome <- function(biome = NULL) {
 }
 
 #Translate vegetationType from portuguese to english
-translate_vegetation <- function(vegetation = NULL) {
+translate_vegetation <- function(vegetation) {
   newvegetation <- gsub("Area Antropica", "Anthropic_Area", vegetation)
   newvegetation <- gsub("Caatinga \\(stricto sensu\\)", "Caatinga", newvegetation)
   newvegetation <- gsub("Campinarana", "Amazonian_Campinarana", newvegetation)
@@ -126,7 +126,7 @@ translate_vegetation <- function(vegetation = NULL) {
 }
 
 #Translate Endemism from portuguese to english
-translate_Endemism <- function(Endemism = NULL) {
+translate_Endemism <- function(Endemism) {
   newEndemism <- ifelse(Endemism == "", "Unknown",
                         ifelse(Endemism == "Nao endemica", "Non-endemic",
                                ifelse(Endemism == "Endemica", "Endemic",
@@ -137,7 +137,7 @@ translate_Endemism <- function(Endemism = NULL) {
 }
 
 #Translate Origin from portuguese to english
-translate_Origin <- function(Origin = NULL) {
+translate_Origin <- function(Origin) {
   newOrigin <- ifelse(Origin == "", "Unknown",
                         ifelse(Origin == "NATIVA", "Native",
                                ifelse(Origin == "CULTIVADA", "Cultivated",
@@ -149,7 +149,7 @@ translate_Origin <- function(Origin = NULL) {
 }
 
 #Translate nomenclatural status
-translate_nomenclaturalStatus <- function(status = NULL) {
+translate_nomenclaturalStatus <- function(status) {
   newstatus <- status
   newstatus[which(newstatus == "NOME_CORRETO")] <- "Correct"
   newstatus[which(newstatus == "NOME_LEGITIMO_MAS_INCORRETO")] <- "Legitimate_but_incorrect"
@@ -164,7 +164,7 @@ translate_nomenclaturalStatus <- function(status = NULL) {
   return(newstatus)}
 
 #Translate taxonomic status
-translate_taxonomicStatus <- function(status = NULL){
+translate_taxonomicStatus <- function(status){
   newstatus <- status
   newstatus[which(newstatus == "NOME_ACEITO")] <- "Accepted"
   newstatus[which(newstatus == "SINONIMO")] <- "Synonym"
@@ -172,7 +172,7 @@ translate_taxonomicStatus <- function(status = NULL){
 }
 
 #Translate taxon rank
-translate_taxonRank <- function(taxonRank = NULL){
+translate_taxonRank <- function(taxonRank){
   newrank <- taxonRank
   newrank[which(newrank== "ORDEM")] <- "Order"
   newrank[which(newrank== "FAMILIA")] <- "Family"
@@ -189,7 +189,7 @@ translate_taxonRank <- function(taxonRank = NULL){
 }
 
 #Translate Group
-translate_group <- function(Group = NULL){
+translate_group <- function(Group){
   newGroup <- Group
   newGroup[which(newGroup == "Fungos")] <- "Fungi"
   newGroup[which(newGroup == "Angiospermas")] <- "Angiosperms"
@@ -201,7 +201,7 @@ translate_group <- function(Group = NULL){
  }
 
 #Translate Subgroup
-translate_subgroup <- function(Subgroup = NULL){
+translate_subgroup <- function(Subgroup){
   newSubgroup <- Subgroup
   newSubgroup[which(newSubgroup == "Antoceros")] <- "Hornworts"
   newSubgroup[which(newSubgroup == "Hepaticas")] <- "Liverworts"
@@ -209,7 +209,7 @@ translate_subgroup <- function(Subgroup = NULL){
   return(newSubgroup)
 }
 
-merge_data <- function(path_data = NULL, version_data = NULL,
+merge_data <- function(path_data, version_data,
                        encoding = "UTF-8") {
 
   #Set folder

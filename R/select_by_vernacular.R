@@ -27,7 +27,7 @@
 #' @references
 #' Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at: http://floradobrasil.jbrj.gov.br/
 #'
-select_by_vernacular <- function(data = NULL, names = NULL,
+select_by_vernacular <- function(data, names,
                                  exact = FALSE){
   if (missing(data)) {
     stop("Argument data is not defined")
@@ -59,7 +59,7 @@ select_by_vernacular <- function(data = NULL, names = NULL,
     collapse = "|"), data$vernacularName))
 
 
-  if(isTRUE(exact)) {
+  if(exact) {
   has_word <- function(n) {
       palavras <- unlist(strsplit(n, ", "))
       any(grepl(paste0("^", names, "$"), palavras))

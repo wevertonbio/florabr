@@ -28,7 +28,7 @@
 #' #Download, merge and save data
 #' get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE)
 #' }
-get_florabr <- function(output_dir = NULL, data_version = "latest", overwrite = T) {
+get_florabr <- function(output_dir, data_version = "latest", overwrite = T) {
   #Set folder
   if(is.null(output_dir)) {
     stop(paste("Argument output_dir is not defined, this is necessary for",

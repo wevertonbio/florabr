@@ -131,7 +131,7 @@
 #'                              TaxonomicStatus = "All",
 #'                              NomenclaturalStatus = "All")
 
-select_species <- function(data = NULL,
+select_species <- function(data,
                            include_subspecies = FALSE,
                            include_variety = FALSE,
                            Kingdom = "Plantae",
@@ -224,13 +224,13 @@ select_species <- function(data = NULL,
   d <- subset(data, data$kingdom %in% Kingdom)
 
   #Taxon Rank
-  if(isFALSE(include_subspecies) & isFALSE(include_variety)) {
+  if(!include_subspecies & !include_variety) {
     d <- subset(d, d$taxonRank == "Species") }
-  if(isTRUE(include_subspecies) & isFALSE(include_variety)) {
+  if(include_subspecies & !include_variety) {
     d <- subset(d, d$taxonRank %in% c("Species", "Subspecies")) }
-  if(isFALSE(include_subspecies) & isTRUE(include_variety)) {
+  if(!include_subspecies & include_variety) {
     d <- subset(d, d$taxonRank %in% c("Species", "Variety")) }
-  if(isTRUE(include_subspecies) & isTRUE(include_variety)) {
+  if(include_subspecies & include_variety) {
     d <- subset(d, d$taxonRank %in% c("Species", "Subspecies", "Variety")) }
 
   #Group

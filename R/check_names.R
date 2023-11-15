@@ -28,7 +28,7 @@
 #' spp <- c("Butia cattarinensis", "Araucaria angustifolia")
 #' check_names(data = bf_data, species = spp)
 
-check_names <- function(data = NULL, species = NULL, max_distance = 0.1,
+check_names <- function(data, species, max_distance = 0.1,
                            Kingdom = "Plantae"){
   if (missing(data)) {
     stop("Argument data is not defined")

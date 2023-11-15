@@ -60,8 +60,8 @@
 #'                     value = "flag&clean", keep_columns = TRUE,
 #'                     verbose = FALSE)
 
-filter_florabr <- function(data = NULL,
-                          occ = NULL,
+filter_florabr <- function(data,
+                          occ,
                           Species = "species", Long = "x", Lat = "y",
                           by_State = TRUE, buffer_State = 20,
                           by_Biome = TRUE, buffer_Biome = 20,

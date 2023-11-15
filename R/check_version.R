@@ -16,7 +16,7 @@
 #' #Check if there is a version of Brazilian Flora data available in the current directory
 #' check_version(data_dir = getwd())
 
-check_version <- function(data_dir = NULL) {
+check_version <- function(data_dir) {
   #Set folder
   if (missing(data_dir)) {
     stop("Argument data_dir is not defined")

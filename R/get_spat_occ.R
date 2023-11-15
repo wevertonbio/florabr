@@ -37,7 +37,7 @@
 #' #Araucaria angustifolia
 #' plot(spp_spt[[1]]$States_Biomes)
 #'
-get_spat_occ <- function(data = NULL, species = NULL, State = TRUE,
+get_spat_occ <- function(data, species, State = TRUE,
                          Biome = TRUE,
                          intersection = TRUE,
                          State_vect = NULL, state_column = NULL,
@@ -100,10 +100,10 @@ get_spat_occ <- function(data = NULL, species = NULL, State = TRUE,
   }
 
   #Check if there is at least one TRUE in states or biomes
-  if(State == FALSE & Biome == FALSE){
-    stop("At least one of the parameters State or Biome must be true")
+  if(!State & !Biome){
+    stop("At least one of the parameters State or Biome must be TRUE")
   }
-  if(intersection == TRUE & (State == FALSE | Biome == FALSE)) {
+  if(intersection & (!State | !Biome)) {
     stop("To use intersection = TRUE, you must define State = TRUE and Biome = TRUE")
   }
 
@@ -133,10 +133,10 @@ get_spat_occ <- function(data = NULL, species = NULL, State = TRUE,
   sp_info <- unique(data.table::rbindlist(sp_info))
 
   #Load data
-  if(State == TRUE) {
+  if(State) {
   states <- terra::unwrap(florabr::states)
   }
-  if(Biome == TRUE) {
+  if(Biome) {
     biomes <- terra::unwrap(florabr::biomes)
   }
 
@@ -166,10 +166,10 @@ get_spat_occ <- function(data = NULL, species = NULL, State = TRUE,
   l_occ <- lapply(seq_along(spp), function(i){
     occ_i <- subset(sp_info, sp_info$species == spp[i])
 
-    if(State == FALSE) {states_v <- NULL}
+    if(!State) {states_v <- NULL}
 
-    if(State == TRUE) {
-      if(isTRUE(verbose)) {
+    if(State) {
+      if(verbose) {
         cat(paste("Getting states of", spp[i], "\n")) }
 
       sp_i_state <- unique(gsub(";", "|", occ_i$States[1]))
@@ -182,10 +182,10 @@ get_spat_occ <- function(data = NULL, species = NULL, State = TRUE,
                                                     states$abbrev_state)) }
     }
 
-    if(Biome == FALSE) {biomes_v <- NULL}
+    if(!Biome) {biomes_v <- NULL}
 
-    if(Biome == TRUE) {
-      if(isTRUE(verbose)) {
+    if(Biome) {
+      if(verbose) {
         cat(paste("Getting biomes of", spp[i], "\n")) }
       sp_i_biome<- unique(gsub(";", "|", occ_i$Biome[1]))
 
@@ -197,15 +197,15 @@ get_spat_occ <- function(data = NULL, species = NULL, State = TRUE,
                                                     biomes$name_biome)) }
     }
 
-    if(intersection == FALSE) {int_v <- NULL}
+    if(!intersection) {int_v <- NULL}
 
-    if(intersection == TRUE) {
-      if(isTRUE(verbose)) {
+    if(intersection) {
+      if(verbose) {
         cat(paste("Getting biomes of", spp[i], "\n")) }
-      if((sp_i_biome == "" | is.na(sp_i_biome)) & verbose == TRUE) {
+      if((sp_i_biome == "" | is.na(sp_i_biome)) & verbose) {
         cat(paste(spp[i], "lacks info about states - Impossible to get intersection with states"))
       }
-      if((sp_i_biome == "" | is.na(sp_i_biome)) & verbose == TRUE) {
+      if((sp_i_biome == "" | is.na(sp_i_biome)) & verbose) {
         cat(paste(spp[i], "lacks info about biomes - Impossible to get intersection with biomes"))
       }
 
