@@ -125,7 +125,8 @@ Note that now, the geometries of *br_states* (not simplified) are more complex t
 par(mfrow = c(1, 2), mar = c(2, 2, 2, 2)) 
 plot(br_states[br_states$abbrev_state == "PR"],
      main = "Not simplified geometries", mar = NA)
-plot(states[states$abbrev_state == "PR"], main = "Simplified geometries",
+plot(states[states$abbrev_state == "PR"],
+     main = "Simplified geometries",
      mar = NA)
 ```
 ```{r IMG03, eval=TRUE, echo = FALSE}
@@ -138,7 +139,8 @@ br_biomes <- geobr::read_biomes()
 #Convert br_biomes from sf to SpatVect
 br_biomes<- terra::vect(br_biomes)
 #Drop off coastal system:
-br_biomes <- terra::subset(br_biomes, br_biomes$name_biome != "Sistema Costeiro")
+br_biomes <- terra::subset(br_biomes, 
+                           br_biomes$name_biome != "Sistema Costeiro")
 ```
 
 The names of the biomes are in Portuguese. We need to translate Amazonia and Mata Atlantica to English to match with the names in Brazilian Flora database:
@@ -152,19 +154,20 @@ biomes$name_biome
 #> [5] "Pampa"          "Pantanal"
 #Translate
 br_biomes$name_biome[which(br_biomes$name_biome == "Amazônia")] <- "Amazon"
-br_biomes$name_biome[which(br_biomes$name_biome == "Mata Atlântica")] <- "Atlantic_Forest"
+br_biomes$name_biome[which(
+  br_biomes$name_biome == "Mata Atlântica")] <- "Atlantic_Forest"
 ```
 
 Now, the SpatVector of biomes is also ready to use. Let's see the difference when we use this non-simplified Spatvectors in the `get_spat_occ`:
 
 ```{r}
 spp_spt_2 <- get_spat_occ(data = bf, species = spp,
-                       State = TRUE, Biome = TRUE, intersection = TRUE,
-                       State_vect = br_states, #The non-simplified Spatvector
-                       state_column = "abbrev_state", #Column name with states acronymns
-                       Biome_vect = br_biomes, #The non-simplified Spatvector
-                       biome_column = "name_biome", #Column name with names of biomes
-                       verbose = TRUE)
+                State = TRUE, Biome = TRUE, intersection = TRUE,
+                State_vect = br_states, #The non-simplified Spatvector
+                state_column = "abbrev_state", #Column name with states acronyms
+                Biome_vect = br_biomes, #The non-simplified Spatvector
+                biome_column = "name_biome", #Column name with names of biomes
+                verbose = TRUE)
 ```
 
 See the difference: now, the polygons representing the distribution of species in states and biomes are more complex:

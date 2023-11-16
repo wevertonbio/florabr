@@ -131,7 +131,7 @@ af_spp <- select_species(data = bf,
                       LifeForm = "Tree", #Specify tree species
                       filter_LifeForm = "in",
                       Habitat = "All", filter_Habitat = "in",
-                      Biome = "Atlantic_Forest", #Occuring in the Atlantic Forest
+                      Biome = "Atlantic_Forest", #Occuring in the At. Forest
                       filter_Biome = "in", #In Atlantic Forest
                       State = "All", filter_State = "in",
                       VegetationType = "All", filter_Vegetation = "in",
@@ -167,7 +167,7 @@ only_af_spp <- select_species(data = bf,
                       LifeForm = "Tree", #Specify tree species
                       filter_LifeForm = "in",
                       Habitat = "All", filter_Habitat = "in",
-                      Biome = "Atlantic_Forest", #Occuring in the Atlantic Forest
+                      Biome = "Atlantic_Forest", #Occuring in the At. Forest
                       filter_Biome = "only", #ONLY in Atlantic Forest
                       State = "All", filter_State = "in",
                       VegetationType = "All", filter_Vegetation = "in",
@@ -193,7 +193,7 @@ south_af_spp <- select_species(data = bf,
                       LifeForm = "Tree", #Specify tree species
                       filter_LifeForm = "in",
                       Habitat = "All", filter_Habitat = "in",
-                      Biome = "Atlantic_Forest", #Occuring in the Atlantic Forest
+                      Biome = "Atlantic_Forest", #Occuring in the At. Forest
                       filter_Biome = "only", #Only in Atlantic Forest
                       State = c("PR", "SC", "RS"), #States - Use the acronynms
                       filter_State = "in", #IN at least one of these states
@@ -207,11 +207,11 @@ nrow(south_af_spp)
 
 #First 10 unique values of states in the filtered dataset
 unique(south_af_spp$States)[1:10]
-#>  [1] "BA;ES;PR;RJ;SC;SP"                   "AL;BA;CE;ES;MA;MG;PB;PE;PR;RJ;SE;SP"
-#>  [3] "PR;RS;SC"                            "BA;CE;ES;MA;MG;PE;PR;RJ;SP"         
-#>  [5] "MG;PR;RJ;SC;SP"                      "MG;PR;RJ;RS;SC;SP"                  
-#>  [7] "BA;ES;MG;PR;RJ;SC;SP"                "MG;PR;RS;SC;SP"                     
-#>  [9] "PR;RJ;RS;SC;SP"                      "ES;MG;PR;RJ;RS;SC;SP"
+#>  [1] "BA;ES;PR;RJ;SC;SP"               "AL;BA;CE;ES;MA;MG;PB;PE;PR;RJ;SE;SP"
+#>  [3] "PR;RS;SC"                        "BA;CE;ES;MA;MG;PE;PR;RJ;SP"         
+#>  [5] "MG;PR;RJ;SC;SP"                  "MG;PR;RJ;RS;SC;SP"                  
+#>  [7] "BA;ES;MG;PR;RJ;SC;SP"            "MG;PR;RS;SC;SP"                     
+#>  [9] "PR;RJ;RS;SC;SP"                  "ES;MG;PR;RJ;RS;SC;SP"
 ```
 
 By utilizing *filter_State = "in"*, our selection encompassed species occurring in all three states, as well as those appearing in only two or even one of them. To impose a more rigorous criterion, selecting solely those species with confirmed occurrences in all three states, we can use *filter_State = "and"*:
@@ -224,7 +224,7 @@ south_af_spp2 <- select_species(data = bf,
                       LifeForm = "Tree", #Specify tree species
                       filter_LifeForm = "in",
                       Habitat = "All", filter_Habitat = "in",
-                      Biome = "Atlantic_Forest", #Occuring in the Atlantic Forest
+                      Biome = "Atlantic_Forest", #Occurring in the At. Forest
                       filter_Biome = "only", #Only in Atlantic Forest
                       State = c("PR", "SC", "RS"), #States - Use the acronynms
                       filter_State = "and", #PR and SC and RS
@@ -252,7 +252,7 @@ south_af_spp3 <- select_species(data = bf,
                       LifeForm = "Tree", #Specify tree species
                       filter_LifeForm = "in",
                       Habitat = "All", filter_Habitat = "in",
-                      Biome = "Atlantic_Forest", #Occuring in the Atlantic Forest
+                      Biome = "Atlantic_Forest", #Occuring in the At. Forest
                       filter_Biome = "only", #Only in Atlantic Forest
                       State = c("PR", "SC", "RS"), #States - Use the acronynms
                       filter_State = "only", #PR and SC and RS, no other else
@@ -281,7 +281,8 @@ complete_names <- c("Araucaria brasiliana var. ridolfiana (Pi.Savi) Gordon",
                     "Solanum restingae S.Knapp",
                     "Butia cattarinensis Noblick & Lorenzi",
                     "Homo sapiens")
-#Human specie was used just as an example that will be used to illustrate the next function
+#Human specie was used just as an example that will be used to illustrate the 
+#next function
 binomial_names <- get_binomial(species_names = complete_names)
 binomial_names
 #> [1] "Araucaria brasiliana" "Solanum restingae"    "Butia cattarinensis" 
@@ -345,18 +346,20 @@ my_sp
 #> 11785     Shrub Terrestrial       Atlantic_Forest                BA
 #> 26790      Tree Terrestrial Atlantic_Forest;Pampa MG;PR;RJ;RS;SC;SP
 #> 99881 Palm_tree Terrestrial Atlantic_Forest;Pampa             RS;SC
-#>                                                                           vegetationType
-#> 11785                                                                           Restinga
-#> 26790 High_Altitude_Grassland;Mixed_Ombrophyllous_Forest;Seasonally_Semideciduous_Forest
-#> 99881                                                                           Restinga
+#>       vegetationType
+#> 11785 Restinga
+#> 26790 High_Altitude_Grassland;Mixed_Ombrophyllous_Forest;
+#>       Seasonally_Semideciduous_Forest
+#> 99881 Restinga
 #>       Origin    Endemism taxonomicStatus nomenclaturalStatus
 #> 11785 Native     Endemic        Accepted             Correct
 #> 26790 Native Non-endemic        Accepted             Correct
 #> 99881 Native     Endemic        Accepted                <NA>
-#>                                                                  vernacularName
-#> 11785                                                                      <NA>
-#> 26790 araucaria, pinheiro-do-parana, curi, pinheiro-brasileiro, pinho-do-parana
-#> 99881                                                                      <NA>
+#>       vernacularName
+#> 11785 <NA>
+#> 26790 araucaria, pinheiro-do-parana, curi, pinheiro-brasileiro, 
+#> pinho-do-parana
+#> 99881 <NA>
 #>       taxonRank
 #> 11785   Species
 #> 26790   Species
@@ -389,24 +392,26 @@ my_sp2[1:5,]
 #> 35204 Araucaria                                                             
 #> 35205 Araucaria                                                             
 #> 35206 Araucaria                                                             
-#>                                                                           vegetationType
-#> 11785                                                                           Restinga
-#> 26790 High_Altitude_Grassland;Mixed_Ombrophyllous_Forest;Seasonally_Semideciduous_Forest
-#> 35204                                                                                   
-#> 35205                                                                                   
-#> 35206                                                                                   
+#>       vegetationType
+#> 11785 Restinga
+#> 26790 High_Altitude_Grassland;Mixed_Ombrophyllous_Forest;
+#>       Seasonally_Semideciduous_Forest
+#> 35204                                                                         
+#> 35205                                                                          
+#> 35206                                                                        
 #>       Origin    Endemism taxonomicStatus nomenclaturalStatus
 #> 11785 Native     Endemic        Accepted             Correct
 #> 26790 Native Non-endemic        Accepted             Correct
 #> 35204   <NA>        <NA>         Synonym                <NA>
 #> 35205   <NA>        <NA>         Synonym                <NA>
 #> 35206   <NA>        <NA>         Synonym                <NA>
-#>                                                                  vernacularName
-#> 11785                                                                      <NA>
-#> 26790 araucaria, pinheiro-do-parana, curi, pinheiro-brasileiro, pinho-do-parana
-#> 35204                                                                      <NA>
-#> 35205                                                                      <NA>
-#> 35206                                                                      <NA>
+#>       vernacularName
+#> 11785 <NA>
+#> 26790 araucaria, pinheiro-do-parana, curi, pinheiro-brasileiro,
+#> pinho-do-parana
+#> 35204 <NA>
+#> 35205 <NA>
+#> 35206 <NA>
 #>       taxonRank
 #> 11785   Species
 #> 26790   Species

@@ -1,6 +1,7 @@
 #' Extract the binomial name (Genus + specific epithet) from a Scientific Name
 #'
-#' @param species_names (character) Scientific names to be converted to binomial names
+#' @param species_names (character) Scientific names to be converted to
+#' binomial names
 #'
 #' @return A vector with the binomial names (Genus + specific epithet).
 #' @usage get_binomial(species_names)
@@ -19,7 +20,8 @@ get_binomial <- function(species_names) {
                 class(species_names)))
   }
 
-  selected_species_names <- sapply(species_names, function(text) {
+  selected_species_names <- vapply(species_names, FUN.VALUE = character(1),
+                                   function(text) {
     words <- strsplit(text, " ")[[1]]
     word_count <- length(words)
 

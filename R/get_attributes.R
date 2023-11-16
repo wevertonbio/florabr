@@ -1,19 +1,28 @@
 #' Get available attributes to filter species
 #'
 #' @description
-#' This function displays all the options available to filter species by its characteristics
+#' This function displays all the options available to filter species by its
+#' characteristics
 #'
 #'
 #' @param data (data.frame) a data.frame imported with the
 #' \code{\link{load_florabr}} function or a data.frame generated with the
 #'  \code{\link{select_species}} function.
-#' @param attribute (character) the type of characteristic. See detail to see the options.
-#' @param Kingdom (character) the kingdom to which the species belong. It can be "Plantae" or "Fungi". Default = "Plantae".
+#' @param attribute (character) the type of characteristic. See detail to see
+#' the options.
+#' @param Kingdom (character) the kingdom to which the species belong. It can
+#' be "Plantae" or "Fungi". Default = "Plantae".
 #'
 #' @details
-#' The attribute argument accepts the following options: Group, SubGroup, family, lifeForm, habitat, vegetationType, Origin, Endemism, Biome, States, taxonomicStatus or nomenclaturalStatus". These options represent different characteristics of species that can be used for filtering.
+#' The attribute argument accepts the following options: Group, SubGroup,
+#' family, lifeForm, habitat, vegetationType, Origin, Endemism, Biome, States,
+#' taxonomicStatus or nomenclaturalStatus". These options represent different
+#' characteristics of species that can be used for filtering.
 #'
-#' @return a data.frame with two columns. The first column provides the available options in English. Use this options in the \code{\link{select_species}} function. The second columns provides the options in Portuguese.
+#' @return a data.frame with two columns. The first column provides the
+#' available options in English. Use this options in the
+#' \code{\link{select_species}} function. The second columns provides the
+#' options in Portuguese.
 #'
 #' @usage get_attributes(data, attribute, Kingdom = "Plantae")
 #'
@@ -41,8 +50,8 @@ get_attributes <- function(data, attribute,
 
   if (missing(attribute)) {
     stop("Argument attribute is not defined. Valid attributes:
-    Group, SubGroup, family, lifeForm, habitat, vegetationType, Origin, Endemism,
-    Biome, States, taxonomicStatus or nomenclaturalStatus")
+    Group, SubGroup, family, lifeForm, habitat, vegetationType, Origin,
+    Endemism, Biome, States, taxonomicStatus or nomenclaturalStatus")
   }
 
   #Check classes
@@ -51,7 +60,8 @@ get_attributes <- function(data, attribute,
   }
 
   if (!is.character(attribute)) {
-    stop(paste0("Argument attribute must be a character, not ", class(attribute)))
+    stop(paste0("Argument attribute must be a character, not ",
+                class(attribute)))
   }
 
   if (!(Kingdom %in% c("Plantae", "Fungi"))) {
@@ -61,11 +71,12 @@ get_attributes <- function(data, attribute,
 
   atrib <- attribute
 
-  if(!(atrib %in% c("Group", "Subgroup", "family", "lifeForm", "habitat", "vegetationType", "Origin","Endemism", "Biome", "States",
+  if(!(atrib %in% c("Group", "Subgroup", "family", "lifeForm", "habitat",
+                    "vegetationType", "Origin","Endemism", "Biome", "States",
                   "taxonomicStatus", "nomenclaturalStatus"))) {
     stop("Informed attribute is not valid! Valid attributes:
-    Group, SubGroup, family, lifeForm, habitat, vegetationType, Origin, Endemism,
-    Biome, States, taxonomicStatus or nomenclaturalStatus")
+    Group, SubGroup, family, lifeForm, habitat, vegetationType, Origin,
+    Endemism, Biome, States, taxonomicStatus or nomenclaturalStatus")
   }
 
   #Get unique attributes

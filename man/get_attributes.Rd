@@ -11,18 +11,27 @@ get_attributes(data, attribute, Kingdom = "Plantae")
 \code{\link{load_florabr}} function or a data.frame generated with the
 \code{\link{select_species}} function.}
 
-\item{attribute}{(character) the type of characteristic. See detail to see the options.}
+\item{attribute}{(character) the type of characteristic. See detail to see
+the options.}
 
-\item{Kingdom}{(character) the kingdom to which the species belong. It can be "Plantae" or "Fungi". Default = "Plantae".}
+\item{Kingdom}{(character) the kingdom to which the species belong. It can
+be "Plantae" or "Fungi". Default = "Plantae".}
 }
 \value{
-a data.frame with two columns. The first column provides the available options in English. Use this options in the \code{\link{select_species}} function. The second columns provides the options in Portuguese.
+a data.frame with two columns. The first column provides the
+available options in English. Use this options in the
+\code{\link{select_species}} function. The second columns provides the
+options in Portuguese.
 }
 \description{
-This function displays all the options available to filter species by its characteristics
+This function displays all the options available to filter species by its
+characteristics
 }
 \details{
-The attribute argument accepts the following options: Group, SubGroup, family, lifeForm, habitat, vegetationType, Origin, Endemism, Biome, States, taxonomicStatus or nomenclaturalStatus". These options represent different characteristics of species that can be used for filtering.
+The attribute argument accepts the following options: Group, SubGroup,
+family, lifeForm, habitat, vegetationType, Origin, Endemism, Biome, States,
+taxonomicStatus or nomenclaturalStatus". These options represent different
+characteristics of species that can be used for filtering.
 }
 \examples{
 data("bf_data") #Load Brazilian Flora data

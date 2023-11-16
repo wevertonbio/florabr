@@ -11,7 +11,11 @@ A \code{SpatVector} with 1 geometry and 0 attribute
 brazil
 }
 \description{
-A simplified and packed SpatVector of the Brazil's national borders. The spatial data was originally obtained from \code{geobr::read_country}. Borders have been simplified by removing vertices of borders using \code{terra::simplifyGeom}. It's necessary unpack the Spatvectos using \code{terra::unwrap}
+A simplified and packed SpatVector of the Brazil's national borders. The
+spatial data was originally obtained from \code{geobr::read_country}.
+Borders have been simplified by removing vertices of borders using
+\code{terra::simplifyGeom}. It's necessary unpack the Spatvectos using
+\code{terra::unwrap}
 
 @usage data(brazil)
 brazil <- terra::unwrap(brazil)

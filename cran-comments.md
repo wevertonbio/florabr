@@ -1,9 +1,3 @@
-## R CMD check results
-
-0 errors | 0 warnings | 1 note
-
-* This is a new release.
-
 ## Test environments
 * Windows 11, R 4.3.1 (local)
 * MacOS 12.6.9, R release (GitHub Actions)

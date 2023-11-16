@@ -54,7 +54,8 @@ All data included in the Brazilian Flora (i.e., nomenclature, life form, and dis
 
 ```{r}
 #Creating a folder in a temporary directory
-#Replace 'file.path(tempdir(), "florabr")' by a path folder to be create in your computer
+#Replace 'file.path(tempdir(), "florabr")' by a path folder to be create in 
+#your computer
 my_dir <- file.path(file.path(tempdir(), "florabr"))
 dir.create(my_dir)
 ```

@@ -16,17 +16,26 @@ be loaded. It can be "Latest_available", which will load the latest version
 available; or another specified version, for example "393.364".
 Default = "Latest_available".}
 
-\item{type}{(character) it determines the number of columns that will be loaded. It can be "short" or "complete". Default = "short". See details.}
+\item{type}{(character) it determines the number of columns that will be
+loaded. It can be "short" or "complete". Default = "short". See details.}
 }
 \value{
-A data.frame with the specified version (Default is the latest available) of the Brazilian Flora database. This data.frame is necessary to run most of the functions of the package.
+A data.frame with the specified version (Default is the latest
+available) of the Brazilian Flora database. This data.frame is necessary to
+run most of the functions of the package.
 }
 \description{
 Load Brazilian Flora database
 }
 \details{
-The parameter type accepts two arguments. If type = short, it will load a data.frame with the 19 columns needed to run the other functions of the package: species, scientificName, acceptedName, kingdom, Group, Subgroup, family, genus, lifeForm, habitat, Biome, States, vegetationType, Origin,Endemism, taxonomicStatus, nomenclaturalStatus, vernacularName, and taxonRank.
-If type = complete, it will load a data.frame with all 39 variables available in Brazilian Flora database.
+The parameter type accepts two arguments. If type = short, it will load a
+data.frame with the 19 columns needed to run the other functions of the
+package: species, scientificName, acceptedName, kingdom, Group, Subgroup,
+family, genus, lifeForm, habitat, Biome, States, vegetationType, Origin,
+Endemism, taxonomicStatus, nomenclaturalStatus, vernacularName, and
+taxonRank.
+If type = complete, it will load a data.frame with all 39 variables available
+in Brazilian Flora database.
 }
 \examples{
 \dontrun{

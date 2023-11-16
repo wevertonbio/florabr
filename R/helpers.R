@@ -27,7 +27,8 @@ translate_lifeform <- function(lifeform) {
   newlifeform <- gsub("Erva", "Herb", newlifeform)
   newlifeform <- gsub("Flabelado", "Flabellate", newlifeform)
   newlifeform <- gsub("Folhosa", "Foliose", newlifeform)
-  newlifeform <- gsub("Liana/voluvel/trepadeira", "Liana/scandent/vine", newlifeform)
+  newlifeform <- gsub("Liana/voluvel/trepadeira", "Liana/scandent/vine",
+                      newlifeform)
   newlifeform <- gsub("Liquenizado", "Lichenized", newlifeform)
   newlifeform <- gsub("Micorrizico", "Mycorrhizal", newlifeform)
   newlifeform <- gsub("Palmeira", "Palm_tree", newlifeform)
@@ -65,18 +66,23 @@ translate_habitat <- function(habitat) {
   newhabitat <- gsub("Hemiparasita", "Hemiparasite", newhabitat)
   newhabitat <- gsub("Outro", "Other", newhabitat)
   newhabitat <- gsub("Parasita", "Parasite", newhabitat)
-  newhabitat <- gsub("Planta viva - cortex do caule", "Living_plant-stem_cortex", newhabitat)
-  newhabitat <- gsub("Planta viva - cortex galho", "Living_plant-branch_cortex", newhabitat)
+  newhabitat <- gsub("Planta viva - cortex do caule",
+                     "Living_plant-stem_cortex",
+                     newhabitat)
+  newhabitat <- gsub("Planta viva - cortex galho", "Living_plant-branch_cortex",
+                     newhabitat)
   newhabitat <- gsub("Planta viva - folha", "Living plant-leaf", newhabitat)
   newhabitat <- gsub("Planta viva - fruto", "Living plant-fruit", newhabitat)
-  newhabitat <- gsub("Planta viva - inflorescencia", "Living_plant-inflorescence", newhabitat)
+  newhabitat <- gsub("Planta viva - inflorescencia",
+                     "Living_plant-inflorescence", newhabitat)
   newhabitat <- gsub("Planta viva - raiz", "Living_plant-root", newhabitat)
   newhabitat <- gsub("Rocha", "Rock", newhabitat)
   newhabitat <- gsub("Rupicola", "Rupicolous", newhabitat)
   newhabitat <- gsub("Saprofita", "Saprophyte", newhabitat)
   newhabitat <- gsub("Saxicola", "Saxicolous", newhabitat)
   newhabitat <- gsub("Semente", "Seed", newhabitat)
-  newhabitat <- gsub("Simbionte \\(incluindo fungos liquenizados\\)", "Symbiont", newhabitat)
+  newhabitat <- gsub("Simbionte \\(incluindo fungos liquenizados\\)",
+                     "Symbiont", newhabitat)
   newhabitat <- gsub("Solo", "Soil", newhabitat)
   newhabitat <- gsub("Sub-aerea", "Subaerial", newhabitat)
   newhabitat <- gsub("Terricola", "Terrestrial", newhabitat)
@@ -98,40 +104,53 @@ translate_biome <- function(biome) {
 #Translate vegetationType from portuguese to english
 translate_vegetation <- function(vegetation) {
   newvegetation <- gsub("Area Antropica", "Anthropic_Area", vegetation)
-  newvegetation <- gsub("Caatinga \\(stricto sensu\\)", "Caatinga", newvegetation)
+  newvegetation <- gsub("Caatinga \\(stricto sensu\\)", "Caatinga",
+                        newvegetation)
   newvegetation <- gsub("Campinarana", "Amazonian_Campinarana", newvegetation)
-  newvegetation <- gsub("Campo de Altitude", "High_Altitude_Grassland", newvegetation)
+  newvegetation <- gsub("Campo de Altitude", "High_Altitude_Grassland",
+                        newvegetation)
   newvegetation <- gsub("Campo de Varzea", "Flooded_Field", newvegetation)
   newvegetation <- gsub("Campo Limpo", "Grassland", newvegetation)
   newvegetation <- gsub("Campo rupestre", "Highland_Rocky_Field", newvegetation)
   newvegetation <- gsub("Carrasco", "Carrasco", newvegetation)
   newvegetation <- gsub("Cerrado \\(lato sensu\\)", "Cerrado", newvegetation)
-  newvegetation <- gsub("Floresta Ciliar ou Galeria", "Gallery_Forest", newvegetation)
-  newvegetation <- gsub("Floresta de Igapo", "Inundated_Forest_Igapo", newvegetation)
-  newvegetation <- gsub("Floresta de Terra Firme", "Terra_Firme_Forest", newvegetation)
+  newvegetation <- gsub("Floresta Ciliar ou Galeria", "Gallery_Forest",
+                        newvegetation)
+  newvegetation <- gsub("Floresta de Igapo", "Inundated_Forest_Igapo",
+                        newvegetation)
+  newvegetation <- gsub("Floresta de Terra Firme", "Terra_Firme_Forest",
+                        newvegetation)
   newvegetation <- gsub("Floresta de Varzea", "Inundated_Forest", newvegetation)
-  newvegetation <- gsub("Floresta Estacional Decidual", "Seasonallly_Deciduous_Forest", newvegetation)
-  newvegetation <- gsub("Floresta Estacional Perenifolia", "Seasonal_Evergreen_Forest", newvegetation)
-  newvegetation <- gsub("Floresta Estacional Semidecidual", "Seasonally_Semideciduous_Forest", newvegetation)
-  newvegetation <- gsub("Floresta Ombrofila \\(= Floresta Pluvial\\)", "Rainforest", newvegetation)
-  newvegetation <- gsub("Floresta Ombrofila Mista", "Mixed_Ombrophyllous_Forest", newvegetation)
+  newvegetation <- gsub("Floresta Estacional Decidual",
+                        "Seasonallly_Deciduous_Forest", newvegetation)
+  newvegetation <- gsub("Floresta Estacional Perenifolia",
+                        "Seasonal_Evergreen_Forest", newvegetation)
+  newvegetation <- gsub("Floresta Estacional Semidecidual",
+                        "Seasonally_Semideciduous_Forest", newvegetation)
+  newvegetation <- gsub("Floresta Ombrofila \\(= Floresta Pluvial\\)",
+                        "Rainforest", newvegetation)
+  newvegetation <- gsub("Floresta Ombrofila Mista",
+                        "Mixed_Ombrophyllous_Forest", newvegetation)
   newvegetation <- gsub("Manguezal", "Mangrove", newvegetation)
   newvegetation <- gsub("Palmeiral", "Palm_Grove", newvegetation)
   newvegetation <- gsub("Restinga", "Restinga", newvegetation)
   newvegetation <- gsub("Savana Amazonica", "Amazonian_Savanna", newvegetation)
-  newvegetation <- gsub("Vegetacao Aquatica", "Aquatic_Vegetation", newvegetation)
-  newvegetation <- gsub("Vegetacao Sobre Afloramentos Rochosos", "Rock_outcrop_Vegetation", newvegetation)
-  newvegetation <- gsub("Nao ocorre no Brasil", "Not_found_in_Brazil", newvegetation)
+  newvegetation <- gsub("Vegetacao Aquatica", "Aquatic_Vegetation",
+                        newvegetation)
+  newvegetation <- gsub("Vegetacao Sobre Afloramentos Rochosos",
+                        "Rock_outcrop_Vegetation", newvegetation)
+  newvegetation <- gsub("Nao ocorre no Brasil", "Not_found_in_Brazil",
+                        newvegetation)
   return(newvegetation)
 }
 
 #Translate Endemism from portuguese to english
 translate_Endemism <- function(Endemism) {
   newEndemism <- ifelse(Endemism == "", "Unknown",
-                        ifelse(Endemism == "Nao endemica", "Non-endemic",
-                               ifelse(Endemism == "Endemica", "Endemic",
-                                      ifelse (Endemism == "Nao ocorre no Brasil",
-                                              "Not_found_in_Brazil", NA))))
+                      ifelse(Endemism == "Nao endemica", "Non-endemic",
+                              ifelse(Endemism == "Endemica", "Endemic",
+                                    ifelse (Endemism == "Nao ocorre no Brasil",
+                                            "Not_found_in_Brazil", NA))))
 
   return(newEndemism)
 }
@@ -139,10 +158,10 @@ translate_Endemism <- function(Endemism) {
 #Translate Origin from portuguese to english
 translate_Origin <- function(Origin) {
   newOrigin <- ifelse(Origin == "", "Unknown",
-                        ifelse(Origin == "NATIVA", "Native",
-                               ifelse(Origin == "CULTIVADA", "Cultivated",
-                                      ifelse(Origin == "NATURALIZADA", "Naturalized",
-                                               ifelse(Origin == "Nao ocorre no Brasil",
+                 ifelse(Origin == "NATIVA", "Native",
+                        ifelse(Origin == "CULTIVADA", "Cultivated",
+                              ifelse(Origin == "NATURALIZADA", "Naturalized",
+                                        ifelse(Origin == "Nao ocorre no Brasil",
                                               "Not_found_in_Brazil", NA)))))
 
   return(newOrigin)
@@ -152,13 +171,19 @@ translate_Origin <- function(Origin) {
 translate_nomenclaturalStatus <- function(status) {
   newstatus <- status
   newstatus[which(newstatus == "NOME_CORRETO")] <- "Correct"
-  newstatus[which(newstatus == "NOME_LEGITIMO_MAS_INCORRETO")] <- "Legitimate_but_incorrect"
-  newstatus[which(newstatus == "NOME_CORRETO_VIA_CONSERVACAO")] <- "Correct_name_by_conservation"
-  newstatus[which(newstatus == "VARIANTE_ORTOGRAFICA")] <- "Orthographical_variant"
+  newstatus[which(newstatus ==
+                  "NOME_LEGITIMO_MAS_INCORRETO")] <- "Legitimate_but_incorrect"
+  newstatus[which(newstatus ==
+              "NOME_CORRETO_VIA_CONSERVACAO")] <- "Correct_name_by_conservation"
+  newstatus[which(newstatus ==
+                    "VARIANTE_ORTOGRAFICA")] <- "Orthographical_variant"
   newstatus[which(newstatus == "NOME_ILEGITIMO")] <- "Illegitimate"
-  newstatus[which(newstatus == "NOME_NAO_EFETIVAMENTE_PUBLICADO")] <- "Not_effectively_published"
-  newstatus[which(newstatus == "NOME_NAO_VALIDAMENTE_PUBLICADO")] <- "Not_validly_published"
-  newstatus[which(newstatus == "NOME_APLICACAO_INCERTA")] <- "Uncertain_Application"
+  newstatus[which(newstatus ==
+              "NOME_NAO_EFETIVAMENTE_PUBLICADO")] <- "Not_effectively_published"
+  newstatus[which(newstatus ==
+                  "NOME_NAO_VALIDAMENTE_PUBLICADO")] <- "Not_validly_published"
+  newstatus[which(newstatus ==
+                    "NOME_APLICACAO_INCERTA")] <- "Uncertain_Application"
   newstatus[which(newstatus == "NOME_REJEITADO")] <- "Rejected"
   newstatus[which(newstatus == "NOME_MAL_APLICADO")] <- "Misapplied"
   return(newstatus)}
@@ -194,7 +219,8 @@ translate_group <- function(Group){
   newGroup[which(newGroup == "Fungos")] <- "Fungi"
   newGroup[which(newGroup == "Angiospermas")] <- "Angiosperms"
   newGroup[which(newGroup == "Gimnospermas")] <- "Gymnosperms"
-    newGroup[which(newGroup == "Samambaias e Licofitas")] <- "Ferns and Lycophytes"
+    newGroup[which(newGroup ==
+                     "Samambaias e Licofitas")] <- "Ferns and Lycophytes"
   newGroup[which(newGroup == "Briofitas")] <- "Bryophytes"
   newGroup[which(newGroup == "Algas")] <- "Algae"
   return(newGroup)
@@ -223,7 +249,8 @@ merge_data <- function(path_data, version_data,
 
   #Get latest available version if version was not set
   if(version_data == "latest") {
-    all_dirs <- list.dirs(path = path_data, recursive = F, full.names = F)
+    all_dirs <- list.dirs(path = path_data, recursive = FALSE,
+                          full.names = FALSE)
     dir_versions <- subset(all_dirs, grepl("393", all_dirs)) #Actual version
     #Get highest version
     if(length(dir_versions) > 0) {
@@ -234,15 +261,16 @@ merge_data <- function(path_data, version_data,
 
   #Taxon
   taxon <- utils::read.csv(file.path(path_data, version_data, "taxon.txt"),
-                    header=T, sep = "\t",
+                    header=TRUE, sep = "\t",
                     encoding = encoding, na.strings = "")
   #Remove accents
   taxon$higherClassification <- iconv(taxon$higherClassification,
                                       to="ASCII//TRANSLIT")
 
   #Vernacular name
-  vernacular <- utils::read.csv(file.path(path_data, version_data, "vernacularname.txt"),
-                         header=T, sep = "\t",
+  vernacular <- utils::read.csv(file.path(path_data, version_data,
+                                          "vernacularname.txt"),
+                         header=TRUE, sep = "\t",
                          encoding = encoding, na.strings = "")
   #Remove accents
   vernacular$vernacularName <- iconv(vernacular$vernacularName,
@@ -259,8 +287,9 @@ merge_data <- function(path_data, version_data,
   )
 
   ###Species Profile
-  spProfile <- utils::read.csv(file.path(path_data, version_data, "speciesprofile.txt"),
-                        header=T, sep = "\t",
+  spProfile <- utils::read.csv(file.path(path_data, version_data,
+                                         "speciesprofile.txt"),
+                        header=TRUE, sep = "\t",
                         encoding = encoding, na.strings = "")
   #Remove accents
   spProfile$lifeForm <- iconv(spProfile$lifeForm, to="ASCII//TRANSLIT")
@@ -282,12 +311,14 @@ merge_data <- function(path_data, version_data,
                                                   right = "\\]")
 
   #Rename and select columns
-  spProfile <- spProfile[,c("id", "lifeForm.new", "habitat.new", "vegetationType.new")]
+  spProfile <- spProfile[,c("id", "lifeForm.new", "habitat.new",
+                            "vegetationType.new")]
   colnames(spProfile) <- c("id", "lifeForm", "habitat", "vegetationType")
 
   ###Distribution and Location
-  dist <- utils::read.csv(file.path(path_data, version_data, "distribution.txt"),
-                   header=T, sep = "\t",
+  dist <- utils::read.csv(file.path(path_data, version_data,
+                                    "distribution.txt"),
+                   header=TRUE, sep = "\t",
                    encoding = encoding, na.strings = "")
   #Remove accents
   dist$occurrenceRemarks <- iconv(dist$occurrenceRemarks,
@@ -296,17 +327,19 @@ merge_data <- function(path_data, version_data,
   #Origin
   dist$Origin <- dist$establishmentMeans
   #Endemism
-  dist$Endemism <- ifelse(grepl("endemism:Nao endemica", dist$occurrenceRemarks),
+  dist$Endemism <- ifelse(grepl("endemism:Nao endemica",
+                                dist$occurrenceRemarks),
                           "Nao endemica",
                           ifelse(grepl("endemism:Endemica",
                                        dist$occurrenceRemarks),
                                  "Endemica", NA))
   #Phytogeographic domain
   dist$phytogeographicDomain <- extract_between(dist$occurrenceRemarks,
-                                                left = "phytogeographicDomain:\\[",
-                                                right = "\\]")
+                                            left = "phytogeographicDomain:\\[",
+                                            right = "\\]")
 
-  dist$phytogeographicDomain <- gsub("\"", "", dist$phytogeographicDomain) #Deletar aspas
+  #Deletar aspas
+  dist$phytogeographicDomain <- gsub("\"", "", dist$phytogeographicDomain)
   #locationID - State
   dist$locationID <- gsub(".*-", "", dist$locationID)
 
@@ -338,11 +371,17 @@ merge_data <- function(path_data, version_data,
   #Ignore this ranks
   ignore_rank <- c("ORDEM", "FAMILIA", "GENERO", "CLASSE", "TRIBO",
                    "SUB_FAMILIA", "DIVISAO")
-  df_final3$species[which(!(df_final3$taxonRank %in% ignore_rank))] <- gsub("^((\\w+\\W+){1}\\w+).*$","\\1", df_final3$scientificName[which(!(df_final3$taxonRank %in% ignore_rank))])
+  df_final3$species[which(!(df_final3$taxonRank %in% ignore_rank))] <-
+    gsub("^((\\w+\\W+){1}\\w+).*$","\\1",
+         df_final3$scientificName[which(!(df_final3$taxonRank %in%
+                                            ignore_rank))])
 
   #Accepted name when is synonymn
   df_final3$acceptedName <- NA
-  df_final3$acceptedName[which(!(df_final3$taxonRank %in% ignore_rank))] <- gsub("^((\\w+\\W+){1}\\w+).*$","\\1", df_final3$acceptedNameUsage[which(!(df_final3$taxonRank %in% ignore_rank))])
+  df_final3$acceptedName[which(!(df_final3$taxonRank %in% ignore_rank))] <-
+    gsub("^((\\w+\\W+){1}\\w+).*$","\\1",
+         df_final3$acceptedNameUsage[which(!(df_final3$taxonRank %in%
+                                               ignore_rank))])
 
   #Get Group and subgroup
   #Group
@@ -351,8 +390,10 @@ merge_data <- function(path_data, version_data,
   df_final3$Group <- translate_group(Group = df_final3$Group)
   #Subgroup - Only Bryophytes and Fungi
   df_final3$Subgroup <- NA
-  df_final3$Subgroup[which(df_final3$Group == "Bryophytes")] <- extract_between(
-    str = df_final3$higherClassification[which(df_final3$Group == "Bryophytes")],
+  df_final3$Subgroup[which(df_final3$Group ==
+                             "Bryophytes")] <- extract_between(
+    str = df_final3$higherClassification[which(
+      df_final3$Group == "Bryophytes")],
     left = "Briofitas;",
     right = ";")
   df_final3$Subgroup[which(df_final3$Group == "Fungi")] <- extract_between(
@@ -411,29 +452,41 @@ merge_data <- function(path_data, version_data,
   #Translate
   df_join$lifeForm <- translate_lifeform(lifeform = df_join$lifeForm)
   df_join$habitat <- translate_habitat(habitat = df_join$habitat)
-  df_join$phytogeographicDomain <- translate_biome(biome = df_join$phytogeographicDomain)
-  df_join$vegetationType <- translate_vegetation(vegetation = df_join$vegetationType)
+  df_join$phytogeographicDomain <- translate_biome(biome =
+                                                df_join$phytogeographicDomain)
+  df_join$vegetationType <- translate_vegetation(vegetation =
+                                                   df_join$vegetationType)
   df_join$Endemism <- translate_Endemism(Endemism = df_join$Endemism)
   df_join$Origin <- translate_Origin(Origin = df_join$Origin)
-  df_join$taxonomicStatus <- translate_taxonomicStatus(status = df_join$taxonomicStatus)
-  df_join$nomenclaturalStatus <- translate_nomenclaturalStatus(status = df_join$nomenclaturalStatus)
+  df_join$taxonomicStatus <- translate_taxonomicStatus(status =
+                                                    df_join$taxonomicStatus)
+  df_join$nomenclaturalStatus <- translate_nomenclaturalStatus(status =
+                                                  df_join$nomenclaturalStatus)
   df_join$taxonRank <- translate_taxonRank(taxonRank = df_join$taxonRank)
 
 
   #Sort information and separe using ;
-  df_join$lifeForm <- sapply(df_join$lifeForm, function(x){
+  df_join$lifeForm <- vapply(df_join$lifeForm, FUN.VALUE = character(1),
+                             function(x){
     paste(sort(unlist(strsplit(x, split = ","))),collapse = ";")
   }, USE.NAMES = FALSE)
-  df_join$habitat <- sapply(df_join$habitat, function(x){
+  df_join$habitat <- vapply(df_join$habitat, FUN.VALUE = character(1),
+                            function(x){
     paste(sort(unlist(strsplit(x, split = ","))),collapse = ";")
   }, USE.NAMES = FALSE)
-  df_join$phytogeographicDomain <- sapply(df_join$phytogeographicDomain, function(x){
+  df_join$phytogeographicDomain <- vapply(df_join$phytogeographicDomain,
+                                          FUN.VALUE = character(1),
+                                          function(x){
     paste(sort(unlist(strsplit(x, split = ","))),collapse = ";")
   }, USE.NAMES = FALSE)
-  df_join$locationID <- sapply(df_join$locationID, function(x){
+  df_join$locationID <- vapply(df_join$locationID,
+                               FUN.VALUE = character(1),
+                               function(x){
     paste(sort(unlist(strsplit(x, split = ";"))),collapse = ";")
   }, USE.NAMES = FALSE)
-  df_join$vegetationType<- sapply(df_join$vegetationType, function(x){
+  df_join$vegetationType<- vapply(df_join$vegetationType,
+                                  FUN.VALUE = character(1),
+                                  function(x){
     paste(sort(unlist(strsplit(x, split = ","))),collapse = ";")
   }, USE.NAMES = FALSE)
 
@@ -449,7 +502,8 @@ merge_data <- function(path_data, version_data,
 
   #Save as RDS
   saveRDS(df_join,
-          file = file.path(path_data, version_data, "CompleteBrazilianFlora.rds"))
+          file = file.path(path_data, version_data,
+                           "CompleteBrazilianFlora.rds"))
 
 }
 

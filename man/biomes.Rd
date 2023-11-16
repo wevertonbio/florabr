@@ -15,7 +15,11 @@ Atlantic_Forest, Pampa, and Pantanal)}
 biomes
 }
 \description{
-A simplified and packed SpatVector of the polygons of the biomes present in Brazilian territory. The spatial data was originally obtained from \code{geobr::read_biomes}. Borders have been simplified by removing vertices of borders using \code{terra::simplifyGeom}. It's necessary unpack the Spatvectos using \code{terra::unwrap}
+A simplified and packed SpatVector of the polygons of the biomes present in
+Brazilian territory. The spatial data was originally obtained from
+\code{geobr::read_biomes}. Borders have been simplified by removing vertices
+of borders using \code{terra::simplifyGeom}. It's necessary unpack the
+Spatvectos using \code{terra::unwrap}
 
 @usage data(biomes)
 biomes <- terra::unwrap(biomes)

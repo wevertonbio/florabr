@@ -7,7 +7,8 @@
 get_binomial(species_names)
 }
 \arguments{
-\item{species_names}{(character) Scientific names to be converted to binomial names}
+\item{species_names}{(character) Scientific names to be converted to
+binomial names}
 }
 \value{
 A vector with the binomial names (Genus + specific epithet).

@@ -126,7 +126,8 @@
 #'                              Biome = c("Atlantic_Forest","Amazon"),
 #'                              filter_Biome = "only",
 #'                              State = "All", filter_State = "and",
-#'                              VegetationType = "All", filter_Vegetation = "in",
+#'                              VegetationType = "All",
+#'                              filter_Vegetation = "in",
 #'                              Endemism = "Endemic", Origin = "Native",
 #'                              TaxonomicStatus = "All",
 #'                              NomenclaturalStatus = "All")
@@ -198,7 +199,9 @@ select_species <- function(data,
 
   if(all(Family != "All") & !all(Family %in% unique(data$family))) {
     stop(paste("Family not valid.\n",
-    "Check the available families with the function get_attributes()")) }
+               "Check the available families with the function
+               get_attributes()")
+         ) }
 
   if(Genus != "All" & !(Genus %in% unique(data$genus))) {
     stop(paste("Genus not valid.\n")) }
@@ -209,7 +212,8 @@ select_species <- function(data,
   if(Origin != "All" & !(Origin %in% unique(data$Origin))) {
     stop(paste("Origin not valid. The options availables are:\n",
                "'All', 'Native', 'Cultivated', 'Naturalized', or NA"))}
-  if(TaxonomicStatus != "All" & !(TaxonomicStatus %in% unique(data$taxonomicStatus))) {
+  if(TaxonomicStatus != "All" &
+     !(TaxonomicStatus %in% unique(data$taxonomicStatus))) {
     stop(paste("Origin not valid. The options availables are:\n",
                "'All', 'Accepted', 'Synonym', or NA"))}
   if(NomenclaturalStatus != "All" &
@@ -253,21 +257,21 @@ select_species <- function(data,
       d <- subset(d, d$Subgroup %in% Subgroup)
     }
 
-    #Family
+  #Family
   if(all(Family == "All")) {
     d <- d } else {
-    ffam <- paste(Family, collapse = "|")
-    d <- subset(d, grepl(ffam, d$family))
+      ffam <- paste(Family, collapse = "|")
+      d <- subset(d, grepl(ffam, d$family))
     }
 
-    #Genus
+  #Genus
   if(all(Genus == "All")) {
     d <- d } else {
       ggen <- paste(Genus, collapse = "|")
       d <- subset(d, grepl(ggen, d$genus))
     }
 
-   #LifeForm ####
+  #LifeForm ####
   if(all(LifeForm  == "All")) {
     d <- d }
 
@@ -275,8 +279,9 @@ select_species <- function(data,
   if(all(LifeForm != "All")) {
     all_lf <- unique(unlist(strsplit(d$lifeForm, split = ";")))
     newLifeForm <- gsub(" ", "", LifeForm)
-    newLifeForm <- sapply(LifeForm, function(x){
-      paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),collapse = ";")
+    newLifeForm <- vapply(LifeForm, FUN.VALUE = character(1), function(x){
+      paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
+            collapse = ";")
     }, USE.NAMES = FALSE)
     newLifeForm <- sort(newLifeForm)
     #Check if all lifeform exists
@@ -284,8 +289,8 @@ select_species <- function(data,
     any_diff <- setdiff(newLifeForm2 , all_lf)
     if(length(any_diff) > 0) {
       warning(paste("The following life forms are not valid:\n",
-                 paste(any_diff, collapse = ", ")))
-      }
+                    paste(any_diff, collapse = ", ")))
+    }
   }
 
   #Filter by lifeform
@@ -316,8 +321,9 @@ select_species <- function(data,
   if(all(Habitat != "All")) {
     all_hab <- unique(unlist(strsplit(d$habitat, split = ";")))
     newHabitat <- gsub(" ", "", Habitat)
-    newHabitat <- sapply(Habitat, function(x){
-      paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),collapse = ";")
+    newHabitat <- vapply(Habitat, FUN.VALUE = character(1), function(x){
+      paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
+            collapse = ";")
     }, USE.NAMES = FALSE)
     newHabitat <- sort(newHabitat)
     #Check if all Habitat exists
@@ -356,8 +362,9 @@ select_species <- function(data,
   if(all(Biome != "All")) {
     all_biome <- unique(unlist(strsplit(d$Biome, split = ";")))
     newBiome <- gsub(" ", "", Biome)
-    newBiome <- sapply(Biome, function(x){
-      paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),collapse = ";")
+    newBiome <- vapply(Biome, FUN.VALUE = character(1), function(x){
+      paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
+            collapse = ";")
     }, USE.NAMES = FALSE)
     newBiome <- sort(newBiome)
     #Check if all Biome exists
@@ -395,8 +402,9 @@ select_species <- function(data,
   if(all(State != "All")) {
     all_State <- unique(unlist(strsplit(d$States, split = ";")))
     newState <- gsub(" ", "", State)
-    newState <- sapply(State, function(x){
-      paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),collapse = ";")
+    newState <- vapply(State, FUN.VALUE = character(1), function(x){
+      paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
+            collapse = ";")
     }, USE.NAMES = FALSE)
     newState <- sort(newState)
     #Check if all State exists
@@ -411,7 +419,7 @@ select_species <- function(data,
   #Filter by State
   if(all(State != "All") & filter_State == "in") {
     d <- subset(d, grepl(paste(newState, collapse = "|"),
-                           d$States)) }
+                         d$States)) }
 
   if(all(State != "All") & filter_State == "only") {
     d <- subset(d, d$States == paste(newState, collapse = ";"))
@@ -425,7 +433,7 @@ select_species <- function(data,
 
   if(all(State != "All") & filter_State == "and") {
     d <- subset(d, grepl(paste(newState, collapse = ";"), d$States))
-    }
+  }
 
   #Vegetation ####
   if(all(VegetationType  == "All")) {
@@ -435,8 +443,9 @@ select_species <- function(data,
   if(all(VegetationType != "All")) {
     all_Vegetation <- unique(unlist(strsplit(d$vegetationType, split = ";")))
     newVegetation <- gsub(" ", "", VegetationType)
-    newVegetation <- sapply(newVegetation, function(x){
-      paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),collapse = ";")
+    newVegetation <- vapply(newVegetation, FUN.VALUE = character(1),function(x){
+      paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
+            collapse = ";")
     }, USE.NAMES = FALSE)
     newVegetation <- sort(newVegetation)
     #Check if all Vegetation exists
@@ -464,7 +473,8 @@ select_species <- function(data,
   }
 
   if(all(VegetationType != "All") & filter_Vegetation == "and") {
-    d <- subset(d, grepl(paste(newVegetation2, collapse = ";"), d$vegetationType))
+    d <- subset(d, grepl(paste(newVegetation2, collapse = ";"),
+                         d$vegetationType))
   }
 
   #Endemism ####
@@ -529,7 +539,7 @@ select_species <- function(data,
 
   if(nrow(d) == 0) {
     warning("Combination of characteristics return 0 species")
-    }
+  }
 
   return(d)
-  } #End of function
+} #End of function
