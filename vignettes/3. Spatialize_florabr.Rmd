@@ -1,5 +1,5 @@
 ---
-title: "Using florabr to flag erroneous records"
+title: "3. Using florabr to flag erroneous records"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Using florabr to flag erroneous records}
