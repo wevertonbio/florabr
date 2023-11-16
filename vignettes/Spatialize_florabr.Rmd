@@ -22,7 +22,6 @@ knitr::opts_chunk$set(
 ## Loading data
 Before you begin, use the `load_florabr` function to load the data. For more detailed information on obtaining and loading the data, please refer to [1. Getting started with florabr](getting_started.html)
 
-
 ```{r Get data, results='hide', message=FALSE, warning=FALSE, echo=FALSE}
 my_dir <- file.path(file.path(tempdir(), "florabr"))
 dir.create(my_dir)
