@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 ```
 
 ## Loading data
-Before you begin, use the `load_florabr` function to load the data. For more detailed information on obtaining and loading the data, please refer to [Getting started with florabr] - how to reference vignette???
+Before you begin, use the `load_florabr` function to load the data. For more detailed information on obtaining and loading the data, please refer to *1. Getting started with florabr* in Articles. 
 
 
 ```{r Get data, results='hide', message=FALSE, warning=FALSE, echo=FALSE}
