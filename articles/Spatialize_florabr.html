@@ -175,7 +175,8 @@ are more complex than the simplified <em>states</em>:</p>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">br_states</span><span class="op">[</span><span class="va">br_states</span><span class="op">$</span><span class="va">abbrev_state</span> <span class="op">==</span> <span class="st">"PR"</span><span class="op">]</span>,</span>
 <span>     main <span class="op">=</span> <span class="st">"Not simplified geometries"</span>, mar <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">states</span><span class="op">[</span><span class="va">states</span><span class="op">$</span><span class="va">abbrev_state</span> <span class="op">==</span> <span class="st">"PR"</span><span class="op">]</span>, main <span class="op">=</span> <span class="st">"Simplified geometries"</span>,</span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">states</span><span class="op">[</span><span class="va">states</span><span class="op">$</span><span class="va">abbrev_state</span> <span class="op">==</span> <span class="st">"PR"</span><span class="op">]</span>,</span>
+<span>     main <span class="op">=</span> <span class="st">"Simplified geometries"</span>,</span>
 <span>     mar <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignettes_img/IMG03.png"><!-- --> Now, let’s get the
 original polygons of biomes:</p>
@@ -184,7 +185,8 @@ original polygons of biomes:</p>
 <span><span class="co">#Convert br_biomes from sf to SpatVect</span></span>
 <span><span class="va">br_biomes</span><span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/vect.html" class="external-link">vect</a></span><span class="op">(</span><span class="va">br_biomes</span><span class="op">)</span></span>
 <span><span class="co">#Drop off coastal system:</span></span>
-<span><span class="va">br_biomes</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">br_biomes</span>, <span class="va">br_biomes</span><span class="op">$</span><span class="va">name_biome</span> <span class="op">!=</span> <span class="st">"Sistema Costeiro"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">br_biomes</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">br_biomes</span>, </span>
+<span>                           <span class="va">br_biomes</span><span class="op">$</span><span class="va">name_biome</span> <span class="op">!=</span> <span class="st">"Sistema Costeiro"</span><span class="op">)</span></span></code></pre></div>
 <p>The names of the biomes are in Portuguese. We need to translate
 Amazonia and Mata Atlantica to English to match with the names in
 Brazilian Flora database:</p>
@@ -197,18 +199,19 @@ Brazilian Flora database:</p>
 <span><span class="co">#&gt; [5] "Pampa"          "Pantanal"</span></span>
 <span><span class="co">#Translate</span></span>
 <span><span class="va">br_biomes</span><span class="op">$</span><span class="va">name_biome</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">br_biomes</span><span class="op">$</span><span class="va">name_biome</span> <span class="op">==</span> <span class="st">"Amazônia"</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Amazon"</span></span>
-<span><span class="va">br_biomes</span><span class="op">$</span><span class="va">name_biome</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">br_biomes</span><span class="op">$</span><span class="va">name_biome</span> <span class="op">==</span> <span class="st">"Mata Atlântica"</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Atlantic_Forest"</span></span></code></pre></div>
+<span><span class="va">br_biomes</span><span class="op">$</span><span class="va">name_biome</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span></span>
+<span>  <span class="va">br_biomes</span><span class="op">$</span><span class="va">name_biome</span> <span class="op">==</span> <span class="st">"Mata Atlântica"</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Atlantic_Forest"</span></span></code></pre></div>
 <p>Now, the SpatVector of biomes is also ready to use. Let’s see the
 difference when we use this non-simplified Spatvectors in the
 <code>get_spat_occ</code>:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">spp_spt_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_spat_occ.html">get_spat_occ</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf</span>, species <span class="op">=</span> <span class="va">spp</span>,</span>
-<span>                       State <span class="op">=</span> <span class="cn">TRUE</span>, Biome <span class="op">=</span> <span class="cn">TRUE</span>, intersection <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                       State_vect <span class="op">=</span> <span class="va">br_states</span>, <span class="co">#The non-simplified Spatvector</span></span>
-<span>                       state_column <span class="op">=</span> <span class="st">"abbrev_state"</span>, <span class="co">#Column name with states acronymns</span></span>
-<span>                       Biome_vect <span class="op">=</span> <span class="va">br_biomes</span>, <span class="co">#The non-simplified Spatvector</span></span>
-<span>                       biome_column <span class="op">=</span> <span class="st">"name_biome"</span>, <span class="co">#Column name with names of biomes</span></span>
-<span>                       verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span>                State <span class="op">=</span> <span class="cn">TRUE</span>, Biome <span class="op">=</span> <span class="cn">TRUE</span>, intersection <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                State_vect <span class="op">=</span> <span class="va">br_states</span>, <span class="co">#The non-simplified Spatvector</span></span>
+<span>                state_column <span class="op">=</span> <span class="st">"abbrev_state"</span>, <span class="co">#Column name with states acronyms</span></span>
+<span>                Biome_vect <span class="op">=</span> <span class="va">br_biomes</span>, <span class="co">#The non-simplified Spatvector</span></span>
+<span>                biome_column <span class="op">=</span> <span class="st">"name_biome"</span>, <span class="co">#Column name with names of biomes</span></span>
+<span>                verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>See the difference: now, the polygons representing the distribution
 of species in states and biomes are more complex:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">

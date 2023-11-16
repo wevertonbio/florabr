@@ -217,7 +217,7 @@ occurrences in the Atlantic Forest:</p>
 <span>                      LifeForm <span class="op">=</span> <span class="st">"Tree"</span>, <span class="co">#Specify tree species</span></span>
 <span>                      filter_LifeForm <span class="op">=</span> <span class="st">"in"</span>,</span>
 <span>                      Habitat <span class="op">=</span> <span class="st">"All"</span>, filter_Habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occuring in the Atlantic Forest</span></span>
+<span>                      Biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occuring in the At. Forest</span></span>
 <span>                      filter_Biome <span class="op">=</span> <span class="st">"in"</span>, <span class="co">#In Atlantic Forest</span></span>
 <span>                      State <span class="op">=</span> <span class="st">"All"</span>, filter_State <span class="op">=</span> <span class="st">"in"</span>,</span>
 <span>                      VegetationType <span class="op">=</span> <span class="st">"All"</span>, filter_Vegetation <span class="op">=</span> <span class="st">"in"</span>,</span>
@@ -252,7 +252,7 @@ in the Atlantic Forest, modify the <em>filter_Biome</em> parameter to
 <span>                      LifeForm <span class="op">=</span> <span class="st">"Tree"</span>, <span class="co">#Specify tree species</span></span>
 <span>                      filter_LifeForm <span class="op">=</span> <span class="st">"in"</span>,</span>
 <span>                      Habitat <span class="op">=</span> <span class="st">"All"</span>, filter_Habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occuring in the Atlantic Forest</span></span>
+<span>                      Biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occuring in the At. Forest</span></span>
 <span>                      filter_Biome <span class="op">=</span> <span class="st">"only"</span>, <span class="co">#ONLY in Atlantic Forest</span></span>
 <span>                      State <span class="op">=</span> <span class="st">"All"</span>, filter_State <span class="op">=</span> <span class="st">"in"</span>,</span>
 <span>                      VegetationType <span class="op">=</span> <span class="st">"All"</span>, filter_Vegetation <span class="op">=</span> <span class="st">"in"</span>,</span>
@@ -281,7 +281,7 @@ Grande do Sul (RS):</p>
 <span>                      LifeForm <span class="op">=</span> <span class="st">"Tree"</span>, <span class="co">#Specify tree species</span></span>
 <span>                      filter_LifeForm <span class="op">=</span> <span class="st">"in"</span>,</span>
 <span>                      Habitat <span class="op">=</span> <span class="st">"All"</span>, filter_Habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occuring in the Atlantic Forest</span></span>
+<span>                      Biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occuring in the At. Forest</span></span>
 <span>                      filter_Biome <span class="op">=</span> <span class="st">"only"</span>, <span class="co">#Only in Atlantic Forest</span></span>
 <span>                      State <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PR"</span>, <span class="st">"SC"</span>, <span class="st">"RS"</span><span class="op">)</span>, <span class="co">#States - Use the acronynms</span></span>
 <span>                      filter_State <span class="op">=</span> <span class="st">"in"</span>, <span class="co">#IN at least one of these states</span></span>
@@ -295,11 +295,11 @@ Grande do Sul (RS):</p>
 <span></span>
 <span><span class="co">#First 10 unique values of states in the filtered dataset</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">south_af_spp</span><span class="op">$</span><span class="va">States</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span>
-<span><span class="co">#&gt;  [1] "BA;ES;PR;RJ;SC;SP"                   "AL;BA;CE;ES;MA;MG;PB;PE;PR;RJ;SE;SP"</span></span>
-<span><span class="co">#&gt;  [3] "PR;RS;SC"                            "BA;CE;ES;MA;MG;PE;PR;RJ;SP"         </span></span>
-<span><span class="co">#&gt;  [5] "MG;PR;RJ;SC;SP"                      "MG;PR;RJ;RS;SC;SP"                  </span></span>
-<span><span class="co">#&gt;  [7] "BA;ES;MG;PR;RJ;SC;SP"                "MG;PR;RS;SC;SP"                     </span></span>
-<span><span class="co">#&gt;  [9] "PR;RJ;RS;SC;SP"                      "ES;MG;PR;RJ;RS;SC;SP"</span></span></code></pre></div>
+<span><span class="co">#&gt;  [1] "BA;ES;PR;RJ;SC;SP"               "AL;BA;CE;ES;MA;MG;PB;PE;PR;RJ;SE;SP"</span></span>
+<span><span class="co">#&gt;  [3] "PR;RS;SC"                        "BA;CE;ES;MA;MG;PE;PR;RJ;SP"         </span></span>
+<span><span class="co">#&gt;  [5] "MG;PR;RJ;SC;SP"                  "MG;PR;RJ;RS;SC;SP"                  </span></span>
+<span><span class="co">#&gt;  [7] "BA;ES;MG;PR;RJ;SC;SP"            "MG;PR;RS;SC;SP"                     </span></span>
+<span><span class="co">#&gt;  [9] "PR;RJ;RS;SC;SP"                  "ES;MG;PR;RJ;RS;SC;SP"</span></span></code></pre></div>
 <p>By utilizing <em>filter_State = “in”</em>, our selection encompassed
 species occurring in all three states, as well as those appearing in
 only two or even one of them. To impose a more rigorous criterion,
@@ -313,7 +313,7 @@ states, we can use <em>filter_State = “and”</em>:</p>
 <span>                      LifeForm <span class="op">=</span> <span class="st">"Tree"</span>, <span class="co">#Specify tree species</span></span>
 <span>                      filter_LifeForm <span class="op">=</span> <span class="st">"in"</span>,</span>
 <span>                      Habitat <span class="op">=</span> <span class="st">"All"</span>, filter_Habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occuring in the Atlantic Forest</span></span>
+<span>                      Biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occurring in the At. Forest</span></span>
 <span>                      filter_Biome <span class="op">=</span> <span class="st">"only"</span>, <span class="co">#Only in Atlantic Forest</span></span>
 <span>                      State <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PR"</span>, <span class="st">"SC"</span>, <span class="st">"RS"</span><span class="op">)</span>, <span class="co">#States - Use the acronynms</span></span>
 <span>                      filter_State <span class="op">=</span> <span class="st">"and"</span>, <span class="co">#PR and SC and RS</span></span>
@@ -343,7 +343,7 @@ elsewhere, we can use <em>filter_State = “only”</em>:</p>
 <span>                      LifeForm <span class="op">=</span> <span class="st">"Tree"</span>, <span class="co">#Specify tree species</span></span>
 <span>                      filter_LifeForm <span class="op">=</span> <span class="st">"in"</span>,</span>
 <span>                      Habitat <span class="op">=</span> <span class="st">"All"</span>, filter_Habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occuring in the Atlantic Forest</span></span>
+<span>                      Biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occuring in the At. Forest</span></span>
 <span>                      filter_Biome <span class="op">=</span> <span class="st">"only"</span>, <span class="co">#Only in Atlantic Forest</span></span>
 <span>                      State <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PR"</span>, <span class="st">"SC"</span>, <span class="st">"RS"</span><span class="op">)</span>, <span class="co">#States - Use the acronynms</span></span>
 <span>                      filter_State <span class="op">=</span> <span class="st">"only"</span>, <span class="co">#PR and SC and RS, no other else</span></span>
@@ -382,7 +382,8 @@ the binomial names using the function <code><a href="../reference/get_binomial.h
 <span>                    <span class="st">"Solanum restingae S.Knapp"</span>,</span>
 <span>                    <span class="st">"Butia cattarinensis Noblick &amp; Lorenzi"</span>,</span>
 <span>                    <span class="st">"Homo sapiens"</span><span class="op">)</span></span>
-<span><span class="co">#Human specie was used just as an example that will be used to illustrate the next function</span></span>
+<span><span class="co">#Human specie was used just as an example that will be used to illustrate the </span></span>
+<span><span class="co">#next function</span></span>
 <span><span class="va">binomial_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_binomial.html">get_binomial</a></span><span class="op">(</span>species_names <span class="op">=</span> <span class="va">complete_names</span><span class="op">)</span></span>
 <span><span class="va">binomial_names</span></span>
 <span><span class="co">#&gt; [1] "Araucaria brasiliana" "Solanum restingae"    "Butia cattarinensis" </span></span>
@@ -463,18 +464,20 @@ previously:</p>
 <span><span class="co">#&gt; 11785     Shrub Terrestrial       Atlantic_Forest                BA</span></span>
 <span><span class="co">#&gt; 26790      Tree Terrestrial Atlantic_Forest;Pampa MG;PR;RJ;RS;SC;SP</span></span>
 <span><span class="co">#&gt; 99881 Palm_tree Terrestrial Atlantic_Forest;Pampa             RS;SC</span></span>
-<span><span class="co">#&gt;                                                                           vegetationType</span></span>
-<span><span class="co">#&gt; 11785                                                                           Restinga</span></span>
-<span><span class="co">#&gt; 26790 High_Altitude_Grassland;Mixed_Ombrophyllous_Forest;Seasonally_Semideciduous_Forest</span></span>
-<span><span class="co">#&gt; 99881                                                                           Restinga</span></span>
+<span><span class="co">#&gt;       vegetationType</span></span>
+<span><span class="co">#&gt; 11785 Restinga</span></span>
+<span><span class="co">#&gt; 26790 High_Altitude_Grassland;Mixed_Ombrophyllous_Forest;</span></span>
+<span><span class="co">#&gt;       Seasonally_Semideciduous_Forest</span></span>
+<span><span class="co">#&gt; 99881 Restinga</span></span>
 <span><span class="co">#&gt;       Origin    Endemism taxonomicStatus nomenclaturalStatus</span></span>
 <span><span class="co">#&gt; 11785 Native     Endemic        Accepted             Correct</span></span>
 <span><span class="co">#&gt; 26790 Native Non-endemic        Accepted             Correct</span></span>
 <span><span class="co">#&gt; 99881 Native     Endemic        Accepted                &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;                                                                  vernacularName</span></span>
-<span><span class="co">#&gt; 11785                                                                      &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 26790 araucaria, pinheiro-do-parana, curi, pinheiro-brasileiro, pinho-do-parana</span></span>
-<span><span class="co">#&gt; 99881                                                                      &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;       vernacularName</span></span>
+<span><span class="co">#&gt; 11785 &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 26790 araucaria, pinheiro-do-parana, curi, pinheiro-brasileiro, </span></span>
+<span><span class="co">#&gt; pinho-do-parana</span></span>
+<span><span class="co">#&gt; 99881 &lt;NA&gt;</span></span>
 <span><span class="co">#&gt;       taxonRank</span></span>
 <span><span class="co">#&gt; 11785   Species</span></span>
 <span><span class="co">#&gt; 26790   Species</span></span>
@@ -504,24 +507,26 @@ previously:</p>
 <span><span class="co">#&gt; 35204 Araucaria                                                             </span></span>
 <span><span class="co">#&gt; 35205 Araucaria                                                             </span></span>
 <span><span class="co">#&gt; 35206 Araucaria                                                             </span></span>
-<span><span class="co">#&gt;                                                                           vegetationType</span></span>
-<span><span class="co">#&gt; 11785                                                                           Restinga</span></span>
-<span><span class="co">#&gt; 26790 High_Altitude_Grassland;Mixed_Ombrophyllous_Forest;Seasonally_Semideciduous_Forest</span></span>
-<span><span class="co">#&gt; 35204                                                                                   </span></span>
-<span><span class="co">#&gt; 35205                                                                                   </span></span>
-<span><span class="co">#&gt; 35206                                                                                   </span></span>
+<span><span class="co">#&gt;       vegetationType</span></span>
+<span><span class="co">#&gt; 11785 Restinga</span></span>
+<span><span class="co">#&gt; 26790 High_Altitude_Grassland;Mixed_Ombrophyllous_Forest;</span></span>
+<span><span class="co">#&gt;       Seasonally_Semideciduous_Forest</span></span>
+<span><span class="co">#&gt; 35204                                                                         </span></span>
+<span><span class="co">#&gt; 35205                                                                          </span></span>
+<span><span class="co">#&gt; 35206                                                                        </span></span>
 <span><span class="co">#&gt;       Origin    Endemism taxonomicStatus nomenclaturalStatus</span></span>
 <span><span class="co">#&gt; 11785 Native     Endemic        Accepted             Correct</span></span>
 <span><span class="co">#&gt; 26790 Native Non-endemic        Accepted             Correct</span></span>
 <span><span class="co">#&gt; 35204   &lt;NA&gt;        &lt;NA&gt;         Synonym                &lt;NA&gt;</span></span>
 <span><span class="co">#&gt; 35205   &lt;NA&gt;        &lt;NA&gt;         Synonym                &lt;NA&gt;</span></span>
 <span><span class="co">#&gt; 35206   &lt;NA&gt;        &lt;NA&gt;         Synonym                &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;                                                                  vernacularName</span></span>
-<span><span class="co">#&gt; 11785                                                                      &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 26790 araucaria, pinheiro-do-parana, curi, pinheiro-brasileiro, pinho-do-parana</span></span>
-<span><span class="co">#&gt; 35204                                                                      &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 35205                                                                      &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 35206                                                                      &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;       vernacularName</span></span>
+<span><span class="co">#&gt; 11785 &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 26790 araucaria, pinheiro-do-parana, curi, pinheiro-brasileiro,</span></span>
+<span><span class="co">#&gt; pinho-do-parana</span></span>
+<span><span class="co">#&gt; 35204 &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 35205 &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 35206 &lt;NA&gt;</span></span>
 <span><span class="co">#&gt;       taxonRank</span></span>
 <span><span class="co">#&gt; 11785   Species</span></span>
 <span><span class="co">#&gt; 26790   Species</span></span>
