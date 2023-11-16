@@ -1,9 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # florabr <img src="man/figures/logo.png" align="right" width="20%" height="20%"/>
