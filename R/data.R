@@ -78,7 +78,7 @@
 #'  @usage data(brazil)
 #'  brazil <- terra::unwrap(brazil)
 #'
-#' @format A \code{SpatVector} with 1 geometrie and 0 attribute
+#' @format A \code{SpatVector} with 1 geometry and 0 attribute
 "brazil"
 
 #' Records of plant species

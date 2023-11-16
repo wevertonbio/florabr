@@ -183,7 +183,7 @@ unique(only_af_spp$Biome)
 
 Now, the filter has resulted in 1848 species, all exclusively confined to the Atlantic Forest biome.
 
-Furthermore, the package offers the flexibility to apply various filtering options (please consult `?select_species` for comprehensive details). For instance, consider the scenario where we aim to compile a list of native and endemic trees with confirmed occurrences limited solely to the Atlantic Forest biome and with confirmed occurrenced in the states of Paraná (PR), Santa Catarina (SC), and Rio Grande do Sul (RS):
+Furthermore, the package offers the flexibility to apply various filtering options (please consult `?select_species` for comprehensive details). For instance, consider the scenario where we aim to compile a list of native and endemic trees with confirmed occurrences limited solely to the Atlantic Forest biome and with confirmed occurrences in the states of Paraná (PR), Santa Catarina (SC), and Rio Grande do Sul (RS):
 
 ```{r}
 south_af_spp <- select_species(data = bf,
@@ -270,7 +270,7 @@ unique(south_af_spp3$States)
 ```
 Now, the filter return only 13 species, all of them occurring in PR, SC and RS; with no recorded occurrences in any other states.
 
-## Checking names and subseting species
+## Checking names and subsetting species
 ### Extracting binomial name
 In addition to selecting a species list based on their characteristics, the package also includes a function for subsetting species by name. Please note that this function exclusively operates with binomial names (Genus + specificEpithet), such as *Araucaria angustifolia*, and does not support complete scientific names (including Author or infraspecificEpithet), such as *Araucaria angustifolia (Bertol.) Kuntze* or *Araucaria angustifolia var. stricta Reitz*.
 
@@ -320,7 +320,7 @@ The spelling of *Homo sapiens* was flagged as incorrect (as expected, given that
 ### Subsetting species
 
 To retrieve species information from the Brazilian Flora database, employ the `subset_species()` function. For optimal performance, we highly recommend utilizing the `get_binomial()` and `check_names()` functions beforehand. This ensures that you're exclusively working with species present in the Brazilian Flora database.
-To see how the function works, let's use the acceptes names in *checked_names* created previously:
+To see how the function works, let's use the accepted names in *checked_names* created previously:
 
 ```{r}
 #Get only accepted names

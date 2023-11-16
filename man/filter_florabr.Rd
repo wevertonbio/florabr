@@ -31,7 +31,7 @@ filter_florabr(data, occ, Species = "species", Long = "x", Lat = "y",
 
 \item{by_Biome}{(logical) filter records by Biome? Default = TRUE}
 
-\item{buffer_Biome}{(numeric) buffer (in km) around the polygons of the biomes of occurence of the specie. Default = 20.}
+\item{buffer_Biome}{(numeric) buffer (in km) around the polygons of the biomes of occurrence of the specie. Default = 20.}
 
 \item{by_Endemism}{(logical) filter records by endemism? Default = TRUE}
 

@@ -5,7 +5,7 @@
 \alias{brazil}
 \title{SpatVector of the Brazil's national borders}
 \format{
-A \code{SpatVector} with 1 geometrie and 0 attribute
+A \code{SpatVector} with 1 geometry and 0 attribute
 }
 \usage{
 brazil

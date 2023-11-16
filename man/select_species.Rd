@@ -130,7 +130,7 @@ if Biome = c("Amazon", "Cerrado") and filter_Biome = "and", it will select
 all species that occurs only in both the Amazon and Cerrado biomes,
 including species that occurs in other biomes too.
 
-To get the complet list of arguments available for Family, Genus, LifeForm,
+To get the complete list of arguments available for Family, Genus, LifeForm,
 Habitat, Biome, State, and NomenclaturalStatus, use the function
 \code{\link{get_attributes}}
 }

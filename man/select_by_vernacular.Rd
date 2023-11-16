@@ -8,7 +8,7 @@ select_by_vernacular(data, names, exact = FALSE)
 }
 \arguments{
 \item{data}{(data.frame) the data.frame imported with the
-\code{\link{load_florabr}} function or geneterate with the function \code{\link{select_species}}.}
+\code{\link{load_florabr}} function or generated with the function \code{\link{select_species}}.}
 
 \item{names}{(character) vernacular name ("Nome comum") of the species to be searched}
 

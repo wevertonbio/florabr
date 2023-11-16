@@ -11,7 +11,7 @@
 #' @param by_State (logical) filter records by state? Default = TRUE
 #' @param buffer_State (numeric) buffer (in km) around the polygons of the states of occurrence of the specie. Default = 20.
 #' @param by_Biome (logical) filter records by Biome? Default = TRUE
-#' @param buffer_Biome (numeric) buffer (in km) around the polygons of the biomes of occurence of the specie. Default = 20.
+#' @param buffer_Biome (numeric) buffer (in km) around the polygons of the biomes of occurrence of the specie. Default = 20.
 #' @param by_Endemism (logical) filter records by endemism? Default = TRUE
 #' @param Buffer_Brazil (numeric) buffer (in km) around the polygons of the Brazil. Default = 20.
 #' @param State_vect (SpatVector) a SpatVector of the Brazilian states. By default, it uses the SpatVector provided by geobr::read_state(). It can be another Spatvector, but the structure must be identical to geobr::read_state().

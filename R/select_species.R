@@ -88,7 +88,7 @@
 #'
 #'
 #'
-#' To get the complet list of arguments available for Family, Genus, LifeForm,
+#' To get the complete list of arguments available for Family, Genus, LifeForm,
 #' Habitat, Biome, State, and NomenclaturalStatus, use the function
 #' \code{\link{get_attributes}}
 #'

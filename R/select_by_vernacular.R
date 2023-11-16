@@ -1,7 +1,7 @@
 #' Search for taxa using vernacular names
 #'
 #' @param data (data.frame) the data.frame imported with the
-#' \code{\link{load_florabr}} function or geneterate with the function \code{\link{select_species}}.
+#' \code{\link{load_florabr}} function or generated with the function \code{\link{select_species}}.
 #' @param names (character) vernacular name ("Nome comum") of the species to be searched
 #' @param exact (logic) if TRUE, the function will search only for exact matches. For example, if names = "pinheiro" and exact = TRUE, the function will return only the species popularly known as "pinheiro". On the other hand, if names = "pinheiro" and exact = FALSE, the function will return other results as "pinheiro-do-parana". Default = FALSE
 #'

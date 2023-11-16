@@ -83,7 +83,7 @@ knitr::include_graphics("vignettes_img/IMG01.png")
 ```
 
 ### Including a more complex polygon of states and biomes
-As default, `florabr` uses a simplified polygon of federal States and biomes, with a reduced number of nodes represenint the boundaries of states and biomes (check `?terra::simplifyGeom`):
+As default, `florabr` uses a simplified polygon of federal States and biomes, with a reduced number of nodes representing the boundaries of states and biomes (check `?terra::simplifyGeom`):
 
 ```{r}
 data("states")
@@ -189,13 +189,13 @@ The choose between using the simplified version (default) or using a personal e 
 
 ## Filtering occurrence records using distribution information in Brazilian Flora
 
-Georeferencing errors in online species records can introduce significant bias into ecological and biogeographical research findings. Some R packages, as `CoordinateCleaner`, help to flagging common spatial errors in biological collection data, for example, records of terrestrial organism that fall in the sea or were assigned to capital and provinced centroids.
+Georeferencing errors in online species records can introduce significant bias into ecological and biogeographical research findings. Some R packages, as `CoordinateCleaner`, help to flagging common spatial errors in biological collection data, for example, records of terrestrial organism that fall in the sea or were assigned to capital and province centroids.
 Since the distributions of species in Brazilian Flora are based on the expertise of taxonomists, it represents a valuable information to add an additional step on checking the validity of occurrence records got from online databases (as GBIF or SpeciesLink). 
 The `filter_florabr` function automatized this flagging. You can use the function to flag and/or remove:
 * Records that fall outside the states and biomes which confirmed occurrence according to Brazilian Flora.
 * For species endemic to Brazil, records that falls in other countries.
 
-As example, let's use the occurrence records of two species. *Abatia americana* is an endemic shrub with confirmed occurrences in 4 states (ES, MG, RJ and SP) and two biomes (Atlantic Forest and Cerrado). *Araucaria angustifolia* is a non-endemic tree that in Brazil has confirmed occurences in 6 states (MG, PR, RJ, RS, SC and SP) and two biomes (Atlantic Forest and Pampa). Let's plot these information using the function `get_spat_occ`:
+As example, let's use the occurrence records of two species. *Abatia americana* is an endemic shrub with confirmed occurrences in 4 states (ES, MG, RJ and SP) and two biomes (Atlantic Forest and Cerrado). *Araucaria angustifolia* is a non-endemic tree that in Brazil has confirmed occurrences in 6 states (MG, PR, RJ, RS, SC and SP) and two biomes (Atlantic Forest and Pampa). Let's plot these information using the function `get_spat_occ`:
 
 ```{r}
 my_spp <- c("Abatia americana", "Araucaria angustifolia")
