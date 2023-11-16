@@ -1,3 +1,8 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -6,6 +11,12 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/wevertonbio/florabr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/wevertonbio/florabr/actions/workflows/R-CMD-check.yaml)
+[![license](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+[![overviewR
+badge](https://img.shields.io/badge/overviewR-ready%20to%20use-brightgreen)](https://github.com/cosimameyer/overviewR)
+[![R
+badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-blue)](https://github.com/cosimameyer/overviewR)
+
 <!-- badges: end -->
 
 [Brazilian Flora
@@ -26,34 +37,35 @@ dataset.
 
 ### Download and import Brazilian Flora Dataset
 
-- `check_version()`: Check if you have the latest version of Brazilian
-  Flora dataset available.
-- `get_florabr()`: Download the latest version of Brazilian Flora 2020
-  database.
-- `load_florabr()`: Load Brazilian Flora database.
+-   `check_version()`: Check if you have the latest version of Brazilian
+    Flora dataset available.
+-   `get_florabr()`: Download the latest version of Brazilian Flora 2020
+    database.
+-   `load_florabr()`: Load Brazilian Flora database.
 
 ### Check names
 
-- `check_names()`: Check species names.
-- `get_binomial()`: Extract the binomial name (Genus + specific epithet)
-  from a complete Scientific Name.
+-   `check_names()`: Check species names.
+-   `get_binomial()`: Extract the binomial name (Genus + specific
+    epithet) from a complete Scientific Name.
 
 ### Select or subset species
 
-- `get_attributes()`: Get available attributes to filter species.
-- `select_by_vernacular()`: Search for taxa using vernacular names.
-- `select_species()`: Select species based on its characteristics and
-  distribution.
-- `subset_species()`: Extract a subset of species from Brazilian Flora
-  2020 database.
+-   `get_attributes()`: Get available attributes to filter species.
+-   `select_by_vernacular()`: Search for taxa using vernacular names.
+-   `select_species()`: Select species based on its characteristics and
+    distribution.
+-   `subset_species()`: Extract a subset of species from Brazilian Flora
+    2020 database.
 
 ### Spatialize distribution and use Brazilian Flora to flag records
 
-- `filter_florabr()`: Identify records outside natural ranges according
-  to Brazilian Flora 2020.
-- `get_spat_occ()`: Get Spatial polygons (SpatVectors) of species based
-  on its distribution (States and Biomes) according to Brazilian Flora
-  2020.
+-   `filter_florabr()`: Identify records outside natural ranges
+    according to Brazilian Flora 2020.
+-   `get_spat_occ()`: Get Spatial polygons (SpatVectors) of species
+    based on its distribution (States and Biomes) according to Brazilian
+    Flora
+    2020. 
 
 ## Installation
 
@@ -94,7 +106,7 @@ You also have the option to download an older, specific version of the
 Brazilian Flora dataset. To explore the available versions, please refer
 to [this
 link](https://ipt.jbrj.gov.br/jbrj/resource?r=lista_especies_flora_brasil).
-For downloading a particular version, simply replace ‘latest’ with the
+For downloading a particular version, simply replace 'latest' with the
 desired version number. For example:
 
 ``` r
@@ -111,9 +123,9 @@ data into your environment. To achieve this, utilize the
 search for the latest available version in your directory. However, you
 have the option to specify a particular version using the *data_version*
 parameter. Additionally, you can choose between two versions of the
-data: the ‘short’ version (containing the 19 columns required for run
-the other functions of the package) or the ‘complete’ version (with all
-original 39 columns). The function imports the ‘short’ version by
+data: the 'short' version (containing the 19 columns required for run
+the other functions of the package) or the 'complete' version (with all
+original 39 columns). The function imports the 'short' version by
 default.
 
 ``` r
