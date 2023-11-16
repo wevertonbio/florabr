@@ -4,7 +4,7 @@
 \alias{select_species}
 \title{Selection of species based on its characteristics and distribution}
 \usage{
-select_species(data = NULL,
+select_species(data,
                       include_subspecies = FALSE, include_variety = FALSE,
                       Kingdom = "Plantae", Group = "All", Subgroup = "All",
                       Family = "All", Genus = "All",

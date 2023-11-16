@@ -4,7 +4,7 @@
 \alias{subset_species}
 \title{Extract a subset of species from Brazilian Flora 2020 database}
 \usage{
-subset_species(data = NULL, species = NULL,
+subset_species(data, species,
                       include_subspecies = FALSE,
                       include_variety = FALSE,
                       Kingdom = "Plantae")

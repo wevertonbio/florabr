@@ -5,8 +5,8 @@
 \title{Get Spatial polygons (SpatVectors) of species based on its distribution (States and Biomes) according to Brazilian Flora 2020}
 \usage{
 get_spat_occ(
-  data = NULL,
-  species = NULL,
+  data,
+  species,
   State = TRUE,
   Biome = TRUE,
   intersection = TRUE,

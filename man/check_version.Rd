@@ -4,7 +4,7 @@
 \alias{check_version}
 \title{Check if you have the latest version of Brazilian Flora data available}
 \usage{
-check_version(data_dir = NULL)
+check_version(data_dir)
 }
 \arguments{
 \item{data_dir}{the directory where the data should be located.}

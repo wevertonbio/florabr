@@ -4,7 +4,7 @@
 \alias{select_by_vernacular}
 \title{Search for taxa using vernacular names}
 \usage{
-select_by_vernacular(data = NULL, names = NULL, exact = FALSE)
+select_by_vernacular(data, names, exact = FALSE)
 }
 \arguments{
 \item{data}{(data.frame) the data.frame imported with the

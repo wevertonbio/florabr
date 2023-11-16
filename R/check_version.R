@@ -6,7 +6,7 @@
 #' @param data_dir the directory where the data should be located.
 #'
 #' @return A message informing whether you have the latest version of Brazilian Flora data available in the data_dir
-#' @usage check_version(data_dir = NULL)
+#' @usage check_version(data_dir)
 #' @export
 #'
 #' @importFrom httr GET

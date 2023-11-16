@@ -94,7 +94,7 @@
 #'
 #'
 #' @return A new dataframe with the filtered species.
-#' @usage select_species(data = NULL,
+#' @usage select_species(data,
 #'                       include_subspecies = FALSE, include_variety = FALSE,
 #'                       Kingdom = "Plantae", Group = "All", Subgroup = "All",
 #'                       Family = "All", Genus = "All",

@@ -17,7 +17,7 @@
 #' use c("Plantae", "Fungi")
 #'
 #' @return A data.frame with the selected species.
-#' @usage subset_species(data = NULL, species = NULL,
+#' @usage subset_species(data, species,
 #'                       include_subspecies = FALSE,
 #'                       include_variety = FALSE,
 #'                       Kingdom = "Plantae")
