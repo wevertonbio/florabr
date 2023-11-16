@@ -2,3 +2,8 @@ url: https://wevertonbio.github.io/florabr/
 template:
   bootstrap: 5
 
+sections:
+  - Articles:
+      - getting_started
+      - selecting_species
+      - Spatialize_florabr
