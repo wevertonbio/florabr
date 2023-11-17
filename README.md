@@ -14,7 +14,7 @@ badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-blue)](https://gi
 <!-- badges: end -->
 
 [Brazilian Flora
-2020](http://floradobrasil.jbrj.gov.br/reflora/listaBrasil/PrincipalUC/PrincipalUC.do?lingua=en)
+2020](https://floradobrasil.jbrj.gov.br/consulta/)
 is the most comprehensive work to reliably document Brazilian plant
 diversity. It involves the work of hundreds of taxonomists, integrating
 data from plant and fungi collected in Brazil during the last two

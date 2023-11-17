@@ -1,7 +1,3 @@
-# florabr (0.0.0.9000)
-
-* First functions.
-
-# florabr (1.0.0)
+# florabr 1.0.0 (November 2023)
 
 * Initial CRAN submission.
