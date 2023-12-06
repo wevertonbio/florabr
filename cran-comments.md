@@ -1,3 +1,10 @@
+## Resubmission florabr 1.0.0
+> Please omit "+ file LICENSE" and the file itself which is part of R
+anyway. It is only used to specify additional restrictions to the GPL
+such as attribution requirements.
+
+* Fixed.
+
 ## Test environments
 * Windows 11, R 4.3.1 (local)
 * MacOS 12.6.9, R release (GitHub Actions)
