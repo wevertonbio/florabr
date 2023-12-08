@@ -71,26 +71,27 @@ check_version <- function(data_dir) {
   #Print messages
 
   if(length(dir_versions) == 0) {
-    cat(paste0("You do not have any version of Flora do Brazil 2020 in this
-               directory. The latest version is ", latest_version, ". Please,
-               change the directory or run the function get_florabr() to
-               download the latest version of Brazilian Flora 2020.", "\n"))
+    message(
+    "You do not have any version of Flora do Brazil 2020 in this directory.
+    The latest version is ", latest_version, ". Please, change the directory or
+    run the function get_florabr() to download the latest version of Brazilian
+    Flora 2020.", "\n")
   }
 
   if(isTRUE(is_latest) & isFALSE(many_versions)) {
-    cat(paste("You have the latest version of Brazilian Flora 2020 Data -
+    message(paste("You have the latest version of Brazilian Flora 2020 Data -
               Version", latest_version, "\n"))
   }
 
   if(isTRUE(is_latest) & isTRUE(many_versions)) {
-    cat(paste("You have the following versions of Brazilian Flora:\n",
+    message(paste("You have the following versions of Brazilian Flora:\n",
               paste(dir_versions, collapse = "\n"),
               "\n It includes the latest version: ",
               latest_version, "\n"))
   }
 
   if(isFALSE(is_latest) & isTRUE(many_versions)) {
-    cat(paste0("You have the following versions of Brazilian Flora:\n",
+    message(paste0("You have the following versions of Brazilian Flora:\n",
               paste0(dir_versions, collapse = "\n"),
               "\nHowever, it does not include the latest version: ",
               latest_version,
