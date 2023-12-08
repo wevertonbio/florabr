@@ -4,7 +4,8 @@
 \alias{get_florabr}
 \title{Download the latest version of Brazilian Flora 2020 database}
 \usage{
-get_florabr(output_dir, data_version = "latest", overwrite = TRUE)
+get_florabr(output_dir, data_version = "latest", overwrite = TRUE,
+                   verbose = TRUE)
 }
 \arguments{
 \item{output_dir}{(character) a directory to save the data downloaded from
@@ -16,6 +17,10 @@ Alternatively, specify an older version (e.g., data_version = "393.319").
 Default value is "latest".}
 
 \item{overwrite}{(logical) If TRUE, data is overwritten. Default = TRUE.}
+
+\item{verbose}{(logical) Whether to display messages during function
+execution. Set to TRUE to enable display, or FALSE to run silently.
+Default = TRUE.}
 }
 \value{
 The function downloads the latest version of the Brazilian Flora 2020
@@ -32,11 +37,15 @@ This function downloads the latest or an older version of Brazilian Flora
 this data.frame in the specified directory.
 }
 \examples{
-\dontrun{
-dir.create("brazilianflora") #Create a directory to save data
-my_dir <- "brazilianflora" #Set directory to save data
+\donttest{
+#Creating a folder in a temporary directory
+#Replace 'file.path(tempdir(), "florabr")' by a path folder to be create in
+#your computer
+my_dir <- file.path(file.path(tempdir(), "florabr"))
+dir.create(my_dir)
 #Download, merge and save data
-get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE)
+get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE,
+            verbose = TRUE)
 }
 }
 \references{

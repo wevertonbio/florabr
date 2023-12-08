@@ -8,7 +8,9 @@
 #' Default = "Latest_available".
 #' @param type (character) it determines the number of columns that will be
 #' loaded. It can be "short" or "complete". Default = "short". See details.
-#'
+#' @param verbose (logical) Whether to display messages during function
+#' execution. Set to TRUE to enable display, or FALSE to run silently.
+#' Default = TRUE.
 #' @details
 #' The parameter type accepts two arguments. If type = short, it will load a
 #' data.frame with the 19 columns needed to run the other functions of the
@@ -24,24 +26,28 @@
 #' run most of the functions of the package.
 #'
 #' @usage load_florabr(data_dir, data_version = "Latest_available",
-#' type = "short")
+#'                     type = "short", verbose = TRUE)
 #' @export
 #' @references
 #' Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
 #' http://floradobrasil.jbrj.gov.br/
 #'
 #' @examples
-#' \dontrun{
-#' dir.create("brazilianflora") #Create a directory to save data
-#' my_dir <- "brazilianflora" #Set directory to save data
+#' \donttest{
+#' #Creating a folder in a temporary directory
+#' #Replace 'file.path(tempdir(), "florabr")' by a path folder to be create in
+#' #your computer
+#' my_dir <- file.path(file.path(tempdir(), "florabr"))
+#' dir.create(my_dir)
 #' #Download, merge and save data
-#' get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE)
+#' get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE,
+#'             verbose = TRUE)
 #' #Load data
 #' df <- load_florabr(data_dir = my_dir, data_version = "Latest_available",
 #' type = "short")
 #' }
 load_florabr <- function(data_dir, data_version = "Latest_available",
-                         type = "short"){
+                         type = "short", verbose = TRUE){
   #Set folder
   if (missing(data_dir)) {
     stop("Argument data_dir is not defined")
@@ -84,7 +90,8 @@ load_florabr <- function(data_dir, data_version = "Latest_available",
   }
 
   #Load data
-  cat(paste("Loading version", version_data))
+  if(verbose){
+  message("Loading version", version_data) }
 
   if(type == "complete") {
     ds <- readRDS(file.path(path_data, version_data,

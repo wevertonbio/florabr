@@ -5,7 +5,7 @@
 \title{Load Brazilian Flora database}
 \usage{
 load_florabr(data_dir, data_version = "Latest_available",
-type = "short")
+                    type = "short", verbose = TRUE)
 }
 \arguments{
 \item{data_dir}{(character) the same directory used to save the data
@@ -18,6 +18,10 @@ Default = "Latest_available".}
 
 \item{type}{(character) it determines the number of columns that will be
 loaded. It can be "short" or "complete". Default = "short". See details.}
+
+\item{verbose}{(logical) Whether to display messages during function
+execution. Set to TRUE to enable display, or FALSE to run silently.
+Default = TRUE.}
 }
 \value{
 A data.frame with the specified version (Default is the latest
@@ -38,11 +42,15 @@ If type = complete, it will load a data.frame with all 39 variables available
 in Brazilian Flora database.
 }
 \examples{
-\dontrun{
-dir.create("brazilianflora") #Create a directory to save data
-my_dir <- "brazilianflora" #Set directory to save data
+\donttest{
+#Creating a folder in a temporary directory
+#Replace 'file.path(tempdir(), "florabr")' by a path folder to be create in
+#your computer
+my_dir <- file.path(file.path(tempdir(), "florabr"))
+dir.create(my_dir)
 #Download, merge and save data
-get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE)
+get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE,
+            verbose = TRUE)
 #Load data
 df <- load_florabr(data_dir = my_dir, data_version = "Latest_available",
 type = "short")

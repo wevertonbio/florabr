@@ -13,6 +13,9 @@
 #' Alternatively, specify an older version (e.g., data_version = "393.319").
 #' Default value is "latest".
 #' @param overwrite (logical) If TRUE, data is overwritten. Default = TRUE.
+#' @param verbose (logical) Whether to display messages during function
+#' execution. Set to TRUE to enable display, or FALSE to run silently.
+#' Default = TRUE.
 #'
 #' @returns
 #' The function downloads the latest version of the Brazilian Flora 2020
@@ -22,7 +25,8 @@
 #' The merged data.frame is then saved as a file in the specified output
 #' directory. The data is saved in a format that allows easy loading using the
 #' \code{\link{load_florabr}} function for further analysis in R.
-#' @usage get_florabr(output_dir, data_version = "latest", overwrite = TRUE)
+#' @usage get_florabr(output_dir, data_version = "latest", overwrite = TRUE,
+#'                    verbose = TRUE)
 #' @export
 #'
 #' @importFrom httr GET write_disk
@@ -33,13 +37,18 @@
 #' Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
 #' http://floradobrasil.jbrj.gov.br/
 #' @examples
-#' \dontrun{
-#' dir.create("brazilianflora") #Create a directory to save data
-#' my_dir <- "brazilianflora" #Set directory to save data
+#' \donttest{
+#' #Creating a folder in a temporary directory
+#' #Replace 'file.path(tempdir(), "florabr")' by a path folder to be create in
+#' #your computer
+#' my_dir <- file.path(file.path(tempdir(), "florabr"))
+#' dir.create(my_dir)
 #' #Download, merge and save data
-#' get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE)
+#' get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE,
+#'             verbose = TRUE)
 #' }
-get_florabr <- function(output_dir, data_version = "latest", overwrite = TRUE) {
+get_florabr <- function(output_dir, data_version = "latest", overwrite = TRUE,
+                        verbose = TRUE) {
   #Set folder
   if(is.null(output_dir)) {
     stop(paste("Argument output_dir is not defined, this is necessary for",
@@ -64,7 +73,8 @@ get_florabr <- function(output_dir, data_version = "latest", overwrite = TRUE) {
 
 
   #Print message
-  cat(paste("Data will be saved in", path_data, "\n"))
+  if(verbose) {
+  message("Data will be saved in", path_data, "\n") }
 
 
   if(data_version != "latest") {
@@ -90,8 +100,8 @@ get_florabr <- function(output_dir, data_version = "latest", overwrite = TRUE) {
                        link_download)
 
   #Print message
-  if(!is.null(version_data)) {
-      cat(paste("Downloading version:", version_data, "\n"))
+  if(!is.null(version_data) & verbose) {
+      message("Downloading version:", version_data, "\n")
 
 
   #Download data
@@ -105,12 +115,17 @@ get_florabr <- function(output_dir, data_version = "latest", overwrite = TRUE) {
   utils::unzip(zipfile = paste0(file.path(path_data, version_data), ".zip"),
         exdir = file.path(path_data, version_data))
 
-  cat("Merging data. Please wait a moment...\n")
+  #Print message
+  if(verbose){
+  message("Merging data. Please wait a moment...\n") }
+
   #Merge data
   merge_data(path_data = path_data, version_data = version_data)
 
   #Print final message
-  cat(paste("Data downloaded and merged successfully. Final data saved in",
-              file.path(path_data, version_data, "CompleteBrazilianFlora.rds")))
+  if(verbose){
+  message("Data downloaded and merged successfully. Final data saved in",
+              file.path(path_data, version_data, "CompleteBrazilianFlora.rds"))
+  }
 
 }
