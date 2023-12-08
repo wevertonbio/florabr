@@ -198,13 +198,14 @@ get_spat_occ <- function(data, species, State = TRUE,
 
     if(State) {
       if(verbose) {
-        cat(paste("Getting states of", spp[i], "\n")) }
+        message("Getting states of", spp[i], "\n") }
 
       sp_i_state <- unique(gsub(";", "|", occ_i$States[1]))
 
       if(sp_i_state == "" | is.na(sp_i_state)) {
-        cat(paste(spp[i], "lacks info about State - SpatialVector not
-                  returned"))
+        if(verbose) {
+        message(spp[i], "lacks info about State - SpatialVector not
+                  returned")}
         states_v <- "No_info"
       } else {
         states_v <- terra::subset(states, grepl(sp_i_state,
@@ -215,12 +216,13 @@ get_spat_occ <- function(data, species, State = TRUE,
 
     if(Biome) {
       if(verbose) {
-        cat(paste("Getting biomes of", spp[i], "\n")) }
+        message("Getting biomes of", spp[i], "\n") }
       sp_i_biome<- unique(gsub(";", "|", occ_i$Biome[1]))
 
       if(sp_i_biome == "" | is.na(sp_i_biome)) {
-        cat(paste(spp[i], "lacks info about Biome - SpatialVector not
-                  returned"))
+        if(verbose){
+        message(spp[i], "lacks info about Biome - SpatialVector not
+                  returned")}
         biomes_v <- "No_info"
       } else {
         biomes_v <- terra::subset(biomes, grepl(sp_i_biome,
@@ -231,14 +233,14 @@ get_spat_occ <- function(data, species, State = TRUE,
 
     if(intersection) {
       if(verbose) {
-        cat(paste("Getting biomes of", spp[i], "\n")) }
+        message("Getting biomes of", spp[i], "\n") }
       if((sp_i_biome == "" | is.na(sp_i_biome)) & verbose) {
-        cat(paste(spp[i], "lacks info about states - Impossible to get
-                  intersection with states"))
+        message(spp[i], "lacks info about states - Impossible to get
+                  intersection with states")
       }
       if((sp_i_biome == "" | is.na(sp_i_biome)) & verbose) {
-        cat(paste(spp[i], "lacks info about biomes - Impossible to get
-                  intersection with biomes"))
+        message(spp[i], "lacks info about biomes - Impossible to get
+                  intersection with biomes")
       }
 
 

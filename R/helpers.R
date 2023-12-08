@@ -236,7 +236,7 @@ translate_subgroup <- function(Subgroup){
 }
 
 merge_data <- function(path_data, version_data,
-                       encoding = "UTF-8") {
+                       encoding = "UTF-8", verbose = TRUE) {
 
   #Set folder
   if(is.null(path_data)) {
@@ -245,7 +245,8 @@ merge_data <- function(path_data, version_data,
   }
 
   #Print message
-  cat(paste("Data will be saved in", path_data, "\n"))
+  if(verbose) {
+  message("Data will be saved in", path_data, "\n") }
 
   #Get latest available version if version was not set
   if(version_data == "latest") {

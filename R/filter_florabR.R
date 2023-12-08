@@ -287,13 +287,14 @@ filter_florabr <- function(data,
 
   if(by_State == TRUE) {
    l_state <- lapply(seq_along(spp), function(i){
-     if(isTRUE(verbose)) {
-       cat(paste("Filtering", spp[i], "by state\n")) }
+     if(verbose) {
+       message("Filtering", spp[i], "by state\n") }
      occ_i <- subset(occ_info, occ_info$species == spp[i])
      sp_i_state <- unique(gsub(";", "|", occ_i$States[1]))
 
      if(sp_i_state == "" | is.na(sp_i_state)) {
-       cat(paste(spp[i], "lacks info about State - Filter not applicable\n"))
+       if(verbose) {
+       message(spp[i], "lacks info about State - Filter not applicable\n") }
        states_ext <- occ_i
        states_ext$Inside_State <- "No info"
      } else {
@@ -329,14 +330,15 @@ filter_florabr <- function(data,
 
   if(by_Biome == TRUE) {
     l_biome <- lapply(seq_along(spp), function(i){
-      if(isTRUE(verbose)) {
-      cat(paste("Filtering", spp[i], "by biome\n")) }
+      if(verbose) {
+      message("Filtering", spp[i], "by biome\n") }
       occ_i <- terra::subset(occ_state, occ_state$species == spp[i])
       sp_i_biome <- unique(gsub(";", "|", occ_i$Biome[1]))
 
 
       if(sp_i_biome == "" | is.na(sp_i_biome)) {
-        cat(paste(spp[i], "lacks info about Biome - Filter not applicable\n"))
+        if(verbose) {
+        message(spp[i], "lacks info about Biome - Filter not applicable\n") }
         biomes_ext <- occ_i
         biomes_ext$Inside_Biome <- "No info"
       } else {
@@ -377,13 +379,13 @@ filter_florabr <- function(data,
       sp_i_end <- unique(gsub(";", "|", occ_i$Endemism[1]))
 
       if(sp_i_end != "Endemic") {
-        if(isTRUE(verbose)) {
-        cat(paste(spp[i], "is non-endemic - Filter not applicable\n")) }
+        if(verbose) {
+        message(spp[i], "is non-endemic - Filter not applicable\n") }
         occ_BR <- terra::as.data.frame(occ_i)
         occ_BR$Inside_BR <- "Non-endemic"
       } else {
-        if(isTRUE(verbose)) {
-        cat(paste("Filtering", spp[i], "by endemism\n")) }
+        if(verbose) {
+        message("Filtering", spp[i], "by endemism\n") }
         #Buffer
       BR_v <- terra::buffer(brazil, width = Buffer_Brazil*1000)
 
@@ -450,15 +452,21 @@ filter_florabr <- function(data,
   if(value == "flag&clean") {
     res_final <- list(occ_flag, occ_clean)
     names(res_final) <- c("flagged", "cleaned")
-    cat("Returning list with flagged and cleaned occurrences\n")}
+    if(verbose) {
+    message("Returning list with flagged and cleaned occurrences\n")}
+  }
 
   if(value == "flag") {
     res_final <- occ_flag
-    cat("Returning dataframe with flagged occurrences\n")}
+    if(verbose) {
+    message("Returning dataframe with flagged occurrences\n")}
+  }
 
   if(value == "clean") {
     res_final <- occ_clean
-    cat("Returning dataframe with cleaned occurrences")}
+    if(verbose) {
+    message("Returning dataframe with cleaned occurrences")}
+  }
 
   return(res_final)
   } #End of function
