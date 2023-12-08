@@ -1,10 +1,10 @@
 Package: florabr
-Title: Tools for Explore Brazilian Flora 2020 Database
-Version: 1.0.0
+Title: Explore Brazilian Flora 2020 Database
+Version: 1.0.1
 Authors@R: 
     person("Weverton", "Trindade", , "wevertonf1993@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-2045-4555"))
-Description: A collection of functions designed to retrieve, filter and spatialize data from the Brazilian Flora 2020 dataset.
+Description: A collection of functions designed to retrieve, filter and spatialize data from the Brazilian Flora 2020 dataset. For more information about the dataset, please visit <https://floradobrasil.jbrj.gov.br/consulta/>.
 Imports:
     XML (>= 3.99.0.14), 
     data.table (>= 1.14.8),
