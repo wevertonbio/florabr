@@ -121,15 +121,15 @@ http://floradobrasil.jbrj.gov.br/</p>
 <span class="r-in"><span><span class="co">#your computer</span></span></span>
 <span class="r-in"><span><span class="va">my_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"florabr"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="va">my_dir</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>'/tmp/RtmpzdGTol/florabr' already exists</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>'/tmp/Rtmpm1lEgi/florabr' already exists</span>
 <span class="r-in"><span><span class="co">#Download, merge and save data</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="get_florabr.html">get_florabr</a></span><span class="op">(</span>output_dir <span class="op">=</span> <span class="va">my_dir</span>, data_version <span class="op">=</span> <span class="st">"latest"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>            verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Data will be saved in/tmp/RtmpzdGTol/florabr</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Data will be saved in/tmp/Rtmpm1lEgi/florabr</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading version:393.396</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Merging data. Please wait a moment...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Data will be saved in/tmp/RtmpzdGTol/florabr</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Data downloaded and merged successfully. Final data saved in/tmp/RtmpzdGTol/florabr/393.396/CompleteBrazilianFlora.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Data will be saved in/tmp/Rtmpm1lEgi/florabr</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Data downloaded and merged successfully. Final data saved in/tmp/Rtmpm1lEgi/florabr/393.396/CompleteBrazilianFlora.rds</span>
 <span class="r-in"><span><span class="co">#Load data</span></span></span>
 <span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">load_florabr</span><span class="op">(</span>data_dir <span class="op">=</span> <span class="va">my_dir</span>, data_version <span class="op">=</span> <span class="st">"Latest_available"</span>,</span></span>
 <span class="r-in"><span>type <span class="op">=</span> <span class="st">"short"</span><span class="op">)</span></span></span>
