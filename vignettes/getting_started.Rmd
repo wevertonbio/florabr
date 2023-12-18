@@ -37,6 +37,19 @@ The florabr package includes a collection of functions designed to retrieve, fil
 
 
 ## Installation
+
+### Install stable version from CRAN
+
+To install the stable version of `florabr` use:
+
+``` r
+install.packages("florabr")
+```
+
+<br>
+
+### Install development version from GitHub
+
 You can install the released version of *florabr* from [github](https://github.com/wevertonbio/florabr) with:
 ```{r, results='hide', message=FALSE}
 if(!require(devtools)){
