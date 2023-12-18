@@ -63,6 +63,17 @@ dataset.
 
 ## Installation
 
+### Install stable version from CRAN
+
+To install the stable version of `florabr` use:
+
+``` r
+install.packages("florabr")
+```
+
+<br>
+
+### Install development  version from GitHub
 You can install the development version of florabr from
 [GitHub](https://github.com/wevertonbio/florabr) with:
 
