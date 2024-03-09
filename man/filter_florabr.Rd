@@ -19,7 +19,8 @@ filter_florabr(data, occ, Species = "species", Long = "x", Lat = "y",
 
 \item{occ}{(data.frame) a data.frame with the records of the species.}
 
-\item{Species}{(character) column name in occ with species names. Default = "species"}
+\item{Species}{(character) column name in occ with species names.
+Default = "species"}
 
 \item{Long}{(character) column name in occ with longitude data. Default = "x"}
 
@@ -27,41 +28,74 @@ filter_florabr(data, occ, Species = "species", Long = "x", Lat = "y",
 
 \item{by_State}{(logical) filter records by state? Default = TRUE}
 
-\item{buffer_State}{(numeric) buffer (in km) around the polygons of the states of occurrence of the specie. Default = 20.}
+\item{buffer_State}{(numeric) buffer (in km) around the polygons of the
+states of occurrence of the specie. Default = 20.}
 
 \item{by_Biome}{(logical) filter records by Biome? Default = TRUE}
 
-\item{buffer_Biome}{(numeric) buffer (in km) around the polygons of the biomes of occurence of the specie. Default = 20.}
+\item{buffer_Biome}{(numeric) buffer (in km) around the polygons of the
+biomes of occurrence of the specie. Default = 20.}
 
 \item{by_Endemism}{(logical) filter records by endemism? Default = TRUE}
 
-\item{Buffer_Brazil}{(numeric) buffer (in km) around the polygons of the Brazil. Default = 20.}
+\item{Buffer_Brazil}{(numeric) buffer (in km) around the polygons of the
+Brazil. Default = 20.}
 
-\item{State_vect}{(SpatVector) a SpatVector of the Brazilian states. By default, it uses the SpatVector provided by geobr::read_state(). It can be another Spatvector, but the structure must be identical to geobr::read_state().}
+\item{State_vect}{(SpatVector) a SpatVector of the Brazilian states. By
+default, it uses the SpatVector provided by geobr::read_state(). It can be
+another Spatvector, but the structure must be identical to
+geobr::read_state().}
 
-\item{state_column}{(character) name of the column in State_vect containing state abbreviations. Only use if Biome_vect is not null.}
+\item{state_column}{(character) name of the column in State_vect containing
+state abbreviations. Only use if Biome_vect is not null.}
 
-\item{Biome_vect}{(SpatVector) a SpatVector of the Brazilian biomes. By default, it uses the SpatVector provided by geobr::read_biomes(). It can be another SpatVector, but the structure must be identical to geobr::read_biomes() with biome names in English.}
+\item{Biome_vect}{(SpatVector) a SpatVector of the Brazilian biomes. By
+default, it uses the SpatVector provided by geobr::read_biomes(). It can be
+another SpatVector, but the structure must be identical to
+geobr::read_biomes() with biome names in English.}
 
-\item{biome_column}{(character) name of the column in Biome_vect containing names of brazilian biomes (in English: "Amazon", "Atlantic_Forest", "Caatinga", "Cerrado", "Pampa" and "Pantanal". Only use if Biome_vect is not null.}
+\item{biome_column}{(character) name of the column in Biome_vect containing
+names of brazilian biomes (in English: "Amazon", "Atlantic_Forest",
+"Caatinga", "Cerrado", "Pampa" and "Pantanal". Only use if Biome_vect is not
+null.}
 
-\item{BR_vect}{(SpatVector) a SpatVector of Brazil. By default, it uses the SpatVector provided by geobr::read_state() after being aggregated/dissolved,}
+\item{BR_vect}{(SpatVector) a SpatVector of Brazil. By default, it uses the
+SpatVector provided by geobr::read_state() after being aggregated/dissolved,}
 
-\item{value}{(character) Defines output values. See Value section. Default = "flag&clean".}
+\item{value}{(character) Defines output values. See Value section.
+Default = "flag&clean".}
 
-\item{keep_columns}{(logical) if TRUE, keep all the original columns of the input occ. If False, keep only the columns Species, Long and Lat. Default = TRUE}
+\item{keep_columns}{(logical) if TRUE, keep all the original columns of the
+input occ. If False, keep only the columns Species, Long and Lat.
+Default = TRUE}
 
-\item{verbose}{(logical) Whether to display species being filtered during function execution. Set to TRUE to enable display, or FALSE to run silently. Default = TRUE.}
+\item{verbose}{(logical) Whether to display species being filtered during
+function execution. Set to TRUE to enable display, or FALSE to run silently.
+Default = TRUE.}
 }
 \value{
-Depending on the 'value' argument. If value = "flag", it returns the same data.frame provided in data with additional columns indicating if the record falls inside the natural range of the specie (TRUE) or outside (FALSE). If value = "clean", it returns a data.frame with only the records that passes all the tests (TRUE for all the filters). If value = "flag&clean" (Default), it returns a list with two data.frames: one with the flagged records and one with the cleaned records.
+Depending on the 'value' argument. If value = "flag", it returns the
+same data.frame provided in data with additional columns indicating if the
+record falls inside the natural range of the specie (TRUE) or outside
+(FALSE).
+If value = "clean", it returns a data.frame with only the records that passes
+all the tests (TRUE for all the filters). If value = "flag&clean" (Default),
+it returns a list with two data.frames: one with the flagged records and one
+with the cleaned records.
 }
 \description{
-This function removes or flags records outside of the species' natural ranges according to information provided by the Brazilian Flora 2020 database.
+This function removes or flags records outside of the species'
+natural ranges according to information provided by the Brazilian Flora 2020
+database.
 }
 \details{
-If by_State = TRUE and/or by_Biome = TRUE, the function takes polygons representing the states and/or Biomes with confirmed occurrences of the specie, draws a buffer around the polygons, and tests if the records of the species fall inside it.
-If by_Endemism = TRUE, the function checks if the species is endemic to Brazil. If it is endemic, the function tests if the records of the specie fall inside a polygon representing the boundaries of Brazil (with a buffer).
+If by_State = TRUE and/or by_Biome = TRUE, the function takes polygons
+representing the states and/or Biomes with confirmed occurrences of the
+specie, draws a buffer around the polygons, and tests if the records of the
+species fall inside it.
+If by_Endemism = TRUE, the function checks if the species is endemic to
+Brazil. If it is endemic, the function tests if the records of the specie
+fall inside a polygon representing the boundaries of Brazil (with a buffer).
 }
 \examples{
 data("bf_data") #Load Brazilian Flora data

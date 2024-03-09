@@ -1,5 +1,5 @@
 ---
-title: "Getting started with florabr"
+title: "1. Getting started with florabr"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Getting started with florabr}
@@ -37,6 +37,19 @@ The florabr package includes a collection of functions designed to retrieve, fil
 
 
 ## Installation
+
+### Install stable version from CRAN
+
+To install the stable version of `florabr` use:
+
+``` r
+install.packages("florabr")
+```
+
+<br>
+
+### Install development version from GitHub
+
 You can install the released version of *florabr* from [github](https://github.com/wevertonbio/florabr) with:
 ```{r, results='hide', message=FALSE}
 if(!require(devtools)){
@@ -54,7 +67,8 @@ All data included in the Brazilian Flora (i.e., nomenclature, life form, and dis
 
 ```{r}
 #Creating a folder in a temporary directory
-#Replace 'file.path(tempdir(), "florabr")' by a path folder to be create in your computer
+#Replace 'file.path(tempdir(), "florabr")' by a path folder to be create in 
+#your computer
 my_dir <- file.path(file.path(tempdir(), "florabr"))
 dir.create(my_dir)
 ```

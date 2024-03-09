@@ -16,7 +16,11 @@ A \code{SpatVector} with 27 geometries and 3 attributes:
 states
 }
 \description{
-A simplified and packed SpatVector of the polygons of the federal states of Brazil. The spatial data was originally obtained from \code{geobr::read_state}. Borders have been simplified by removing vertices of borders using \code{terra::simplifyGeom}. It's necessary unpack the Spatvectos using \code{terra::unwrap}
+A simplified and packed SpatVector of the polygons of the federal states of
+Brazil. The spatial data was originally obtained from
+\code{geobr::read_state}. Borders have been simplified by removing vertices
+of borders using \code{terra::simplifyGeom}. It's necessary unpack the
+Spatvectos using \code{terra::unwrap}
 
 @usage data(states)
 states <- terra::unwrap(states)

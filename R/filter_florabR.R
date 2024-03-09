@@ -1,33 +1,67 @@
 #' Identify records outside natural ranges according to Brazilian Flora 2020
 #'
-#' @description This function removes or flags records outside of the species' natural ranges according to information provided by the Brazilian Flora 2020 database.
+#' @description This function removes or flags records outside of the species'
+#' natural ranges according to information provided by the Brazilian Flora 2020
+#' database.
 #'
 #' @param data (data.frame) the data.frame imported with the
 #' \code{\link{load_florabr}} function.
 #' @param occ (data.frame) a data.frame with the records of the species.
-#' @param Species (character) column name in occ with species names. Default = "species"
+#' @param Species (character) column name in occ with species names.
+#' Default = "species"
 #' @param Long (character) column name in occ with longitude data. Default = "x"
 #' @param Lat (character) column name in occ with latitude data. Default = "y"
 #' @param by_State (logical) filter records by state? Default = TRUE
-#' @param buffer_State (numeric) buffer (in km) around the polygons of the states of occurrence of the specie. Default = 20.
+#' @param buffer_State (numeric) buffer (in km) around the polygons of the
+#' states of occurrence of the specie. Default = 20.
 #' @param by_Biome (logical) filter records by Biome? Default = TRUE
-#' @param buffer_Biome (numeric) buffer (in km) around the polygons of the biomes of occurence of the specie. Default = 20.
+#' @param buffer_Biome (numeric) buffer (in km) around the polygons of the
+#' biomes of occurrence of the specie. Default = 20.
 #' @param by_Endemism (logical) filter records by endemism? Default = TRUE
-#' @param Buffer_Brazil (numeric) buffer (in km) around the polygons of the Brazil. Default = 20.
-#' @param State_vect (SpatVector) a SpatVector of the Brazilian states. By default, it uses the SpatVector provided by geobr::read_state(). It can be another Spatvector, but the structure must be identical to geobr::read_state().
-#' @param state_column (character) name of the column in State_vect containing state abbreviations. Only use if Biome_vect is not null.
-#' @param Biome_vect (SpatVector) a SpatVector of the Brazilian biomes. By default, it uses the SpatVector provided by geobr::read_biomes(). It can be another SpatVector, but the structure must be identical to geobr::read_biomes() with biome names in English.
-#' @param biome_column (character) name of the column in Biome_vect containing names of brazilian biomes (in English: "Amazon", "Atlantic_Forest", "Caatinga", "Cerrado", "Pampa" and "Pantanal". Only use if Biome_vect is not null.
-#' @param BR_vect (SpatVector) a SpatVector of Brazil. By default, it uses the SpatVector provided by geobr::read_state() after being aggregated/dissolved,
-#' @param value (character) Defines output values. See Value section. Default = "flag&clean".
-#' @param keep_columns (logical) if TRUE, keep all the original columns of the input occ. If False, keep only the columns Species, Long and Lat. Default = TRUE
-#' @param verbose (logical) Whether to display species being filtered during function execution. Set to TRUE to enable display, or FALSE to run silently. Default = TRUE.
+#' @param Buffer_Brazil (numeric) buffer (in km) around the polygons of the
+#' Brazil. Default = 20.
+#' @param State_vect (SpatVector) a SpatVector of the Brazilian states. By
+#' default, it uses the SpatVector provided by geobr::read_state(). It can be
+#' another Spatvector, but the structure must be identical to
+#' geobr::read_state().
+#' @param state_column (character) name of the column in State_vect containing
+#' state abbreviations. Only use if Biome_vect is not null.
+#' @param Biome_vect (SpatVector) a SpatVector of the Brazilian biomes. By
+#' default, it uses the SpatVector provided by geobr::read_biomes(). It can be
+#' another SpatVector, but the structure must be identical to
+#' geobr::read_biomes() with biome names in English.
+#' @param biome_column (character) name of the column in Biome_vect containing
+#' names of brazilian biomes (in English: "Amazon", "Atlantic_Forest",
+#' "Caatinga", "Cerrado", "Pampa" and "Pantanal". Only use if Biome_vect is not
+#' null.
+#' @param BR_vect (SpatVector) a SpatVector of Brazil. By default, it uses the
+#' SpatVector provided by geobr::read_state() after being aggregated/dissolved,
+#' @param value (character) Defines output values. See Value section.
+#' Default = "flag&clean".
+#' @param keep_columns (logical) if TRUE, keep all the original columns of the
+#' input occ. If False, keep only the columns Species, Long and Lat.
+#' Default = TRUE
+#' @param verbose (logical) Whether to display species being filtered during
+#' function execution. Set to TRUE to enable display, or FALSE to run silently.
+#' Default = TRUE.
 #' @details
-#' If by_State = TRUE and/or by_Biome = TRUE, the function takes polygons representing the states and/or Biomes with confirmed occurrences of the specie, draws a buffer around the polygons, and tests if the records of the species fall inside it.
-#' If by_Endemism = TRUE, the function checks if the species is endemic to Brazil. If it is endemic, the function tests if the records of the specie fall inside a polygon representing the boundaries of Brazil (with a buffer).
+#' If by_State = TRUE and/or by_Biome = TRUE, the function takes polygons
+#' representing the states and/or Biomes with confirmed occurrences of the
+#' specie, draws a buffer around the polygons, and tests if the records of the
+#' species fall inside it.
+#' If by_Endemism = TRUE, the function checks if the species is endemic to
+#' Brazil. If it is endemic, the function tests if the records of the specie
+#' fall inside a polygon representing the boundaries of Brazil (with a buffer).
 #'
 #'
-#' @return Depending on the 'value' argument. If value = "flag", it returns the same data.frame provided in data with additional columns indicating if the record falls inside the natural range of the specie (TRUE) or outside (FALSE). If value = "clean", it returns a data.frame with only the records that passes all the tests (TRUE for all the filters). If value = "flag&clean" (Default), it returns a list with two data.frames: one with the flagged records and one with the cleaned records.
+#' @return Depending on the 'value' argument. If value = "flag", it returns the
+#' same data.frame provided in data with additional columns indicating if the
+#' record falls inside the natural range of the specie (TRUE) or outside
+#' (FALSE).
+#' If value = "clean", it returns a data.frame with only the records that passes
+#' all the tests (TRUE for all the filters). If value = "flag&clean" (Default),
+#' it returns a list with two data.frames: one with the flagged records and one
+#' with the cleaned records.
 #' @usage filter_florabr(data, occ, Species = "species", Long = "x", Lat = "y",
 #'                       by_State = TRUE, buffer_State = 20, by_Biome = TRUE,
 #'                       buffer_Biome = 20, by_Endemism = TRUE,
@@ -60,8 +94,8 @@
 #'                     value = "flag&clean", keep_columns = TRUE,
 #'                     verbose = FALSE)
 
-filter_florabr <- function(data = NULL,
-                          occ = NULL,
+filter_florabr <- function(data,
+                          occ,
                           Species = "species", Long = "x", Lat = "y",
                           by_State = TRUE, buffer_State = 20,
                           by_Biome = TRUE, buffer_Biome = 20,
@@ -108,23 +142,28 @@ filter_florabr <- function(data = NULL,
   }
 
   if (!is.logical(by_Endemism)) {
-    stop(paste0("Argument by_Endemism must be logical, not ", class(by_Endemism)))
+    stop(paste0("Argument by_Endemism must be logical, not ",
+                class(by_Endemism)))
   }
 
   if (!is.numeric(buffer_State)) {
-    stop(paste0("Argument buffer_State must be numeric, not ", class(buffer_State)))
+    stop(paste0("Argument buffer_State must be numeric, not ",
+                class(buffer_State)))
   }
 
   if (!is.numeric(buffer_Biome)) {
-    stop(paste0("Argument buffer_Biome must be numeric, not ", class(buffer_Biome)))
+    stop(paste0("Argument buffer_Biome must be numeric, not ",
+                class(buffer_Biome)))
   }
 
   if (!is.null(State_vect) && !inherits(State_vect, "SpatVector")) {
-    stop(paste0("Argument State_vect must be a SpatVector, not ", class(State_vect)))
+    stop(paste0("Argument State_vect must be a SpatVector, not ",
+                class(State_vect)))
   }
 
   if (!is.null(Biome_vect) && !inherits(Biome_vect, "SpatVector")) {
-    stop(paste0("Argument Biome_vect must be a SpatVector, not ", class(Biome_vect)))
+    stop(paste0("Argument Biome_vect must be a SpatVector, not ",
+                class(Biome_vect)))
   }
 
   if (!is.null(BR_vect) && !inherits(BR_vect, "SpatVector")) {
@@ -132,11 +171,13 @@ filter_florabr <- function(data = NULL,
   }
 
   if (!is.null(State_vect) && !is.character(state_column)) {
-    stop(paste0("Argument state_column must be a character, not ", class(state_column)))
+    stop(paste0("Argument state_column must be a character, not ",
+                class(state_column)))
   }
 
   if (!is.null(Biome_vect) && !is.character(biome_column)) {
-    stop(paste0("Argument biome_column must be a character, not ", class(biome_column)))
+    stop(paste0("Argument biome_column must be a character, not ",
+                class(biome_column)))
   }
 
   allowed_values <- c("flag&clean", "flag", "clean")
@@ -145,7 +186,8 @@ filter_florabr <- function(data = NULL,
   }
 
   if (!is.logical(keep_columns)) {
-    stop(paste0("Argument keep_columns must be logical, not ", class(keep_columns)))
+    stop(paste0("Argument keep_columns must be logical, not ",
+                class(keep_columns)))
   }
 
   if (!is.logical(verbose)) {
@@ -155,19 +197,21 @@ filter_florabr <- function(data = NULL,
   #Check colnames in data
   if(!all(c("species", "States", "Biome", "Endemism") %in%
         colnames(data))) {
-    stop("Important columns are missing in data. Check if data is an object created by 'load_florabr()")
+    stop("Important columns are missing in data. Check if data is an object
+         created by 'load_florabr()")
   }
 
   if(!all(c(Species, Long, Lat) %in%
           colnames(occ))) {
-    stop("Important columns are missing in occurrence data. Check if correct column names were set in Species, Long and Lat")
+    stop("Important columns are missing in occurrence data. Check if correct
+         column names were set in Species, Long and Lat")
   }
 
   #Load data
   d <- data[,c("species", "States", "Biome", "Endemism")]
 
   #Create columns with ID to join data in the end
-  occ$id_f <- 1:nrow(occ)
+  occ$id_f <- seq_len(nrow(occ))
 
   #Get species info
   occ_info <- occ[, c(Species, Long, Lat, "id_f")]
@@ -177,7 +221,9 @@ filter_florabr <- function(data = NULL,
   spp <- unique(occ_info$species)
   spp_out <- setdiff(spp, unique(data$species))
   if(length(spp_out) > 0) {
-    stop(paste(length(spp_out), "species are not in the data. Check the species names using the check_names() function or remove the species from data.frame"))
+    stop(paste(length(spp_out), "species are not in the data. Check the species
+               names using the check_names() function or remove the species from
+               data.frame"))
   }
 
   d_info <- subset(d, d$species %in% unique(occ_info$species))
@@ -213,7 +259,8 @@ filter_florabr <- function(data = NULL,
   #Check personal vectors (if provided)
     #States
   if(!is.null(State_vect)){
-    names(State_vect)[which(names(State_vect) == state_column)] <- "abbrev_state"
+    names(State_vect)[which(names(State_vect) ==
+                              state_column)] <- "abbrev_state"
     check_matches <- setdiff(states$abbrev_state, State_vect$abbrev_state)
     if(length(check_matches) > 0) {
       stop(paste0("Invalid States in ", state_column,
@@ -227,7 +274,8 @@ filter_florabr <- function(data = NULL,
     check_matches <- setdiff(biomes$name_biome, Biome_vect$name_biome)
     if(length(check_matches) > 0) {
       stop(paste0("Invalid Biomes in ", biome_column,
-                  "\nCheck the structure of the Spatvector provided in Biome_vect"))
+                  "\nCheck the structure of the Spatvector provided in
+                  Biome_vect"))
     } else {
       biomes <- Biome_vect
     }}
@@ -239,13 +287,14 @@ filter_florabr <- function(data = NULL,
 
   if(by_State == TRUE) {
    l_state <- lapply(seq_along(spp), function(i){
-     if(isTRUE(verbose)) {
-       cat(paste("Filtering", spp[i], "by state\n")) }
+     if(verbose) {
+       message("Filtering", spp[i], "by state\n") }
      occ_i <- subset(occ_info, occ_info$species == spp[i])
      sp_i_state <- unique(gsub(";", "|", occ_i$States[1]))
 
      if(sp_i_state == "" | is.na(sp_i_state)) {
-       cat(paste(spp[i], "lacks info about State - Filter not applicable\n"))
+       if(verbose) {
+       message(spp[i], "lacks info about State - Filter not applicable\n") }
        states_ext <- occ_i
        states_ext$Inside_State <- "No info"
      } else {
@@ -281,14 +330,15 @@ filter_florabr <- function(data = NULL,
 
   if(by_Biome == TRUE) {
     l_biome <- lapply(seq_along(spp), function(i){
-      if(isTRUE(verbose)) {
-      cat(paste("Filtering", spp[i], "by biome\n")) }
+      if(verbose) {
+      message("Filtering", spp[i], "by biome\n") }
       occ_i <- terra::subset(occ_state, occ_state$species == spp[i])
       sp_i_biome <- unique(gsub(";", "|", occ_i$Biome[1]))
 
 
       if(sp_i_biome == "" | is.na(sp_i_biome)) {
-        cat(paste(spp[i], "lacks info about Biome - Filter not applicable\n"))
+        if(verbose) {
+        message(spp[i], "lacks info about Biome - Filter not applicable\n") }
         biomes_ext <- occ_i
         biomes_ext$Inside_Biome <- "No info"
       } else {
@@ -329,13 +379,13 @@ filter_florabr <- function(data = NULL,
       sp_i_end <- unique(gsub(";", "|", occ_i$Endemism[1]))
 
       if(sp_i_end != "Endemic") {
-        if(isTRUE(verbose)) {
-        cat(paste(spp[i], "is non-endemic - Filter not applicable\n")) }
+        if(verbose) {
+        message(spp[i], "is non-endemic - Filter not applicable\n") }
         occ_BR <- terra::as.data.frame(occ_i)
         occ_BR$Inside_BR <- "Non-endemic"
       } else {
-        if(isTRUE(verbose)) {
-        cat(paste("Filtering", spp[i], "by endemism\n")) }
+        if(verbose) {
+        message("Filtering", spp[i], "by endemism\n") }
         #Buffer
       BR_v <- terra::buffer(brazil, width = Buffer_Brazil*1000)
 
@@ -361,15 +411,20 @@ filter_florabr <- function(data = NULL,
                              colnames(occ_flag)[!(colnames(occ_flag) %in%
                             c(Species, Long, Lat))])]
 
-    colnames(occ_flag)[colnames(occ_flag) %in% c(Species, Long, Lat)] <- c(Species, Long, Lat)
+    colnames(occ_flag)[colnames(occ_flag) %in%
+                         c(Species, Long, Lat)] <- c(Species, Long, Lat)
   }
 
   if(isFALSE(keep_columns)) {
-    occ_flag <- merge(occ_flag, occ[, c(Species, Lat, Long, "id_f")], by = c("species", "id_f"))
+    occ_flag <- merge(occ_flag, occ[, c(Species, Lat, Long, "id_f")],
+                      by = c("species", "id_f"))
     occ_flag$id_f <- NULL
-    occ_flag <- occ_flag[, c(Species, Long, Lat, names(occ_flag)[!(names(occ_flag) %in%
-                                                                      c(Species, Long, Lat))])]
-    colnames(occ_flag)[colnames(occ_flag) %in% c(Species, Long, Lat)] <- c(Species, Long, Lat)
+    occ_flag <- occ_flag[,
+                         c(Species, Long, Lat, names(occ_flag)[!(names(occ_flag)
+                                                                 %in%
+                                                      c(Species, Long, Lat))])]
+    colnames(occ_flag)[colnames(occ_flag) %in%
+                         c(Species, Long, Lat)] <- c(Species, Long, Lat)
   }
 
 
@@ -397,15 +452,21 @@ filter_florabr <- function(data = NULL,
   if(value == "flag&clean") {
     res_final <- list(occ_flag, occ_clean)
     names(res_final) <- c("flagged", "cleaned")
-    cat("Returning list with flagged and cleaned occurrences\n")}
+    if(verbose) {
+    message("Returning list with flagged and cleaned occurrences\n")}
+  }
 
   if(value == "flag") {
     res_final <- occ_flag
-    cat("Returning dataframe with flagged occurrences\n")}
+    if(verbose) {
+    message("Returning dataframe with flagged occurrences\n")}
+  }
 
   if(value == "clean") {
     res_final <- occ_clean
-    cat("Returning dataframe with cleaned occurrences")}
+    if(verbose) {
+    message("Returning dataframe with cleaned occurrences")}
+  }
 
   return(res_final)
   } #End of function

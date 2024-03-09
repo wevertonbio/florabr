@@ -13,6 +13,7 @@ Group, and Subgroup
 data(Attributes)
 }
 \description{
-A list of dataset containing the available attributes to filter and select species. The dataset is used internally by \code{get_attributes}
+A list of dataset containing the available attributes to filter and select
+species. The dataset is used internally by \code{get_attributes}
 }
 \keyword{datasets}

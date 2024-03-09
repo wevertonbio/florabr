@@ -42,7 +42,11 @@
 #' SpatVector of the federal states of Brazil
 #'
 #' @description
-#'  A simplified and packed SpatVector of the polygons of the federal states of Brazil. The spatial data was originally obtained from \code{geobr::read_state}. Borders have been simplified by removing vertices of borders using \code{terra::simplifyGeom}. It's necessary unpack the Spatvectos using \code{terra::unwrap}
+#'  A simplified and packed SpatVector of the polygons of the federal states of
+#'  Brazil. The spatial data was originally obtained from
+#'  \code{geobr::read_state}. Borders have been simplified by removing vertices
+#'  of borders using \code{terra::simplifyGeom}. It's necessary unpack the
+#'  Spatvectos using \code{terra::unwrap}
 #'
 #'  @usage data(states)
 #'  states <- terra::unwrap(states)
@@ -58,7 +62,11 @@
 #' SpatVector of the biomes of Brazil
 #'
 #' @description
-#'  A simplified and packed SpatVector of the polygons of the biomes present in Brazilian territory. The spatial data was originally obtained from \code{geobr::read_biomes}. Borders have been simplified by removing vertices of borders using \code{terra::simplifyGeom}. It's necessary unpack the Spatvectos using \code{terra::unwrap}
+#'  A simplified and packed SpatVector of the polygons of the biomes present in
+#'  Brazilian territory. The spatial data was originally obtained from
+#'  \code{geobr::read_biomes}. Borders have been simplified by removing vertices
+#'   of borders using \code{terra::simplifyGeom}. It's necessary unpack the
+#'   Spatvectos using \code{terra::unwrap}
 #'
 #'  @usage data(biomes)
 #'  biomes <- terra::unwrap(biomes)
@@ -73,24 +81,31 @@
 #' SpatVector of the Brazil's national borders
 #'
 #' @description
-#'  A simplified and packed SpatVector of the Brazil's national borders. The spatial data was originally obtained from \code{geobr::read_country}. Borders have been simplified by removing vertices of borders using \code{terra::simplifyGeom}. It's necessary unpack the Spatvectos using \code{terra::unwrap}
+#'  A simplified and packed SpatVector of the Brazil's national borders. The
+#'  spatial data was originally obtained from \code{geobr::read_country}.
+#'  Borders have been simplified by removing vertices of borders using
+#'  \code{terra::simplifyGeom}. It's necessary unpack the Spatvectos using
+#'  \code{terra::unwrap}
 #'
 #'  @usage data(brazil)
 #'  brazil <- terra::unwrap(brazil)
 #'
-#' @format A \code{SpatVector} with 1 geometrie and 0 attribute
+#' @format A \code{SpatVector} with 1 geometry and 0 attribute
 "brazil"
 
 #' Records of plant species
 #'
 #' @description
-#'  A dataset containing records of 7 plant species downloaded from GBIF. The records were obtained with \code{plantR::rgbif2}
+#'  A dataset containing records of 7 plant species downloaded from GBIF. The
+#'  records were obtained with \code{plantR::rgbif2}
 #'
 #' @usage data(occurrences)
 #'
 #' @format A \code{data.frame} with 1521 rows and 3 variables:
 #' \describe{
-#'   \item{species}{Species names (Araucaria angustifolia, Abatia americana, Passiflora edmundoi, Myrcia hatschbachii, Serjania pernambucensis, Inga virescens,  and Solanum restingae)}
+#'   \item{species}{Species names (Araucaria angustifolia, Abatia americana,
+#'   Passiflora edmundoi, Myrcia hatschbachii, Serjania pernambucensis, Inga
+#'   virescens, and Solanum restingae)}
 #'   \item{x}{Longitude}
 #'   \item{y}{Latitude}
 #' }
@@ -99,7 +114,8 @@
 #' Available attributes/parameters to filter and select species
 #'
 #' @description
-#'  A list of dataset containing the available attributes to filter and select species. The dataset is used internally by \code{get_attributes}
+#'  A list of dataset containing the available attributes to filter and select
+#'  species. The dataset is used internally by \code{get_attributes}
 #'
 #' @usage data(Attributes)
 #'

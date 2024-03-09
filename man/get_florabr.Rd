@@ -4,28 +4,55 @@
 \alias{get_florabr}
 \title{Download the latest version of Brazilian Flora 2020 database}
 \usage{
-get_florabr(output_dir, data_version = "latest", overwrite = T)
+get_florabr(output_dir, data_version = "latest",
+                 solve_incongruences = TRUE, overwrite = TRUE,
+                 verbose = TRUE)
 }
 \arguments{
-\item{output_dir}{(character) a directory to save the data downloaded from Brazilian Flora 2020}
+\item{output_dir}{(character) a directory to save the data downloaded from
+Brazilian Flora 2020}
 
-\item{data_version}{(character) Version of the Brazilian Flora database to download. Use "latest" to get the most recent version, updated weekly. Alternatively, specify an older version (e.g., data_version = "393.319"). Default value is "latest".}
+\item{data_version}{(character) Version of the Brazilian Flora database to
+download. Use "latest" to get the most recent version, updated weekly.
+Alternatively, specify an older version (e.g., data_version = "393.319").
+Default value is "latest".}
+
+\item{solve_incongruences}{Resolve inconsistencies between species and
+subspecies/varieties  information. When set to TRUE (default), species
+information is updated based on unique data from varieties and subspecies.
+For example, if a subspecies occurs in a certain biome, it implies that the
+species also occurs in that biome.}
 
 \item{overwrite}{(logical) If TRUE, data is overwritten. Default = TRUE.}
+
+\item{verbose}{(logical) Whether to display messages during function
+execution. Set to TRUE to enable display, or FALSE to run silently.
+Default = TRUE.}
 }
 \value{
-The function downloads the latest version of the Brazilian Flora 2020 database from the official source. It then merges the information into a single data.frame, containing details on species, taxonomy, occurrence, and other relevant data.
-The merged data.frame is then saved as a file in the specified output directory. The data is saved in a format that allows easy loading using the \code{\link{load_florabr}} function for further analysis in R.
+The function downloads the latest version of the Brazilian Flora 2020
+database from the official source. It then merges the information into a
+single data.frame, containing details on species, taxonomy, occurrence,
+and other relevant data.
+The merged data.frame is then saved as a file in the specified output
+directory. The data is saved in a format that allows easy loading using the
+\code{\link{load_florabr}} function for further analysis in R.
 }
 \description{
-This function downloads the latest or an older version of Brazilian Flora 2020 database, merges the information into a single data.frame, and saves this data.frame in the specified directory.
+This function downloads the latest or an older version of Brazilian Flora
+2020 database, merges the information into a single data.frame, and saves
+this data.frame in the specified directory.
 }
 \examples{
 \dontrun{
-dir.create("brazilianflora") #Create a directory to save data
-my_dir <- "brazilianflora" #Set directory to save data
+#Creating a folder in a temporary directory
+#Replace 'file.path(tempdir(), "florabr")' by a path folder to be create in
+#your computer
+my_dir <- file.path(file.path(tempdir(), "florabr"))
+dir.create(my_dir)
 #Download, merge and save data
-get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE)
+get_florabr(output_dir = my_dir, data_version = "latest",
+            solve_incongruences = TRUE, overwrite = TRUE, verbose = TRUE)
 }
 }
 \references{

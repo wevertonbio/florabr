@@ -7,7 +7,9 @@
 \format{
 A \code{data.frame} with 1521 rows and 3 variables:
 \describe{
-\item{species}{Species names (Araucaria angustifolia, Abatia americana, Passiflora edmundoi, Myrcia hatschbachii, Serjania pernambucensis, Inga virescens,  and Solanum restingae)}
+\item{species}{Species names (Araucaria angustifolia, Abatia americana,
+Passiflora edmundoi, Myrcia hatschbachii, Serjania pernambucensis, Inga
+virescens, and Solanum restingae)}
 \item{x}{Longitude}
 \item{y}{Latitude}
 }
@@ -16,6 +18,7 @@ A \code{data.frame} with 1521 rows and 3 variables:
 data(occurrences)
 }
 \description{
-A dataset containing records of 7 plant species downloaded from GBIF. The records were obtained with \code{plantR::rgbif2}
+A dataset containing records of 7 plant species downloaded from GBIF. The
+records were obtained with \code{plantR::rgbif2}
 }
 \keyword{datasets}

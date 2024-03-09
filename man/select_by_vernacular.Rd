@@ -4,18 +4,25 @@
 \alias{select_by_vernacular}
 \title{Search for taxa using vernacular names}
 \usage{
-select_by_vernacular(data = NULL, names = NULL, exact = FALSE)
+select_by_vernacular(data, names, exact = FALSE)
 }
 \arguments{
 \item{data}{(data.frame) the data.frame imported with the
-\code{\link{load_florabr}} function or geneterate with the function \code{\link{select_species}}.}
+\code{\link{load_florabr}} function or generated with the function
+\code{\link{select_species}}.}
 
-\item{names}{(character) vernacular name ("Nome comum") of the species to be searched}
+\item{names}{(character) vernacular name ("Nome comum") of the species to be
+searched}
 
-\item{exact}{(logic) if TRUE, the function will search only for exact matches. For example, if names = "pinheiro" and exact = TRUE, the function will return only the species popularly known as "pinheiro". On the other hand, if names = "pinheiro" and exact = FALSE, the function will return other results as "pinheiro-do-parana". Default = FALSE}
+\item{exact}{(logic) if TRUE, the function will search only for exact
+matches. For example, if names = "pinheiro" and exact = TRUE, the function
+will return only the species popularly known as "pinheiro". On the other
+hand, if names = "pinheiro" and exact = FALSE, the function will return
+other results as "pinheiro-do-parana". Default = FALSE}
 }
 \value{
-a data.frame with the species with vernacular names that match the input names
+a data.frame with the species with vernacular names that match the
+input names
 }
 \description{
 Search for taxa using vernacular names
@@ -39,5 +46,6 @@ head(pinheiro_not_exact)
 Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
 http://floradobrasil.jbrj.gov.br/
 
-Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at: http://floradobrasil.jbrj.gov.br/
+Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+http://floradobrasil.jbrj.gov.br/
 }

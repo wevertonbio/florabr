@@ -17,7 +17,7 @@
 #' use c("Plantae", "Fungi")
 #'
 #' @return A data.frame with the selected species.
-#' @usage subset_species(data = NULL, species = NULL,
+#' @usage subset_species(data, species,
 #'                       include_subspecies = FALSE,
 #'                       include_variety = FALSE,
 #'                       Kingdom = "Plantae")
@@ -34,8 +34,8 @@
 #'                       include_subspecies = FALSE,
 #'                       include_variety = FALSE)
 #' spp_bf
-subset_species <- function(data = NULL,
-                           species = NULL,
+subset_species <- function(data,
+                           species,
                            include_subspecies = FALSE,
                            include_variety = FALSE,
                            Kingdom = "Plantae"){
@@ -74,13 +74,13 @@ subset_species <- function(data = NULL,
   d <- subset(data, data$kingdom %in% Kingdom)
 
   #Taxon Rank
-  if(isFALSE(include_subspecies) & isFALSE(include_variety)) {
+  if(!include_subspecies & !include_variety) {
     d <- subset(d, d$taxonRank == "Species") }
-  if(isTRUE(include_subspecies) & isFALSE(include_variety)) {
+  if(include_subspecies & !include_variety) {
     d <- subset(d, d$taxonRank %in% c("Species", "Subspecies")) }
-  if(isFALSE(include_subspecies) & isTRUE(include_variety)) {
+  if(!include_subspecies & include_variety) {
     d <- subset(d, d$taxonRank %in% c("Species", "Variety")) }
-  if(isTRUE(include_subspecies) & isTRUE(include_variety)) {
+  if(include_subspecies & include_variety) {
     d <- subset(d, d$taxonRank %in% c("Species", "Subspecies", "Variety")) }
 
   #Check if there is any species absent in d

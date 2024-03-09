@@ -1,5 +1,5 @@
 ---
-title: "Using florabr to flag erroneous records"
+title: "3. Using florabr to flag erroneous records"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Using florabr to flag erroneous records}
@@ -20,8 +20,7 @@ knitr::opts_chunk$set(
 ```
 
 ## Loading data
-Before you begin, use the `load_florabr` function to load the data. For more detailed information on obtaining and loading the data, please refer to [Getting started with florabr] - how to reference vignette???
-
+Before you begin, use the `load_florabr` function to load the data. For more detailed information on obtaining and loading the data, please refer to [1. Getting started with florabr](getting_started.html)
 
 ```{r Get data, results='hide', message=FALSE, warning=FALSE, echo=FALSE}
 my_dir <- file.path(file.path(tempdir(), "florabr"))
@@ -84,7 +83,7 @@ knitr::include_graphics("vignettes_img/IMG01.png")
 ```
 
 ### Including a more complex polygon of states and biomes
-As default, `florabr` uses a simplified polygon of federal States and biomes, with a reduced number of nodes represenint the boundaries of states and biomes (check `?terra::simplifyGeom`):
+As default, `florabr` uses a simplified polygon of federal States and biomes, with a reduced number of nodes representing the boundaries of states and biomes (check `?terra::simplifyGeom`):
 
 ```{r}
 data("states")
@@ -126,7 +125,8 @@ Note that now, the geometries of *br_states* (not simplified) are more complex t
 par(mfrow = c(1, 2), mar = c(2, 2, 2, 2)) 
 plot(br_states[br_states$abbrev_state == "PR"],
      main = "Not simplified geometries", mar = NA)
-plot(states[states$abbrev_state == "PR"], main = "Simplified geometries",
+plot(states[states$abbrev_state == "PR"],
+     main = "Simplified geometries",
      mar = NA)
 ```
 ```{r IMG03, eval=TRUE, echo = FALSE}
@@ -139,7 +139,8 @@ br_biomes <- geobr::read_biomes()
 #Convert br_biomes from sf to SpatVect
 br_biomes<- terra::vect(br_biomes)
 #Drop off coastal system:
-br_biomes <- terra::subset(br_biomes, br_biomes$name_biome != "Sistema Costeiro")
+br_biomes <- terra::subset(br_biomes, 
+                           br_biomes$name_biome != "Sistema Costeiro")
 ```
 
 The names of the biomes are in Portuguese. We need to translate Amazonia and Mata Atlantica to English to match with the names in Brazilian Flora database:
@@ -153,19 +154,20 @@ biomes$name_biome
 #> [5] "Pampa"          "Pantanal"
 #Translate
 br_biomes$name_biome[which(br_biomes$name_biome == "Amazônia")] <- "Amazon"
-br_biomes$name_biome[which(br_biomes$name_biome == "Mata Atlântica")] <- "Atlantic_Forest"
+br_biomes$name_biome[which(
+  br_biomes$name_biome == "Mata Atlântica")] <- "Atlantic_Forest"
 ```
 
 Now, the SpatVector of biomes is also ready to use. Let's see the difference when we use this non-simplified Spatvectors in the `get_spat_occ`:
 
 ```{r}
 spp_spt_2 <- get_spat_occ(data = bf, species = spp,
-                       State = TRUE, Biome = TRUE, intersection = TRUE,
-                       State_vect = br_states, #The non-simplified Spatvector
-                       state_column = "abbrev_state", #Column name with states acronymns
-                       Biome_vect = br_biomes, #The non-simplified Spatvector
-                       biome_column = "name_biome", #Column name with names of biomes
-                       verbose = TRUE)
+                State = TRUE, Biome = TRUE, intersection = TRUE,
+                State_vect = br_states, #The non-simplified Spatvector
+                state_column = "abbrev_state", #Column name with states acronyms
+                Biome_vect = br_biomes, #The non-simplified Spatvector
+                biome_column = "name_biome", #Column name with names of biomes
+                verbose = TRUE)
 ```
 
 See the difference: now, the polygons representing the distribution of species in states and biomes are more complex:
@@ -190,13 +192,13 @@ The choose between using the simplified version (default) or using a personal e 
 
 ## Filtering occurrence records using distribution information in Brazilian Flora
 
-Georeferencing errors in online species records can introduce significant bias into ecological and biogeographical research findings. Some R packages, as `CoordinateCleaner`, help to flagging common spatial errors in biological collection data, for example, records of terrestrial organism that fall in the sea or were assigned to capital and provinced centroids.
+Georeferencing errors in online species records can introduce significant bias into ecological and biogeographical research findings. Some R packages, as `CoordinateCleaner`, help to flagging common spatial errors in biological collection data, for example, records of terrestrial organism that fall in the sea or were assigned to capital and province centroids.
 Since the distributions of species in Brazilian Flora are based on the expertise of taxonomists, it represents a valuable information to add an additional step on checking the validity of occurrence records got from online databases (as GBIF or SpeciesLink). 
 The `filter_florabr` function automatized this flagging. You can use the function to flag and/or remove:
 * Records that fall outside the states and biomes which confirmed occurrence according to Brazilian Flora.
 * For species endemic to Brazil, records that falls in other countries.
 
-As example, let's use the occurrence records of two species. *Abatia americana* is an endemic shrub with confirmed occurrences in 4 states (ES, MG, RJ and SP) and two biomes (Atlantic Forest and Cerrado). *Araucaria angustifolia* is a non-endemic tree that in Brazil has confirmed occurences in 6 states (MG, PR, RJ, RS, SC and SP) and two biomes (Atlantic Forest and Pampa). Let's plot these information using the function `get_spat_occ`:
+As example, let's use the occurrence records of two species. *Abatia americana* is an endemic shrub with confirmed occurrences in 4 states (ES, MG, RJ and SP) and two biomes (Atlantic Forest and Cerrado). *Araucaria angustifolia* is a non-endemic tree that in Brazil has confirmed occurrences in 6 states (MG, PR, RJ, RS, SC and SP) and two biomes (Atlantic Forest and Pampa). Let's plot these information using the function `get_spat_occ`:
 
 ```{r}
 my_spp <- c("Abatia americana", "Araucaria angustifolia")

@@ -4,7 +4,7 @@
 \alias{select_species}
 \title{Selection of species based on its characteristics and distribution}
 \usage{
-select_species(data = NULL,
+select_species(data,
                       include_subspecies = FALSE, include_variety = FALSE,
                       Kingdom = "Plantae", Group = "All", Subgroup = "All",
                       Family = "All", Genus = "All",
@@ -130,7 +130,7 @@ if Biome = c("Amazon", "Cerrado") and filter_Biome = "and", it will select
 all species that occurs only in both the Amazon and Cerrado biomes,
 including species that occurs in other biomes too.
 
-To get the complet list of arguments available for Family, Genus, LifeForm,
+To get the complete list of arguments available for Family, Genus, LifeForm,
 Habitat, Biome, State, and NomenclaturalStatus, use the function
 \code{\link{get_attributes}}
 }
@@ -149,7 +149,8 @@ am_af_only <- select_species(data = bf_data,
                              Biome = c("Atlantic_Forest","Amazon"),
                              filter_Biome = "only",
                              State = "All", filter_State = "and",
-                             VegetationType = "All", filter_Vegetation = "in",
+                             VegetationType = "All",
+                             filter_Vegetation = "in",
                              Endemism = "Endemic", Origin = "Native",
                              TaxonomicStatus = "All",
                              NomenclaturalStatus = "All")

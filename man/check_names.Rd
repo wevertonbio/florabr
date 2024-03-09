@@ -12,25 +12,43 @@ check_names(data, species, max_distance = 0.1, Kingdom = "Plantae")
 
 \item{species}{(character) names of the species to be checked.}
 
-\item{max_distance}{(numeric) Maximum distance (as a fraction) allowed for searching suggestions when the name is misspelled. It can be any value between 0 and 1. The higher the value, the more suggestions are returned. For more details, see \code{\link[base:agrep]{agrep}}. Default = 0.1.}
+\item{max_distance}{(numeric) Maximum distance (as a fraction) allowed for
+searching suggestions when the name is misspelled. It can be any value
+between 0 and 1. The higher the value, the more suggestions are returned.
+For more details, see \code{\link[base:agrep]{agrep}}. Default = 0.1.}
 
-\item{Kingdom}{(character) the kingdom to which the species belong. It can be "Plantae" or "Fungi". Default = "Plantae".}
+\item{Kingdom}{(character) the kingdom to which the species belong. It can
+be "Plantae" or "Fungi". Default = "Plantae".}
 }
 \value{
 a data.frame with the following columns:
 \itemize{
 \item input_name: the species names informed in species argument
-\item Spelling: indicates if the species name is Correct (a perfect match with a species name in the Brazilian Flora 2020), Probably_incorrect (partial match), or Incorrect (no match with any species).
-\item Suggested name: If Spelling is Correct, it is the same as the input_name. If Spelling is Probably_correct, one or more suggested names are listed, found according to the maximum distance. If Spelling is Incorrect, the value is NA.
-\item Distance: The integer Levenshtein edit distance. It represents the number of single-character edits (insertions, deletions, or substitutions) required to transform the input_name into the Suggested_name.
-\item taxonomicStatus: the taxonomic status of the species name ("Accepted" or "Synonym").
-\item nomenclaturalStatus: the nomenclatural status of the species name. This information is not available for all species.
-\item acceptedName: If the species name is not accepted or incorrect, the accepted name of the specie. If the species name is accepted and correct, the same as input_name and Suggested_name.
+\item Spelling: indicates if the species name is Correct (a perfect match with a
+species name in the Brazilian Flora 2020), Probably_incorrect
+(partial match),
+or Incorrect (no match with any species).
+\item Suggested name: If Spelling is Correct, it is the same as the input_name.
+If Spelling is Probably_correct, one or more suggested names are listed,
+found according to the maximum distance. If Spelling is Incorrect, the value
+is NA.
+\item Distance: The integer Levenshtein edit distance. It represents the number
+of single-character edits (insertions, deletions, or substitutions) required
+to transform the input_name into the Suggested_name.
+\item taxonomicStatus: the taxonomic status of the species name ("Accepted" or
+"Synonym").
+\item nomenclaturalStatus: the nomenclatural status of the species name. This
+information is not available for all species.
+\item acceptedName: If the species name is not accepted or incorrect, the
+accepted name of the specie. If the species name is accepted and correct,
+the same as input_name and Suggested_name.
 \item family: the family of the specie.
 }
 }
 \description{
-check_names checks if the species names are correct and searches for suggestions if the name is misspelled or not found in the Brazilian Flora 2020 database.
+check_names checks if the species names are correct and searches
+for suggestions if the name is misspelled or not found in the Brazilian
+Flora 2020 database.
 }
 \examples{
 data("bf_data", package = "florabr")

@@ -1,11 +1,18 @@
 #' Search for taxa using vernacular names
 #'
 #' @param data (data.frame) the data.frame imported with the
-#' \code{\link{load_florabr}} function or geneterate with the function \code{\link{select_species}}.
-#' @param names (character) vernacular name ("Nome comum") of the species to be searched
-#' @param exact (logic) if TRUE, the function will search only for exact matches. For example, if names = "pinheiro" and exact = TRUE, the function will return only the species popularly known as "pinheiro". On the other hand, if names = "pinheiro" and exact = FALSE, the function will return other results as "pinheiro-do-parana". Default = FALSE
+#' \code{\link{load_florabr}} function or generated with the function
+#' \code{\link{select_species}}.
+#' @param names (character) vernacular name ("Nome comum") of the species to be
+#' searched
+#' @param exact (logic) if TRUE, the function will search only for exact
+#' matches. For example, if names = "pinheiro" and exact = TRUE, the function
+#' will return only the species popularly known as "pinheiro". On the other
+#' hand, if names = "pinheiro" and exact = FALSE, the function will return
+#' other results as "pinheiro-do-parana". Default = FALSE
 #'
-#' @return a data.frame with the species with vernacular names that match the input names
+#' @return a data.frame with the species with vernacular names that match the
+#' input names
 #' @export
 #' @references
 #' Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
@@ -25,9 +32,10 @@
 #' head(pinheiro_not_exact)
 #'
 #' @references
-#' Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at: http://floradobrasil.jbrj.gov.br/
+#' Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+#' http://floradobrasil.jbrj.gov.br/
 #'
-select_by_vernacular <- function(data = NULL, names = NULL,
+select_by_vernacular <- function(data, names,
                                  exact = FALSE){
   if (missing(data)) {
     stop("Argument data is not defined")
@@ -59,7 +67,7 @@ select_by_vernacular <- function(data = NULL, names = NULL,
     collapse = "|"), data$vernacularName))
 
 
-  if(isTRUE(exact)) {
+  if(exact) {
   has_word <- function(n) {
       palavras <- unlist(strsplit(n, ", "))
       any(grepl(paste0("^", names, "$"), palavras))
