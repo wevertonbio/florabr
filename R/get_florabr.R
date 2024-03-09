@@ -43,7 +43,7 @@
 #' Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
 #' http://floradobrasil.jbrj.gov.br/
 #' @examples
-#' \donttest{
+#' \donttest{ if(interactive()){
 #' #Creating a folder in a temporary directory
 #' #Replace 'file.path(tempdir(), "florabr")' by a path folder to be create in
 #' #your computer
@@ -52,7 +52,7 @@
 #' #Download, merge and save data
 #' get_florabr(output_dir = my_dir, data_version = "latest",
 #'             solve_incongruences = TRUE, overwrite = TRUE, verbose = TRUE)
-#' }
+#' }}
 get_florabr <- function(output_dir, data_version = "latest",
                         solve_incongruences = TRUE,
                         overwrite = TRUE,
