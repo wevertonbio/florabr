@@ -4,8 +4,9 @@
 \alias{get_florabr}
 \title{Download the latest version of Brazilian Flora 2020 database}
 \usage{
-get_florabr(output_dir, data_version = "latest", overwrite = TRUE,
-                   verbose = TRUE)
+get_florabr(output_dir, data_version = "latest",
+                 solve_incongruences = TRUE, overwrite = TRUE,
+                 verbose = TRUE)
 }
 \arguments{
 \item{output_dir}{(character) a directory to save the data downloaded from
@@ -15,6 +16,12 @@ Brazilian Flora 2020}
 download. Use "latest" to get the most recent version, updated weekly.
 Alternatively, specify an older version (e.g., data_version = "393.319").
 Default value is "latest".}
+
+\item{solve_incongruences}{Resolve inconsistencies between species and
+subspecies/varieties  information. When set to TRUE (default), species
+information is updated based on unique data from varieties and subspecies.
+For example, if a subspecies occurs in a certain biome, it implies that the
+species also occurs in that biome.}
 
 \item{overwrite}{(logical) If TRUE, data is overwritten. Default = TRUE.}
 
@@ -44,8 +51,8 @@ this data.frame in the specified directory.
 my_dir <- file.path(file.path(tempdir(), "florabr"))
 dir.create(my_dir)
 #Download, merge and save data
-get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE,
-            verbose = TRUE)
+get_florabr(output_dir = my_dir, data_version = "latest",
+            solve_incongruences = TRUE, overwrite = TRUE, verbose = TRUE)
 }
 }
 \references{

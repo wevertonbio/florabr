@@ -12,6 +12,11 @@
 #' download. Use "latest" to get the most recent version, updated weekly.
 #' Alternatively, specify an older version (e.g., data_version = "393.319").
 #' Default value is "latest".
+#' @param solve_incongruences Resolve inconsistencies between species and
+#' subspecies/varieties  information. When set to TRUE (default), species
+#' information is updated based on unique data from varieties and subspecies.
+#' For example, if a subspecies occurs in a certain biome, it implies that the
+#' species also occurs in that biome.
 #' @param overwrite (logical) If TRUE, data is overwritten. Default = TRUE.
 #' @param verbose (logical) Whether to display messages during function
 #' execution. Set to TRUE to enable display, or FALSE to run silently.
@@ -25,8 +30,9 @@
 #' The merged data.frame is then saved as a file in the specified output
 #' directory. The data is saved in a format that allows easy loading using the
 #' \code{\link{load_florabr}} function for further analysis in R.
-#' @usage get_florabr(output_dir, data_version = "latest", overwrite = TRUE,
-#'                    verbose = TRUE)
+#' @usage get_florabr(output_dir, data_version = "latest",
+#'                  solve_incongruences = TRUE, overwrite = TRUE,
+#'                  verbose = TRUE)
 #' @export
 #'
 #' @importFrom httr GET write_disk
@@ -44,10 +50,12 @@
 #' my_dir <- file.path(file.path(tempdir(), "florabr"))
 #' dir.create(my_dir)
 #' #Download, merge and save data
-#' get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE,
-#'             verbose = TRUE)
+#' get_florabr(output_dir = my_dir, data_version = "latest",
+#'             solve_incongruences = TRUE, overwrite = TRUE, verbose = TRUE)
 #' }
-get_florabr <- function(output_dir, data_version = "latest", overwrite = TRUE,
+get_florabr <- function(output_dir, data_version = "latest",
+                        solve_incongruences = TRUE,
+                        overwrite = TRUE,
                         verbose = TRUE) {
   #Set folder
   if(is.null(output_dir)) {
@@ -64,6 +72,11 @@ get_florabr <- function(output_dir, data_version = "latest", overwrite = TRUE,
   if (!is.character(data_version)) {
     stop(paste0("Argument data_version must be a character, not ",
                 class(data_version)))
+  }
+
+  if (!is.logical(solve_incongruences)) {
+    stop(paste0("Argument solve_incongruences must be logical, not ",
+                class(overwrite)))
   }
 
   if (!is.logical(overwrite)) {
@@ -120,7 +133,8 @@ get_florabr <- function(output_dir, data_version = "latest", overwrite = TRUE,
   message("Merging data. Please wait a moment...\n") }
 
   #Merge data
-  merge_data(path_data = path_data, version_data = version_data)
+  merge_data(path_data = path_data, version_data = version_data,
+             solve_incongruences = solve_incongruences, verbose = verbose)
 
   #Print final message
   if(verbose){
