@@ -44,7 +44,7 @@ This function downloads the latest or an older version of Brazilian Flora
 this data.frame in the specified directory.
 }
 \examples{
-\donttest{ if(interactive()){
+\dontrun{
 #Creating a folder in a temporary directory
 #Replace 'file.path(tempdir(), "florabr")' by a path folder to be create in
 #your computer
@@ -53,7 +53,7 @@ dir.create(my_dir)
 #Download, merge and save data
 get_florabr(output_dir = my_dir, data_version = "latest",
             solve_incongruences = TRUE, overwrite = TRUE, verbose = TRUE)
-}}
+}
 }
 \references{
 Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
