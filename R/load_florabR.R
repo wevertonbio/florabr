@@ -33,7 +33,7 @@
 #' http://floradobrasil.jbrj.gov.br/
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' #Creating a folder in a temporary directory
 #' #Replace 'file.path(tempdir(), "florabr")' by a path folder to be create in
 #' #your computer
