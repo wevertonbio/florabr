@@ -42,7 +42,7 @@ If type = complete, it will load a data.frame with all 39 variables available
 in Brazilian Flora database.
 }
 \examples{
-\donttest{
+\dontrun{
 #Creating a folder in a temporary directory
 #Replace 'file.path(tempdir(), "florabr")' by a path folder to be create in
 #your computer
