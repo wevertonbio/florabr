@@ -115,7 +115,7 @@ http://floradobrasil.jbrj.gov.br/</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="co">#Creating a folder in a temporary directory</span></span></span>
 <span class="r-in"><span><span class="co">#Replace 'file.path(tempdir(), "florabr")' by a path folder to be create in</span></span></span>
 <span class="r-in"><span><span class="co">#your computer</span></span></span>
@@ -124,16 +124,10 @@ http://floradobrasil.jbrj.gov.br/</p>
 <span class="r-in"><span><span class="co">#Download, merge and save data</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="get_florabr.html">get_florabr</a></span><span class="op">(</span>output_dir <span class="op">=</span> <span class="va">my_dir</span>, data_version <span class="op">=</span> <span class="st">"latest"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>            verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Data will be saved in/tmp/Rtmp8j8Etv/florabr</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading version:393.399</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Merging data. Please wait a moment...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Data will be saved in /tmp/Rtmp8j8Etv/florabr</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Data downloaded and merged successfully. Final data saved in/tmp/Rtmp8j8Etv/florabr/393.399/CompleteBrazilianFlora.rds</span>
 <span class="r-in"><span><span class="co">#Load data</span></span></span>
 <span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">load_florabr</span><span class="op">(</span>data_dir <span class="op">=</span> <span class="va">my_dir</span>, data_version <span class="op">=</span> <span class="st">"Latest_available"</span>,</span></span>
 <span class="r-in"><span>type <span class="op">=</span> <span class="st">"short"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading version393.399</span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
