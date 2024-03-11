@@ -18,11 +18,10 @@
 #' - input_name: the species names informed in species argument
 #' - Spelling: indicates if the species name is Correct (a perfect match with a
 #' species name in the Brazilian Flora 2020), Probably_incorrect
-#' (partial match),
-#' or Incorrect (no match with any species).
+#' (partial match), or Not_found (no match with any species).
 #' - Suggested name: If Spelling is Correct, it is the same as the input_name.
 #' If Spelling is Probably_correct, one or more suggested names are listed,
-#' found according to the maximum distance. If Spelling is Incorrect, the value
+#' found according to the maximum distance. If Spelling is "Not_found", the value
 #' is NA.
 #' - Distance: The integer Levenshtein edit distance. It represents the number
 #' of single-character edits (insertions, deletions, or substitutions) required
@@ -104,7 +103,7 @@ check_names <- function(data, species, max_distance = 0.1,
     })
 
   #Create columns
-  spp$Spelling <- ifelse(is.na(spp$Distance), "Incorrect",
+  spp$Spelling <- ifelse(is.na(spp$Distance), "Not_found",
                          ifelse(spp$Distance > 0, "Probably_incorrect",
                                 ifelse(spp$Distance == 0, "Correct", NA)))
   #Get information about Family, taxonomic and nomenclatural status
