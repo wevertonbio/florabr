@@ -18,8 +18,7 @@
 #' - input_name: the species names informed in species argument
 #' - Spelling: indicates if the species name is Correct (a perfect match with a
 #' species name in the Brazilian Flora 2020), Probably_incorrect
-#' (partial match),
-#' or Incorrect (no match with any species).
+#' (partial match), or Not_found (no match with any species).
 #' - Suggested name: If Spelling is Correct, it is the same as the input_name.
 #' If Spelling is Probably_correct, one or more suggested names are listed,
 #' found according to the maximum distance. If Spelling is Incorrect, the value
