@@ -32,7 +32,7 @@ library(florabr)
 bf <- load_florabr(data_dir = my_dir,
                    data_version = "Latest_available",
                    type = "short") #short version
-#> Loading version 393.389
+#> Loading version 393.399
 ```
 
 ## Selecting a list of species
@@ -140,10 +140,10 @@ af_spp <- select_species(data = bf,
                       TaxonomicStatus = "Accepted",
                       NomenclaturalStatus = "All")
 nrow(af_spp)
-#> [1] 2346
+#> [1] 2362
 ```
 
-The filter returned 2346 species that meet the specified criteria. It's important to note that these selections include species with confirmed occurrences in the Atlantic Forest, and some of them may also have confirmed occurrences in other biomes.
+The filter returned 2362 species that meet the specified criteria. It's important to note that these selections include species with confirmed occurrences in the Atlantic Forest, and some of them may also have confirmed occurrences in other biomes.
 
 ```{r}
 #First 7 unique values of biomes in the filtered dataset
@@ -176,12 +176,12 @@ only_af_spp <- select_species(data = bf,
                       TaxonomicStatus = "Accepted",
                       NomenclaturalStatus = "All")
 nrow(only_af_spp)
-#> [1] 1848
+#> [1] 1849
 unique(only_af_spp$Biome)
 #> [1] "Atlantic_Forest"
 ```
 
-Now, the filter has resulted in 1848 species, all exclusively confined to the Atlantic Forest biome.
+Now, the filter has resulted in 1849 species, all exclusively confined to the Atlantic Forest biome.
 
 Furthermore, the package offers the flexibility to apply various filtering options (please consult `?select_species` for comprehensive details). For instance, consider the scenario where we aim to compile a list of native and endemic trees with confirmed occurrences limited solely to the Atlantic Forest biome and with confirmed occurrences in the states of Paraná (PR), Santa Catarina (SC), and Rio Grande do Sul (RS):
 
@@ -203,7 +203,7 @@ south_af_spp <- select_species(data = bf,
                       TaxonomicStatus = "Accepted",
                       NomenclaturalStatus = "All")
 nrow(south_af_spp)
-#> [1] 370
+#> [1] 371
 
 #First 10 unique values of states in the filtered dataset
 unique(south_af_spp$States)[1:10]
@@ -299,24 +299,18 @@ checked_names <- check_names(data = bf,
                              max_distance = 0.1,
                              Kingdom = "Plantae")
 checked_names
-#>             input_name          Spelling       Suggested_name Distance
-#> 1 Araucaria brasiliana           Correct Araucaria brasiliana        0
-#> 2 Araucaria brasiliana           Correct Araucaria brasiliana        0
-#> 3    Solanum restingae           Correct    Solanum restingae        0
-#> 4  Butia cattarinensis Probably_incorrect   Butia catarinensis        1
-#> 5         Homo sapiens         Incorrect                 <NA>       NA
-#>   taxonomicStatus nomenclaturalStatus           acceptedName        family
-#> 1         Synonym                <NA> Araucaria angustifolia Araucariaceae
-#> 2         Synonym        Illegitimate Araucaria angustifolia Araucariaceae
-#> 3        Accepted             Correct      Solanum restingae    Solanaceae
-#> 4        Accepted                <NA>     Butia catarinensis     Arecaceae
-#> 5            <NA>                <NA>                   <NA>          <NA>
+#             input_name           Spelling       Suggested_name Distance taxonomicStatus nomenclaturalStatus           acceptedName        family
+# 1 Araucaria brasiliana            Correct Araucaria brasiliana        0         Synonym                <NA> Araucaria angustifolia Araucariaceae
+# 2 Araucaria brasiliana            Correct Araucaria brasiliana        0         Synonym        Illegitimate Araucaria angustifolia Araucariaceae
+# 3    Solanum restingae            Correct    Solanum restingae        0        Accepted             Correct      Solanum restingae    Solanaceae
+# 4  Butia cattarinensis Probably_incorrect   Butia catarinensis        1        Accepted                <NA>     Butia catarinensis     Arecaceae
+# 5         Homo sapiens          Not_found                 <NA>       NA            <NA>                <NA>                   <NA>          <NA>
 ```
 
 We can see that *Araucaria brasiliana* is spelling correctly, but it is a synonym of *Araucaria angustifolia*.
 *Solanum restingae* is spelling correctly and it is an accepted name.
 In the case of *Butia cattarinensis*, the spelling appears to be potentially incorrect (as the name wasn't found in the database); however, a similar name, *Butia catarinensis*, is suggested by the function. The 'Distance' column indicates the Levenshtein edit distance between the input and the suggested name.
-The spelling of *Homo sapiens* was flagged as incorrect (as expected, given that *Homo sapiens* is not a plant!). Consequently, the name was not located in the database, and there were no comparable names available.
+The spelling of *Homo sapiens* was flagged as Not_found (as expected, given that *Homo sapiens* is not a plant!). Consequently, the name was not located in the database, and there were no comparable names available.
 
 ### Subsetting species
 
