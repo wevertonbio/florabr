@@ -11,8 +11,7 @@ Imports:
     httr (>= 1.4.6),
     terra (>= 1.7.39),
     stats (>= 4.2.3),
-    utils(>= 4.2.3),
-    grDevices (>= 4.2.3)
+    utils(>= 4.2.3)
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
