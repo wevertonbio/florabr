@@ -47,6 +47,7 @@ The florabR package includes a collection of functions designed to retrieve, fil
 
 ### Spatialize distribution and use Brazilian Flora to flag records
 
+-   `get_pam()`: Get a presence-absence matrix of species.
 -   `filter_florabr()`: Identify records outside natural ranges according to Brazilian Flora 2020.
 -   `get_spat_occ()`: Get Spatial polygons (SpatVectors) of species based on its distribution (States and Biomes) according to Brazilian Flora 2020.
 
