@@ -138,7 +138,7 @@ vignette???</p>
 <span><span class="va">bf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_florabr.html">load_florabr</a></span><span class="op">(</span>data_dir <span class="op">=</span> <span class="va">my_dir</span>,</span>
 <span>                   data_version <span class="op">=</span> <span class="st">"Latest_available"</span>,</span>
 <span>                   type <span class="op">=</span> <span class="st">"short"</span><span class="op">)</span> <span class="co">#short version</span></span>
-<span><span class="co">#&gt; Loading version 393.389</span></span></code></pre></div>
+<span><span class="co">#&gt; Loading version 393.399</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="selecting-a-list-of-species-1">Selecting a list of species<a class="anchor" aria-label="anchor" href="#selecting-a-list-of-species-1"></a>
@@ -253,8 +253,8 @@ occurrences in the Atlantic Forest:</p>
 <span>                      TaxonomicStatus <span class="op">=</span> <span class="st">"Accepted"</span>,</span>
 <span>                      NomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">af_spp</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 2346</span></span></code></pre></div>
-<p>The filter returned 2346 species that meet the specified criteria.
+<span><span class="co">#&gt; [1] 2362</span></span></code></pre></div>
+<p>The filter returned 2362 species that meet the specified criteria.
 It’s important to note that these selections include species with
 confirmed occurrences in the Atlantic Forest, and some of them may also
 have confirmed occurrences in other biomes.</p>
@@ -288,10 +288,10 @@ in the Atlantic Forest, modify the <em>filter_Biome</em> parameter to
 <span>                      TaxonomicStatus <span class="op">=</span> <span class="st">"Accepted"</span>,</span>
 <span>                      NomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">only_af_spp</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 1848</span></span>
+<span><span class="co">#&gt; [1] 1849</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">only_af_spp</span><span class="op">$</span><span class="va">Biome</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Atlantic_Forest"</span></span></code></pre></div>
-<p>Now, the filter has resulted in 1848 species, all exclusively
+<p>Now, the filter has resulted in 1849 species, all exclusively
 confined to the Atlantic Forest biome.</p>
 <p>Furthermore, the package offers the flexibility to apply various
 filtering options (please consult <code><a href="../reference/select_species.html">?select_species</a></code> for
@@ -318,7 +318,7 @@ Grande do Sul (RS):</p>
 <span>                      TaxonomicStatus <span class="op">=</span> <span class="st">"Accepted"</span>,</span>
 <span>                      NomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">south_af_spp</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 370</span></span>
+<span><span class="co">#&gt; [1] 371</span></span>
 <span></span>
 <span><span class="co">#First 10 unique values of states in the filtered dataset</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">south_af_spp</span><span class="op">$</span><span class="va">States</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span>
@@ -432,18 +432,12 @@ works, let’s utilize the previously created binomial_names dataset:</p>
 <span>                             max_distance <span class="op">=</span> <span class="fl">0.1</span>,</span>
 <span>                             Kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span>
 <span><span class="va">checked_names</span></span>
-<span><span class="co">#&gt;             input_name          Spelling       Suggested_name Distance</span></span>
-<span><span class="co">#&gt; 1 Araucaria brasiliana           Correct Araucaria brasiliana        0</span></span>
-<span><span class="co">#&gt; 2 Araucaria brasiliana           Correct Araucaria brasiliana        0</span></span>
-<span><span class="co">#&gt; 3    Solanum restingae           Correct    Solanum restingae        0</span></span>
-<span><span class="co">#&gt; 4  Butia cattarinensis Probably_incorrect   Butia catarinensis        1</span></span>
-<span><span class="co">#&gt; 5         Homo sapiens         Incorrect                 &lt;NA&gt;       NA</span></span>
-<span><span class="co">#&gt;   taxonomicStatus nomenclaturalStatus           acceptedName        family</span></span>
-<span><span class="co">#&gt; 1         Synonym                &lt;NA&gt; Araucaria angustifolia Araucariaceae</span></span>
-<span><span class="co">#&gt; 2         Synonym        Illegitimate Araucaria angustifolia Araucariaceae</span></span>
-<span><span class="co">#&gt; 3        Accepted             Correct      Solanum restingae    Solanaceae</span></span>
-<span><span class="co">#&gt; 4        Accepted                &lt;NA&gt;     Butia catarinensis     Arecaceae</span></span>
-<span><span class="co">#&gt; 5            &lt;NA&gt;                &lt;NA&gt;                   &lt;NA&gt;          &lt;NA&gt;</span></span></code></pre></div>
+<span><span class="co">#             input_name           Spelling       Suggested_name Distance taxonomicStatus nomenclaturalStatus           acceptedName        family</span></span>
+<span><span class="co"># 1 Araucaria brasiliana            Correct Araucaria brasiliana        0         Synonym                &lt;NA&gt; Araucaria angustifolia Araucariaceae</span></span>
+<span><span class="co"># 2 Araucaria brasiliana            Correct Araucaria brasiliana        0         Synonym        Illegitimate Araucaria angustifolia Araucariaceae</span></span>
+<span><span class="co"># 3    Solanum restingae            Correct    Solanum restingae        0        Accepted             Correct      Solanum restingae    Solanaceae</span></span>
+<span><span class="co"># 4  Butia cattarinensis Probably_incorrect   Butia catarinensis        1        Accepted                &lt;NA&gt;     Butia catarinensis     Arecaceae</span></span>
+<span><span class="co"># 5         Homo sapiens          Not_found                 &lt;NA&gt;       NA            &lt;NA&gt;                &lt;NA&gt;                   &lt;NA&gt;          &lt;NA&gt;</span></span></code></pre></div>
 <p>We can see that <em>Araucaria brasiliana</em> is spelling correctly,
 but it is a synonym of <em>Araucaria angustifolia</em>. <em>Solanum
 restingae</em> is spelling correctly and it is an accepted name. In the
@@ -452,7 +446,7 @@ potentially incorrect (as the name wasn’t found in the database);
 however, a similar name, <em>Butia catarinensis</em>, is suggested by
 the function. The ‘Distance’ column indicates the Levenshtein edit
 distance between the input and the suggested name. The spelling of
-<em>Homo sapiens</em> was flagged as incorrect (as expected, given that
+<em>Homo sapiens</em> was flagged as Not_found (as expected, given that
 <em>Homo sapiens</em> is not a plant!). Consequently, the name was not
 located in the database, and there were no comparable names
 available.</p>
