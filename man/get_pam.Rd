@@ -69,7 +69,7 @@ am_trees <- select_species(data = bf_data,
                           VegetationType = "All",
                           filter_Vegetation = "in",
                           Endemism = "Endemic", Origin = "Native",
-                          TaxonomicStatus = "All",
+                          TaxonomicStatus = "Accepted",
                           NomenclaturalStatus = "All")
 #Get presence-absence matrix
 pam_am <- get_pam(data = am_trees, by_Biome = TRUE, by_State = TRUE,
