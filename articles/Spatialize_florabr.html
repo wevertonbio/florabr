@@ -240,6 +240,80 @@ better the real shapes and boundaries of states and biomes.</p>
 </div>
 </div>
 <div class="section level2">
+<h2 id="getting-a-presence-absence-matrix">Getting a presence-absence matrix<a class="anchor" aria-label="anchor" href="#getting-a-presence-absence-matrix"></a>
+</h2>
+<p>One way of organizing biodiversity data is by using presence-absence
+matrices (PAMs), where a one represents the presence of species j in
+cell i, and a zero indicates absence. From a PAM, we can estimate a
+variety of metrics related to biodiversity patterns, including richness,
+range size, and composition. For a comprehensive list of biodiversity
+metrics, refer to the <a href="https://claununez.github.io/biosurvey/reference/PAM_indices.html" class="external-link">PAM_indices
+function in the biosurvey package</a>.</p>
+<p>The <code><a href="../reference/get_pam.html">get_pam()</a></code> function facilitates the utilization of
+species distribution information in Brazil to generate a PAM. Each site
+represents a Biome, a State, a vegetation type, or any combination of
+these. In addition to the PAM, the function also provides a summary and
+a SpatVector containing the number of species in each site.</p>
+<p>As an example, let’s obtain a PAM consisting of all tree species
+native and endemic to the Amazon biome:</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#Load Brazilian Flora data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"bf_data"</span><span class="op">)</span></span>
+<span><span class="co">#Select endemic and native species of trees with occurrence only in Amazon</span></span>
+<span><span class="va">am_trees</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/select_species.html">select_species</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>,</span>
+<span>                          include_subspecies <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                          include_variety <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                          Kingdom <span class="op">=</span> <span class="st">"Plantae"</span>,</span>
+<span>                          Group <span class="op">=</span> <span class="st">"All"</span>, Subgroup <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                          Family <span class="op">=</span> <span class="st">"All"</span>, Genus <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                          LifeForm <span class="op">=</span> <span class="st">"Tree"</span>, filter_LifeForm <span class="op">=</span> <span class="st">"only"</span>,</span>
+<span>                          Habitat <span class="op">=</span> <span class="st">"All"</span>, filter_Habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                          Biome <span class="op">=</span> <span class="st">"Amazon"</span>,</span>
+<span>                          filter_Biome <span class="op">=</span> <span class="st">"only"</span>,</span>
+<span>                          State <span class="op">=</span> <span class="st">"All"</span>, filter_State <span class="op">=</span> <span class="st">"and"</span>,</span>
+<span>                          VegetationType <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                          filter_Vegetation <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                          Endemism <span class="op">=</span> <span class="st">"Endemic"</span>, Origin <span class="op">=</span> <span class="st">"Native"</span>,</span>
+<span>                          TaxonomicStatus <span class="op">=</span> <span class="st">"Accepted"</span>,</span>
+<span>                          NomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span>
+<span><span class="co">#Get presence-absence matrix</span></span>
+<span><span class="va">pam_am</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_pam.html">get_pam</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">am_trees</span>, by_Biome <span class="op">=</span> <span class="cn">TRUE</span>, by_State <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                 by_vegetationType <span class="op">=</span> <span class="cn">FALSE</span>, remove_empty_sites <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                 return_richness_summary <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                 return_spatial_richness <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                 return_plot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#Visualize (as tibble) the PAM for the first 5 species and 7 sites</span></span>
+<span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="va">pam_am</span><span class="op">$</span><span class="va">PAM</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co"># # A tibble: 7 × 5</span></span>
+<span><span class="co">#   Biome  States `Euxylophora paraensis` `Galipea congestiflora` `Hortia longifolia`</span></span>
+<span><span class="co">#   &lt;fct&gt;  &lt;fct&gt;                    &lt;dbl&gt;                   &lt;dbl&gt;               &lt;dbl&gt;</span></span>
+<span><span class="co"># 1 Amazon AM                           1                       0                   1</span></span>
+<span><span class="co"># 2 Amazon MA                           1                       1                   0</span></span>
+<span><span class="co"># 3 Amazon PA                           1                       1                   1</span></span>
+<span><span class="co"># 4 Amazon TO                           1                       1                   0</span></span>
+<span><span class="co"># 5 Amazon MT                           0                       0                   1</span></span>
+<span><span class="co"># 6 Amazon RR                           0                       0                   1</span></span>
+<span><span class="co"># 7 Amazon AC                           0                       0                   0</span></span></code></pre></div>
+<p>Since return_richness_summary is set to TRUE, the function also
+returns a data frame containing the number of species per site.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#Visualize (as tibble) the richness summary table</span></span>
+<span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="va">pam_am</span><span class="op">$</span><span class="va">Richness_summary</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>,<span class="op">]</span><span class="op">)</span></span>
+<span><span class="co"># # A tibble: 7 × 3</span></span>
+<span><span class="co">#   Biome  States Richness</span></span>
+<span><span class="co">#   &lt;fct&gt;  &lt;fct&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co"># 1 Amazon AM          599</span></span>
+<span><span class="co"># 2 Amazon MA           34</span></span>
+<span><span class="co"># 3 Amazon PA          294</span></span>
+<span><span class="co"># 4 Amazon TO            7</span></span>
+<span><span class="co"># 5 Amazon MT           63</span></span>
+<span><span class="co"># 6 Amazon RR           45</span></span>
+<span><span class="co"># 7 Amazon AC          109</span></span></code></pre></div>
+<p>If return_spatial_richness is set to TRUE, the function will return a
+SpatVector containing the number of species per site. Additionally, when
+return_plot is also set to TRUE, the function returns a plot. <img src="vignettes_img/Image_09.png"><!-- --></p>
+</div>
+<div class="section level2">
 <h2 id="filtering-occurrence-records-using-distribution-information-in-brazilian-flora">Filtering occurrence records using distribution information in
 Brazilian Flora<a class="anchor" aria-label="anchor" href="#filtering-occurrence-records-using-distribution-information-in-brazilian-flora"></a>
 </h2>
@@ -264,7 +338,7 @@ Cerrado). <em>Araucaria angustifolia</em> is a non-endemic tree that in
 Brazil has confirmed occurrences in 6 states (MG, PR, RJ, RS, SC and SP)
 and two biomes (Atlantic Forest and Pampa). Let’s plot these information
 using the function <code>get_spat_occ</code>:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_spp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Abatia americana"</span>, <span class="st">"Araucaria angustifolia"</span><span class="op">)</span></span>
 <span><span class="va">pol_spp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_spat_occ.html">get_spat_occ</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf</span>, species <span class="op">=</span> <span class="va">my_spp</span>,</span>
 <span>                       State <span class="op">=</span> <span class="cn">TRUE</span>, Biome <span class="op">=</span> <span class="cn">TRUE</span>, intersection <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -282,7 +356,7 @@ using the function <code>get_spat_occ</code>:</p>
 occurrences of these two species from GBIF using the
 <code>plantR::rgbif2()</code> function. These occurrences are saved as
 data examples in the package and we can import it:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"occurrences"</span><span class="op">)</span></span>
 <span><span class="co">#select Abatia americana and Araucaria angustifolia from the dataset</span></span>
 <span><span class="va">occ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">occurrences</span>, <span class="va">occurrences</span><span class="op">$</span><span class="va">species</span> <span class="op"><a href="https://rspatial.github.io/terra/reference/match.html" class="external-link">%in%</a></span> <span class="va">my_spp</span><span class="op">)</span></span>
@@ -298,7 +372,7 @@ data examples in the package and we can import it:</p>
 columns: one informing the species name, one informing the longitude and
 one informing the latitude. Let’s check if there are records outside of
 the species’ natural ranges considering states, biomes and endemism:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">occ_check</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filter_florabr.html">filter_florabr</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf</span>, occ <span class="op">=</span> <span class="va">occ</span>,</span>
 <span>                    by_State <span class="op">=</span> <span class="cn">TRUE</span>, buffer_State <span class="op">=</span> <span class="fl">20</span>,</span>
 <span>                    by_Biome <span class="op">=</span> <span class="cn">TRUE</span>, buffer_Biome <span class="op">=</span> <span class="fl">20</span>,</span>
@@ -314,7 +388,7 @@ test they passed (TRUE) or not (FALSE); and another with only the
 records that passed in all tests.</p>
 <p>Let’s use the <a href="https://r-spatial.github.io/mapview/" class="external-link">mapview
 package</a> to plot an interactive map of the flagged records:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Install mapview if necessary and load package</span></span>
 <span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/mapview" class="external-link">mapview</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"geobr"</span><span class="op">)</span></span>
@@ -327,7 +401,7 @@ passed on the test of States, falling in the states with confirmed
 occurrence of the specie. The red dots are the records that falls
 outside the states. And the gray dots are records that was not testes
 because they falls outside Brazil (Ecuador and Belarus).</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Convert points to spatvector</span></span>
 <span><span class="va">abatia_occ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">occ_check</span><span class="op">$</span><span class="va">flagged</span>,</span>
 <span>                     <span class="va">occ_check</span><span class="op">$</span><span class="va">flagged</span><span class="op">$</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Abatia americana"</span><span class="op">)</span></span>
@@ -342,7 +416,7 @@ because they falls outside Brazil (Ecuador and Belarus).</p>
 passed in the test, green dots represents records that did not passed
 the test, and gray dots are records not tested because they fall outside
 Brazil.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Iteractive plot</span></span>
 <span><span class="fu">mapview</span><span class="op">(</span><span class="va">pol_spp</span><span class="op">$</span><span class="va">`Abatia americana`</span><span class="op">$</span><span class="va">Biomes</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">mapview</span><span class="op">(</span><span class="va">abatia_occ</span>, zcol <span class="op">=</span> <span class="st">"Inside_Biome"</span>,</span>
@@ -351,10 +425,10 @@ Brazil.</p>
 <p>Finally, since <em>Abatia americana</em> is a specie endemic to
 Brazil, we don’t expect records outside the country. The records in
 Ecuador and Belarus were flagging in this test:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Get Brazl Polygon</span></span>
 <span><span class="va">br</span> <span class="op">&lt;-</span> <span class="fu">geobr</span><span class="fu">::</span><span class="fu">read_country</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Iteractive plot</span></span>
 <span><span class="fu">mapview</span><span class="op">(</span><span class="va">br</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">mapview</span><span class="op">(</span><span class="va">abatia_occ</span>, zcol <span class="op">=</span> <span class="st">"Inside_BR"</span>,</span>
