@@ -1,4 +1,26 @@
 url: https://wevertonbio.github.io/florabr/
-template:
-  bootstrap: 5
 
+template:
+  params:
+    bootswatch: cosmo
+
+# configuracao geral da barra de navegacao
+navbar:
+  left:
+    - icon: fa-home
+      href: index.html
+    - text: "Functions"
+      href: reference/index.html
+    - icon: fas fa-book
+      text: "Articles"
+      menu:
+      -  text: "1. Getting started with florabr"
+         href: articles/getting_started.html
+      -  text: "2. Selecting and filtering species"
+         href: articles/selecting_species.html
+      -  text: "3. Using florabr to flag erroneous records"
+         href: articles/Spatialize_florabr.html
+      -  text: "4. Getting a Presence-Absence Matrix"
+         href: articles/getting_pam.html
+  components:
+    home: ~
