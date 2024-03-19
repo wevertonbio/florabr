@@ -4,7 +4,7 @@ test_that("get florabr works", {
   dir.create(my_dir)
   #Download, merge and save data
   get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE,
-              verbose = TRUE)
+              verbose = TRUE, solve_incongruences = FALSE)
   #Get files downloaded
   d <- list.files(my_dir, recursive = TRUE, full.names = FALSE)
   d <- gsub(".*/","",d)

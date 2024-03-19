@@ -5,7 +5,7 @@ test_that("loading florabr works", {
   dir.create(my_dir)
   #Download, merge and save data
   get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE,
-              verbose = TRUE)
+              verbose = TRUE, solve_incongruences = FALSE)
 
   #Load data: short
   df <- load_florabr(data_dir = my_dir, data_version = "Latest_available",
