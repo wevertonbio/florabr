@@ -55,3 +55,79 @@ test_that("get_spat_occ works", {
                             Biome = FALSE, intersection = TRUE, State_vect = NULL,
                             Biome_vect = NULL, verbose = TRUE))
 })
+
+
+####Test errors to increase coverage####
+test_that("get_spat_occdoes not work", {
+  library(terra)
+  #Load Brazilian Flora data
+  data("bf_data")
+  #Example species
+  spp <- c("Araucaria angustifolia", "Adesmia paranensis")
+  #data is not a dataframe
+  expect_error(get_spat_occ(data = TRUE, species = spp, State = TRUE,
+                          Biome = TRUE, intersection = TRUE, State_vect = NULL,
+                          Biome_vect = NULL, verbose = TRUE))
+  #species is not a vector
+  expect_error(get_spat_occ(data = bf_data, species = TRUE, State = TRUE,
+               Biome = FALSE, intersection = FALSE, State_vect = NULL,
+               Biome_vect = NULL, verbose = TRUE))
+  #Verbose, State, Biome or intersection is not logical
+  expect_error(get_spat_occ(data = bf_data, species = spp, State = TRUE,
+                            Biome = FALSE, intersection = FALSE, State_vect = NULL,
+                            Biome_vect = NULL, verbose = "TRUE"))
+  expect_error(get_spat_occ(data = bf_data, species = spp, State = "SP",
+                            Biome = FALSE, intersection = FALSE, State_vect = NULL,
+                            Biome_vect = NULL, verbose = TRUE))
+  expect_error(get_spat_occ(data = bf_data, species = spp, State = TRUE,
+                            Biome = "Amazon", intersection = FALSE, State_vect = NULL,
+                            Biome_vect = NULL, verbose = TRUE))
+  expect_error(get_spat_occ(data = bf_data, species = spp, State = TRUE,
+                            Biome = FALSE, intersection = "All", State_vect = NULL,
+                            Biome_vect = NULL, verbose = TRUE))
+  #State_vect and Biome_vect are not spatvectors
+  expect_error(get_spat_occ(data = bf_data, species = spp, State = TRUE,
+                            Biome = FALSE, intersection = FALSE,
+                            State_vect = TRUE,
+                            Biome_vect = NULL, verbose = TRUE))
+  expect_error(get_spat_occ(data = bf_data, species = spp, State = TRUE,
+                            Biome = FALSE, intersection = FALSE,
+                            State_vect = NULL,
+                            Biome_vect = TRUE, verbose = TRUE))
+  #Data without important columns
+  d <- bf_data[,setdiff(colnames(bf_data), "species")]
+  expect_error(get_spat_occ(data = d, species = spp, State = TRUE,
+                            Biome = FALSE, intersection = FALSE,
+                            State_vect = NULL,
+                            Biome_vect = NULL, verbose = TRUE))
+  #Intersect only works when States and Biomes are TRUE
+  expect_error(get_spat_occ(data = bf_data, species = spp, State = TRUE,
+                            Biome = FALSE, intersection = TRUE,
+                            State_vect = NULL,
+                            Biome_vect = NULL, verbose = TRUE))
+  #When there are species absent in data
+  expect_error(get_spat_occ(data = bf_data,
+                            species = c(spp, "Homo sapiens"),
+                            State = TRUE,
+                            Biome = FALSE, intersection =  FALSE,
+                            State_vect = NULL,
+                            Biome_vect = NULL, verbose = TRUE))
+  #Lack info about biome
+  expect_message(get_spat_occ(data = bf_data,
+                              species = c(spp, "Conchocarpus cuneifolius"),
+                              State = TRUE,
+                              Biome = TRUE, intersection = TRUE,
+                              State_vect = NULL,
+                              Biome_vect = NULL, verbose = TRUE))
+  #Lack info about State
+  expect_message(get_spat_occ(data = bf_data,
+                              species = c(spp, "Conchocarpus cuneifolius"),
+                              State = TRUE,
+                              Biome = TRUE, intersection = TRUE,
+                              State_vect = NULL,
+                              Biome_vect = NULL, verbose = TRUE))
+
+  })
+
+
+
