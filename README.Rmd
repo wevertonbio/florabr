@@ -16,9 +16,11 @@ knitr::opts_chunk$set(
 # florabr <img src="man/figures/logo.png" align="right" width="20%" height="20%"/>
 
 <!-- badges: start -->
-
+[![CRAN status](https://www.r-pkg.org/badges/version/florabr)](https://CRAN.R-project.org/package=florabr)
+[![downloads](https://cranlogs.r-pkg.org/badges/grand-total/florabr)](https://cranlogs.r-pkg.org:443/badges/grand-total/florabr)
 [![R-CMD-check](https://github.com/wevertonbio/florabr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/wevertonbio/florabr/actions/workflows/R-CMD-check.yaml)
-
+[![Codecov test coverage](https://codecov.io/gh/wevertonbio/florabr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/wevertonbio/florabr?branch=main)
+[![License](https://img.shields.io/badge/license-GPL%20(%3E=%203)-lightgrey.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html)
 <!-- badges: end -->
 
 [Brazilian Flora 2020](https://floradobrasil.jbrj.gov.br/consulta/) is the most comprehensive work to reliably document Brazilian plant diversity. It involves the work of hundreds of taxonomists, integrating data from plant and fungi collected in Brazil during the last two centuries. The database contains detailed and standardized morphological descriptions, illustrations, nomenclatural data, geographic distribution, and keys for the identification of all native and non-native plants found in Brazil.
