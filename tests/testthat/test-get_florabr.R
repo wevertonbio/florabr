@@ -20,5 +20,20 @@ test_that("get florabr works", {
   expect_error(get_florabr(output_dir = no_dir,
               data_version = "latest", overwrite = TRUE,
               verbose = TRUE))
+
+  ####Get others errors####
+  expect_error(get_florabr(data_version = "latest", overwrite = TRUE,
+                           verbose = TRUE))
+  expect_error(get_florabr(output_dir = TRUE, data_version = "latest",
+                           overwrite = TRUE, verbose = TRUE))
+  expect_error(get_florabr(output_dir = my_dir, data_version = TRUE,
+                           overwrite = TRUE, verbose = TRUE))
+  expect_error(get_florabr(output_dir = my_dir, data_version = "latest",
+                           overwrite = TRUE, verbose = TRUE,
+                           solve_incongruences = "TRUE"))
+  expect_error(get_florabr(output_dir = my_dir, data_version = "latest",
+                           overwrite = "TRUE", verbose = TRUE,
+                           solve_incongruences = TRUE))
+
 })
 #unlink(my_dir, recursive = T, force = T)
