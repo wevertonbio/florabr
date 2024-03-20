@@ -189,7 +189,7 @@ test_that("filter_florabr does not work", {
   expect_error(filter_florabr(data = bf_data, occ = pts,
                               by_State = TRUE, buffer_State = 20,
                               by_Biome = TRUE, buffer_Biome = 20,
-                              by_Endemism = TRUE, Buffer_Brazil = 20,
+                              by_Endemism = TRUE, Buffer_Brazil = "20",
                               value = "flag&clean", keep_columns = TRUE,
                               verbose = FALSE))
   expect_error(filter_florabr(data = bf_data, occ = pts,
