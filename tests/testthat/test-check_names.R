@@ -11,4 +11,14 @@ test_that("check names works", {
   ####It does not work when we don't set data or species####
   expect_error(check_names(species = spp))
   expect_error(check_names(data = bf_data))
+
+  ##More errors####
+  expect_error(check_names(data = TRUE, species = spp))
+  expect_error(check_names(data = bf_data, species = TRUE))
+  expect_error(check_names(data = bf_data, species = spp,
+                           max_distance = TRUE))
+  expect_error(check_names(data = bf_data, species = spp,
+                           max_distance = 100))
+  expect_error(check_names(data = bf_data, species = spp,
+                           Kingdom = "Animal"))
 })

@@ -437,24 +437,24 @@ test_that("select_species with differente filters", {
   expect_no_error(select_species(data = bf_data, State = "PR",
                                  filter_Biome = "in"))
   expect_no_error(select_species(data = bf_data, State = "PR",
-                                 filter_Biome = "only"))
+                                 filter_State = "only"))
   expect_no_error(select_species(data = bf_data, State = "PR",
-                                 filter_Biome = "not_in"))
+                                 filter_State = "not_in"))
   expect_no_error(select_species(data = bf_data, State = c("PR", "SP"),
-                                 filter_Biome = "and"))
+                                 filter_State = "and"))
 
   expect_warning(select_species(data = bf_data,
                                 TaxonomicStatus = "All",
                                 VegetationType = "Amazon"))
   expect_no_error(select_species(data = bf_data, VegetationType = "Grassland",
-                                 filter_Biome = "in"))
+                                 filter_Vegetation =  "in"))
   expect_no_error(select_species(data = bf_data, VegetationType = "Grassland",
-                                 filter_Biome = "only"))
+                                 filter_Vegetation =  "only"))
   expect_no_error(select_species(data = bf_data, VegetationType = "Grassland",
-                                 filter_Biome = "not_in"))
+                                 filter_Vegetation =  "not_in"))
   expect_no_error(select_species(data = bf_data,
                                  VegetationType = c("Grassland", "Cerrado"),
-                                 filter_Biome = "and", Endemism = "All",
+                                 filter_Vegetation =  "and", Endemism = "All",
                                  Origin = "All"))
   expect_warning(expect_warning(select_species(data = bf_data,
                                  Group = "Bryophytes", Subgroup = "Mosses",

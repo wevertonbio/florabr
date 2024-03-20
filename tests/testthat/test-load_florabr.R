@@ -38,6 +38,22 @@ test_that("loading florabr works", {
   expect_error(load_florabr(data_dir = wrong_dir,
                             data_version = "Latest_available",
                            type = "short"))
+
 })
 #unlink(my_dir, recursive = T, force = T)
 #unlink(wrong_dir, recursive = T, force = T)
+
+####Others errors####
+test_that("loading florabr does not work", {
+  my_dir<- file.path(file.path(tempdir(), "wrong_dir"))
+  dir.create(my_dir)
+  expect_error(load_florabr(data_version = "Latest_available",
+                            type = "short"))
+  expect_error(load_florabr(data_dir = TRUE,
+                            data_version = "Latest_available",
+                            type = "short"))
+  expect_error(load_florabr(data_dir = my_dir,
+                            data_version = TRUE,
+                            type = "short"))
+
+})

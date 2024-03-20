@@ -100,3 +100,12 @@ test_that("get_attributes works", {
   expect_error(get_attributes(data = bf_data, Kingdom = "Animal",
                               attribute = "Biome"))
 })
+
+####Get more errors####
+test_that("get_attributes works", {
+  #Load Brazilian Flora data
+  data("bf_data")
+  expect_error(get_attributes(data = bf_data))
+  expect_error(get_attributes(data = TRUE, attribute = "Biome"))
+  expect_error(get_attributes(data = bf_data, attribute = TRUE))
+  })

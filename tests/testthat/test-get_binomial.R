@@ -7,4 +7,8 @@ test_that("get_binomial works", {
   spp_new <- get_binomial(species_names = spp)
   expect_equal(length(spp_new), length(spp))
   expect_equal(length(unlist(strsplit(spp_new, " "))), length(spp)*2)
+
+  #Error
+  expect_error(get_binomial(species_names = T))
+
 })
