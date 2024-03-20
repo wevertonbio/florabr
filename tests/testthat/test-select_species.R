@@ -380,4 +380,102 @@ test_that("select_species does not work when", {
                               Origin = "Native",
                               TaxonomicStatus = "All",
                               NomenclaturalStatus = "Any")) #ERROR
+
+
 })
+
+####Test using different filters####
+test_that("select_species with differente filters", {
+  #Load Brazilian Flora data
+  data("bf_data")
+
+  expect_no_error(select_species(data = bf_data, include_subspecies = TRUE))
+  expect_no_error(select_species(data = bf_data, include_variety = TRUE))
+  expect_no_error(select_species(data = bf_data, include_subspecies = TRUE,
+                                 include_variety = TRUE))
+  expect_no_error(select_species(data = bf_data, include_subspecies = TRUE,
+                                 include_variety = TRUE))
+  expect_no_error(select_species(data = bf_data,
+                                 Group = "Bryophytes", Subgroup = "Mosses"))
+  expect_no_error(select_species(data = bf_data,
+                                 Family = "Acanthaceae", LifeForm = "All"))
+  expect_warning(select_species(data = bf_data,
+                 Family = "All", LifeForm = "Aquatic", TaxonomicStatus = "All"))
+  expect_no_error(select_species(data = bf_data,
+                                 LifeForm = "Tree", filter_LifeForm = "in"))
+  expect_no_error(select_species(data = bf_data,
+                                 LifeForm = "Tree", filter_LifeForm = "not_in"))
+  expect_no_error(select_species(data = bf_data,
+                                 LifeForm = c("Tree", "Shrub"),
+                                 filter_LifeForm = "and"))
+  expect_no_error(select_species(data = bf_data,
+                                 Habitat = "Terrestrial",
+                                 filter_Habitat = "in"))
+  expect_warning(expect_warning(select_species(data = bf_data,
+                                Habitat = "Tree",
+                                filter_Habitat = "in",
+                                TaxonomicStatus = "All")))
+  expect_no_error(select_species(data = bf_data,
+                                 Habitat = "Terrestrial",
+                                 filter_Habitat = "only"))
+  expect_no_error(select_species(data = bf_data,
+                                 Habitat = "Terrestrial",
+                                 filter_Habitat = "not_in"))
+  expect_no_error(select_species(data = bf_data, Biome = "All",
+                                 Habitat = c("Rupicolous", "Terrestrial"),
+                                 filter_Habitat = "and"))
+  expect_warning(select_species(data = bf_data, Biome = "Brazil"))
+  expect_no_error(select_species(data = bf_data, Biome = "Amazon",
+                                 filter_Biome = "not_in"))
+  expect_no_error(select_species(data = bf_data, Biome = "Amazon",
+                                 filter_Biome = "only"))
+  expect_no_error(select_species(data = bf_data, Biome = c("Amazon", "Cerrado"),
+                                 filter_Biome = "and"))
+  expect_warning(expect_warning(select_species(data = bf_data,
+                                               TaxonomicStatus = "All",
+                                               State = "Rio")))
+  expect_no_error(select_species(data = bf_data, State = "PR",
+                                 filter_Biome = "in"))
+  expect_no_error(select_species(data = bf_data, State = "PR",
+                                 filter_Biome = "only"))
+  expect_no_error(select_species(data = bf_data, State = "PR",
+                                 filter_Biome = "not_in"))
+  expect_no_error(select_species(data = bf_data, State = c("PR", "SP"),
+                                 filter_Biome = "and"))
+
+  expect_warning(select_species(data = bf_data,
+                                TaxonomicStatus = "All",
+                                VegetationType = "Amazon"))
+  expect_no_error(select_species(data = bf_data, VegetationType = "Grassland",
+                                 filter_Biome = "in"))
+  expect_no_error(select_species(data = bf_data, VegetationType = "Grassland",
+                                 filter_Biome = "only"))
+  expect_no_error(select_species(data = bf_data, VegetationType = "Grassland",
+                                 filter_Biome = "not_in"))
+  expect_no_error(select_species(data = bf_data,
+                                 VegetationType = c("Grassland", "Cerrado"),
+                                 filter_Biome = "and", Endemism = "All",
+                                 Origin = "All"))
+  expect_warning(expect_warning(select_species(data = bf_data,
+                                 Group = "Bryophytes", Subgroup = "Mosses",
+                                filter_Biome = "in", Habitat = "Corticolous",
+                                TaxonomicStatus = "All",
+                                Genus = "Acroporium",
+                                Endemism = "Endemic")))
+  expect_warning(expect_warning(select_species(data = bf_data,
+                                               Group = "Bryophytes",
+                                               Subgroup = "Mosses",
+                                               filter_Biome = "in",
+                                               Habitat = "Corticolous",
+                                               TaxonomicStatus = "All",
+                                               Genus = "Acroporium",
+                                               Endemism = "All",
+                                               Origin = "Naturalized")))
+  expect_warning(expect_warning(select_species(data = bf_data,
+                                               Group = "Bryophytes",
+                                               Subgroup = "Mosses",
+                                               filter_Biome = "in",
+                                               Habitat = "Corticolous",
+                                               Genus = "Acroporium",
+                                               NomenclaturalStatus = "Rejected")))
+  })
