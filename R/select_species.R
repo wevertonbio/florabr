@@ -206,18 +206,25 @@ select_species <- function(data,
   if(Genus != "All" & !(Genus %in% unique(data$genus))) {
     stop(paste("Genus not valid.\n")) }
 
-  if(Endemism != "All" & !(Endemism %in% unique(data$Endemism))) {
+  if(Endemism != "All" & !(Endemism %in% c('All', 'Endemic', 'Non-endemic'))) {
     stop(paste("Endemism not valid. The options availables are:\n",
-               "'All', 'Endemic', 'Non-endemic', or NA"))}
-  if(Origin != "All" & !(Origin %in% unique(data$Origin))) {
+               "'All', 'Endemic', or 'Non-endemic'"))}
+  if(Origin != "All" & !(Origin %in% c('All', 'Native', 'Cultivated',
+  'Naturalized'))) {
     stop(paste("Origin not valid. The options availables are:\n",
-               "'All', 'Native', 'Cultivated', 'Naturalized', or NA"))}
+               "'All', 'Native', 'Cultivated', or 'Naturalized'"))}
   if(TaxonomicStatus != "All" &
-     !(TaxonomicStatus %in% unique(data$taxonomicStatus))) {
-    stop(paste("Origin not valid. The options availables are:\n",
-               "'All', 'Accepted', 'Synonym', or NA"))}
+     !(TaxonomicStatus %in% c('All', 'Accepted', 'Synonym'))) {
+    stop(paste("TaxonomicStatus not valid. The options availables are:\n",
+               "'All', 'Accepted', or 'Synonym'"))}
   if(NomenclaturalStatus != "All" &
-     !(NomenclaturalStatus %in% unique(data$nomenclaturalStatus))) {
+     !(NomenclaturalStatus %in% c("Correct", "Legitimate_but_incorrect",
+                                  "Correct_name_by_conservation",
+                                  "Orthographical_variant",
+                                  "Illegitimate", "Not_effectively_published",
+                                  "Not_validly_published",
+                                  "Uncertain_Application", "Rejected",
+                                  "Misapplied"))) {
     stop(paste("NomenclaturalStatus not valid.\n",
                "Check the available NomenclaturalStatus with the function\n",
                "get_attributes()")) }
@@ -330,7 +337,7 @@ select_species <- function(data,
     newHabitat2 <- unique(unlist(strsplit(newHabitat, split = ";")))
     any_diff <- setdiff(newHabitat2 , all_hab)
     if(length(any_diff) > 0) {
-      warning(paste("The following life forms are not valid:\n",
+      warning(paste("The following habitats are not valid:\n",
                     paste(any_diff, collapse = ", ")))
     }
   }
@@ -371,7 +378,7 @@ select_species <- function(data,
     newBiome2 <- unique(unlist(strsplit(newBiome, split = ";")))
     any_diff <- setdiff(newBiome2 , all_biome)
     if(length(any_diff) > 0) {
-      warning(paste("The following life forms are not valid:\n",
+      warning(paste("The following Biomes are not valid:\n",
                     paste(any_diff, collapse = ", ")))
     }
   }
