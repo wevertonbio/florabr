@@ -395,9 +395,15 @@ merge_data <- function(path_data, version_data, solve_incongruences = TRUE,
   ignore_rank <- c("ORDEM", "FAMILIA", "GENERO", "CLASSE", "TRIBO",
                    "SUB_FAMILIA", "DIVISAO")
   df_final3$species[which(!(df_final3$taxonRank %in% ignore_rank))] <-
-    gsub("^((\\w+\\W+){1}\\w+).*$","\\1",
+    gsub("^([[:alnum:]]+[-[:alnum:]]*(?:[[:space:]]+[[:alnum:]]+[-[:alnum:]]*)?)\\b.*",
+         "\\1",
          df_final3$scientificName[which(!(df_final3$taxonRank %in%
                                             ignore_rank))])
+
+  # df_final3$species[which(!(df_final3$taxonRank %in% ignore_rank))] <-
+  #   gsub("^((\\w+\\W+){1}\\w+).*$","\\1",
+  #        df_final3$scientificName[which(!(df_final3$taxonRank %in%
+  #                                           ignore_rank))])
 
   #Accepted name when is synonymn
   df_final3$acceptedName <- NA
