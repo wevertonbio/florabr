@@ -24,3 +24,7 @@ spp_new <- get_binomial(species_names = spp)
 spp_new
 
 }
+\references{
+Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+http://floradobrasil.jbrj.gov.br/
+}
