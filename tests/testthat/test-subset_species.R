@@ -77,3 +77,4 @@ test_that("subset_specied does not work", {
                               include_variety = FALSE,
                               Kingdom = "Animal"))
 })
+

@@ -1,7 +1,8 @@
 test_that("get florabr works", {
+  skip_on_cran() #Skip test on CRAN
   #####It works when we set a folder that already exists####
   my_dir <- file.path(file.path(tempdir(), "florabr"))
-  dir.create(my_dir)
+  dir.create(my_dir, showWarnings = FALSE)
   #Download, merge and save data
   get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE,
               verbose = TRUE, solve_incongruences = FALSE)

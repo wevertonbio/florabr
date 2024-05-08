@@ -1,4 +1,5 @@
 test_that("Check_version works", {
+  skip_on_cran() #Skip test on CRAN
   #####It works when we set a folder that already exists####
   my_dir <- file.path(file.path(tempdir(), "florabr"))
   dir.create(my_dir)

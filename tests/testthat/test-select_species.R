@@ -6,85 +6,85 @@ test_that("select_species works", {
   am_af_only <- select_species(data = bf_data,
                                include_subspecies = FALSE,
                                include_variety = FALSE,
-                               Kingdom = "Plantae",
-                               Group = "All", Subgroup = "All",
-                               Family = "All", Genus = "All",
-                               LifeForm = "Tree", filter_LifeForm = "only",
-                               Habitat = "All", filter_Habitat = "in",
-                               Biome = c("Atlantic_Forest","Amazon"),
-                               filter_Biome = "only", #ONLY
-                               State = "All", filter_State = "and",
-                               VegetationType = "All",
-                               filter_Vegetation = "in",
-                               Endemism = "Endemic", Origin = "Native",
-                               TaxonomicStatus = "All",
-                               NomenclaturalStatus = "All")
+                               kingdom = "Plantae",
+                               group = "All", subgroup = "All",
+                               family = "All", genus = "All",
+                               lifeForm = "Tree", filter_lifeForm = "only",
+                               habitat = "All", filter_habitat = "in",
+                               biome = c("Atlantic_Forest","Amazon"),
+                               filter_biome = "only", #ONLY
+                               state = "All", filter_state = "and",
+                               vegetation = "All",
+                               filter_vegetation = "in",
+                               endemism = "Endemic", origin = "Native",
+                               taxonomicStatus = "All",
+                               nomenclaturalStatus = "All")
   expect_equal(class(am_af_only), "data.frame")
   expect_equal(ncol(am_af_only), ncol(bf_data))
-  expect_equal(unique(am_af_only$Endemism), "Endemic")
-  expect_equal(unique(am_af_only$Origin), "Native")
+  expect_equal(unique(am_af_only$endemism), "Endemic")
+  expect_equal(unique(am_af_only$origin), "Native")
   expect_equal(unique(am_af_only$lifeForm), "Tree")
-  expect_equal(unique(am_af_only$Biome), "Amazon;Atlantic_Forest")
+  expect_equal(unique(am_af_only$biome), "Amazon;Atlantic_Forest")
 
   #Now, in Atlantic Forest or Amazon (or both)
   am_af_in <- select_species(data = bf_data,
                              include_subspecies = FALSE,
                              include_variety = FALSE,
-                             Kingdom = "Plantae",
-                             Group = "All", Subgroup = "All",
-                             Family = "All", Genus = "All",
-                             LifeForm = "Tree", filter_LifeForm = "only",
-                             Habitat = "All", filter_Habitat = "in",
-                             Biome = c("Atlantic_Forest","Amazon"),
-                             filter_Biome = "in", #IN
-                             State = "All", filter_State = "and",
-                             VegetationType = "All",
-                             filter_Vegetation = "in",
-                             Endemism = "Endemic", Origin = "Native",
-                             TaxonomicStatus = "All",
-                             NomenclaturalStatus = "All")
+                             kingdom = "Plantae",
+                             group = "All", subgroup = "All",
+                             family = "All", genus = "All",
+                             lifeForm = "Tree", filter_lifeForm = "only",
+                             habitat = "All", filter_habitat = "in",
+                             biome = c("Atlantic_Forest","Amazon"),
+                             filter_biome = "in", #IN
+                             state = "All", filter_state = "and",
+                             vegetation = "All",
+                             filter_vegetation = "in",
+                             endemism = "Endemic", origin = "Native",
+                             taxonomicStatus = "All",
+                             nomenclaturalStatus = "All")
   expect_equal(class(am_af_in), "data.frame")
   expect_equal(ncol(am_af_in), ncol(bf_data))
-  expect_equal(unique(am_af_in$Endemism), "Endemic")
-  expect_equal(unique(am_af_in$Origin), "Native")
-  expect_equal(unique(am_af_in$Origin), "Native")
-  expect_in("Amazon", unlist(strsplit(am_af_in$Biome, ";")))
-  expect_in("Atlantic_Forest", unlist(strsplit(am_af_in$Biome, ";")))
+  expect_equal(unique(am_af_in$endemism), "Endemic")
+  expect_equal(unique(am_af_in$origin), "Native")
+  expect_equal(unique(am_af_in$origin), "Native")
+  expect_in("Amazon", unlist(strsplit(am_af_in$biome, ";")))
+  expect_in("Atlantic_Forest", unlist(strsplit(am_af_in$biome, ";")))
 
   ####It does not work when we don't set data####
   expect_error(select_species(include_subspecies = FALSE,
                               include_variety = FALSE,
-                              Kingdom = "Plantae",
-                              Group = "All", Subgroup = "All",
-                              Family = "All", Genus = "All",
-                              LifeForm = "Tree", filter_LifeForm = "only",
-                              Habitat = "All", filter_Habitat = "in",
-                              Biome = c("Atlantic_Forest","Amazon"),
-                              filter_Biome = "in", #IN
-                              State = "All", filter_State = "and",
-                              VegetationType = "All",
-                              filter_Vegetation = "in",
-                              Endemism = "Endemic", Origin = "Native",
-                              TaxonomicStatus = "All",
-                              NomenclaturalStatus = "All"))
+                              kingdom = "Plantae",
+                              group = "All", subgroup = "All",
+                              family = "All", genus = "All",
+                              lifeForm = "Tree", filter_lifeForm = "only",
+                              habitat = "All", filter_habitat = "in",
+                              biome = c("Atlantic_Forest","Amazon"),
+                              filter_biome = "in", #IN
+                              state = "All", filter_state = "and",
+                              vegetation = "All",
+                              filter_vegetation = "in",
+                              endemism = "Endemic", origin = "Native",
+                              taxonomicStatus = "All",
+                              nomenclaturalStatus = "All"))
 
   ####It does not work when we set an invalid kindom ####
   expect_error(select_species(data = bf_data,
                               include_subspecies = FALSE,
                               include_variety = FALSE,
-                              Kingdom = "Animal", #Invalid kingdom
-                              Group = "All", Subgroup = "All",
-                              Family = "All", Genus = "All",
-                              LifeForm = "Tree", filter_LifeForm = "only",
-                              Habitat = "All", filter_Habitat = "in",
-                              Biome = c("Atlantic_Forest","Amazon"),
-                              filter_Biome = "in", #IN
-                              State = "All", filter_State = "and",
-                              VegetationType = "All",
-                              filter_Vegetation = "in",
-                              Endemism = "Endemic", Origin = "Native",
-                              TaxonomicStatus = "All",
-                              NomenclaturalStatus = "All"))
+                              kingdom = "Animal", #Invalid kingdom
+                              group = "All", subgroup = "All",
+                              family = "All", genus = "All",
+                              lifeForm = "Tree", filter_lifeForm = "only",
+                              habitat = "All", filter_habitat = "in",
+                              biome = c("Atlantic_Forest","Amazon"),
+                              filter_biome = "in", #IN
+                              state = "All", filter_state = "and",
+                              vegetation = "All",
+                              filter_vegetation = "in",
+                              endemism = "Endemic", origin = "Native",
+                              taxonomicStatus = "All",
+                              nomenclaturalStatus = "All"))
 })
 
 ####Test for more errors####
@@ -96,290 +96,290 @@ test_that("select_species does not work when", {
   expect_error(select_species(data = TRUE, #ERROR
                               include_subspecies = FALSE,
                               include_variety = FALSE,
-                              Kingdom = "Plantae",
-                              Group = "All", Subgroup = "All",
-                              Family = "All", Genus = "All",
-                              LifeForm = "Tree", filter_LifeForm = "only",
-                              Habitat = "All", filter_Habitat = "in",
-                              Biome = c("Atlantic_Forest","Amazon"),
-                              filter_Biome = "in", #IN
-                              State = "All", filter_State = "and",
-                              VegetationType = "All",
-                              filter_Vegetation = "in",
-                              Endemism = "Endemic", Origin = "Native",
-                              TaxonomicStatus = "All",
-                              NomenclaturalStatus = "All"))
+                              kingdom = "Plantae",
+                              group = "All", subgroup = "All",
+                              family = "All", genus = "All",
+                              lifeForm = "Tree", filter_lifeForm = "only",
+                              habitat = "All", filter_habitat = "in",
+                              biome = c("Atlantic_Forest","Amazon"),
+                              filter_biome = "in", #IN
+                              state = "All", filter_state = "and",
+                              vegetation = "All",
+                              filter_vegetation = "in",
+                              endemism = "Endemic", origin = "Native",
+                              taxonomicStatus = "All",
+                              nomenclaturalStatus = "All"))
 
   #Include subspescies and variety is not logical
   expect_error(select_species(data = bf_data,
                               include_subspecies = 3, #ERROR
                               include_variety = FALSE,
-                              Kingdom = "Plantae",
-                              Group = "All", Subgroup = "All",
-                              Family = "All", Genus = "All",
-                              LifeForm = "Tree", filter_LifeForm = "only",
-                              Habitat = "All", filter_Habitat = "in",
-                              Biome = c("Atlantic_Forest","Amazon"),
-                              filter_Biome = "in", #IN
-                              State = "All", filter_State = "and",
-                              VegetationType = "All",
-                              filter_Vegetation = "in",
-                              Endemism = "Endemic", Origin = "Native",
-                              TaxonomicStatus = "All",
-                              NomenclaturalStatus = "All"))
+                              kingdom = "Plantae",
+                              group = "All", subgroup = "All",
+                              family = "All", genus = "All",
+                              lifeForm = "Tree", filter_lifeForm = "only",
+                              habitat = "All", filter_habitat = "in",
+                              biome = c("Atlantic_Forest","Amazon"),
+                              filter_biome = "in", #IN
+                              state = "All", filter_state = "and",
+                              vegetation = "All",
+                              filter_vegetation = "in",
+                              endemism = "Endemic", origin = "Native",
+                              taxonomicStatus = "All",
+                              nomenclaturalStatus = "All"))
   expect_error(select_species(data = bf_data,
                               include_subspecies = TRUE,
                               include_variety = 3, #ERROR
-                              Kingdom = "Plantae",
-                              Group = "All", Subgroup = "All",
-                              Family = "All", Genus = "All",
-                              LifeForm = "Tree", filter_LifeForm = "only",
-                              Habitat = "All", filter_Habitat = "in",
-                              Biome = c("Atlantic_Forest","Amazon"),
-                              filter_Biome = "in", #IN
-                              State = "All", filter_State = "and",
-                              VegetationType = "All",
-                              filter_Vegetation = "in",
-                              Endemism = "Endemic", Origin = "Native",
-                              TaxonomicStatus = "All",
-                              NomenclaturalStatus = "All"))
+                              kingdom = "Plantae",
+                              group = "All", subgroup = "All",
+                              family = "All", genus = "All",
+                              lifeForm = "Tree", filter_lifeForm = "only",
+                              habitat = "All", filter_habitat = "in",
+                              biome = c("Atlantic_Forest","Amazon"),
+                              filter_biome = "in", #IN
+                              state = "All", filter_state = "and",
+                              vegetation = "All",
+                              filter_vegetation = "in",
+                              endemism = "Endemic", origin = "Native",
+                              taxonomicStatus = "All",
+                              nomenclaturalStatus = "All"))
 
   #Use invalid filter type
   expect_error(select_species(data = bf_data,
                               include_subspecies = FALSE,
                               include_variety = FALSE,
-                              Kingdom = "Plantae",
-                              Group = "All", Subgroup = "All",
-                              Family = "All", Genus = "All",
-                              LifeForm = "Tree",
-                              filter_LifeForm = "Tree", #ERROR
-                              Habitat = "All", filter_Habitat = "in",
-                              Biome = c("Atlantic_Forest","Amazon"),
-                              filter_Biome = "in", #IN
-                              State = "All", filter_State = "and",
-                              VegetationType = "All",
-                              filter_Vegetation = "in",
-                              Endemism = "Endemic", Origin = "Native",
-                              TaxonomicStatus = "All",
-                              NomenclaturalStatus = "All"))
+                              kingdom = "Plantae",
+                              group = "All", subgroup = "All",
+                              family = "All", genus = "All",
+                              lifeForm = "Tree",
+                              filter_lifeForm = "Tree", #ERROR
+                              habitat = "All", filter_habitat = "in",
+                              biome = c("Atlantic_Forest","Amazon"),
+                              filter_biome = "in", #IN
+                              state = "All", filter_state = "and",
+                              vegetation = "All",
+                              filter_vegetation = "in",
+                              endemism = "Endemic", origin = "Native",
+                              taxonomicStatus = "All",
+                              nomenclaturalStatus = "All"))
   expect_error(select_species(data = bf_data,
                               include_subspecies = FALSE,
                               include_variety = FALSE,
-                              Kingdom = "Plantae",
-                              Group = "All", Subgroup = "All",
-                              Family = "All", Genus = "All",
-                              LifeForm = "Tree",
-                              filter_LifeForm = "in",
-                              Habitat = "All",
-                              filter_Habitat = "All", #ERROR
-                              Biome = c("Atlantic_Forest","Amazon"),
-                              filter_Biome = "in", #IN
-                              State = "All", filter_State = "and",
-                              VegetationType = "All",
-                              filter_Vegetation = "in",
-                              Endemism = "Endemic", Origin = "Native",
-                              TaxonomicStatus = "All",
-                              NomenclaturalStatus = "All"))
+                              kingdom = "Plantae",
+                              group = "All", subgroup = "All",
+                              family = "All", genus = "All",
+                              lifeForm = "Tree",
+                              filter_lifeForm = "in",
+                              habitat = "All",
+                              filter_habitat = "All", #ERROR
+                              biome = c("Atlantic_Forest","Amazon"),
+                              filter_biome = "in", #IN
+                              state = "All", filter_state = "and",
+                              vegetation = "All",
+                              filter_vegetation = "in",
+                              endemism = "Endemic", origin = "Native",
+                              taxonomicStatus = "All",
+                              nomenclaturalStatus = "All"))
   expect_error(select_species(data = bf_data,
                               include_subspecies = FALSE,
                               include_variety = FALSE,
-                              Kingdom = "Plantae",
-                              Group = "All", Subgroup = "All",
-                              Family = "All", Genus = "All",
-                              LifeForm = "Tree",
-                              filter_LifeForm = "in",
-                              Habitat = "All",
-                              filter_Habitat = "in",
-                              Biome = c("Atlantic_Forest","Amazon"),
-                              filter_Biome = "All", #ERROR
-                              State = "All", filter_State = "and",
-                              VegetationType = "All",
-                              filter_Vegetation = "in",
-                              Endemism = "Endemic", Origin = "Native",
-                              TaxonomicStatus = "All",
-                              NomenclaturalStatus = "All"))
+                              kingdom = "Plantae",
+                              group = "All", subgroup = "All",
+                              family = "All", genus = "All",
+                              lifeForm = "Tree",
+                              filter_lifeForm = "in",
+                              habitat = "All",
+                              filter_habitat = "in",
+                              biome = c("Atlantic_Forest","Amazon"),
+                              filter_biome = "All", #ERROR
+                              state = "All", filter_state = "and",
+                              vegetation = "All",
+                              filter_vegetation = "in",
+                              endemism = "Endemic", origin = "Native",
+                              taxonomicStatus = "All",
+                              nomenclaturalStatus = "All"))
   expect_error(select_species(data = bf_data,
                               include_subspecies = FALSE,
                               include_variety = FALSE,
-                              Kingdom = "Plantae",
-                              Group = "All", Subgroup = "All",
-                              Family = "All", Genus = "All",
-                              LifeForm = "Tree",
-                              filter_LifeForm = "in",
-                              Habitat = "All",
-                              filter_Habitat = "in",
-                              Biome = c("Atlantic_Forest","Amazon"),
-                              filter_Biome = "in",
-                              State = "All", filter_State = "and",
-                              VegetationType = "All",
-                              filter_Vegetation = "All", #ERROR
-                              Endemism = "Endemic", Origin = "Native",
-                              TaxonomicStatus = "All",
-                              NomenclaturalStatus = "All"))
+                              kingdom = "Plantae",
+                              group = "All", subgroup = "All",
+                              family = "All", genus = "All",
+                              lifeForm = "Tree",
+                              filter_lifeForm = "in",
+                              habitat = "All",
+                              filter_habitat = "in",
+                              biome = c("Atlantic_Forest","Amazon"),
+                              filter_biome = "in",
+                              state = "All", filter_state = "and",
+                              vegetation = "All",
+                              filter_vegetation = "All", #ERROR
+                              endemism = "Endemic", origin = "Native",
+                              taxonomicStatus = "All",
+                              nomenclaturalStatus = "All"))
   #Invalid attributes
   expect_error(select_species(data = bf_data,
                               include_subspecies = FALSE,
                               include_variety = FALSE,
-                              Kingdom = "Plantae",
-                              Group = "Plants", #ERROR
-                              Subgroup = "All",
-                              Family = "All", Genus = "All",
-                              LifeForm = "Tree",
-                              filter_LifeForm = "in",
-                              Habitat = "All",
-                              filter_Habitat = "in",
-                              Biome = c("Atlantic_Forest","Amazon"),
-                              filter_Biome = "in",
-                              State = "All", filter_State = "and",
-                              VegetationType = "All",
-                              filter_Vegetation = "in",
-                              Endemism = "Endemic", Origin = "Native",
-                              TaxonomicStatus = "All",
-                              NomenclaturalStatus = "All"))
+                              kingdom = "Plantae",
+                              group = "Plants", #ERROR
+                              subgroup = "All",
+                              family = "All", genus = "All",
+                              lifeForm = "Tree",
+                              filter_lifeForm = "in",
+                              habitat = "All",
+                              filter_habitat = "in",
+                              biome = c("Atlantic_Forest","Amazon"),
+                              filter_biome = "in",
+                              state = "All", filter_state = "and",
+                              vegetation = "All",
+                              filter_vegetation = "in",
+                              endemism = "Endemic", origin = "Native",
+                              taxonomicStatus = "All",
+                              nomenclaturalStatus = "All"))
   expect_error(select_species(data = bf_data,
                               include_subspecies = FALSE,
                               include_variety = FALSE,
-                              Kingdom = "Plantae",
-                              Group = "All",
-                              Subgroup = "Any", #ERROR
-                              Family = "All", Genus = "All",
-                              LifeForm = "Tree",
-                              filter_LifeForm = "in",
-                              Habitat = "All",
-                              filter_Habitat = "in",
-                              Biome = c("Atlantic_Forest","Amazon"),
-                              filter_Biome = "in",
-                              State = "All", filter_State = "and",
-                              VegetationType = "All",
-                              filter_Vegetation = "in",
-                              Endemism = "Endemic", Origin = "Native",
-                              TaxonomicStatus = "All",
-                              NomenclaturalStatus = "All"))
+                              kingdom = "Plantae",
+                              group = "All",
+                              subgroup = "Any", #ERROR
+                              family = "All", genus = "All",
+                              lifeForm = "Tree",
+                              filter_lifeForm = "in",
+                              habitat = "All",
+                              filter_habitat = "in",
+                              biome = c("Atlantic_Forest","Amazon"),
+                              filter_biome = "in",
+                              state = "All", filter_state = "and",
+                              vegetation = "All",
+                              filter_vegetation = "in",
+                              endemism = "Endemic", origin = "Native",
+                              taxonomicStatus = "All",
+                              nomenclaturalStatus = "All"))
   expect_error(select_species(data = bf_data,
                               include_subspecies = FALSE,
                               include_variety = FALSE,
-                              Kingdom = "Plantae",
-                              Group = "All",
-                              Subgroup = "All",
-                              Family = "Felidae", #ERROR
-                              Genus = "All",
-                              LifeForm = "Tree",
-                              filter_LifeForm = "in",
-                              Habitat = "All",
-                              filter_Habitat = "in",
-                              Biome = c("Atlantic_Forest","Amazon"),
-                              filter_Biome = "in",
-                              State = "All", filter_State = "and",
-                              VegetationType = "All",
-                              filter_Vegetation = "in",
-                              Endemism = "Endemic", Origin = "Native",
-                              TaxonomicStatus = "All",
-                              NomenclaturalStatus = "All"))
+                              kingdom = "Plantae",
+                              group = "All",
+                              subgroup = "All",
+                              family = "Felidae", #ERROR
+                              genus = "All",
+                              lifeForm = "Tree",
+                              filter_lifeForm = "in",
+                              habitat = "All",
+                              filter_habitat = "in",
+                              biome = c("Atlantic_Forest","Amazon"),
+                              filter_biome = "in",
+                              state = "All", filter_state = "and",
+                              vegetation = "All",
+                              filter_vegetation = "in",
+                              endemism = "Endemic", origin = "Native",
+                              taxonomicStatus = "All",
+                              nomenclaturalStatus = "All"))
   expect_error(select_species(data = bf_data,
                               include_subspecies = FALSE,
                               include_variety = FALSE,
-                              Kingdom = "Plantae",
-                              Group = "All",
-                              Subgroup = "All",
-                              Family = "All",
-                              Genus = "Felis", #ERROR
-                              LifeForm = "Tree",
-                              filter_LifeForm = "in",
-                              Habitat = "All",
-                              filter_Habitat = "in",
-                              Biome = c("Atlantic_Forest","Amazon"),
-                              filter_Biome = "in",
-                              State = "All", filter_State = "and",
-                              VegetationType = "All",
-                              filter_Vegetation = "in",
-                              Endemism = "Endemic", Origin = "Native",
-                              TaxonomicStatus = "All",
-                              NomenclaturalStatus = "All"))
+                              kingdom = "Plantae",
+                              group = "All",
+                              subgroup = "All",
+                              family = "All",
+                              genus = "Felis", #ERROR
+                              lifeForm = "Tree",
+                              filter_lifeForm = "in",
+                              habitat = "All",
+                              filter_habitat = "in",
+                              biome = c("Atlantic_Forest","Amazon"),
+                              filter_biome = "in",
+                              state = "All", filter_state = "and",
+                              vegetation = "All",
+                              filter_vegetation = "in",
+                              endemism = "Endemic", origin = "Native",
+                              taxonomicStatus = "All",
+                              nomenclaturalStatus = "All"))
 
   expect_error(select_species(data = bf_data,
                               include_subspecies = FALSE,
                               include_variety = FALSE,
-                              Kingdom = "Plantae",
-                              Group = "All",
-                              Subgroup = "All",
-                              Family = "All",
-                              Genus = "All",
-                              LifeForm = "Tree",
-                              filter_LifeForm = "in",
-                              Habitat = "All",
-                              filter_Habitat = "in",
-                              Biome = c("Atlantic_Forest","Amazon"),
-                              filter_Biome = "in",
-                              State = "All", filter_State = "and",
-                              VegetationType = "All",
-                              filter_Vegetation = "in",
-                              Endemism = "Native", #ERROR
-                              Origin = "Native",
-                              TaxonomicStatus = "All",
-                              NomenclaturalStatus = "All"))
+                              kingdom = "Plantae",
+                              group = "All",
+                              subgroup = "All",
+                              family = "All",
+                              genus = "All",
+                              lifeForm = "Tree",
+                              filter_lifeForm = "in",
+                              habitat = "All",
+                              filter_habitat = "in",
+                              biome = c("Atlantic_Forest","Amazon"),
+                              filter_biome = "in",
+                              state = "All", filter_state = "and",
+                              vegetation = "All",
+                              filter_vegetation = "in",
+                              endemism = "Native", #ERROR
+                              origin = "Native",
+                              taxonomicStatus = "All",
+                              nomenclaturalStatus = "All"))
   expect_error(select_species(data = bf_data,
                               include_subspecies = FALSE,
                               include_variety = FALSE,
-                              Kingdom = "Plantae",
-                              Group = "All",
-                              Subgroup = "All",
-                              Family = "All",
-                              Genus = "All",
-                              LifeForm = "Tree",
-                              filter_LifeForm = "in",
-                              Habitat = "All",
-                              filter_Habitat = "in",
-                              Biome = c("Atlantic_Forest","Amazon"),
-                              filter_Biome = "in",
-                              State = "All", filter_State = "and",
-                              VegetationType = "All",
-                              filter_Vegetation = "in",
-                              Endemism = "All",
-                              Origin = "Endemic", #ERROR
-                              TaxonomicStatus = "All",
-                              NomenclaturalStatus = "All"))
+                              kingdom = "Plantae",
+                              group = "All",
+                              subgroup = "All",
+                              family = "All",
+                              genus = "All",
+                              lifeForm = "Tree",
+                              filter_lifeForm = "in",
+                              habitat = "All",
+                              filter_habitat = "in",
+                              biome = c("Atlantic_Forest","Amazon"),
+                              filter_biome = "in",
+                              state = "All", filter_state = "and",
+                              vegetation = "All",
+                              filter_vegetation = "in",
+                              endemism = "All",
+                              origin = "Endemic", #ERROR
+                              taxonomicStatus = "All",
+                              nomenclaturalStatus = "All"))
   expect_error(select_species(data = bf_data,
                               include_subspecies = FALSE,
                               include_variety = FALSE,
-                              Kingdom = "Plantae",
-                              Group = "All",
-                              Subgroup = "All",
-                              Family = "All",
-                              Genus = "All",
-                              LifeForm = "Tree",
-                              filter_LifeForm = "in",
-                              Habitat = "All",
-                              filter_Habitat = "in",
-                              Biome = c("Atlantic_Forest","Amazon"),
-                              filter_Biome = "in",
-                              State = "All", filter_State = "and",
-                              VegetationType = "All",
-                              filter_Vegetation = "in",
-                              Endemism = "All",
-                              Origin = "Native",
-                              TaxonomicStatus = "any", #ERROR
-                              NomenclaturalStatus = "All"))
+                              kingdom = "Plantae",
+                              group = "All",
+                              subgroup = "All",
+                              family = "All",
+                              genus = "All",
+                              lifeForm = "Tree",
+                              filter_lifeForm = "in",
+                              habitat = "All",
+                              filter_habitat = "in",
+                              biome = c("Atlantic_Forest","Amazon"),
+                              filter_biome = "in",
+                              state = "All", filter_state = "and",
+                              vegetation = "All",
+                              filter_vegetation = "in",
+                              endemism = "All",
+                              origin = "Native",
+                              taxonomicStatus = "any", #ERROR
+                              nomenclaturalStatus = "All"))
   expect_error(select_species(data = bf_data,
                               include_subspecies = FALSE,
                               include_variety = FALSE,
-                              Kingdom = "Plantae",
-                              Group = "All",
-                              Subgroup = "All",
-                              Family = "All",
-                              Genus = "All",
-                              LifeForm = "Tree",
-                              filter_LifeForm = "in",
-                              Habitat = "All",
-                              filter_Habitat = "in",
-                              Biome = c("Atlantic_Forest","Amazon"),
-                              filter_Biome = "in",
-                              State = "All", filter_State = "and",
-                              VegetationType = "All",
-                              filter_Vegetation = "in",
-                              Endemism = "All",
-                              Origin = "Native",
-                              TaxonomicStatus = "All",
-                              NomenclaturalStatus = "Any")) #ERROR
+                              kingdom = "Plantae",
+                              group = "All",
+                              subgroup = "All",
+                              family = "All",
+                              genus = "All",
+                              lifeForm = "Tree",
+                              filter_lifeForm = "in",
+                              habitat = "All",
+                              filter_habitat = "in",
+                              biome = c("Atlantic_Forest","Amazon"),
+                              filter_biome = "in",
+                              state = "All", filter_state = "and",
+                              vegetation = "All",
+                              filter_vegetation = "in",
+                              endemism = "All",
+                              origin = "Native",
+                              taxonomicStatus = "All",
+                              nomenclaturalStatus = "Any")) #ERROR
 
 
 })
@@ -396,86 +396,86 @@ test_that("select_species with differente filters", {
   expect_no_error(select_species(data = bf_data, include_subspecies = TRUE,
                                  include_variety = TRUE))
   expect_no_error(select_species(data = bf_data,
-                                 Group = "Bryophytes", Subgroup = "Mosses"))
+                                 group = "Bryophytes", subgroup = "Mosses"))
   expect_no_error(select_species(data = bf_data,
-                                 Family = "Acanthaceae", LifeForm = "All"))
+                                 family = "Acanthaceae", lifeForm = "All"))
   expect_warning(select_species(data = bf_data,
-                 Family = "All", LifeForm = "Aquatic", TaxonomicStatus = "All"))
+                 family = "All", lifeForm = "Aquatic", taxonomicStatus = "All"))
   expect_no_error(select_species(data = bf_data,
-                                 LifeForm = "Tree", filter_LifeForm = "in"))
+                                 lifeForm = "Tree", filter_lifeForm = "in"))
   expect_no_error(select_species(data = bf_data,
-                                 LifeForm = "Tree", filter_LifeForm = "not_in"))
+                                 lifeForm = "Tree", filter_lifeForm = "not_in"))
   expect_no_error(select_species(data = bf_data,
-                                 LifeForm = c("Tree", "Shrub"),
-                                 filter_LifeForm = "and"))
+                                 lifeForm = c("Tree", "Shrub"),
+                                 filter_lifeForm = "and"))
   expect_no_error(select_species(data = bf_data,
-                                 Habitat = "Terrestrial",
-                                 filter_Habitat = "in"))
+                                 habitat = "Terrestrial",
+                                 filter_habitat = "in"))
   expect_warning(expect_warning(select_species(data = bf_data,
-                                Habitat = "Tree",
-                                filter_Habitat = "in",
-                                TaxonomicStatus = "All")))
+                                habitat = "Tree",
+                                filter_habitat = "in",
+                                taxonomicStatus = "All")))
   expect_no_error(select_species(data = bf_data,
-                                 Habitat = "Terrestrial",
-                                 filter_Habitat = "only"))
+                                 habitat = "Terrestrial",
+                                 filter_habitat = "only"))
   expect_no_error(select_species(data = bf_data,
-                                 Habitat = "Terrestrial",
-                                 filter_Habitat = "not_in"))
-  expect_no_error(select_species(data = bf_data, Biome = "All",
-                                 Habitat = c("Rupicolous", "Terrestrial"),
-                                 filter_Habitat = "and"))
-  expect_warning(select_species(data = bf_data, Biome = "Brazil"))
-  expect_no_error(select_species(data = bf_data, Biome = "Amazon",
-                                 filter_Biome = "not_in"))
-  expect_no_error(select_species(data = bf_data, Biome = "Amazon",
-                                 filter_Biome = "only"))
-  expect_no_error(select_species(data = bf_data, Biome = c("Amazon", "Cerrado"),
-                                 filter_Biome = "and"))
+                                 habitat = "Terrestrial",
+                                 filter_habitat = "not_in"))
+  expect_no_error(select_species(data = bf_data, biome = "All",
+                                 habitat = c("Rupicolous", "Terrestrial"),
+                                 filter_habitat = "and"))
+  expect_warning(select_species(data = bf_data, biome = "Brazil"))
+  expect_no_error(select_species(data = bf_data, biome = "Amazon",
+                                 filter_biome = "not_in"))
+  expect_no_error(select_species(data = bf_data, biome = "Amazon",
+                                 filter_biome = "only"))
+  expect_no_error(select_species(data = bf_data, biome = c("Amazon", "Cerrado"),
+                                 filter_biome = "and"))
   expect_warning(expect_warning(select_species(data = bf_data,
-                                               TaxonomicStatus = "All",
-                                               State = "Rio")))
-  expect_no_error(select_species(data = bf_data, State = "PR",
-                                 filter_Biome = "in"))
-  expect_no_error(select_species(data = bf_data, State = "PR",
-                                 filter_State = "only"))
-  expect_no_error(select_species(data = bf_data, State = "PR",
-                                 filter_State = "not_in"))
-  expect_no_error(select_species(data = bf_data, State = c("PR", "SP"),
-                                 filter_State = "and"))
+                                               taxonomicStatus = "All",
+                                               state = "Rio")))
+  expect_no_error(select_species(data = bf_data, state = "PR",
+                                 filter_biome = "in"))
+  expect_no_error(select_species(data = bf_data, state = "PR",
+                                 filter_state = "only"))
+  expect_no_error(select_species(data = bf_data, state = "PR",
+                                 filter_state = "not_in"))
+  expect_no_error(select_species(data = bf_data, state = c("PR", "SP"),
+                                 filter_state = "and"))
 
   expect_warning(select_species(data = bf_data,
-                                TaxonomicStatus = "All",
-                                VegetationType = "Amazon"))
-  expect_no_error(select_species(data = bf_data, VegetationType = "Grassland",
-                                 filter_Vegetation =  "in"))
-  expect_no_error(select_species(data = bf_data, VegetationType = "Grassland",
-                                 filter_Vegetation =  "only"))
-  expect_no_error(select_species(data = bf_data, VegetationType = "Grassland",
-                                 filter_Vegetation =  "not_in"))
+                                taxonomicStatus = "All",
+                                vegetation = "Amazon"))
+  expect_no_error(select_species(data = bf_data, vegetation = "Grassland",
+                                 filter_vegetation =  "in"))
+  expect_no_error(select_species(data = bf_data, vegetation = "Grassland",
+                                 filter_vegetation =  "only"))
+  expect_no_error(select_species(data = bf_data, vegetation = "Grassland",
+                                 filter_vegetation =  "not_in"))
   expect_no_error(select_species(data = bf_data,
-                                 VegetationType = c("Grassland", "Cerrado"),
-                                 filter_Vegetation =  "and", Endemism = "All",
-                                 Origin = "All"))
+                                 vegetation = c("Grassland", "Cerrado"),
+                                 filter_vegetation =  "and", endemism = "All",
+                                 origin = "All"))
   expect_warning(expect_warning(select_species(data = bf_data,
-                                 Group = "Bryophytes", Subgroup = "Mosses",
-                                filter_Biome = "in", Habitat = "Corticolous",
-                                TaxonomicStatus = "All",
-                                Genus = "Acroporium",
-                                Endemism = "Endemic")))
+                                 group = "Bryophytes", subgroup = "Mosses",
+                                filter_biome = "in", habitat = "Corticolous",
+                                taxonomicStatus = "All",
+                                genus = "Acroporium",
+                                endemism = "Endemic")))
   expect_warning(expect_warning(select_species(data = bf_data,
-                                               Group = "Bryophytes",
-                                               Subgroup = "Mosses",
-                                               filter_Biome = "in",
-                                               Habitat = "Corticolous",
-                                               TaxonomicStatus = "All",
-                                               Genus = "Acroporium",
-                                               Endemism = "All",
-                                               Origin = "Naturalized")))
+                                               group = "Bryophytes",
+                                               subgroup = "Mosses",
+                                               filter_biome = "in",
+                                               habitat = "Corticolous",
+                                               taxonomicStatus = "All",
+                                               genus = "Acroporium",
+                                               endemism = "All",
+                                               origin = "Naturalized")))
   expect_warning(expect_warning(select_species(data = bf_data,
-                                               Group = "Bryophytes",
-                                               Subgroup = "Mosses",
-                                               filter_Biome = "in",
-                                               Habitat = "Corticolous",
-                                               Genus = "Acroporium",
-                                               NomenclaturalStatus = "Rejected")))
+                                               group = "Bryophytes",
+                                               subgroup = "Mosses",
+                                               filter_biome = "in",
+                                               habitat = "Corticolous",
+                                               genus = "Acroporium",
+                                               nomenclaturalStatus = "Rejected")))
   })
