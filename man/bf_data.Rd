@@ -5,7 +5,7 @@
 \alias{bf_data}
 \title{Brazilian Flora 2020 database - Version 393.387}
 \format{
-A \code{data.frame} with 110250 rows and 18 variables:
+A \code{data.frame} with 45890 rows and 19 variables:
 \describe{
 \item{species}{Species names}
 \item{acceptedName}{Accepted name of the species (NA when the name in
@@ -42,7 +42,7 @@ bf_data
 }
 \description{
 A dataset containing a subset of the Brazilian Flora database (version
-393.387)
+393.399)
 
 @usage data(bf_data)
 }
