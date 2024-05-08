@@ -13,10 +13,10 @@
 #' Alternatively, specify an older version (e.g., data_version = "393.319").
 #' Default value is "latest".
 #' @param solve_incongruences Resolve inconsistencies between species and
-#' subspecies/varieties  information. When set to TRUE (default), species
+#' subspecies/varieties  information. When set to TRUE, species
 #' information is updated based on unique data from varieties and subspecies.
 #' For example, if a subspecies occurs in a certain biome, it implies that the
-#' species also occurs in that biome.
+#' species also occurs in that biome. Default = FALSE.
 #' @param overwrite (logical) If TRUE, data is overwritten. Default = TRUE.
 #' @param verbose (logical) Whether to display messages during function
 #' execution. Set to TRUE to enable display, or FALSE to run silently.
@@ -31,7 +31,7 @@
 #' directory. The data is saved in a format that allows easy loading using the
 #' \code{\link{load_florabr}} function for further analysis in R.
 #' @usage get_florabr(output_dir, data_version = "latest",
-#'                  solve_incongruences = TRUE, overwrite = TRUE,
+#'                  solve_incongruences = FALSE, overwrite = TRUE,
 #'                  verbose = TRUE)
 #' @export
 #'
@@ -51,10 +51,10 @@
 #' dir.create(my_dir)
 #' #Download, merge and save data
 #' get_florabr(output_dir = my_dir, data_version = "latest",
-#'             solve_incongruences = TRUE, overwrite = TRUE, verbose = TRUE)
+#'             solve_incongruences = FALSE, overwrite = TRUE, verbose = TRUE)
 #' }
 get_florabr <- function(output_dir, data_version = "latest",
-                        solve_incongruences = TRUE,
+                        solve_incongruences = FALSE,
                         overwrite = TRUE,
                         verbose = TRUE) {
   #Set folder
@@ -87,7 +87,7 @@ get_florabr <- function(output_dir, data_version = "latest",
 
   #Print message
   if(verbose) {
-  message("Data will be saved in", path_data, "\n") }
+  message("Data will be saved in ", path_data, "\n") }
 
 
   if(data_version != "latest") {
@@ -114,7 +114,7 @@ get_florabr <- function(output_dir, data_version = "latest",
 
   #Print message
   if(!is.null(version_data) & verbose) {
-      message("Downloading version:", version_data, "\n")
+      message("Downloading version: ", version_data, "\n")
 
 
   #Download data
@@ -138,7 +138,7 @@ get_florabr <- function(output_dir, data_version = "latest",
 
   #Print final message
   if(verbose){
-  message("Data downloaded and merged successfully. Final data saved in",
+  message("Data downloaded and merged successfully. Final data saved in ",
               file.path(path_data, version_data, "CompleteBrazilianFlora.rds"))
   }
 
