@@ -6,16 +6,16 @@
 \usage{
 select_species(data,
                       include_subspecies = FALSE, include_variety = FALSE,
-                      Kingdom = "Plantae", Group = "All", Subgroup = "All",
-                      Family = "All", Genus = "All",
-                      LifeForm = "All", filter_LifeForm = "in",
-                      Habitat = "All", filter_Habitat = "in",
-                      Biome = "All", filter_Biome = "in",
-                      State = "All", filter_State = "in",
-                      VegetationType = "All", filter_Vegetation = "in",
-                      Endemism = "All", Origin = "All",
-                      TaxonomicStatus = "Accepted",
-                      NomenclaturalStatus = "All")
+                      kingdom = "Plantae", group = "All", subgroup = "All",
+                      family = "All", genus = "All",
+                      lifeForm = "All", filter_lifeForm = "in",
+                      habitat = "All", filter_habitat = "in",
+                      biome = "All", filter_biome = "in",
+                      state = "All", filter_state = "in",
+                      vegetation = "All", filter_vegetation = "in",
+                      endemism = "All", origin = "All",
+                      taxonomicStatus = "Accepted",
+                      nomenclaturalStatus = "All")
 }
 \arguments{
 \item{data}{(data.frame) the data.frame imported with the
@@ -27,75 +27,75 @@ Default = FALSE}
 \item{include_variety}{(logical) include varieties of the species?
 Default = FALSE}
 
-\item{Kingdom}{(character) The Kingdom for filtering the dataset. It can be
+\item{kingdom}{(character) The kingdom for filtering the dataset. It can be
 "Plantae" or "Fungi". Default = "Plantae". To include both,
 use c("Plantae", "Fungi")}
 
-\item{Group}{(character) The groups for filtering the datasets. It can be
+\item{group}{(character) The groups for filtering the datasets. It can be
 "Fungi", "Angiosperms", "Gymnosperms", "Ferns and Lycophytes",
 "Bryophytes" and "Algae". To use more than one group, put the available
-items in a vector, for example: Group = c(Angiosperms", "Gymnosperms").
+items in a vector, for example: group = c(Angiosperms", "Gymnosperms").
 Default = "All".}
 
-\item{Subgroup}{(character) The subgroups for filtering the dataset.
-Only available if the Group is "Fungi" or "Bryophytes". For Fungi, it can be
+\item{subgroup}{(character) The subgroups for filtering the dataset.
+Only available if the group is "Fungi" or "Bryophytes". For Fungi, it can be
 "stricto sensu" or "lato sensu". For Bryophytes, it can be "Mosses",
 "Hornworts" and "Liverworts" . To use more than one group, put the available
-items in a vector, for example: Subgroup = c("Mosses", "Hornworts").
+items in a vector, for example: subgroup = c("Mosses", "Hornworts").
 Default = "All".}
 
-\item{Family}{(character) The families for filtering the dataset. It can
-be included more than one Family. Default = "All".}
+\item{family}{(character) The families for filtering the dataset. It can
+be included more than one family. Default = "All".}
 
-\item{Genus}{(character) The genus for filtering the dataset. It can
-be included more than one Genus. Default = "All".}
+\item{genus}{(character) The genus for filtering the dataset. It can
+be included more than one genus. Default = "All".}
 
-\item{LifeForm}{(character) The life forms for filtering the dataset. It can
-be included more than one LifeForm. Default = "All"}
+\item{lifeForm}{(character) The life forms for filtering the dataset. It can
+be included more than one lifeForm. Default = "All"}
 
-\item{filter_LifeForm}{(character) The type of filtering for life forms. It
+\item{filter_lifeForm}{(character) The type of filtering for life forms. It
 can be "in", "only", "not_in" and "and". See details for more about this
 argument.}
 
-\item{Habitat}{(character) The life habitat for filtering the dataset. It can
+\item{habitat}{(character) The life habitat for filtering the dataset. It can
 be included more than one habitat. Default = "All"}
 
-\item{filter_Habitat}{(character) The type of filtering for habitat. It
+\item{filter_habitat}{(character) The type of filtering for habitat. It
 can be "in", "only", "not_in" and "and". See details for more about this
 argument.}
 
-\item{Biome}{(character) The biomes for filtering the dataset. It can
+\item{biome}{(character) The biomes for filtering the dataset. It can
 be included more than one biome. Default = "All"}
 
-\item{filter_Biome}{(character) The type of filtering for biome. It
+\item{filter_biome}{(character) The type of filtering for biome. It
 can be "in", "only", "not_in" and "and". See details for more about this
 argument.}
 
-\item{State}{(character) The States for filtering the dataset. It can
+\item{state}{(character) The states for filtering the dataset. It can
 be included more than one state. Default = "All".}
 
-\item{filter_State}{(character) The type of filtering for state. It
+\item{filter_state}{(character) The type of filtering for state. It
 can be "in", "only", "not_in" and "and". See Details for more about this
 argument.}
 
-\item{VegetationType}{(character) The vegetation types for filtering the
+\item{vegetation}{(character) The vegetation types for filtering the
 dataset. It can be included more than one vegetation type. Default = "All".}
 
-\item{filter_Vegetation}{(character) The type of filtering for
+\item{filter_vegetation}{(character) The type of filtering for
 vegetation type. It can be "in", "only", "not_in" and "and". See details for
 more about this argument.}
 
-\item{Endemism}{(character) The endemism (endemic or non-endemic to Brazil)
+\item{endemism}{(character) The endemism (endemic or non-endemic to Brazil)
 for filtering the dataset. It can be "All", "Endemic" or "Non-endemic".
 Default = "All".}
 
-\item{Origin}{(character) The origin for filtering the dataset. It can
+\item{origin}{(character) The origin for filtering the dataset. It can
 be "All", "Native", "Cultivated" and "Naturalized". Default = "All".}
 
-\item{TaxonomicStatus}{(character) The taxonomic status for filtering the
+\item{taxonomicStatus}{(character) The taxonomic status for filtering the
 dataset. It can be "All", "Accepted" or "Synonym". Default = "Accepted".}
 
-\item{NomenclaturalStatus}{(character) The nomenclatural status for
+\item{nomenclaturalStatus}{(character) The nomenclatural status for
 filtering the dataset. Default = "Accepted"}
 }
 \value{
@@ -106,32 +106,32 @@ select_species allows filter species based on its
 characteristics and distribution available in Brazilian Flora 2020
 }
 \details{
-It's possible to choose 4 ways to filter by lifeform, by habitat,
+It's possible to choose 4 ways to filter by lifeForm, by habitat,
 by biome, by state and by vegetation type:
 "in": selects species that have any occurrence of the determined values. It
-allows multiple matches. For example, if Biome = c("Amazon", Cerrado" and
-filter_Biome = "in", it will select all species that occur in the Amazon and
+allows multiple matches. For example, if biome = c("Amazon", Cerrado" and
+filter_biome = "in", it will select all species that occur in the Amazon and
 Cerrado, some of which may also occur in other biomes.
 
 "only": selects species that have only occurrence of the determined values.
-It allows only single matches. For example, if Biome = c("Amazon", "Cerrado")
-and filter_Biome = "only", it will select all species that occur exclusively
+It allows only single matches. For example, if biome = c("Amazon", "Cerrado")
+and filter_biome = "only", it will select all species that occur exclusively
 in both the Amazon and Cerrado biomes, without any occurrences in other
 biomes.
 
 "not_in": selects species that don't have occurrence of the determined
 values. It allows single and multiple matches. For example,
-if Biome = c("Amazon", "Cerrado") and filter_Biome = "not_in", it will select
+if biome = c("Amazon", "Cerrado") and filter_biome = "not_in", it will select
 all species without occurrences in the Amazon and Cerrado biomes.
 
 "and": selects species that have occurrence in all determined values. It
 allows single and multiple matches. For example,
-if Biome = c("Amazon", "Cerrado") and filter_Biome = "and", it will select
+if biome = c("Amazon", "Cerrado") and filter_biome = "and", it will select
 all species that occurs only in both the Amazon and Cerrado biomes,
 including species that occurs in other biomes too.
 
-To get the complete list of arguments available for Family, Genus, LifeForm,
-Habitat, Biome, State, and NomenclaturalStatus, use the function
+To get the complete list of arguments available for family, genus, lifeForm,
+habitat, biome, state, and nomenclaturalStatus, use the function
 \code{\link{get_attributes}}
 }
 \examples{
@@ -141,19 +141,19 @@ data("bf_data") #Load Brazilian Flora data
 am_af_only <- select_species(data = bf_data,
                              include_subspecies = FALSE,
                              include_variety = FALSE,
-                             Kingdom = "Plantae",
-                             Group = "All", Subgroup = "All",
-                             Family = "All", Genus = "All",
-                             LifeForm = "Tree", filter_LifeForm = "only",
-                             Habitat = "All", filter_Habitat = "in",
-                             Biome = c("Atlantic_Forest","Amazon"),
-                             filter_Biome = "only",
-                             State = "All", filter_State = "and",
-                             VegetationType = "All",
-                             filter_Vegetation = "in",
-                             Endemism = "Endemic", Origin = "Native",
-                             TaxonomicStatus = "All",
-                             NomenclaturalStatus = "All")
+                             kingdom = "Plantae",
+                             group = "All", subgroup = "All",
+                             family = "All", genus = "All",
+                             lifeForm = "Tree", filter_lifeForm = "only",
+                             habitat = "All", filter_habitat = "in",
+                             biome = c("Atlantic_Forest","Amazon"),
+                             filter_biome = "only",
+                             state = "All", filter_state = "and",
+                             vegetation = "All",
+                             filter_vegetation = "in",
+                             endemism = "Endemic", origin = "Native",
+                             taxonomicStatus = "All",
+                             nomenclaturalStatus = "All")
 }
 \references{
 Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:

@@ -4,7 +4,7 @@
 \alias{check_names}
 \title{Check species names}
 \usage{
-check_names(data, species, max_distance = 0.1, Kingdom = "Plantae")
+check_names(data, species, max_distance = 0.1, kingdom = "Plantae")
 }
 \arguments{
 \item{data}{(data.frame) the data.frame imported with the
@@ -17,7 +17,7 @@ searching suggestions when the name is misspelled. It can be any value
 between 0 and 1. The higher the value, the more suggestions are returned.
 For more details, see \code{\link[base:agrep]{agrep}}. Default = 0.1.}
 
-\item{Kingdom}{(character) the kingdom to which the species belong. It can
+\item{kingdom}{(character) the kingdom to which the species belong. It can
 be "Plantae" or "Fungi". Default = "Plantae".}
 }
 \value{

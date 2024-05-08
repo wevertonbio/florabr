@@ -7,7 +7,7 @@
 subset_species(data, species,
                       include_subspecies = FALSE,
                       include_variety = FALSE,
-                      Kingdom = "Plantae")
+                      kingdom = "Plantae")
 }
 \arguments{
 \item{data}{(data.frame) the data.frame imported with the
@@ -22,7 +22,7 @@ Default = FALSE}
 \item{include_variety}{(logical) include varieties of the species?
 Default = FALSE}
 
-\item{Kingdom}{(character) The Kingdom for filtering the dataset. It can be
+\item{kingdom}{(character) The kingdom for filtering the dataset. It can be
 "Plantae" or "Fungi". Default = "Plantae". To include both,
 use c("Plantae", "Fungi")}
 }

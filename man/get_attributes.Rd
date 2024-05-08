@@ -4,7 +4,7 @@
 \alias{get_attributes}
 \title{Get available attributes to filter species}
 \usage{
-get_attributes(data, attribute, Kingdom = "Plantae")
+get_attributes(data, attribute, kingdom = "Plantae")
 }
 \arguments{
 \item{data}{(data.frame) a data.frame imported with the
@@ -14,7 +14,7 @@ get_attributes(data, attribute, Kingdom = "Plantae")
 \item{attribute}{(character) the type of characteristic. See detail to see
 the options.}
 
-\item{Kingdom}{(character) the kingdom to which the species belong. It can
+\item{kingdom}{(character) the kingdom to which the species belong. It can
 be "Plantae" or "Fungi". Default = "Plantae".}
 }
 \value{
@@ -28,19 +28,19 @@ This function displays all the options available to filter species by its
 characteristics
 }
 \details{
-The attribute argument accepts the following options: Group, SubGroup,
-family, lifeForm, habitat, vegetationType, Origin, Endemism, Biome, States,
-taxonomicStatus or nomenclaturalStatus". These options represent different
+The attribute argument accepts the following options: group, subgroup,
+family, lifeform, habitat, vegetation, origin, endemism, biome, states,
+taxonomicstatus or nomenclaturalstatus. These options represent different
 characteristics of species that can be used for filtering.
 }
 \examples{
 data("bf_data") #Load Brazilian Flora data
 # Get available biomes to filter species
-get_attributes(data = bf_data, Kingdom = "Plantae", attribute = "Biome")
+get_attributes(data = bf_data, kingdom = "Plantae", attribute = "Biome")
 # Get available life forms to filter species
-get_attributes(data = bf_data, Kingdom = "Plantae", attribute = "lifeForm")
+get_attributes(data = bf_data, kingdom = "Plantae", attribute = "lifeForm")
 # Get available states to filter species
-get_attributes(data = bf_data, Kingdom = "Plantae", attribute = "States")
+get_attributes(data = bf_data, kingdom = "Plantae", attribute = "States")
 }
 \references{
 Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:

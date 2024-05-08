@@ -12,7 +12,7 @@
 #' Default = FALSE
 #' @param include_variety (logical) include varieties of the species?
 #' Default = FALSE
-#' @param Kingdom (character) The Kingdom for filtering the dataset. It can be
+#' @param kingdom (character) The kingdom for filtering the dataset. It can be
 #' "Plantae" or "Fungi". Default = "Plantae". To include both,
 #' use c("Plantae", "Fungi")
 #'
@@ -20,7 +20,7 @@
 #' @usage subset_species(data, species,
 #'                       include_subspecies = FALSE,
 #'                       include_variety = FALSE,
-#'                       Kingdom = "Plantae")
+#'                       kingdom = "Plantae")
 #' @references
 #' Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
 #' http://floradobrasil.jbrj.gov.br/
@@ -38,7 +38,7 @@ subset_species <- function(data,
                            species,
                            include_subspecies = FALSE,
                            include_variety = FALSE,
-                           Kingdom = "Plantae"){
+                           kingdom = "Plantae"){
   if (missing(data)) {
     stop("Argument data is not defined")
   }
@@ -62,16 +62,16 @@ subset_species <- function(data,
                 class(include_variety)))
   }
 
-  if(!(Kingdom %in% unique(data$kingdom))) {
-    stop(paste("Kingdom not valid. The Kingdoms availables are:\n",
+  if(!(kingdom %in% unique(data$kingdom))) {
+    stop(paste("kingdom not valid. The kingdoms availables are:\n",
                paste(unique(data$kingdom), collapse = ", ")))  }
 
   #Get binomial names of species
   Species <- get_binomial(species)
 
   #Start to filter...
-  #Kingdom
-  d <- subset(data, data$kingdom %in% Kingdom)
+  #kingdom
+  d <- subset(data, data$kingdom %in% kingdom)
 
   #Taxon Rank
   if(!include_subspecies & !include_variety) {

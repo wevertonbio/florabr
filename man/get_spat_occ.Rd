@@ -3,17 +3,17 @@
 \name{get_spat_occ}
 \alias{get_spat_occ}
 \title{Get Spatial polygons (SpatVectors) of species based on its distribution
-(States and Biomes) according to Brazilian Flora 2020}
+(states and biomes) according to Brazilian Flora 2020}
 \usage{
 get_spat_occ(
   data,
   species,
-  State = TRUE,
-  Biome = TRUE,
+  state = TRUE,
+  biome = TRUE,
   intersection = TRUE,
-  State_vect = NULL,
+  state_vect = NULL,
   state_column = NULL,
-  Biome_vect = NULL,
+  biome_vect = NULL,
   biome_column = NULL,
   verbose = TRUE
 )
@@ -25,33 +25,33 @@ get_spat_occ(
 \item{species}{(character) one or more species names (only genus and
 specific epithet, eg. "Araucaria angustifolia")}
 
-\item{State}{(logical) get SpatVector of states with occurrence of the
+\item{state}{(logical) get SpatVector of states with occurrence of the
 species? Default = TRUE}
 
-\item{Biome}{(logical) get SpatVector of biomes with occurrence of the
+\item{biome}{(logical) get SpatVector of biomes with occurrence of the
 species? Default = TRUE}
 
 \item{intersection}{(character) get a Spatvector representing the
-intersection between States and Biomes with occurrence of the specie?
-To use intersection = TRUE, you must define State = TRUE and Biome = TRUE".
+intersection between states and biomes with occurrence of the specie?
+To use intersection = TRUE, you must define state = TRUE and biome = TRUE".
 Default = TRUE}
 
-\item{State_vect}{(SpatVector) a SpatVector of the Brazilian states. By
+\item{state_vect}{(SpatVector) a SpatVector of the Brazilian states. By
 default, it uses the SpatVector provided by geobr::read_state(). It can be
 another Spatvector, but the structure must be identical to
 geobr::read_state().}
 
-\item{state_column}{(character) name of the column in State_vect containing
-state abbreviations. Only use if Biome_vect is not null.}
+\item{state_column}{(character) name of the column in state_vect containing
+state abbreviations. Only use if biome_vect is not null.}
 
-\item{Biome_vect}{(SpatVector) a SpatVector of the Brazilian biomes. By
+\item{biome_vect}{(SpatVector) a SpatVector of the Brazilian biomes. By
 default, it uses the SpatVector provided by geobr::read_biomes(). It can be
 another SpatVector, but the structure must be identical to
 geobr::read_biomes().}
 
-\item{biome_column}{(character) name of the column in Biome_vect containing
+\item{biome_column}{(character) name of the column in biome_vect containing
 names of brazilian biomes (in English: "Amazon", "Atlantic_Forest",
-"Caatinga", "Cerrado", "Pampa" and "Pantanal". Only use if Biome_vect is not
+"Caatinga", "Cerrado", "Pampa" and "Pantanal". Only use if biome_vect is not
 null.}
 
 \item{verbose}{(logical) Whether to display species being filtered during
@@ -59,30 +59,30 @@ function execution. Set to TRUE to enable display, or FALSE to run silently.
 Default = TRUE.}
 }
 \value{
-A list with SpatVectors of States and/or Biomes and/or Intersections
+A list with SpatVectors of states and/or biomes and/or Intersections
 for each specie.
 }
 \description{
 Get Spatial polygons (SpatVectors) of species based on its distribution
-(States and Biomes) according to Brazilian Flora 2020
+(states and biomes) according to Brazilian Flora 2020
 }
 \examples{
 library(terra)
 data("bf_data") #Load Brazilian Flora data
 spp <- c("Araucaria angustifolia", "Adesmia paranensis") #Example species
 #Get states, biomes and intersection states-biomes of species
-spp_spt <- get_spat_occ(data = bf_data, species = spp, State = TRUE,
-                       Biome = TRUE, intersection = TRUE, State_vect = NULL,
-                       Biome_vect = NULL, verbose = TRUE)
+spp_spt <- get_spat_occ(data = bf_data, species = spp, state = TRUE,
+                       biome = TRUE, intersection = TRUE, state_vect = NULL,
+                       biome_vect = NULL, verbose = TRUE)
 
 
 #Plot states of occurrence of Araucaria angustifolia
-plot(spp_spt[[1]]$States, main = names(spp_spt)[[1]])
+plot(spp_spt[[1]]$states, main = names(spp_spt)[[1]])
 #Plot biomes of occurrence of Araucaria angustifolia
-plot(spp_spt[[2]]$Biomes, main = names(spp_spt)[[2]])
+plot(spp_spt[[2]]$biomes, main = names(spp_spt)[[2]])
 #Plot intersection between states and biomes of occurrence of
 #Araucaria angustifolia
-plot(spp_spt[[1]]$States_Biomes)
+plot(spp_spt[[1]]$states_biomes)
 
 }
 \references{
