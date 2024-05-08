@@ -1,5 +1,12 @@
 #####Helper functions####
 
+#First letter to upper case
+firstup <- function(x) {
+  x <- tolower(x)
+  substr(x, 1, 1) <- toupper(substr(x, 1, 1))
+  x
+}
+
 #Extract string between patterns
 extract_between <- function(str, left, right) {
   inicio <- regexpr(left, str) + attr(regexpr(left, str), "match.length")
@@ -101,7 +108,7 @@ translate_biome <- function(biome) {
   return(newbiome)
 }
 
-#Translate vegetationType from portuguese to english
+#Translate vegetation from portuguese to english
 translate_vegetation <- function(vegetation) {
   newvegetation <- gsub("Area Antropica", "Anthropic_Area", vegetation)
   newvegetation <- gsub("Caatinga \\(stricto sensu\\)", "Caatinga",
@@ -144,27 +151,27 @@ translate_vegetation <- function(vegetation) {
   return(newvegetation)
 }
 
-#Translate Endemism from portuguese to english
-translate_Endemism <- function(Endemism) {
-  newEndemism <- ifelse(Endemism == "", "Unknown",
-                      ifelse(Endemism == "Nao endemica", "Non-endemic",
-                              ifelse(Endemism == "Endemica", "Endemic",
-                                    ifelse (Endemism == "Nao ocorre no Brasil",
+#Translate endemism from portuguese to english
+translate_endemism <- function(endemism) {
+  newendemism <- ifelse(endemism == "", "Unknown",
+                      ifelse(endemism == "Nao endemica", "Non-endemic",
+                              ifelse(endemism == "Endemica", "Endemic",
+                                    ifelse (endemism == "Nao ocorre no Brasil",
                                             "Not_found_in_Brazil", NA))))
 
-  return(newEndemism)
+  return(newendemism)
 }
 
-#Translate Origin from portuguese to english
-translate_Origin <- function(Origin) {
-  newOrigin <- ifelse(Origin == "", "Unknown",
-                 ifelse(Origin == "NATIVA", "Native",
-                        ifelse(Origin == "CULTIVADA", "Cultivated",
-                              ifelse(Origin == "NATURALIZADA", "Naturalized",
-                                        ifelse(Origin == "Nao ocorre no Brasil",
+#Translate origin from portuguese to english
+translate_origin <- function(origin) {
+  neworigin <- ifelse(origin == "", "Unknown",
+                 ifelse(origin == "NATIVA", "Native",
+                        ifelse(origin == "CULTIVADA", "Cultivated",
+                              ifelse(origin == "NATURALIZADA", "Naturalized",
+                                        ifelse(origin == "Nao ocorre no Brasil",
                                               "Not_found_in_Brazil", NA)))))
 
-  return(newOrigin)
+  return(neworigin)
 }
 
 #Translate nomenclatural status
@@ -213,52 +220,52 @@ translate_taxonRank <- function(taxonRank){
   return(newrank)
 }
 
-#Translate Group
-translate_group <- function(Group){
-  newGroup <- Group
-  newGroup[which(newGroup == "Fungos")] <- "Fungi"
-  newGroup[which(newGroup == "Angiospermas")] <- "Angiosperms"
-  newGroup[which(newGroup == "Gimnospermas")] <- "Gymnosperms"
-    newGroup[which(newGroup ==
+#Translate group
+translate_group <- function(group){
+  newgroup <- group
+  newgroup[which(newgroup == "Fungos")] <- "Fungi"
+  newgroup[which(newgroup == "Angiospermas")] <- "Angiosperms"
+  newgroup[which(newgroup == "Gimnospermas")] <- "Gymnosperms"
+    newgroup[which(newgroup ==
                      "Samambaias e Licofitas")] <- "Ferns and Lycophytes"
-  newGroup[which(newGroup == "Briofitas")] <- "Bryophytes"
-  newGroup[which(newGroup == "Algas")] <- "Algae"
-  return(newGroup)
+  newgroup[which(newgroup == "Briofitas")] <- "Bryophytes"
+  newgroup[which(newgroup == "Algas")] <- "Algae"
+  return(newgroup)
  }
 
-#Translate Subgroup
-translate_subgroup <- function(Subgroup){
-  newSubgroup <- Subgroup
-  newSubgroup[which(newSubgroup == "Antoceros")] <- "Hornworts"
-  newSubgroup[which(newSubgroup == "Hepaticas")] <- "Liverworts"
-  newSubgroup[which(newSubgroup == "Musgos")] <- "Mosses"
-  return(newSubgroup)
+#Translate subgroup
+translate_subgroup <- function(subgroup){
+  newsubgroup <- subgroup
+  newsubgroup[which(newsubgroup == "Antoceros")] <- "Hornworts"
+  newsubgroup[which(newsubgroup == "Hepaticas")] <- "Liverworts"
+  newsubgroup[which(newsubgroup == "Musgos")] <- "Mosses"
+  return(newsubgroup)
 }
 
 #Solve incongruences between varieties/subspecies and species
 update_columns <- function(df) {
-  # Get unique values of lifeForm, habitat, vegetationType, Biome e States
+  # Get unique values of lifeForm, habitat, vegetation, biome e states
   unique_lifeForm <- sort(unique(unlist(strsplit(df$lifeForm, ";"))))
   unique_habitat <- sort(unique(unlist(strsplit(df$habitat, ";"))))
-  unique_vegetationType <- sort(unique(unlist(strsplit(df$vegetationType, ";"))))
-  unique_Biome <- sort(unique(unlist(strsplit(df$Biome, ";"))))
-  unique_States <- sort(unique(unlist(strsplit(df$States, ";"))))
+  unique_vegetation <- sort(unique(unlist(strsplit(df$vegetation, ";"))))
+  unique_biome <- sort(unique(unlist(strsplit(df$biome, ";"))))
+  unique_states <- sort(unique(unlist(strsplit(df$states, ";"))))
 
   # Update columns where taxonRank == "Species"
   df$lifeForm[df$taxonRank == "Species"] <- paste(unique_lifeForm, collapse = ";")
   df$habitat[df$taxonRank == "Species"] <- paste(unique_habitat, collapse = ";")
-  df$vegetationType[df$taxonRank == "Species"] <- paste(unique_vegetationType, collapse = ";")
-  df$Biome[df$taxonRank == "Species"] <- paste(unique_Biome, collapse = ";")
-  df$States[df$taxonRank == "Species"] <- paste(unique_States, collapse = ";")
+  df$vegetation[df$taxonRank == "Species"] <- paste(unique_vegetation, collapse = ";")
+  df$biome[df$taxonRank == "Species"] <- paste(unique_biome, collapse = ";")
+  df$states[df$taxonRank == "Species"] <- paste(unique_states, collapse = ";")
 
   #Return only taxonRank == "Species"
-  df <- subset(df, df$taxonRank == "Species")
+  df_final <- subset(df, df$taxonRank == "Species")
 
-  return(df)
+  return(df_final)
 }
 
-merge_data <- function(path_data, version_data, solve_incongruences = TRUE,
-                       encoding = "UTF-8", verbose = TRUE) {
+merge_data <- function(path_data, version_data, solve_incongruences,
+                       encoding = "UTF-8", verbose = verbose) {
 
   #Set folder
   if(is.null(path_data)) {
@@ -299,7 +306,7 @@ merge_data <- function(path_data, version_data, solve_incongruences = TRUE,
   vernacular$vernacularName <- iconv(vernacular$vernacularName,
                                      to="ASCII//TRANSLIT")
 
-  #Group vernacular names from same species
+  #group vernacular names from same species
   grouped <- split(vernacular, vernacular$id)
   summarized <- lapply(grouped, function(group) {
     paste(group$vernacularName, collapse = ", ")
@@ -329,14 +336,14 @@ merge_data <- function(path_data, version_data, solve_incongruences = TRUE,
                                            left = "habitat:\\[",
                                            right = "\\]")
   #Vegetation type
-  spProfile$vegetationType.new <- extract_between(spProfile$lifeForm,
+  spProfile$vegetation.new <- extract_between(spProfile$lifeForm,
                                                   left = "vegetationType:\\[",
                                                   right = "\\]")
 
   #Rename and select columns
   spProfile <- spProfile[,c("id", "lifeForm.new", "habitat.new",
-                            "vegetationType.new")]
-  colnames(spProfile) <- c("id", "lifeForm", "habitat", "vegetationType")
+                            "vegetation.new")]
+  colnames(spProfile) <- c("id", "lifeForm", "habitat", "vegetation")
 
   ###Distribution and Location
   dist <- utils::read.csv(file.path(path_data, version_data,
@@ -347,10 +354,10 @@ merge_data <- function(path_data, version_data, solve_incongruences = TRUE,
   dist$occurrenceRemarks <- iconv(dist$occurrenceRemarks,
                                   to="ASCII//TRANSLIT")
   #Extrair informações para novas coluna
-  #Origin
-  dist$Origin <- dist$establishmentMeans
-  #Endemism
-  dist$Endemism <- ifelse(grepl("endemism:Nao endemica",
+  #origin
+  dist$origin <- dist$establishmentMeans
+  #endemism
+  dist$endemism <- ifelse(grepl("endemism:Nao endemica",
                                 dist$occurrenceRemarks),
                           "Nao endemica",
                           ifelse(grepl("endemism:Endemica",
@@ -369,7 +376,7 @@ merge_data <- function(path_data, version_data, solve_incongruences = TRUE,
   #Organize information
   #Local
   Local <- dist[,c("id","locationID","countryCode")]
-  #Group location of same species
+  #group location of same species
   grouped <- split(Local, Local$id)
   summarized <- lapply(grouped, function(group) {
     paste(group$locationID, collapse = ";")
@@ -379,7 +386,7 @@ merge_data <- function(path_data, version_data, solve_incongruences = TRUE,
     locationID = unlist(summarized)
   )
   #Merge distribution data again
-  dist_final <- dist[, c("id", "countryCode", "Origin", "Endemism",
+  dist_final <- dist[, c("id", "countryCode", "origin", "endemism",
                          "phytogeographicDomain")]
   dist_final <- merge(dist_final, Local_final, by = "id")
   dist_final <- unique(dist_final[,colnames(dist_final)])
@@ -394,11 +401,15 @@ merge_data <- function(path_data, version_data, solve_incongruences = TRUE,
   #Ignore this ranks
   ignore_rank <- c("ORDEM", "FAMILIA", "GENERO", "CLASSE", "TRIBO",
                    "SUB_FAMILIA", "DIVISAO")
-  df_final3$species[which(!(df_final3$taxonRank %in% ignore_rank))] <-
-    gsub("^([[:alnum:]]+[-[:alnum:]]*(?:[[:space:]]+[[:alnum:]]+[-[:alnum:]]*)?)\\b.*",
-         "\\1",
-         df_final3$scientificName[which(!(df_final3$taxonRank %in%
-                                            ignore_rank))])
+  df_final3$species[which(!(df_final3$taxonRank %in%
+                              ignore_rank))] <- get_binomial(
+                                df_final3$scientificName[which(
+                                  !(df_final3$taxonRank %in% ignore_rank))])
+    # Old version of binomial extraction
+    # gsub("^([[:alnum:]]+[-[:alnum:]]*(?:[[:space:]]+[[:alnum:]]+[-[:alnum:]]*)?)\\b.*",
+    #      "\\1",
+    #      df_final3$scientificName[which(!(df_final3$taxonRank %in%
+    #                                         ignore_rank))])
 
   # df_final3$species[which(!(df_final3$taxonRank %in% ignore_rank))] <-
   #   gsub("^((\\w+\\W+){1}\\w+).*$","\\1",
@@ -412,29 +423,29 @@ merge_data <- function(path_data, version_data, solve_incongruences = TRUE,
          df_final3$acceptedNameUsage[which(!(df_final3$taxonRank %in%
                                                ignore_rank))])
 
-  #Get Group and subgroup
-  #Group
-  df_final3$Group <- extract_between(str = df_final3$higherClassification,
+  #Get group and subgroup
+  #group
+  df_final3$group <- extract_between(str = df_final3$higherClassification,
                                      left = ";", right = ";")
-  df_final3$Group <- translate_group(Group = df_final3$Group)
-  #Subgroup - Only Bryophytes and Fungi
-  df_final3$Subgroup <- NA
-  df_final3$Subgroup[which(df_final3$Group ==
+  df_final3$group <- translate_group(group = df_final3$group)
+  #subgroup - Only Bryophytes and Fungi
+  df_final3$subgroup <- NA
+  df_final3$subgroup[which(df_final3$group ==
                              "Bryophytes")] <- extract_between(
                                str = df_final3$higherClassification[which(
-                                 df_final3$Group == "Bryophytes")],
+                                 df_final3$group == "Bryophytes")],
                                left = "Briofitas;",
                                right = ";")
-  df_final3$Subgroup[which(df_final3$Group == "Fungi")] <- extract_between(
-    str = df_final3$higherClassification[which(df_final3$Group == "Fungi")],
+  df_final3$subgroup[which(df_final3$group == "Fungi")] <- extract_between(
+    str = df_final3$higherClassification[which(df_final3$group == "Fungi")],
     left = "Fungos;",
     right = ";")
-  df_final3$Subgroup <- translate_subgroup(Subgroup = df_final3$Subgroup)
+  df_final3$subgroup <- translate_subgroup(subgroup = df_final3$subgroup)
 
   #Order columns
   df_final <- df_final3[,c(c("id", "taxonID", "acceptedNameUsageID",
                              "parentNameUsageID", "originalNameUsageID",
-                             "Group", "Subgroup",
+                             "group", "subgroup",
                              "species",
                              "acceptedName", "scientificName",
                              "acceptedNameUsage",
@@ -447,8 +458,8 @@ merge_data <- function(path_data, version_data, solve_incongruences = TRUE,
                              "scientificNameAuthorship",
                              "taxonomicStatus", "nomenclaturalStatus",
                              "vernacularName", "lifeForm",
-                             "habitat", "vegetationType",
-                             "Origin", "Endemism", "phytogeographicDomain",
+                             "habitat", "vegetation",
+                             "origin", "endemism", "phytogeographicDomain",
                              "locationID",
                              "countryCode", "modified", "bibliographicCitation",
                              "references"))]
@@ -461,9 +472,9 @@ merge_data <- function(path_data, version_data, solve_incongruences = TRUE,
   sp_out_dup <- duplicated(sp_out_df[, c("acceptedName")])
   sp_out_unique <- sp_out_df[!sp_out_dup, ]
   #Update distribution - They do not occur in Brazil
-  sp_out_unique$vegetationType <- "Not_found_in_Brazil"
-  sp_out_unique$Endemism <- "Not_found_in_Brazil"
-  sp_out_unique$Origin <- "Not_found_in_Brazil"
+  sp_out_unique$vegetation <- "Not_found_in_Brazil"
+  sp_out_unique$endemism <- "Not_found_in_Brazil"
+  sp_out_unique$origin <- "Not_found_in_Brazil"
   sp_out_unique$locationID <- "Not_found_in_Brazil"
   sp_out_unique$phytogeographicDomain <- "Not_found_in_Brazil"
   #Update taxonomic info
@@ -483,10 +494,10 @@ merge_data <- function(path_data, version_data, solve_incongruences = TRUE,
   df_join$habitat <- translate_habitat(habitat = df_join$habitat)
   df_join$phytogeographicDomain <- translate_biome(biome =
                                                      df_join$phytogeographicDomain)
-  df_join$vegetationType <- translate_vegetation(vegetation =
-                                                   df_join$vegetationType)
-  df_join$Endemism <- translate_Endemism(Endemism = df_join$Endemism)
-  df_join$Origin <- translate_Origin(Origin = df_join$Origin)
+  df_join$vegetation <- translate_vegetation(vegetation =
+                                                   df_join$vegetation)
+  df_join$endemism <- translate_endemism(endemism = df_join$endemism)
+  df_join$origin <- translate_origin(origin = df_join$origin)
   df_join$taxonomicStatus <- translate_taxonomicStatus(status =
                                                          df_join$taxonomicStatus)
   df_join$nomenclaturalStatus <- translate_nomenclaturalStatus(status =
@@ -513,21 +524,21 @@ merge_data <- function(path_data, version_data, solve_incongruences = TRUE,
                                function(x){
                                  paste(sort(unlist(strsplit(x, split = ";"))),collapse = ";")
                                }, USE.NAMES = FALSE)
-  df_join$vegetationType<- vapply(df_join$vegetationType,
+  df_join$vegetation <- vapply(df_join$vegetation ,
                                   FUN.VALUE = character(1),
                                   function(x){
                                     paste(sort(unlist(strsplit(x, split = ","))),collapse = ";")
                                   }, USE.NAMES = FALSE)
 
-  #Replace space by underline in Biome and vegetation
+  #Replace space by underline in biome and vegetation
   df_join$phytogeographicDomain <- gsub(" ", "_", df_join$phytogeographicDomain)
-  df_join$vegetationType <- gsub(" ", "_", df_join$vegetationType)
-  df_join$Endemism <- gsub(" ", "_", df_join$Endemism)
-  df_join$Origin <- gsub(" ", "_", df_join$Origin)
+  df_join$vegetation <- gsub(" ", "_", df_join$vegetation)
+  df_join$endemism <- gsub(" ", "_", df_join$endemism)
+  df_join$origin <- gsub(" ", "_", df_join$origin)
 
   #Rename columns
-  colnames(df_join)[colnames(df_join) == "phytogeographicDomain"] <- "Biome"
-  colnames(df_join)[colnames(df_join) == "locationID"] <- "States"
+  colnames(df_join)[colnames(df_join) == "phytogeographicDomain"] <- "biome"
+  colnames(df_join)[colnames(df_join) == "locationID"] <- "states"
 
 
   if(solve_incongruences){
@@ -536,7 +547,7 @@ merge_data <- function(path_data, version_data, solve_incongruences = TRUE,
     spp_var <- subset(df_join,
                       df_join$taxonRank %in% c("Variety", "Subspecies", "Form") &
                         df_join$taxonomicStatus == "Accepted" &
-                        df_join$Endemism != "Not_found_in_Brazil")[["species"]]
+                        df_join$endemism != "Not_found_in_Brazil")[["species"]]
 
     #Get only species that exists as Species in dataframe
     spp_var_yes <- intersect(df_join$species[which(df_join$taxonRank == "Species")],
@@ -563,8 +574,8 @@ merge_data <- function(path_data, version_data, solve_incongruences = TRUE,
     #Create new id
     df_no_species$id <- sample(setdiff(1:50000, df_join$id), nrow(df_no_species))
     #Merge data
-    df_join <- rbind(df_join, df_no_species) }
-
+    df_join <- rbind(df_join, df_no_species)
+    }
 
   #Save as RDS
   saveRDS(df_join,
