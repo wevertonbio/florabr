@@ -70,7 +70,7 @@ database."><meta property="og:image" content="https://wevertonbio.github.io/flor
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Identify records outside natural ranges according to Brazilian Flora 2020</h1>
-    <small class="dont-index">Source: <a href="https://github.com/wevertonbio/florabr/blob/HEAD/R/filter_florabR.R" class="external-link"><code>R/filter_florabR.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/wevertonbio/florabr/blob/HEAD/R/filter_florabr.R" class="external-link"><code>R/filter_florabr.R</code></a></small>
     <div class="hidden name"><code>filter_florabr.Rd</code></div>
     </div>
 
@@ -81,12 +81,12 @@ database.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">filter_florabr</span><span class="op">(</span><span class="va">data</span>, <span class="va">occ</span>, Species <span class="op">=</span> <span class="st">"species"</span>, Long <span class="op">=</span> <span class="st">"x"</span>, Lat <span class="op">=</span> <span class="st">"y"</span>,</span>
-<span>                      by_State <span class="op">=</span> <span class="cn">TRUE</span>, buffer_State <span class="op">=</span> <span class="fl">20</span>, by_Biome <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                      buffer_Biome <span class="op">=</span> <span class="fl">20</span>, by_Endemism <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                      Buffer_Brazil <span class="op">=</span> <span class="fl">20</span>, State_vect <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>                      state_column <span class="op">=</span> <span class="cn">NULL</span>, Biome_vect <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>                      biome_column <span class="op">=</span> <span class="cn">NULL</span>, BR_vect <span class="op">=</span> <span class="cn">NULL</span>,</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">filter_florabr</span><span class="op">(</span><span class="va">data</span>, <span class="va">occ</span>, species <span class="op">=</span> <span class="st">"species"</span>, long <span class="op">=</span> <span class="st">"x"</span>, lat <span class="op">=</span> <span class="st">"y"</span>,</span>
+<span>                      by_state <span class="op">=</span> <span class="cn">TRUE</span>, buffer_state <span class="op">=</span> <span class="fl">20</span>, by_biome <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                      buffer_biome <span class="op">=</span> <span class="fl">20</span>, by_endemism <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                      buffer_brazil <span class="op">=</span> <span class="fl">20</span>, state_vect <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>                      state_column <span class="op">=</span> <span class="cn">NULL</span>, biome_vect <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>                      biome_column <span class="op">=</span> <span class="cn">NULL</span>, br_vect <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>                      value <span class="op">=</span> <span class="st">"flag&amp;clean"</span>, keep_columns <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                      verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -102,47 +102,47 @@ database.</p>
 <dd><p>(data.frame) a data.frame with the records of the species.</p></dd>
 
 
-<dt>Species</dt>
+<dt>species</dt>
 <dd><p>(character) column name in occ with species names.
 Default = "species"</p></dd>
 
 
-<dt>Long</dt>
+<dt>long</dt>
 <dd><p>(character) column name in occ with longitude data. Default = "x"</p></dd>
 
 
-<dt>Lat</dt>
+<dt>lat</dt>
 <dd><p>(character) column name in occ with latitude data. Default = "y"</p></dd>
 
 
-<dt>by_State</dt>
+<dt>by_state</dt>
 <dd><p>(logical) filter records by state? Default = TRUE</p></dd>
 
 
-<dt>buffer_State</dt>
+<dt>buffer_state</dt>
 <dd><p>(numeric) buffer (in km) around the polygons of the
 states of occurrence of the specie. Default = 20.</p></dd>
 
 
-<dt>by_Biome</dt>
-<dd><p>(logical) filter records by Biome? Default = TRUE</p></dd>
+<dt>by_biome</dt>
+<dd><p>(logical) filter records by biome? Default = TRUE</p></dd>
 
 
-<dt>buffer_Biome</dt>
+<dt>buffer_biome</dt>
 <dd><p>(numeric) buffer (in km) around the polygons of the
 biomes of occurrence of the specie. Default = 20.</p></dd>
 
 
-<dt>by_Endemism</dt>
+<dt>by_endemism</dt>
 <dd><p>(logical) filter records by endemism? Default = TRUE</p></dd>
 
 
-<dt>Buffer_Brazil</dt>
+<dt>buffer_brazil</dt>
 <dd><p>(numeric) buffer (in km) around the polygons of the
-Brazil. Default = 20.</p></dd>
+brazil. Default = 20.</p></dd>
 
 
-<dt>State_vect</dt>
+<dt>state_vect</dt>
 <dd><p>(SpatVector) a SpatVector of the Brazilian states. By
 default, it uses the SpatVector provided by geobr::read_state(). It can be
 another Spatvector, but the structure must be identical to
@@ -150,11 +150,11 @@ geobr::read_state().</p></dd>
 
 
 <dt>state_column</dt>
-<dd><p>(character) name of the column in State_vect containing
-state abbreviations. Only use if Biome_vect is not null.</p></dd>
+<dd><p>(character) name of the column in state_vect containing
+state abbreviations. Only use if biome_vect is not null.</p></dd>
 
 
-<dt>Biome_vect</dt>
+<dt>biome_vect</dt>
 <dd><p>(SpatVector) a SpatVector of the Brazilian biomes. By
 default, it uses the SpatVector provided by geobr::read_biomes(). It can be
 another SpatVector, but the structure must be identical to
@@ -162,14 +162,14 @@ geobr::read_biomes() with biome names in English.</p></dd>
 
 
 <dt>biome_column</dt>
-<dd><p>(character) name of the column in Biome_vect containing
+<dd><p>(character) name of the column in biome_vect containing
 names of brazilian biomes (in English: "Amazon", "Atlantic_Forest",
-"Caatinga", "Cerrado", "Pampa" and "Pantanal". Only use if Biome_vect is not
+"Caatinga", "Cerrado", "Pampa" and "Pantanal". Only use if biome_vect is not
 null.</p></dd>
 
 
-<dt>BR_vect</dt>
-<dd><p>(SpatVector) a SpatVector of Brazil. By default, it uses the
+<dt>br_vect</dt>
+<dd><p>(SpatVector) a SpatVector of brazil. By default, it uses the
 SpatVector provided by geobr::read_state() after being aggregated/dissolved,</p></dd>
 
 
@@ -180,7 +180,7 @@ Default = "flag&amp;clean".</p></dd>
 
 <dt>keep_columns</dt>
 <dd><p>(logical) if TRUE, keep all the original columns of the
-input occ. If False, keep only the columns Species, Long and Lat.
+input occ. If False, keep only the columns species, long and lat.
 Default = TRUE</p></dd>
 
 
@@ -205,13 +205,13 @@ with the cleaned records.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>If by_State = TRUE and/or by_Biome = TRUE, the function takes polygons
-representing the states and/or Biomes with confirmed occurrences of the
+    <p>If by_state = TRUE and/or by_biome = TRUE, the function takes polygons
+representing the states and/or biomes with confirmed occurrences of the
 specie, draws a buffer around the polygons, and tests if the records of the
 species fall inside it.
-If by_Endemism = TRUE, the function checks if the species is endemic to
-Brazil. If it is endemic, the function tests if the records of the specie
-fall inside a polygon representing the boundaries of Brazil (with a buffer).</p>
+If by_endemism = TRUE, the function checks if the species is endemic to
+brazil. If it is endemic, the function tests if the records of the specie
+fall inside a polygon representing the boundaries of brazil (with a buffer).</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -225,11 +225,11 @@ http://floradobrasil.jbrj.gov.br/</p>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"occurrences"</span><span class="op">)</span> <span class="co">#Load occurrences</span></span></span>
 <span class="r-in"><span><span class="va">pts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">occurrences</span>, <span class="va">species</span> <span class="op">==</span> <span class="st">"Myrcia hatschbachii"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">fd</span> <span class="op">&lt;-</span> <span class="fu">filter_florabr</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>, occ <span class="op">=</span> <span class="va">pts</span>,</span></span>
-<span class="r-in"><span>                    by_State <span class="op">=</span> <span class="cn">TRUE</span>, buffer_State <span class="op">=</span> <span class="fl">20</span>,</span></span>
-<span class="r-in"><span>                    by_Biome <span class="op">=</span> <span class="cn">TRUE</span>, buffer_Biome <span class="op">=</span> <span class="fl">20</span>,</span></span>
-<span class="r-in"><span>                    by_Endemism <span class="op">=</span> <span class="cn">TRUE</span>, Buffer_Brazil <span class="op">=</span> <span class="fl">20</span>,</span></span>
-<span class="r-in"><span>                    State_vect <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
-<span class="r-in"><span>                    Biome_vect <span class="op">=</span> <span class="cn">NULL</span>, BR_vect <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
+<span class="r-in"><span>                    by_state <span class="op">=</span> <span class="cn">TRUE</span>, buffer_state <span class="op">=</span> <span class="fl">20</span>,</span></span>
+<span class="r-in"><span>                    by_biome <span class="op">=</span> <span class="cn">TRUE</span>, buffer_biome <span class="op">=</span> <span class="fl">20</span>,</span></span>
+<span class="r-in"><span>                    by_endemism <span class="op">=</span> <span class="cn">TRUE</span>, buffer_brazil <span class="op">=</span> <span class="fl">20</span>,</span></span>
+<span class="r-in"><span>                    state_vect <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
+<span class="r-in"><span>                    biome_vect <span class="op">=</span> <span class="cn">NULL</span>, br_vect <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
 <span class="r-in"><span>                    value <span class="op">=</span> <span class="st">"flag&amp;clean"</span>, keep_columns <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>                    verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 </code></pre></div>
@@ -246,7 +246,7 @@ http://floradobrasil.jbrj.gov.br/</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer></div>

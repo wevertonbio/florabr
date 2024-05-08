@@ -82,7 +82,7 @@ database</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">subset_species</span><span class="op">(</span><span class="va">data</span>, <span class="va">species</span>,</span>
 <span>                      include_subspecies <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                      include_variety <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                      Kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span></code></pre></div>
+<span>                      kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -107,8 +107,8 @@ Default = FALSE</p></dd>
 Default = FALSE</p></dd>
 
 
-<dt>Kingdom</dt>
-<dd><p>(character) The Kingdom for filtering the dataset. It can be
+<dt>kingdom</dt>
+<dd><p>(character) The kingdom for filtering the dataset. It can be
 "Plantae" or "Fungi". Default = "Plantae". To include both,
 use c("Plantae", "Fungi")</p></dd>
 
@@ -135,26 +135,26 @@ http://floradobrasil.jbrj.gov.br/</p>
 <span class="r-in"><span>                      include_variety <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">spp_bf</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                      species                          scientificName</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26790 Araucaria angustifolia Araucaria angustifolia (Bertol.) Kuntze</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82029     Adesmia paranensis              Adesmia paranensis Burkart</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       acceptedName kingdom       Group Subgroup        family     genus</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26790         &lt;NA&gt; Plantae Gymnosperms     &lt;NA&gt; Araucariaceae Araucaria</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82029         &lt;NA&gt; Plantae Angiosperms     &lt;NA&gt;      Fabaceae   Adesmia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       lifeForm     habitat                 Biome            States</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26790     Tree Terrestrial Atlantic_Forest;Pampa MG;PR;RJ;RS;SC;SP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82029 Subshrub Terrestrial       Atlantic_Forest             PR;SC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                           vegetationType</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26790 High_Altitude_Grassland;Mixed_Ombrophyllous_Forest;Seasonally_Semideciduous_Forest</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82029                                                            High_Altitude_Grassland</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Origin    Endemism taxonomicStatus nomenclaturalStatus</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26790 Native Non-endemic        Accepted             Correct</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82029 Native     Endemic        Accepted             Correct</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26797 Araucaria angustifolia Araucaria angustifolia (Bertol.) Kuntze</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82146     Adesmia paranensis              Adesmia paranensis Burkart</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       acceptedName kingdom       group subgroup        family     genus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26797         &lt;NA&gt; Plantae Gymnosperms     &lt;NA&gt; Araucariaceae Araucaria</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82146         &lt;NA&gt; Plantae Angiosperms     &lt;NA&gt;      Fabaceae   Adesmia</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       lifeForm     habitat                 biome            states</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26797     Tree Terrestrial Atlantic_Forest;Pampa MG;PR;RJ;RS;SC;SP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82146 Subshrub Terrestrial       Atlantic_Forest             PR;SC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                               vegetation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26797 High_Altitude_Grassland;Mixed_Ombrophyllous_Forest;Seasonally_Semideciduous_Forest</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82146                                                            High_Altitude_Grassland</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       origin    endemism taxonomicStatus nomenclaturalStatus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26797 Native Non-endemic        Accepted             Correct</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82146 Native     Endemic        Accepted             Correct</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                  vernacularName</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26790 araucaria, pinheiro-do-parana, curi, pinheiro-brasileiro, pinho-do-parana</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82029                                                                      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26797 araucaria, pinheiro-do-parana, curi, pinheiro-brasileiro, pinho-do-parana</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82146                                                                      &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       taxonRank</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26790   Species</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82029   Species</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26797   Species</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82146   Species</span>
 </code></pre></div>
     </div>
   </div>
@@ -169,7 +169,7 @@ http://floradobrasil.jbrj.gov.br/</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer></div>

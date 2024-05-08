@@ -81,16 +81,16 @@ characteristics and distribution available in Brazilian Flora 2020</p>
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">select_species</span><span class="op">(</span><span class="va">data</span>,</span>
 <span>                      include_subspecies <span class="op">=</span> <span class="cn">FALSE</span>, include_variety <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                      Kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, Group <span class="op">=</span> <span class="st">"All"</span>, Subgroup <span class="op">=</span> <span class="st">"All"</span>,</span>
-<span>                      Family <span class="op">=</span> <span class="st">"All"</span>, Genus <span class="op">=</span> <span class="st">"All"</span>,</span>
-<span>                      LifeForm <span class="op">=</span> <span class="st">"All"</span>, filter_LifeForm <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Habitat <span class="op">=</span> <span class="st">"All"</span>, filter_Habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Biome <span class="op">=</span> <span class="st">"All"</span>, filter_Biome <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      State <span class="op">=</span> <span class="st">"All"</span>, filter_State <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      VegetationType <span class="op">=</span> <span class="st">"All"</span>, filter_Vegetation <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Endemism <span class="op">=</span> <span class="st">"All"</span>, Origin <span class="op">=</span> <span class="st">"All"</span>,</span>
-<span>                      TaxonomicStatus <span class="op">=</span> <span class="st">"Accepted"</span>,</span>
-<span>                      NomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span></code></pre></div>
+<span>                      kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, group <span class="op">=</span> <span class="st">"All"</span>, subgroup <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                      family <span class="op">=</span> <span class="st">"All"</span>, genus <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                      lifeForm <span class="op">=</span> <span class="st">"All"</span>, filter_lifeForm <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      habitat <span class="op">=</span> <span class="st">"All"</span>, filter_habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      biome <span class="op">=</span> <span class="st">"All"</span>, filter_biome <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      state <span class="op">=</span> <span class="st">"All"</span>, filter_state <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      vegetation <span class="op">=</span> <span class="st">"All"</span>, filter_vegetation <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      endemism <span class="op">=</span> <span class="st">"All"</span>, origin <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                      taxonomicStatus <span class="op">=</span> <span class="st">"Accepted"</span>,</span>
+<span>                      nomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -110,111 +110,111 @@ Default = FALSE</p></dd>
 Default = FALSE</p></dd>
 
 
-<dt>Kingdom</dt>
-<dd><p>(character) The Kingdom for filtering the dataset. It can be
+<dt>kingdom</dt>
+<dd><p>(character) The kingdom for filtering the dataset. It can be
 "Plantae" or "Fungi". Default = "Plantae". To include both,
 use c("Plantae", "Fungi")</p></dd>
 
 
-<dt>Group</dt>
+<dt>group</dt>
 <dd><p>(character) The groups for filtering the datasets. It can be
 "Fungi", "Angiosperms", "Gymnosperms", "Ferns and Lycophytes",
 "Bryophytes" and "Algae". To use more than one group, put the available
-items in a vector, for example: Group = c(Angiosperms", "Gymnosperms").
+items in a vector, for example: group = c(Angiosperms", "Gymnosperms").
 Default = "All".</p></dd>
 
 
-<dt>Subgroup</dt>
+<dt>subgroup</dt>
 <dd><p>(character) The subgroups for filtering the dataset.
-Only available if the Group is "Fungi" or "Bryophytes". For Fungi, it can be
+Only available if the group is "Fungi" or "Bryophytes". For Fungi, it can be
 "stricto sensu" or "lato sensu". For Bryophytes, it can be "Mosses",
 "Hornworts" and "Liverworts" . To use more than one group, put the available
-items in a vector, for example: Subgroup = c("Mosses", "Hornworts").
+items in a vector, for example: subgroup = c("Mosses", "Hornworts").
 Default = "All".</p></dd>
 
 
-<dt>Family</dt>
+<dt>family</dt>
 <dd><p>(character) The families for filtering the dataset. It can
-be included more than one Family. Default = "All".</p></dd>
+be included more than one family. Default = "All".</p></dd>
 
 
-<dt>Genus</dt>
+<dt>genus</dt>
 <dd><p>(character) The genus for filtering the dataset. It can
-be included more than one Genus. Default = "All".</p></dd>
+be included more than one genus. Default = "All".</p></dd>
 
 
-<dt>LifeForm</dt>
+<dt>lifeForm</dt>
 <dd><p>(character) The life forms for filtering the dataset. It can
-be included more than one LifeForm. Default = "All"</p></dd>
+be included more than one lifeForm. Default = "All"</p></dd>
 
 
-<dt>filter_LifeForm</dt>
+<dt>filter_lifeForm</dt>
 <dd><p>(character) The type of filtering for life forms. It
 can be "in", "only", "not_in" and "and". See details for more about this
 argument.</p></dd>
 
 
-<dt>Habitat</dt>
+<dt>habitat</dt>
 <dd><p>(character) The life habitat for filtering the dataset. It can
 be included more than one habitat. Default = "All"</p></dd>
 
 
-<dt>filter_Habitat</dt>
+<dt>filter_habitat</dt>
 <dd><p>(character) The type of filtering for habitat. It
 can be "in", "only", "not_in" and "and". See details for more about this
 argument.</p></dd>
 
 
-<dt>Biome</dt>
+<dt>biome</dt>
 <dd><p>(character) The biomes for filtering the dataset. It can
 be included more than one biome. Default = "All"</p></dd>
 
 
-<dt>filter_Biome</dt>
+<dt>filter_biome</dt>
 <dd><p>(character) The type of filtering for biome. It
 can be "in", "only", "not_in" and "and". See details for more about this
 argument.</p></dd>
 
 
-<dt>State</dt>
-<dd><p>(character) The States for filtering the dataset. It can
+<dt>state</dt>
+<dd><p>(character) The states for filtering the dataset. It can
 be included more than one state. Default = "All".</p></dd>
 
 
-<dt>filter_State</dt>
+<dt>filter_state</dt>
 <dd><p>(character) The type of filtering for state. It
 can be "in", "only", "not_in" and "and". See Details for more about this
 argument.</p></dd>
 
 
-<dt>VegetationType</dt>
+<dt>vegetation</dt>
 <dd><p>(character) The vegetation types for filtering the
 dataset. It can be included more than one vegetation type. Default = "All".</p></dd>
 
 
-<dt>filter_Vegetation</dt>
+<dt>filter_vegetation</dt>
 <dd><p>(character) The type of filtering for
 vegetation type. It can be "in", "only", "not_in" and "and". See details for
 more about this argument.</p></dd>
 
 
-<dt>Endemism</dt>
+<dt>endemism</dt>
 <dd><p>(character) The endemism (endemic or non-endemic to Brazil)
 for filtering the dataset. It can be "All", "Endemic" or "Non-endemic".
 Default = "All".</p></dd>
 
 
-<dt>Origin</dt>
+<dt>origin</dt>
 <dd><p>(character) The origin for filtering the dataset. It can
 be "All", "Native", "Cultivated" and "Naturalized". Default = "All".</p></dd>
 
 
-<dt>TaxonomicStatus</dt>
+<dt>taxonomicStatus</dt>
 <dd><p>(character) The taxonomic status for filtering the
 dataset. It can be "All", "Accepted" or "Synonym". Default = "Accepted".</p></dd>
 
 
-<dt>NomenclaturalStatus</dt>
+<dt>nomenclaturalStatus</dt>
 <dd><p>(character) The nomenclatural status for
 filtering the dataset. Default = "Accepted"</p></dd>
 
@@ -227,28 +227,28 @@ filtering the dataset. Default = "Accepted"</p></dd>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>It's possible to choose 4 ways to filter by lifeform, by habitat,
+    <p>It's possible to choose 4 ways to filter by lifeForm, by habitat,
 by biome, by state and by vegetation type:
 "in": selects species that have any occurrence of the determined values. It
-allows multiple matches. For example, if Biome = c("Amazon", Cerrado" and
-filter_Biome = "in", it will select all species that occur in the Amazon and
+allows multiple matches. For example, if biome = c("Amazon", Cerrado" and
+filter_biome = "in", it will select all species that occur in the Amazon and
 Cerrado, some of which may also occur in other biomes.</p>
 <p>"only": selects species that have only occurrence of the determined values.
-It allows only single matches. For example, if Biome = c("Amazon", "Cerrado")
-and filter_Biome = "only", it will select all species that occur exclusively
+It allows only single matches. For example, if biome = c("Amazon", "Cerrado")
+and filter_biome = "only", it will select all species that occur exclusively
 in both the Amazon and Cerrado biomes, without any occurrences in other
 biomes.</p>
 <p>"not_in": selects species that don't have occurrence of the determined
 values. It allows single and multiple matches. For example,
-if Biome = c("Amazon", "Cerrado") and filter_Biome = "not_in", it will select
+if biome = c("Amazon", "Cerrado") and filter_biome = "not_in", it will select
 all species without occurrences in the Amazon and Cerrado biomes.</p>
 <p>"and": selects species that have occurrence in all determined values. It
 allows single and multiple matches. For example,
-if Biome = c("Amazon", "Cerrado") and filter_Biome = "and", it will select
+if biome = c("Amazon", "Cerrado") and filter_biome = "and", it will select
 all species that occurs only in both the Amazon and Cerrado biomes,
 including species that occurs in other biomes too.</p>
-<p>To get the complete list of arguments available for Family, Genus, LifeForm,
-Habitat, Biome, State, and NomenclaturalStatus, use the function
+<p>To get the complete list of arguments available for family, genus, lifeForm,
+habitat, biome, state, and nomenclaturalStatus, use the function
 <code><a href="get_attributes.html">get_attributes</a></code></p>
     </div>
     <div id="references">
@@ -265,19 +265,19 @@ http://floradobrasil.jbrj.gov.br/</p>
 <span class="r-in"><span><span class="va">am_af_only</span> <span class="op">&lt;-</span> <span class="fu">select_species</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>,</span></span>
 <span class="r-in"><span>                             include_subspecies <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span>                             include_variety <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
-<span class="r-in"><span>                             Kingdom <span class="op">=</span> <span class="st">"Plantae"</span>,</span></span>
-<span class="r-in"><span>                             Group <span class="op">=</span> <span class="st">"All"</span>, Subgroup <span class="op">=</span> <span class="st">"All"</span>,</span></span>
-<span class="r-in"><span>                             Family <span class="op">=</span> <span class="st">"All"</span>, Genus <span class="op">=</span> <span class="st">"All"</span>,</span></span>
-<span class="r-in"><span>                             LifeForm <span class="op">=</span> <span class="st">"Tree"</span>, filter_LifeForm <span class="op">=</span> <span class="st">"only"</span>,</span></span>
-<span class="r-in"><span>                             Habitat <span class="op">=</span> <span class="st">"All"</span>, filter_Habitat <span class="op">=</span> <span class="st">"in"</span>,</span></span>
-<span class="r-in"><span>                             Biome <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Atlantic_Forest"</span>,<span class="st">"Amazon"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                             filter_Biome <span class="op">=</span> <span class="st">"only"</span>,</span></span>
-<span class="r-in"><span>                             State <span class="op">=</span> <span class="st">"All"</span>, filter_State <span class="op">=</span> <span class="st">"and"</span>,</span></span>
-<span class="r-in"><span>                             VegetationType <span class="op">=</span> <span class="st">"All"</span>,</span></span>
-<span class="r-in"><span>                             filter_Vegetation <span class="op">=</span> <span class="st">"in"</span>,</span></span>
-<span class="r-in"><span>                             Endemism <span class="op">=</span> <span class="st">"Endemic"</span>, Origin <span class="op">=</span> <span class="st">"Native"</span>,</span></span>
-<span class="r-in"><span>                             TaxonomicStatus <span class="op">=</span> <span class="st">"All"</span>,</span></span>
-<span class="r-in"><span>                             NomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>                             kingdom <span class="op">=</span> <span class="st">"Plantae"</span>,</span></span>
+<span class="r-in"><span>                             group <span class="op">=</span> <span class="st">"All"</span>, subgroup <span class="op">=</span> <span class="st">"All"</span>,</span></span>
+<span class="r-in"><span>                             family <span class="op">=</span> <span class="st">"All"</span>, genus <span class="op">=</span> <span class="st">"All"</span>,</span></span>
+<span class="r-in"><span>                             lifeForm <span class="op">=</span> <span class="st">"Tree"</span>, filter_lifeForm <span class="op">=</span> <span class="st">"only"</span>,</span></span>
+<span class="r-in"><span>                             habitat <span class="op">=</span> <span class="st">"All"</span>, filter_habitat <span class="op">=</span> <span class="st">"in"</span>,</span></span>
+<span class="r-in"><span>                             biome <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Atlantic_Forest"</span>,<span class="st">"Amazon"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                             filter_biome <span class="op">=</span> <span class="st">"only"</span>,</span></span>
+<span class="r-in"><span>                             state <span class="op">=</span> <span class="st">"All"</span>, filter_state <span class="op">=</span> <span class="st">"and"</span>,</span></span>
+<span class="r-in"><span>                             vegetation <span class="op">=</span> <span class="st">"All"</span>,</span></span>
+<span class="r-in"><span>                             filter_vegetation <span class="op">=</span> <span class="st">"in"</span>,</span></span>
+<span class="r-in"><span>                             endemism <span class="op">=</span> <span class="st">"Endemic"</span>, origin <span class="op">=</span> <span class="st">"Native"</span>,</span></span>
+<span class="r-in"><span>                             taxonomicStatus <span class="op">=</span> <span class="st">"All"</span>,</span></span>
+<span class="r-in"><span>                             nomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -292,7 +292,7 @@ http://floradobrasil.jbrj.gov.br/</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer></div>

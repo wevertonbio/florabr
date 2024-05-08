@@ -79,7 +79,7 @@ characteristics</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_attributes</span><span class="op">(</span><span class="va">data</span>, <span class="va">attribute</span>, Kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_attributes</span><span class="op">(</span><span class="va">data</span>, <span class="va">attribute</span>, kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -95,7 +95,7 @@ characteristics</p>
 the options.</p></dd>
 
 
-<dt>Kingdom</dt>
+<dt>kingdom</dt>
 <dd><p>(character) the kingdom to which the species belong. It can
 be "Plantae" or "Fungi". Default = "Plantae".</p></dd>
 
@@ -111,9 +111,9 @@ options in Portuguese.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>The attribute argument accepts the following options: Group, SubGroup,
-family, lifeForm, habitat, vegetationType, Origin, Endemism, Biome, States,
-taxonomicStatus or nomenclaturalStatus". These options represent different
+    <p>The attribute argument accepts the following options: group, subgroup,
+family, lifeform, habitat, vegetation, origin, endemism, biome, states,
+taxonomicstatus or nomenclaturalstatus. These options represent different
 characteristics of species that can be used for filtering.</p>
     </div>
     <div id="references">
@@ -126,8 +126,8 @@ http://floradobrasil.jbrj.gov.br/</p>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"bf_data"</span><span class="op">)</span> <span class="co">#Load Brazilian Flora data</span></span></span>
 <span class="r-in"><span><span class="co"># Get available biomes to filter species</span></span></span>
-<span class="r-in"><span><span class="fu">get_attributes</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>, Kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, attribute <span class="op">=</span> <span class="st">"Biome"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Biome                Bioma</span>
+<span class="r-in"><span><span class="fu">get_attributes</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>, kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, attribute <span class="op">=</span> <span class="st">"Biome"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 biome                bioma</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1              Amazon             Amazonia</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     Atlantic_Forest       Mata_Atlantica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3            Caatinga             Caatinga</span>
@@ -136,8 +136,8 @@ http://floradobrasil.jbrj.gov.br/</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6            Pantanal             Pantanal</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 7 Not_found_in_Brazil Nao_ocorre_no_Brasil</span>
 <span class="r-in"><span><span class="co"># Get available life forms to filter species</span></span></span>
-<span class="r-in"><span><span class="fu">get_attributes</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>, Kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, attribute <span class="op">=</span> <span class="st">"lifeForm"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               lifeForm            Forma_de_vida</span>
+<span class="r-in"><span><span class="fu">get_attributes</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>, kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, attribute <span class="op">=</span> <span class="st">"lifeForm"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               lifeForm              formaDeVida</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      Aquatic-Benthos          Aquatica-Bentos</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      Aquatic-Neuston         Aquatica-Neuston</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3     Aquatic-Plankton        Aquatica-Plancton</span>
@@ -161,8 +161,8 @@ http://floradobrasil.jbrj.gov.br/</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 27                Weft                    Trama</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 28                Tuft                     Tufo</span>
 <span class="r-in"><span><span class="co"># Get available states to filter species</span></span></span>
-<span class="r-in"><span><span class="fu">get_attributes</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>, Kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, attribute <span class="op">=</span> <span class="st">"States"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Sigla_Acronym           Nome_Name</span>
+<span class="r-in"><span><span class="fu">get_attributes</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>, kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, attribute <span class="op">=</span> <span class="st">"States"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    sigla_acronym           nome_name</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1             AC                Acre</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2             AM            Amazonas</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3             PA                Para</span>
@@ -204,7 +204,7 @@ http://floradobrasil.jbrj.gov.br/</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer></div>
