@@ -5,7 +5,7 @@
 \title{Download the latest version of Brazilian Flora 2020 database}
 \usage{
 get_florabr(output_dir, data_version = "latest",
-                 solve_incongruences = TRUE, overwrite = TRUE,
+                 solve_incongruences = FALSE, overwrite = TRUE,
                  verbose = TRUE)
 }
 \arguments{
@@ -18,10 +18,10 @@ Alternatively, specify an older version (e.g., data_version = "393.319").
 Default value is "latest".}
 
 \item{solve_incongruences}{Resolve inconsistencies between species and
-subspecies/varieties  information. When set to TRUE (default), species
+subspecies/varieties  information. When set to TRUE, species
 information is updated based on unique data from varieties and subspecies.
 For example, if a subspecies occurs in a certain biome, it implies that the
-species also occurs in that biome.}
+species also occurs in that biome. Default = FALSE.}
 
 \item{overwrite}{(logical) If TRUE, data is overwritten. Default = TRUE.}
 
@@ -52,7 +52,7 @@ my_dir <- file.path(file.path(tempdir(), "florabr"))
 dir.create(my_dir)
 #Download, merge and save data
 get_florabr(output_dir = my_dir, data_version = "latest",
-            solve_incongruences = TRUE, overwrite = TRUE, verbose = TRUE)
+            solve_incongruences = FALSE, overwrite = TRUE, verbose = TRUE)
 }
 }
 \references{
