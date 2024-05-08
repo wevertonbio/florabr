@@ -1,37 +1,37 @@
 #' Get Spatial polygons (SpatVectors) of species based on its distribution
-#' (States and Biomes) according to Brazilian Flora 2020
+#' (states and biomes) according to Brazilian Flora 2020
 #'
 #' @param data (data.frame) the data.frame imported with the
 #' \code{\link{load_florabr}} function.
 #' @param species (character) one or more species names (only genus and
 #' specific epithet, eg. "Araucaria angustifolia")
-#' @param State (logical) get SpatVector of states with occurrence of the
+#' @param state (logical) get SpatVector of states with occurrence of the
 #' species? Default = TRUE
-#' @param Biome (logical) get SpatVector of biomes with occurrence of the
+#' @param biome (logical) get SpatVector of biomes with occurrence of the
 #' species? Default = TRUE
 #' @param intersection (character) get a Spatvector representing the
-#' intersection between States and Biomes with occurrence of the specie?
-#' To use intersection = TRUE, you must define State = TRUE and Biome = TRUE".
+#' intersection between states and biomes with occurrence of the specie?
+#' To use intersection = TRUE, you must define state = TRUE and biome = TRUE".
 #' Default = TRUE
-#' @param State_vect (SpatVector) a SpatVector of the Brazilian states. By
+#' @param state_vect (SpatVector) a SpatVector of the Brazilian states. By
 #' default, it uses the SpatVector provided by geobr::read_state(). It can be
 #' another Spatvector, but the structure must be identical to
 #' geobr::read_state().
-#' @param state_column (character) name of the column in State_vect containing
-#' state abbreviations. Only use if Biome_vect is not null.
-#' @param Biome_vect (SpatVector) a SpatVector of the Brazilian biomes. By
+#' @param state_column (character) name of the column in state_vect containing
+#' state abbreviations. Only use if biome_vect is not null.
+#' @param biome_vect (SpatVector) a SpatVector of the Brazilian biomes. By
 #' default, it uses the SpatVector provided by geobr::read_biomes(). It can be
 #' another SpatVector, but the structure must be identical to
 #' geobr::read_biomes().
-#' @param biome_column (character) name of the column in Biome_vect containing
+#' @param biome_column (character) name of the column in biome_vect containing
 #' names of brazilian biomes (in English: "Amazon", "Atlantic_Forest",
-#' "Caatinga", "Cerrado", "Pampa" and "Pantanal". Only use if Biome_vect is not
+#' "Caatinga", "Cerrado", "Pampa" and "Pantanal". Only use if biome_vect is not
 #'  null.
 #' @param verbose (logical) Whether to display species being filtered during
 #' function execution. Set to TRUE to enable display, or FALSE to run silently.
 #' Default = TRUE.
 #'
-#' @return A list with SpatVectors of States and/or Biomes and/or Intersections
+#' @return A list with SpatVectors of states and/or biomes and/or Intersections
 #' for each specie.
 #' @importFrom terra subset unwrap intersect mask
 #' @importFrom data.table rbindlist
@@ -44,24 +44,24 @@
 #' data("bf_data") #Load Brazilian Flora data
 #' spp <- c("Araucaria angustifolia", "Adesmia paranensis") #Example species
 #' #Get states, biomes and intersection states-biomes of species
-#' spp_spt <- get_spat_occ(data = bf_data, species = spp, State = TRUE,
-#'                        Biome = TRUE, intersection = TRUE, State_vect = NULL,
-#'                        Biome_vect = NULL, verbose = TRUE)
+#' spp_spt <- get_spat_occ(data = bf_data, species = spp, state = TRUE,
+#'                        biome = TRUE, intersection = TRUE, state_vect = NULL,
+#'                        biome_vect = NULL, verbose = TRUE)
 #'
 #'
 #' #Plot states of occurrence of Araucaria angustifolia
-#' plot(spp_spt[[1]]$States, main = names(spp_spt)[[1]])
+#' plot(spp_spt[[1]]$states, main = names(spp_spt)[[1]])
 #' #Plot biomes of occurrence of Araucaria angustifolia
-#' plot(spp_spt[[2]]$Biomes, main = names(spp_spt)[[2]])
+#' plot(spp_spt[[2]]$biomes, main = names(spp_spt)[[2]])
 #' #Plot intersection between states and biomes of occurrence of
 #' #Araucaria angustifolia
-#' plot(spp_spt[[1]]$States_Biomes)
+#' plot(spp_spt[[1]]$states_biomes)
 #'
-get_spat_occ <- function(data, species, State = TRUE,
-                         Biome = TRUE,
+get_spat_occ <- function(data, species, state = TRUE,
+                         biome = TRUE,
                          intersection = TRUE,
-                         State_vect = NULL, state_column = NULL,
-                         Biome_vect = NULL, biome_column = NULL,
+                         state_vect = NULL, state_column = NULL,
+                         biome_vect = NULL, biome_column = NULL,
                          verbose = TRUE) {
   if (missing(data)) {
     stop("Argument data is not defined")
@@ -79,12 +79,12 @@ get_spat_occ <- function(data, species, State = TRUE,
     stop(paste0("Argument species must be a character, not ", class(species)))
   }
 
-  if (!is.logical(State)) {
-    stop(paste0("Argument State must be logical, not ", class(State)))
+  if (!is.logical(state)) {
+    stop(paste0("Argument state must be logical, not ", class(state)))
   }
 
-  if (!is.logical(Biome)) {
-    stop(paste0("Argument Biome must be logical, not ", class(Biome)))
+  if (!is.logical(biome)) {
+    stop(paste0("Argument biome must be logical, not ", class(biome)))
   }
 
   if (!is.logical(intersection)) {
@@ -92,22 +92,22 @@ get_spat_occ <- function(data, species, State = TRUE,
                 class(intersection)))
   }
 
-  if (!is.null(State_vect) && !inherits(State_vect, "SpatVector")) {
-    stop(paste0("Argument State_vect must be NULL or a SpatVector, not ",
-                class(State_vect)))
+  if (!is.null(state_vect) && !inherits(state_vect, "SpatVector")) {
+    stop(paste0("Argument state_vect must be NULL or a SpatVector, not ",
+                class(state_vect)))
   }
 
-  if (!is.null(Biome_vect) && !inherits(Biome_vect, "SpatVector")) {
-    stop(paste0("Argument Biome_vect must be NULL or a SpatVector, not ",
-                class(Biome_vect)))
+  if (!is.null(biome_vect) && !inherits(biome_vect, "SpatVector")) {
+    stop(paste0("Argument biome_vect must be NULL or a SpatVector, not ",
+                class(biome_vect)))
   }
 
-  if (!is.null(State_vect) && !is.character(state_column)) {
+  if (!is.null(state_vect) && !is.character(state_column)) {
     stop(paste0("Argument state_column must be a character, not ",
                 class(state_column)))
   }
 
-  if (!is.null(Biome_vect) && !is.character(biome_column)) {
+  if (!is.null(biome_vect) && !is.character(biome_column)) {
     stop(paste0("Argument biome_column must be a character, not ",
                 class(biome_column)))
   }
@@ -117,23 +117,23 @@ get_spat_occ <- function(data, species, State = TRUE,
   }
 
   #Check colnames in data
-  if(!all(c("species", "States", "Biome") %in%
+  if(!all(c("species", "states", "biome") %in%
           colnames(data))) {
     stop("Important columns are missing in data. Check if data is an object
          created by 'load_florabr()")
   }
 
   #Check if there is at least one TRUE in states or biomes
-  if(!State & !Biome){
-    stop("At least one of the parameters State or Biome must be TRUE")
+  if(!state & !biome){
+    stop("At least one of the parameters state or biome must be TRUE")
   }
-  if(intersection & (!State | !Biome)) {
-    stop("To use intersection = TRUE, you must define State = TRUE and
-         Biome = TRUE")
+  if(intersection & (!state | !biome)) {
+    stop("To use intersection = TRUE, you must define state = TRUE and
+         biome = TRUE")
   }
 
   #Load data
-  d <- data[,c("species", "States", "Biome")]
+  d <- data[,c("species", "states", "biome")]
 
   #Check if all species are in Brazilin Flora data
   spp <- get_binomial(species_names = species)
@@ -150,61 +150,61 @@ get_spat_occ <- function(data, species, State = TRUE,
   #Get only one line by species, merging information of same species
   sp_info <- lapply(seq_along(spp), function(i) {
     sp <- subset(d_info, d_info$species == spp[i])
-    sp$States <- paste0(na.omit(unique(sp$States)),
+    sp$states <- paste0(na.omit(unique(sp$states)),
                         collapse = ";")
-    sp$Biome <- paste0(na.omit(unique(sp$Biome)),
+    sp$biome <- paste0(na.omit(unique(sp$biome)),
                        collapse = ";")
     return(sp)
   })
   sp_info <- unique(data.table::rbindlist(sp_info))
 
   #Load data
-  if(State) {
+  if(state) {
   states <- terra::unwrap(florabr::states)
   }
-  if(Biome) {
+  if(biome) {
     biomes <- terra::unwrap(florabr::biomes)
   }
 
   #Check personal vectors (if provided)
-  #States
-  if(!is.null(State_vect)){
-    names(State_vect)[which(names(State_vect) == state_column)] <-"abbrev_state"
-    check_matches <- setdiff(states$abbrev_state, State_vect$abbrev_state)
+  #states
+  if(!is.null(state_vect)){
+    names(state_vect)[which(names(state_vect) == state_column)] <-"abbrev_state"
+    check_matches <- setdiff(states$abbrev_state, state_vect$abbrev_state)
     if(length(check_matches) > 0) {
-      stop(paste0("Invalid States in ", state_column,
+      stop(paste0("Invalid states in ", state_column,
                   "\nCheck the structure of the Spatvector provided in
-                  State_vect"))
+                  state_vect"))
     } else {
-      states <- State_vect
+      states <- state_vect
     }}
-  #Biomes
-  if(!is.null(Biome_vect)){
-    names(Biome_vect)[which(names(Biome_vect) == biome_column)] <- "name_biome"
-    check_matches <- setdiff(biomes$name_biome, Biome_vect$name_biome)
+  #biomes
+  if(!is.null(biome_vect)){
+    names(biome_vect)[which(names(biome_vect) == biome_column)] <- "name_biome"
+    check_matches <- setdiff(biomes$name_biome, biome_vect$name_biome)
     if(length(check_matches) > 0) {
-      stop(paste0("Invalid Biomes in ", biome_column,
+      stop(paste0("Invalid biomes in ", biome_column,
                   "\nCheck the structure of the Spatvector provided in
-                  Biome_vect"))
+                  biome_vect"))
     } else {
-      biomes <- Biome_vect
+      biomes <- biome_vect
     }}
 
   #Get state
   l_occ <- lapply(seq_along(spp), function(i){
     occ_i <- subset(sp_info, sp_info$species == spp[i])
 
-    if(!State) {states_v <- NULL}
+    if(!state) {states_v <- NULL}
 
-    if(State) {
+    if(state) {
       if(verbose) {
         message("Getting states of", spp[i], "\n") }
 
-      sp_i_state <- unique(gsub(";", "|", occ_i$States[1]))
+      sp_i_state <- unique(gsub(";", "|", occ_i$states[1]))
 
       if(sp_i_state == "" | is.na(sp_i_state)) {
         if(verbose) {
-        message(spp[i], "lacks info about State - SpatialVector not
+        message(spp[i], "lacks info about state - SpatialVector not
                   returned")}
         states_v <- "No_info"
       } else {
@@ -212,16 +212,16 @@ get_spat_occ <- function(data, species, State = TRUE,
                                                     states$abbrev_state)) }
     }
 
-    if(!Biome) {biomes_v <- NULL}
+    if(!biome) {biomes_v <- NULL}
 
-    if(Biome) {
+    if(biome) {
       if(verbose) {
         message("Getting biomes of", spp[i], "\n") }
-      sp_i_biome<- unique(gsub(";", "|", occ_i$Biome[1]))
+      sp_i_biome<- unique(gsub(";", "|", occ_i$biome[1]))
 
       if(sp_i_biome == "" | is.na(sp_i_biome)) {
         if(verbose){
-        message(spp[i], "lacks info about Biome - SpatialVector not
+        message(spp[i], "lacks info about biome - SpatialVector not
                   returned")}
         biomes_v <- "No_info"
       } else {
@@ -248,7 +248,7 @@ get_spat_occ <- function(data, species, State = TRUE,
 
     #Save objects in a list
     final_list <- list(states_v, biomes_v, int_v)
-    names(final_list) <- c("States", "Biomes", "States_Biomes")
+    names(final_list) <- c("states", "biomes", "states_biomes")
     return(final_list)
   })
   names(l_occ) <- spp

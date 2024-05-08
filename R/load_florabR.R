@@ -91,7 +91,7 @@ load_florabr <- function(data_dir, data_version = "Latest_available",
 
   #Load data
   if(verbose){
-  message("Loading version", version_data) }
+  message("Loading version ", version_data) }
 
   if(type == "complete") {
     ds <- readRDS(file.path(path_data, version_data,
@@ -100,13 +100,11 @@ load_florabr <- function(data_dir, data_version = "Latest_available",
   if(type == "short") {
     ds <- readRDS(file.path(path_data, version_data,
                             "CompleteBrazilianFlora.rds"))
-    ds <- ds[,c("species", "scientificName", "acceptedName", "kingdom", "Group",
-                "Subgroup", "family",
-                "genus", "lifeForm",
-             "habitat", "Biome", "States", "vegetationType", "Origin",
-             "Endemism",
-             "taxonomicStatus", "nomenclaturalStatus", "vernacularName",
-             "taxonRank")]
+    ds <- ds[,c(c("species", "scientificName", "acceptedName", "kingdom",
+                  "group", "subgroup", "family", "genus", "lifeForm", "habitat",
+                  "biome", "states", "vegetation", "origin", "endemism",
+                  "taxonomicStatus", "nomenclaturalStatus", "vernacularName",
+                  "taxonRank"))]
   }
   return(ds)
 }

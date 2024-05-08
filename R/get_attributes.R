@@ -10,13 +10,13 @@
 #'  \code{\link{select_species}} function.
 #' @param attribute (character) the type of characteristic. See detail to see
 #' the options.
-#' @param Kingdom (character) the kingdom to which the species belong. It can
+#' @param kingdom (character) the kingdom to which the species belong. It can
 #' be "Plantae" or "Fungi". Default = "Plantae".
 #'
 #' @details
-#' The attribute argument accepts the following options: Group, SubGroup,
-#' family, lifeForm, habitat, vegetationType, Origin, Endemism, Biome, States,
-#' taxonomicStatus or nomenclaturalStatus". These options represent different
+#' The attribute argument accepts the following options: group, subgroup,
+#' family, lifeform, habitat, vegetation, origin, endemism, biome, states,
+#' taxonomicstatus or nomenclaturalstatus. These options represent different
 #' characteristics of species that can be used for filtering.
 #'
 #' @return a data.frame with two columns. The first column provides the
@@ -24,7 +24,7 @@
 #' \code{\link{select_species}} function. The second columns provides the
 #' options in Portuguese.
 #'
-#' @usage get_attributes(data, attribute, Kingdom = "Plantae")
+#' @usage get_attributes(data, attribute, kingdom = "Plantae")
 #'
 #' @export
 #'
@@ -35,23 +35,32 @@
 #' @examples
 #' data("bf_data") #Load Brazilian Flora data
 #' # Get available biomes to filter species
-#' get_attributes(data = bf_data, Kingdom = "Plantae", attribute = "Biome")
+#' get_attributes(data = bf_data, kingdom = "Plantae", attribute = "Biome")
 #' # Get available life forms to filter species
-#' get_attributes(data = bf_data, Kingdom = "Plantae", attribute = "lifeForm")
+#' get_attributes(data = bf_data, kingdom = "Plantae", attribute = "lifeForm")
 #' # Get available states to filter species
-#' get_attributes(data = bf_data, Kingdom = "Plantae", attribute = "States")
+#' get_attributes(data = bf_data, kingdom = "Plantae", attribute = "States")
 
 get_attributes <- function(data, attribute,
-                           Kingdom = "Plantae") {
+                           kingdom = "Plantae") {
 
   if (missing(data)) {
     stop("Argument data is not defined")
   }
 
+  #Change all column names of data to lowercase
+  colnames(data) <- tolower(colnames(data))
+
+  #Change attribute to lowercase
+  attribute <- tolower(attribute)
+
+  #Change kingdom - First letter to upper case
+  kingdom <- firstup(kingdom)
+
   if (missing(attribute)) {
     stop("Argument attribute is not defined. Valid attributes:
-    Group, SubGroup, family, lifeForm, habitat, vegetationType, Origin,
-    Endemism, Biome, States, taxonomicStatus or nomenclaturalStatus")
+    group, subgroup, family, lifeForm, habitat, vegetation, origin,
+    endemism, biome, states, taxonomicStatus or nomenclaturalStatus")
   }
 
   #Check classes
@@ -64,29 +73,30 @@ get_attributes <- function(data, attribute,
                 class(attribute)))
   }
 
-  if (!(Kingdom %in% c("Plantae", "Fungi"))) {
-    stop("Argument Kingdom must be 'Plantae' or 'Fungi'")
+  if (!(kingdom %in% c("Plantae", "Fungi"))) {
+    stop("Argument kingdom must be 'Plantae' or 'Fungi'")
   }
 
 
   atrib <- attribute
 
-  if(!(atrib %in% c("Group", "Subgroup", "family", "lifeForm", "habitat",
-                    "vegetationType", "Origin","Endemism", "Biome", "States",
-                  "taxonomicStatus", "nomenclaturalStatus"))) {
+  if(!(atrib %in% c("group", "subgroup", "family", "lifeform", "habitat",
+                    "vegetation", "origin", "endemism", "biome", "states",
+                    "taxonomicstatus", "nomenclaturalstatus"))) {
     stop("Informed attribute is not valid! Valid attributes:
-    Group, SubGroup, family, lifeForm, habitat, vegetationType, Origin,
-    Endemism, Biome, States, taxonomicStatus or nomenclaturalStatus")
+    group, subgroup, family, lifeform, habitat, vegetation, origin,
+    endemism, biome, states, taxonomicstatus or nomenclaturalstatus")
   }
 
   #Get unique attributes
-  d <- subset(data, data$kingdom == Kingdom)
+  d <- subset(data, data$kingdom == kingdom)
   d_at <- d[,atrib]
   at <- unique(unlist(strsplit(d_at, ";")))
 
-  if(atrib != c("family")) {
+  if(atrib != "family") {
   #Get attribute translations
   Attributes <- florabr::Attributes
+  names(Attributes) <- tolower(names(Attributes))
   Attributes <- Attributes[[atrib]]
 
   #Subset

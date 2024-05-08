@@ -9,103 +9,103 @@
 #' Default = FALSE
 #' @param include_variety (logical) include varieties of the species?
 #' Default = FALSE
-#' @param Kingdom (character) The Kingdom for filtering the dataset. It can be
+#' @param kingdom (character) The kingdom for filtering the dataset. It can be
 #' "Plantae" or "Fungi". Default = "Plantae". To include both,
 #' use c("Plantae", "Fungi")
-#' @param Group (character) The groups for filtering the datasets. It can be
+#' @param group (character) The groups for filtering the datasets. It can be
 #' "Fungi", "Angiosperms", "Gymnosperms", "Ferns and Lycophytes",
 #' "Bryophytes" and "Algae". To use more than one group, put the available
-#' items in a vector, for example: Group = c(Angiosperms", "Gymnosperms").
+#' items in a vector, for example: group = c(Angiosperms", "Gymnosperms").
 #' Default = "All".
-#' @param Subgroup (character) The subgroups for filtering the dataset.
-#' Only available if the Group is "Fungi" or "Bryophytes". For Fungi, it can be
+#' @param subgroup (character) The subgroups for filtering the dataset.
+#' Only available if the group is "Fungi" or "Bryophytes". For Fungi, it can be
 #' "stricto sensu" or "lato sensu". For Bryophytes, it can be "Mosses",
 #' "Hornworts" and "Liverworts" . To use more than one group, put the available
-#' items in a vector, for example: Subgroup = c("Mosses", "Hornworts").
+#' items in a vector, for example: subgroup = c("Mosses", "Hornworts").
 #' Default = "All".
-#' @param Family (character) The families for filtering the dataset. It can
-#' be included more than one Family. Default = "All".
-#' @param Genus (character) The genus for filtering the dataset. It can
-#' be included more than one Genus. Default = "All".
-#' @param LifeForm (character) The life forms for filtering the dataset. It can
-#' be included more than one LifeForm. Default = "All"
-#' @param filter_LifeForm (character) The type of filtering for life forms. It
+#' @param family (character) The families for filtering the dataset. It can
+#' be included more than one family. Default = "All".
+#' @param genus (character) The genus for filtering the dataset. It can
+#' be included more than one genus. Default = "All".
+#' @param lifeForm (character) The life forms for filtering the dataset. It can
+#' be included more than one lifeForm. Default = "All"
+#' @param filter_lifeForm (character) The type of filtering for life forms. It
 #' can be "in", "only", "not_in" and "and". See details for more about this
 #' argument.
-#' @param Habitat (character) The life habitat for filtering the dataset. It can
+#' @param habitat (character) The life habitat for filtering the dataset. It can
 #' be included more than one habitat. Default = "All"
-#' @param filter_Habitat (character) The type of filtering for habitat. It
+#' @param filter_habitat (character) The type of filtering for habitat. It
 #' can be "in", "only", "not_in" and "and". See details for more about this
 #' argument.
-#' @param Biome (character) The biomes for filtering the dataset. It can
+#' @param biome (character) The biomes for filtering the dataset. It can
 #' be included more than one biome. Default = "All"
-#' @param filter_Biome (character) The type of filtering for biome. It
+#' @param filter_biome (character) The type of filtering for biome. It
 #' can be "in", "only", "not_in" and "and". See details for more about this
 #' argument.
-#' @param State (character) The States for filtering the dataset. It can
+#' @param state (character) The states for filtering the dataset. It can
 #' be included more than one state. Default = "All".
-#' @param filter_State (character) The type of filtering for state. It
+#' @param filter_state (character) The type of filtering for state. It
 #' can be "in", "only", "not_in" and "and". See Details for more about this
 #' argument.
-#' @param VegetationType (character) The vegetation types for filtering the
+#' @param vegetation (character) The vegetation types for filtering the
 #' dataset. It can be included more than one vegetation type. Default = "All".
-#' @param filter_Vegetation (character) The type of filtering for
+#' @param filter_vegetation (character) The type of filtering for
 #' vegetation type. It can be "in", "only", "not_in" and "and". See details for
 #' more about this argument.
-#' @param Endemism (character) The endemism (endemic or non-endemic to Brazil)
+#' @param endemism (character) The endemism (endemic or non-endemic to Brazil)
 #' for filtering the dataset. It can be "All", "Endemic" or "Non-endemic".
 #' Default = "All".
-#' @param Origin (character) The origin for filtering the dataset. It can
+#' @param origin (character) The origin for filtering the dataset. It can
 #' be "All", "Native", "Cultivated" and "Naturalized". Default = "All".
-#' @param TaxonomicStatus (character) The taxonomic status for filtering the
+#' @param taxonomicStatus (character) The taxonomic status for filtering the
 #' dataset. It can be "All", "Accepted" or "Synonym". Default = "Accepted".
-#' @param NomenclaturalStatus (character) The nomenclatural status for
+#' @param nomenclaturalStatus (character) The nomenclatural status for
 #' filtering the dataset. Default = "Accepted"
 #'
-#' @details It's possible to choose 4 ways to filter by lifeform, by habitat,
+#' @details It's possible to choose 4 ways to filter by lifeForm, by habitat,
 #' by biome, by state and by vegetation type:
 #' "in": selects species that have any occurrence of the determined values. It
-#' allows multiple matches. For example, if Biome = c("Amazon", Cerrado" and
-#' filter_Biome = "in", it will select all species that occur in the Amazon and
+#' allows multiple matches. For example, if biome = c("Amazon", Cerrado" and
+#' filter_biome = "in", it will select all species that occur in the Amazon and
 #' Cerrado, some of which may also occur in other biomes.
 #'
 #' "only": selects species that have only occurrence of the determined values.
-#' It allows only single matches. For example, if Biome = c("Amazon", "Cerrado")
-#' and filter_Biome = "only", it will select all species that occur exclusively
+#' It allows only single matches. For example, if biome = c("Amazon", "Cerrado")
+#' and filter_biome = "only", it will select all species that occur exclusively
 #' in both the Amazon and Cerrado biomes, without any occurrences in other
 #' biomes.
 #'
 #' "not_in": selects species that don't have occurrence of the determined
 #' values. It allows single and multiple matches. For example,
-#' if Biome = c("Amazon", "Cerrado") and filter_Biome = "not_in", it will select
+#' if biome = c("Amazon", "Cerrado") and filter_biome = "not_in", it will select
 #' all species without occurrences in the Amazon and Cerrado biomes.
 #'
 #' "and": selects species that have occurrence in all determined values. It
 #' allows single and multiple matches. For example,
-#' if Biome = c("Amazon", "Cerrado") and filter_Biome = "and", it will select
+#' if biome = c("Amazon", "Cerrado") and filter_biome = "and", it will select
 #' all species that occurs only in both the Amazon and Cerrado biomes,
 #' including species that occurs in other biomes too.
 #'
 #'
 #'
-#' To get the complete list of arguments available for Family, Genus, LifeForm,
-#' Habitat, Biome, State, and NomenclaturalStatus, use the function
+#' To get the complete list of arguments available for family, genus, lifeForm,
+#' habitat, biome, state, and nomenclaturalStatus, use the function
 #' \code{\link{get_attributes}}
 #'
 #'
 #' @return A new dataframe with the filtered species.
 #' @usage select_species(data,
 #'                       include_subspecies = FALSE, include_variety = FALSE,
-#'                       Kingdom = "Plantae", Group = "All", Subgroup = "All",
-#'                       Family = "All", Genus = "All",
-#'                       LifeForm = "All", filter_LifeForm = "in",
-#'                       Habitat = "All", filter_Habitat = "in",
-#'                       Biome = "All", filter_Biome = "in",
-#'                       State = "All", filter_State = "in",
-#'                       VegetationType = "All", filter_Vegetation = "in",
-#'                       Endemism = "All", Origin = "All",
-#'                       TaxonomicStatus = "Accepted",
-#'                       NomenclaturalStatus = "All")
+#'                       kingdom = "Plantae", group = "All", subgroup = "All",
+#'                       family = "All", genus = "All",
+#'                       lifeForm = "All", filter_lifeForm = "in",
+#'                       habitat = "All", filter_habitat = "in",
+#'                       biome = "All", filter_biome = "in",
+#'                       state = "All", filter_state = "in",
+#'                       vegetation = "All", filter_vegetation = "in",
+#'                       endemism = "All", origin = "All",
+#'                       taxonomicStatus = "Accepted",
+#'                       nomenclaturalStatus = "All")
 #' @export
 #' @references
 #' Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
@@ -118,35 +118,35 @@
 #' am_af_only <- select_species(data = bf_data,
 #'                              include_subspecies = FALSE,
 #'                              include_variety = FALSE,
-#'                              Kingdom = "Plantae",
-#'                              Group = "All", Subgroup = "All",
-#'                              Family = "All", Genus = "All",
-#'                              LifeForm = "Tree", filter_LifeForm = "only",
-#'                              Habitat = "All", filter_Habitat = "in",
-#'                              Biome = c("Atlantic_Forest","Amazon"),
-#'                              filter_Biome = "only",
-#'                              State = "All", filter_State = "and",
-#'                              VegetationType = "All",
-#'                              filter_Vegetation = "in",
-#'                              Endemism = "Endemic", Origin = "Native",
-#'                              TaxonomicStatus = "All",
-#'                              NomenclaturalStatus = "All")
+#'                              kingdom = "Plantae",
+#'                              group = "All", subgroup = "All",
+#'                              family = "All", genus = "All",
+#'                              lifeForm = "Tree", filter_lifeForm = "only",
+#'                              habitat = "All", filter_habitat = "in",
+#'                              biome = c("Atlantic_Forest","Amazon"),
+#'                              filter_biome = "only",
+#'                              state = "All", filter_state = "and",
+#'                              vegetation = "All",
+#'                              filter_vegetation = "in",
+#'                              endemism = "Endemic", origin = "Native",
+#'                              taxonomicStatus = "All",
+#'                              nomenclaturalStatus = "All")
 
 select_species <- function(data,
                            include_subspecies = FALSE,
                            include_variety = FALSE,
-                           Kingdom = "Plantae",
-                           Group = "All", Subgroup = "All",
-                           Family = "All",
-                           Genus = "All",
-                           LifeForm = "All", filter_LifeForm = "in",
-                           Habitat = "All", filter_Habitat = "in",
-                           Biome = "All", filter_Biome = "in",
-                           State = "All", filter_State = "in",
-                           VegetationType = "All", filter_Vegetation = "in",
-                           Endemism = "All", Origin = "All",
-                           TaxonomicStatus = "Accepted",
-                           NomenclaturalStatus = "All") {
+                           kingdom = "Plantae",
+                           group = "All", subgroup = "All",
+                           family = "All",
+                           genus = "All",
+                           lifeForm = "All", filter_lifeForm = "in",
+                           habitat = "All", filter_habitat = "in",
+                           biome = "All", filter_biome = "in",
+                           state = "All", filter_state = "in",
+                           vegetation = "All", filter_vegetation = "in",
+                           endemism = "All", origin = "All",
+                           taxonomicStatus = "Accepted",
+                           nomenclaturalStatus = "All") {
   if (missing(data)) {
     stop("Argument data is not defined")
   }
@@ -167,72 +167,72 @@ select_species <- function(data,
   }
 
 
-  if(!(filter_LifeForm %in% c("in", "only", "not_in", "and"))) {
-    stop(paste0("Argument filter_LifeForm must be:\n",
+  if(!(filter_lifeForm %in% c("in", "only", "not_in", "and"))) {
+    stop(paste0("Argument filter_lifeForm must be:\n",
                 "'in', 'only', 'not_in' or 'and'"))
   }
-  if(!(filter_Habitat %in% c("in", "only", "not_in", "and"))) {
-    stop(paste0("Argument filter_Habitat must be:\n",
+  if(!(filter_habitat %in% c("in", "only", "not_in", "and"))) {
+    stop(paste0("Argument filter_habitat must be:\n",
                 "'in', 'only', 'not_in' or 'and'"))
   }
-  if(!(filter_Biome %in% c("in", "only", "not_in", "and"))) {
-    stop(paste0("Argument filter_Biome must be:\n",
+  if(!(filter_biome %in% c("in", "only", "not_in", "and"))) {
+    stop(paste0("Argument filter_biome must be:\n",
                 "'in', 'only', 'not_in' or 'and'"))
   }
-  if(!(filter_Vegetation %in% c("in", "only", "not_in", "and"))) {
-    stop(paste0("Argument filter_Vegetation must be:\n",
+  if(!(filter_vegetation %in% c("in", "only", "not_in", "and"))) {
+    stop(paste0("Argument filter_vegetation must be:\n",
                 "'in', 'only', 'not_in' or 'and'"))
   }
 
-  if(!(Kingdom %in% unique(data$kingdom))) {
-    stop(paste("Kingdom not valid. The Kingdoms availables are:\n",
+  if(!(kingdom %in% unique(data$kingdom))) {
+    stop(paste("kingdom not valid. The kingdoms availables are:\n",
                paste(unique(data$kingdom), collapse = ", ")))  }
 
-  if(all(Group != "All") & !all(Group %in% unique(data$Group))) {
-    stop(paste("Group not valid. The Groups availables are:\n",
-               paste(unique(data$Group), collapse = ", ")))  }
+  if(all(group != "All") & !all(group %in% unique(data$group))) {
+    stop(paste("group not valid. The groups availables are:\n",
+               paste(unique(data$group), collapse = ", ")))  }
 
-  if(Subgroup != "All" & !(Subgroup %in% unique(data$Subgroup))) {
-    stop(paste("Subgroup not valid.
+  if(subgroup != "All" & !(subgroup %in% unique(data$subgroup))) {
+    stop(paste("subgroup not valid.
                The subgroups are only available for non-Plants:\n",
-               paste(na.omit(unique(data$Subgroup)), collapse = ", ")))  }
+               paste(na.omit(unique(data$subgroup)), collapse = ", ")))  }
 
-  if(all(Family != "All") & !all(Family %in% unique(data$family))) {
-    stop(paste("Family not valid.\n",
+  if(all(family != "All") & !all(family %in% unique(data$family))) {
+    stop(paste("family not valid.\n",
                "Check the available families with the function
                get_attributes()")
          ) }
 
-  if(Genus != "All" & !(Genus %in% unique(data$genus))) {
-    stop(paste("Genus not valid.\n")) }
+  if(genus != "All" & !(genus %in% unique(data$genus))) {
+    stop(paste("genus not valid.\n")) }
 
-  if(Endemism != "All" & !(Endemism %in% c('All', 'Endemic', 'Non-endemic'))) {
-    stop(paste("Endemism not valid. The options availables are:\n",
+  if(endemism != "All" & !(endemism %in% c('All', 'Endemic', 'Non-endemic'))) {
+    stop(paste("endemism not valid. The options availables are:\n",
                "'All', 'Endemic', or 'Non-endemic'"))}
-  if(Origin != "All" & !(Origin %in% c('All', 'Native', 'Cultivated',
+  if(origin != "All" & !(origin %in% c('All', 'Native', 'Cultivated',
   'Naturalized'))) {
-    stop(paste("Origin not valid. The options availables are:\n",
+    stop(paste("origin not valid. The options availables are:\n",
                "'All', 'Native', 'Cultivated', or 'Naturalized'"))}
-  if(TaxonomicStatus != "All" &
-     !(TaxonomicStatus %in% c('All', 'Accepted', 'Synonym'))) {
-    stop(paste("TaxonomicStatus not valid. The options availables are:\n",
+  if(taxonomicStatus != "All" &
+     !(taxonomicStatus %in% c('All', 'Accepted', 'Synonym'))) {
+    stop(paste("taxonomicStatus not valid. The options availables are:\n",
                "'All', 'Accepted', or 'Synonym'"))}
-  if(NomenclaturalStatus != "All" &
-     !(NomenclaturalStatus %in% c("Correct", "Legitimate_but_incorrect",
+  if(nomenclaturalStatus != "All" &
+     !(nomenclaturalStatus %in% c("Correct", "Legitimate_but_incorrect",
                                   "Correct_name_by_conservation",
                                   "Orthographical_variant",
                                   "Illegitimate", "Not_effectively_published",
                                   "Not_validly_published",
                                   "Uncertain_Application", "Rejected",
                                   "Misapplied"))) {
-    stop(paste("NomenclaturalStatus not valid.\n",
-               "Check the available NomenclaturalStatus with the function\n",
+    stop(paste("nomenclaturalStatus not valid.\n",
+               "Check the available nomenclaturalStatus with the function\n",
                "get_attributes()")) }
 
   #Start to filter...
 
-  #Kingdom
-  d <- subset(data, data$kingdom %in% Kingdom)
+  #kingdom
+  d <- subset(data, data$kingdom %in% kingdom)
 
   #Taxon Rank
   if(!include_subspecies & !include_variety) {
@@ -244,298 +244,298 @@ select_species <- function(data,
   if(include_subspecies & include_variety) {
     d <- subset(d, d$taxonRank %in% c("Species", "Subspecies", "Variety")) }
 
-  #Group
-  if(all(Group == "All")) {
+  #group
+  if(all(group == "All")) {
     d <- d } else {
-      gr <- paste(Group, collapse = "|")
-      d <- subset(d, grepl(gr, d$Group))
+      gr <- paste(group, collapse = "|")
+      d <- subset(d, grepl(gr, d$group))
     }
 
-  #Subgroup
-  if(all(Subgroup == "All")) {
+  #subgroup
+  if(all(subgroup == "All")) {
     d <- d } else {
-      subgr <- paste(Subgroup, collapse = "|")
-      d <- subset(d, grepl(subgr, d$Subgroup))
+      subgr <- paste(subgroup, collapse = "|")
+      d <- subset(d, grepl(subgr, d$subgroup))
     }
 
-  #Subgroup
-  if(Subgroup == "All") {
+  #subgroup
+  if(subgroup == "All") {
     d <- d } else {
-      d <- subset(d, d$Subgroup %in% Subgroup)
+      d <- subset(d, d$subgroup %in% subgroup)
     }
 
-  #Family
-  if(all(Family == "All")) {
+  #family
+  if(all(family == "All")) {
     d <- d } else {
-      ffam <- paste(Family, collapse = "|")
+      ffam <- paste(family, collapse = "|")
       d <- subset(d, grepl(ffam, d$family))
     }
 
-  #Genus
-  if(all(Genus == "All")) {
+  #genus
+  if(all(genus == "All")) {
     d <- d } else {
-      ggen <- paste(Genus, collapse = "|")
+      ggen <- paste(genus, collapse = "|")
       d <- subset(d, grepl(ggen, d$genus))
     }
 
-  #LifeForm ####
-  if(all(LifeForm  == "All")) {
+  #lifeForm ####
+  if(all(lifeForm  == "All")) {
     d <- d }
 
-  #Check if it is a valid LifeForm
-  if(all(LifeForm != "All")) {
+  #Check if it is a valid lifeForm
+  if(all(lifeForm != "All")) {
     all_lf <- unique(unlist(strsplit(d$lifeForm, split = ";")))
-    newLifeForm <- gsub(" ", "", LifeForm)
-    newLifeForm <- vapply(LifeForm, FUN.VALUE = character(1), function(x){
+    newlifeForm <- gsub(" ", "", lifeForm)
+    newlifeForm <- vapply(lifeForm, FUN.VALUE = character(1), function(x){
       paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
             collapse = ";")
     }, USE.NAMES = FALSE)
-    newLifeForm <- sort(newLifeForm)
-    #Check if all lifeform exists
-    newLifeForm2 <- unique(unlist(strsplit(newLifeForm, split = ";")))
-    any_diff <- setdiff(newLifeForm2 , all_lf)
+    newlifeForm <- sort(newlifeForm)
+    #Check if all lifeForm exists
+    newlifeForm2 <- unique(unlist(strsplit(newlifeForm, split = ";")))
+    any_diff <- setdiff(newlifeForm2 , all_lf)
     if(length(any_diff) > 0) {
       warning(paste("The following life forms are not valid:\n",
                     paste(any_diff, collapse = ", ")))
     }
   }
 
-  #Filter by lifeform
-  if(all(LifeForm != "All") & filter_LifeForm == "in") {
-    d <- subset(d, grepl(paste(newLifeForm, collapse = "|"),
+  #Filter by lifeForm
+  if(all(lifeForm != "All") & filter_lifeForm == "in") {
+    d <- subset(d, grepl(paste(newlifeForm, collapse = "|"),
                          d$lifeForm)) }
 
-  if(all(LifeForm != "All") & filter_LifeForm == "only") {
-    d <- subset(d, d$lifeForm == paste(newLifeForm, collapse = ";"))
+  if(all(lifeForm != "All") & filter_lifeForm == "only") {
+    d <- subset(d, d$lifeForm == paste(newlifeForm, collapse = ";"))
   }
 
-  if(all(LifeForm != "All") & filter_LifeForm == "not_in") {
-    d <- subset(d, !grepl(paste(newLifeForm, collapse = "|"),
+  if(all(lifeForm != "All") & filter_lifeForm == "not_in") {
+    d <- subset(d, !grepl(paste(newlifeForm, collapse = "|"),
                           d$lifeForm))
 
   }
 
-  if(all(LifeForm != "All") & filter_LifeForm == "and") {
-    d <- subset(d, grepl(paste(newLifeForm, collapse = ";"), d$lifeForm ))
+  if(all(lifeForm != "All") & filter_lifeForm == "and") {
+    d <- subset(d, grepl(paste(newlifeForm, collapse = ";"), d$lifeForm ))
   }
 
 
-  #Habitat ####
-  if(all(Habitat  == "All")) {
+  #habitat ####
+  if(all(habitat  == "All")) {
     d <- d }
 
-  #Check if it is a valid Habitat
-  if(all(Habitat != "All")) {
+  #Check if it is a valid habitat
+  if(all(habitat != "All")) {
     all_hab <- unique(unlist(strsplit(d$habitat, split = ";")))
-    newHabitat <- gsub(" ", "", Habitat)
-    newHabitat <- vapply(Habitat, FUN.VALUE = character(1), function(x){
+    newhabitat <- gsub(" ", "", habitat)
+    newhabitat <- vapply(habitat, FUN.VALUE = character(1), function(x){
       paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
             collapse = ";")
     }, USE.NAMES = FALSE)
-    newHabitat <- sort(newHabitat)
-    #Check if all Habitat exists
-    newHabitat2 <- unique(unlist(strsplit(newHabitat, split = ";")))
-    any_diff <- setdiff(newHabitat2 , all_hab)
+    newhabitat <- sort(newhabitat)
+    #Check if all habitat exists
+    newhabitat2 <- unique(unlist(strsplit(newhabitat, split = ";")))
+    any_diff <- setdiff(newhabitat2 , all_hab)
     if(length(any_diff) > 0) {
       warning(paste("The following habitats are not valid:\n",
                     paste(any_diff, collapse = ", ")))
     }
   }
 
-  #Filter by Habitat
-  if(all(Habitat != "All") & filter_Habitat == "in") {
-    d <- subset(d, grepl(paste(newHabitat, collapse = "|"),
+  #Filter by habitat
+  if(all(habitat != "All") & filter_habitat == "in") {
+    d <- subset(d, grepl(paste(newhabitat, collapse = "|"),
                          d$habitat)) }
 
-  if(all(Habitat != "All") & filter_Habitat == "only") {
-    d <- subset(d, d$habitat == paste(newHabitat, collapse = ";"))
+  if(all(habitat != "All") & filter_habitat == "only") {
+    d <- subset(d, d$habitat == paste(newhabitat, collapse = ";"))
   }
 
-  if(all(Habitat != "All") & filter_Habitat == "not_in") {
-    d <- subset(d, !grepl(paste(newHabitat, collapse = "|"),
+  if(all(habitat != "All") & filter_habitat == "not_in") {
+    d <- subset(d, !grepl(paste(newhabitat, collapse = "|"),
                           d$habitat))
 
   }
 
-  if(all(Habitat != "All") & filter_Habitat == "and") {
-    d <- subset(d, grepl(paste(newHabitat, collapse = ";"), d$habitat))
+  if(all(habitat != "All") & filter_habitat == "and") {
+    d <- subset(d, grepl(paste(newhabitat, collapse = ";"), d$habitat))
   }
 
-  #Biome ####
-  if(all(Biome  == "All")) {
+  #biome ####
+  if(all(biome  == "All")) {
     d <- d}
 
-  #Check if it is a valid Biome
-  if(all(Biome != "All")) {
-    all_biome <- unique(unlist(strsplit(d$Biome, split = ";")))
-    newBiome <- gsub(" ", "", Biome)
-    newBiome <- vapply(Biome, FUN.VALUE = character(1), function(x){
+  #Check if it is a valid biome
+  if(all(biome != "All")) {
+    all_biome <- unique(unlist(strsplit(d$biome, split = ";")))
+    newbiome <- gsub(" ", "", biome)
+    newbiome <- vapply(biome, FUN.VALUE = character(1), function(x){
       paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
             collapse = ";")
     }, USE.NAMES = FALSE)
-    newBiome <- sort(newBiome)
-    #Check if all Biome exists
-    newBiome2 <- unique(unlist(strsplit(newBiome, split = ";")))
-    any_diff <- setdiff(newBiome2 , all_biome)
+    newbiome <- sort(newbiome)
+    #Check if all biome exists
+    newbiome2 <- unique(unlist(strsplit(newbiome, split = ";")))
+    any_diff <- setdiff(newbiome2 , all_biome)
     if(length(any_diff) > 0) {
-      warning(paste("The following Biomes are not valid:\n",
+      warning(paste("The following biomes are not valid:\n",
                     paste(any_diff, collapse = ", ")))
     }
   }
 
-  #Filter by Biome
-  if(all(Biome != "All") & filter_Biome == "in") {
-    d <- subset(d, grepl(paste(newBiome, collapse = "|"),
-                         d$Biome)) }
+  #Filter by biome
+  if(all(biome != "All") & filter_biome == "in") {
+    d <- subset(d, grepl(paste(newbiome, collapse = "|"),
+                         d$biome)) }
 
-  if(all(Biome != "All") & filter_Biome == "only") {
-    d <- subset(d, d$Biome == paste(newBiome, collapse = ";"))
+  if(all(biome != "All") & filter_biome == "only") {
+    d <- subset(d, d$biome == paste(newbiome, collapse = ";"))
   }
 
-  if(all(Biome != "All") & filter_Biome == "not_in") {
-    d <- subset(d, !grepl(paste(newBiome, collapse = "|"),
-                          d$Biome))
+  if(all(biome != "All") & filter_biome == "not_in") {
+    d <- subset(d, !grepl(paste(newbiome, collapse = "|"),
+                          d$biome))
   }
 
-  if(all(Biome != "All") & filter_Biome == "and") {
-    d <- subset(d, grepl(paste(newBiome, collapse = ";"), d$Biome ))
+  if(all(biome != "All") & filter_biome == "and") {
+    d <- subset(d, grepl(paste(newbiome, collapse = ";"), d$biome ))
   }
 
-  #State ####
-  if(all(State  == "All")) {
+  #state ####
+  if(all(state  == "All")) {
     d <- d}
 
-  #Check if it is a valid State
-  if(all(State != "All")) {
-    all_State <- unique(unlist(strsplit(d$States, split = ";")))
-    newState <- gsub(" ", "", State)
-    newState <- vapply(State, FUN.VALUE = character(1), function(x){
+  #Check if it is a valid state
+  if(all(state != "All")) {
+    all_state <- unique(unlist(strsplit(d$states, split = ";")))
+    newstate <- gsub(" ", "", state)
+    newstate <- vapply(state, FUN.VALUE = character(1), function(x){
       paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
             collapse = ";")
     }, USE.NAMES = FALSE)
-    newState <- sort(newState)
-    #Check if all State exists
-    newState2 <- unique(unlist(strsplit(newState, split = ";")))
-    any_diff <- setdiff(newState2 , all_State)
+    newstate <- sort(newstate)
+    #Check if all state exists
+    newstate2 <- unique(unlist(strsplit(newstate, split = ";")))
+    any_diff <- setdiff(newstate2 , all_state)
     if(length(any_diff) > 0) {
-      warning(paste("The following States are not valid:\n",
+      warning(paste("The following states are not valid:\n",
                     paste(any_diff, collapse = ", ")))
     }
   }
 
-  #Filter by State
-  if(all(State != "All") & filter_State == "in") {
-    d <- subset(d, grepl(paste(newState, collapse = "|"),
-                         d$States)) }
+  #Filter by state
+  if(all(state != "All") & filter_state == "in") {
+    d <- subset(d, grepl(paste(newstate, collapse = "|"),
+                         d$states)) }
 
-  if(all(State != "All") & filter_State == "only") {
-    d <- subset(d, d$States == paste(newState, collapse = ";"))
+  if(all(state != "All") & filter_state == "only") {
+    d <- subset(d, d$states == paste(newstate, collapse = ";"))
   }
 
-  if(all(State != "All") & filter_State == "not_in") {
-    d <- subset(d, !grepl(paste(newState, collapse = "|"),
-                          d$States))
+  if(all(state != "All") & filter_state == "not_in") {
+    d <- subset(d, !grepl(paste(newstate, collapse = "|"),
+                          d$states))
 
   }
 
-  if(all(State != "All") & filter_State == "and") {
-    d <- subset(d, grepl(paste(newState, collapse = ";"), d$States))
+  if(all(state != "All") & filter_state == "and") {
+    d <- subset(d, grepl(paste(newstate, collapse = ";"), d$states))
   }
 
-  #Vegetation ####
-  if(all(VegetationType  == "All")) {
+  #vegetation ####
+  if(all(vegetation == "All")) {
     d <- d}
 
-  #Check if it is a valid Vegetation
-  if(all(VegetationType != "All")) {
-    all_Vegetation <- unique(unlist(strsplit(d$vegetationType, split = ";")))
-    newVegetation <- gsub(" ", "", VegetationType)
-    newVegetation <- vapply(newVegetation, FUN.VALUE = character(1),function(x){
+  #Check if it is a valid vegetation
+  if(all(vegetation != "All")) {
+    all_vegetation <- unique(unlist(strsplit(d$vegetation, split = ";")))
+    newvegetation <- gsub(" ", "", vegetation)
+    newvegetation <- vapply(newvegetation, FUN.VALUE = character(1),function(x){
       paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
             collapse = ";")
     }, USE.NAMES = FALSE)
-    newVegetation <- sort(newVegetation)
-    #Check if all Vegetation exists
-    newVegetation2 <- unique(unlist(strsplit(newVegetation, split = ";")))
-    any_diff <- setdiff(newVegetation2 , all_Vegetation)
+    newvegetation <- sort(newvegetation)
+    #Check if all vegetation exists
+    newvegetation2 <- unique(unlist(strsplit(newvegetation, split = ";")))
+    any_diff <- setdiff(newvegetation2 , all_vegetation)
     if(length(any_diff) > 0) {
       warning(paste("The following vegetation types are not valid:\n",
                     paste(any_diff, collapse = ", ")))
     }
   }
 
-  #Filter by Vegetation
-  if(all(VegetationType != "All") & filter_Vegetation == "in") {
-    d <- subset(d, grepl(paste(newVegetation2, collapse = "|"),
-                         d$vegetationType)) }
+  #Filter by vegetation
+  if(all(vegetation != "All") & filter_vegetation == "in") {
+    d <- subset(d, grepl(paste(newvegetation2, collapse = "|"),
+                         d$vegetation)) }
 
-  if(all(VegetationType != "All") & filter_Vegetation == "only") {
-    d <- subset(d, d$vegetationType == paste(newVegetation2, collapse = ";"))
+  if(all(vegetation != "All") & filter_vegetation == "only") {
+    d <- subset(d, d$vegetation == paste(newvegetation2, collapse = ";"))
   }
 
-  if(all(VegetationType != "All") & filter_Vegetation == "not_in") {
-    d <- subset(d, !grepl(paste(newVegetation2, collapse = "|"),
-                          d$vegetationType))
+  if(all(vegetation != "All") & filter_vegetation == "not_in") {
+    d <- subset(d, !grepl(paste(newvegetation2, collapse = "|"),
+                          d$vegetation))
 
   }
 
-  if(all(VegetationType != "All") & filter_Vegetation == "and") {
-    d <- subset(d, grepl(paste(newVegetation2, collapse = ";"),
-                         d$vegetationType))
+  if(all(vegetation != "All") & filter_vegetation == "and") {
+    d <- subset(d, grepl(paste(newvegetation2, collapse = ";"),
+                         d$vegetation))
   }
 
-  #Endemism ####
-  if(all(Endemism == "All")) {
+  #endemism ####
+  if(all(endemism == "All")) {
     d <- d }
 
-  #Filter by Endemism
-  if(all(Endemism != "All")) {
-    Endemism2 <- Endemism
-    all_endemism <- unique(d$Endemism)
-    any_diff <- setdiff(Endemism, all_endemism)
+  #Filter by endemism
+  if(all(endemism != "All")) {
+    endemism2 <- endemism
+    all_endemism <- unique(d$endemism)
+    any_diff <- setdiff(endemism, all_endemism)
     if(length(any_diff) > 0) {
       warning(paste("The following endemisms are not valid:\n",
                     paste(any_diff, collapse = ", ")))
     }
-    d <- subset(d, d$Endemism == Endemism2) }
+    d <- subset(d, d$endemism == endemism2) }
 
-  #Origin ####
-  if(all(Origin == "All")) {
+  #origin ####
+  if(all(origin == "All")) {
     d <- d }
 
-  #Filter by Origin
-  if(all(Origin != "All")) {
-    Origin2 <- Origin
-    all_Origin <- unique(d$Origin)
-    any_diff <- setdiff(Origin, all_Origin)
+  #Filter by origin
+  if(all(origin != "All")) {
+    origin2 <- origin
+    all_origin <- unique(d$origin)
+    any_diff <- setdiff(origin, all_origin)
     if(length(any_diff) > 0) {
       warning(paste("The following origins are not valid:\n",
                     paste(any_diff, collapse = ", ")))
     }
-    d <- subset(d, d$Origin %in% Origin2) }
+    d <- subset(d, d$origin %in% origin2) }
 
   #taxonomicStatus ####
-  if(all(TaxonomicStatus == "All")) {
+  if(all(taxonomicStatus == "All")) {
     d <- d }
 
-  #Filter by TaxonomicStatus
-  if(all(TaxonomicStatus != "All")) {
-    TaxonomicStatus2 <- TaxonomicStatus
+  #Filter by taxonomicStatus
+  if(all(taxonomicStatus != "All")) {
+    taxonomicStatus2 <- taxonomicStatus
     all_taxonomicStatus <- unique(d$taxonomicStatus)
-    any_diff <- setdiff(TaxonomicStatus, all_taxonomicStatus)
+    any_diff <- setdiff(taxonomicStatus, all_taxonomicStatus)
     if(length(any_diff) > 0) {
-      warning(paste("The following TaxonomicStatuss are not valid:\n",
+      warning(paste("The following taxonomicStatuss are not valid:\n",
                     paste(any_diff, collapse = ", ")))
     }
-    d <- subset(d, d$taxonomicStatus %in% TaxonomicStatus2) }
+    d <- subset(d, d$taxonomicStatus %in% taxonomicStatus2) }
 
   #nomenclaturalStatus ####
-  if(all(NomenclaturalStatus == "All")) {
+  if(all(nomenclaturalStatus == "All")) {
     d <- d }
 
   #Filter by nomenclaturalStatus
-  if(all(NomenclaturalStatus != "All")) {
-    nomenclaturalStatus2 <- NomenclaturalStatus
+  if(all(nomenclaturalStatus != "All")) {
+    nomenclaturalStatus2 <- nomenclaturalStatus
     all_nomenclaturalStatus <- unique(d$nomenclaturalStatus)
     any_diff <- setdiff(nomenclaturalStatus2, all_nomenclaturalStatus)
     if(length(any_diff) > 0) {
