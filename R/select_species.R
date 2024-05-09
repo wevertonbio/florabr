@@ -552,7 +552,7 @@ select_species <- function(data,
     all_taxonomicStatus <- unique(d$taxonomicStatus)
     any_diff <- setdiff(newtaxonomicStatus, all_taxonomicStatus)
     if(length(any_diff) > 0) {
-      warning(paste("The following taxonomicStatuss are not valid:\n",
+      warning(paste("The following taxonomicStatus are not valid:\n",
                     paste(any_diff, collapse = ", ")))
     }
     d <- subset(d, d$taxonomicStatus %in% newtaxonomicStatus) }
@@ -568,7 +568,7 @@ select_species <- function(data,
     all_nomenclaturalStatus <- unique(d$nomenclaturalStatus)
     any_diff <- setdiff(newnomenclaturalStatus, all_nomenclaturalStatus)
     if(length(any_diff) > 0) {
-      warning(paste("The following nomenclaturalStatuss are not valid:\n",
+      warning(paste("The following nomenclaturalStatus are not valid:\n",
                     paste(any_diff, collapse = ", ")))
     }
     d <- subset(d, d$nomenclaturalStatus %in% newnomenclaturalStatus) }

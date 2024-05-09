@@ -424,7 +424,8 @@ test_that("select_species with differente filters", {
   expect_no_error(select_species(data = bf_data, biome = "All",
                                  habitat = c("Rupicolous", "Terrestrial"),
                                  filter_habitat = "and"))
-  expect_warning(select_species(data = bf_data, biome = "Brazil"))
+  expect_warning(expect_warning(expect_warning(
+    select_species(data = bf_data, biome = "Brazil"))))
   expect_no_error(select_species(data = bf_data, biome = "Amazon",
                                  filter_biome = "not_in"))
   expect_no_error(select_species(data = bf_data, biome = "Amazon",
