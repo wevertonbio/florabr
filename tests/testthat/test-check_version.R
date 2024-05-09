@@ -5,13 +5,13 @@ test_that("Check_version works", {
   dir.create(my_dir)
   #Download, merge and save LATEST data
   get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE,
-              verbose = TRUE, solve_incongruences = FALSE)
+              verbose = TRUE, solve_discrepancy = FALSE)
   expect_message(check_version(my_dir))
 
   #Now, Download, merge and save OLDER version in the same folder of latest
   get_florabr(output_dir = my_dir, data_version = "393.397",
               overwrite = TRUE,
-              verbose = TRUE, solve_incongruences = FALSE)
+              verbose = TRUE, solve_discrepancy = FALSE)
   expect_message(check_version(my_dir))
 
   #Now, Download, merge and save OLDER versions in another folder
@@ -19,10 +19,10 @@ test_that("Check_version works", {
   dir.create(my_dir2)
   get_florabr(output_dir = my_dir2, data_version = "393.397",
               overwrite = TRUE,
-              verbose = TRUE, solve_incongruences = FALSE)
+              verbose = TRUE, solve_discrepancy = FALSE)
   get_florabr(output_dir = my_dir2, data_version = "393.398",
               overwrite = TRUE,
-              verbose = TRUE, solve_incongruences = FALSE)
+              verbose = TRUE, solve_discrepancy = FALSE)
   expect_message(check_version(my_dir2))
 
 

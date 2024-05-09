@@ -12,7 +12,7 @@
 #' download. Use "latest" to get the most recent version, updated weekly.
 #' Alternatively, specify an older version (e.g., data_version = "393.319").
 #' Default value is "latest".
-#' @param solve_incongruences Resolve inconsistencies between species and
+#' @param solve_discrepancy Resolve discrepancies between species and
 #' subspecies/varieties  information. When set to TRUE, species
 #' information is updated based on unique data from varieties and subspecies.
 #' For example, if a subspecies occurs in a certain biome, it implies that the
@@ -31,7 +31,7 @@
 #' directory. The data is saved in a format that allows easy loading using the
 #' \code{\link{load_florabr}} function for further analysis in R.
 #' @usage get_florabr(output_dir, data_version = "latest",
-#'                  solve_incongruences = FALSE, overwrite = TRUE,
+#'                  solve_discrepancy = FALSE, overwrite = TRUE,
 #'                  verbose = TRUE)
 #' @export
 #'
@@ -51,10 +51,10 @@
 #' dir.create(my_dir)
 #' #Download, merge and save data
 #' get_florabr(output_dir = my_dir, data_version = "latest",
-#'             solve_incongruences = FALSE, overwrite = TRUE, verbose = TRUE)
+#'             solve_discrepancy = FALSE, overwrite = TRUE, verbose = TRUE)
 #' }
 get_florabr <- function(output_dir, data_version = "latest",
-                        solve_incongruences = FALSE,
+                        solve_discrepancy = FALSE,
                         overwrite = TRUE,
                         verbose = TRUE) {
   #Set folder
@@ -74,8 +74,8 @@ get_florabr <- function(output_dir, data_version = "latest",
                 class(data_version)))
   }
 
-  if (!is.logical(solve_incongruences)) {
-    stop(paste0("Argument solve_incongruences must be logical, not ",
+  if (!is.logical(solve_discrepancy)) {
+    stop(paste0("Argument solve_discrepancy must be logical, not ",
                 class(overwrite)))
   }
 
@@ -134,7 +134,7 @@ get_florabr <- function(output_dir, data_version = "latest",
 
   #Merge data
   merge_data(path_data = path_data, version_data = version_data,
-             solve_incongruences = solve_incongruences, verbose = verbose)
+             solve_discrepancy = solve_discrepancy, verbose = verbose)
 
   #Print final message
   if(verbose){

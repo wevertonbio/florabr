@@ -242,7 +242,7 @@ translate_subgroup <- function(subgroup){
   return(newsubgroup)
 }
 
-#Solve incongruences between varieties/subspecies and species
+#Solve discrepancies between varieties/subspecies and species
 update_columns <- function(df) {
   # Get unique values of lifeForm, habitat, vegetation, biome e states
   unique_lifeForm <- sort(unique(unlist(strsplit(df$lifeForm, ";"))))
@@ -264,7 +264,7 @@ update_columns <- function(df) {
   return(df_final)
 }
 
-merge_data <- function(path_data, version_data, solve_incongruences,
+merge_data <- function(path_data, version_data, solve_discrepancy,
                        encoding = "UTF-8", verbose = verbose) {
 
   #Set folder
@@ -418,10 +418,16 @@ merge_data <- function(path_data, version_data, solve_incongruences,
 
   #Accepted name when is synonymn
   df_final3$acceptedName <- NA
-  df_final3$acceptedName[which(!(df_final3$taxonRank %in% ignore_rank))] <-
-    gsub("^((\\w+\\W+){1}\\w+).*$","\\1",
-         df_final3$acceptedNameUsage[which(!(df_final3$taxonRank %in%
-                                               ignore_rank))])
+  df_final3$acceptedName[which(!(df_final3$taxonRank %in%
+                                   ignore_rank))] <- get_binomial(
+                                     df_final3$acceptedNameUsage[which(
+                                       !(df_final3$taxonRank %in%
+                                           ignore_rank))])
+
+
+    # gsub("^((\\w+\\W+){1}\\w+).*$","\\1",
+    # df_final3$acceptedNameUsage[which(!(df_final3$taxonRank %in%
+    #                                       ignore_rank))])
 
   #Get group and subgroup
   #group
@@ -541,45 +547,52 @@ merge_data <- function(path_data, version_data, solve_incongruences,
   colnames(df_join)[colnames(df_join) == "locationID"] <- "states"
 
 
-  if(solve_incongruences){
-    #Solve incongruences between species and subspecies
-    #Get varieties, subspecies (and forms) with accepted names that occurs in Brazil
-    spp_var <- subset(df_join,
-                      df_join$taxonRank %in% c("Variety", "Subspecies", "Form") &
-                        df_join$taxonomicStatus == "Accepted" &
-                        df_join$endemism != "Not_found_in_Brazil")[["species"]]
+  # if(solve_incongruences){
+  #   #Solve incongruences between species and subspecies
+  #   #Get varieties, subspecies (and forms) with accepted names that occurs in Brazil
+  #   spp_var <- subset(df_join,
+  #                     df_join$taxonRank %in% c("Variety", "Subspecies", "Form") &
+  #                       df_join$taxonomicStatus == "Accepted" &
+  #                       df_join$endemism != "Not_found_in_Brazil")[["species"]]
+  #
+  #   #Get only species that exists as Species in dataframe
+  #   spp_var_yes <- intersect(df_join$species[which(df_join$taxonRank == "Species")],
+  #                            spp_var)
+  #   spp_var_no <- setdiff(spp_var, df_join$species[which(df_join$taxonRank == "Species")])
+  #
+  #   #Get dataframe to update
+  #   d_upt <- subset(df_join, df_join$species %in% spp_var_yes)
+  #
+  #   #Update columns
+  #   dd_updated_list <- lapply(split(d_upt, d_upt$species), update_columns)
+  #
+  #   # Merge dataframes
+  #   d_upt <- do.call(rbind, dd_updated_list)
+  #   row.names(d_upt) <- NULL
+  #
+  #   #Update final dataframe
+  #   df_join <- rbind(subset(df_join, !(df_join$id %in% d_upt$id)), d_upt)
+  #
+  #   #Fix varieties and subspecies that does not appear as species
+  #   df_no_species <- subset(df_join, df_join$species %in% spp_var_no)
+  #   #Change taxonrank
+  #   df_no_species$taxonRank <- "Species"
+  #   #Create new id
+  #   df_no_species$id <- sample(setdiff(1:50000, df_join$id), nrow(df_no_species))
+  #   #Merge data
+  #   df_join <- rbind(df_join, df_no_species)
+  #   }
 
-    #Get only species that exists as Species in dataframe
-    spp_var_yes <- intersect(df_join$species[which(df_join$taxonRank == "Species")],
-                             spp_var)
-    spp_var_no <- setdiff(spp_var, df_join$species[which(df_join$taxonRank == "Species")])
-
-    #Get dataframe to update
-    d_upt <- subset(df_join, df_join$species %in% spp_var_yes)
-
-    #Update columns
-    dd_updated_list <- lapply(split(d_upt, d_upt$species), update_columns)
-
-    # Merge dataframes
-    d_upt <- do.call(rbind, dd_updated_list)
-    row.names(d_upt) <- NULL
-
-    #Update final dataframe
-    df_join <- rbind(subset(df_join, !(df_join$id %in% d_upt$id)), d_upt)
-
-    #Fix varieties and subspecies that does not appear as species
-    df_no_species <- subset(df_join, df_join$species %in% spp_var_no)
-    #Change taxonrank
-    df_no_species$taxonRank <- "Species"
-    #Create new id
-    df_no_species$id <- sample(setdiff(1:50000, df_join$id), nrow(df_no_species))
-    #Merge data
-    df_join <- rbind(df_join, df_no_species)
-    }
-
+  if(solve_discrepancy){
+    df_solved <- solve_discrepancies(df_join)
+    saveRDS(df_solved,
+            file = file.path(path_data, version_data,
+                             "CompleteBrazilianFlora.rds"))
+  } else {
   #Save as RDS
+  attr(df_join, "solve_discrepancies") <- FALSE
   saveRDS(df_join,
           file = file.path(path_data, version_data,
                            "CompleteBrazilianFlora.rds"))
-
+  }
 }

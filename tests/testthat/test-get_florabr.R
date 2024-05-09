@@ -5,7 +5,7 @@ test_that("get florabr works", {
   dir.create(my_dir, showWarnings = FALSE)
   #Download, merge and save data
   get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE,
-              verbose = TRUE, solve_incongruences = FALSE)
+              verbose = TRUE, solve_discrepancy = FALSE)
   #Get files downloaded
   d <- list.files(my_dir, recursive = TRUE, full.names = FALSE)
   d <- gsub(".*/","",d)
@@ -31,10 +31,10 @@ test_that("get florabr works", {
                            overwrite = TRUE, verbose = TRUE))
   expect_error(get_florabr(output_dir = my_dir, data_version = "latest",
                            overwrite = TRUE, verbose = TRUE,
-                           solve_incongruences = "TRUE"))
+                           solve_discrepancy = "TRUE"))
   expect_error(get_florabr(output_dir = my_dir, data_version = "latest",
                            overwrite = "TRUE", verbose = TRUE,
-                           solve_incongruences = TRUE))
+                           solve_discrepancy = TRUE))
 
 })
 #unlink(my_dir, recursive = T, force = T)
