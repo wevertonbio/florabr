@@ -198,7 +198,7 @@ get_spat_occ <- function(data, species, state = TRUE,
 
     if(state) {
       if(verbose) {
-        message("Getting states of", spp[i], "\n") }
+        message("Getting states of ", spp[i], "\n") }
 
       sp_i_state <- unique(gsub(";", "|", occ_i$states[1]))
 
@@ -216,7 +216,7 @@ get_spat_occ <- function(data, species, state = TRUE,
 
     if(biome) {
       if(verbose) {
-        message("Getting biomes of", spp[i], "\n") }
+        message("Getting biomes of ", spp[i], "\n") }
       sp_i_biome<- unique(gsub(";", "|", occ_i$biome[1]))
 
       if(sp_i_biome == "" | is.na(sp_i_biome)) {
@@ -233,7 +233,7 @@ get_spat_occ <- function(data, species, state = TRUE,
 
     if(intersection) {
       if(verbose) {
-        message("Getting biomes of", spp[i], "\n") }
+        message("Getting biomes of ", spp[i], "\n") }
       if((sp_i_biome == "" | is.na(sp_i_biome)) & verbose) {
         message(spp[i], "lacks info about states - Impossible to get
                   intersection with states")
