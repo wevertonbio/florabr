@@ -158,81 +158,80 @@ Specifically, you can filter by:</p>
 </ul>
 <p>To explore all available options for each filter, use the
 <code><a href="../reference/get_attributes.html">get_attributes()</a></code> function with the desired attribute. This
-function will provide a data.frame with two columns: one containing the
-available attributes in English (use these attributes) and another with
-the attributes in Portuguese.</p>
+function will provide a data.frame with the available options to use in
+the <code><a href="../reference/select_species.html">select_species()</a></code> function.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Get available options to filter by lifeForm</span></span>
 <span><span class="fu"><a href="../reference/get_attributes.html">get_attributes</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf</span>,</span>
 <span>               attribute <span class="op">=</span> <span class="st">"lifeForm"</span>,</span>
 <span>               kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;               lifeForm            formaDeVida</span></span>
-<span><span class="co">#&gt; 1      Aquatic-Benthos          Aquatica-Bentos</span></span>
-<span><span class="co">#&gt; 2      Aquatic-Neuston         Aquatica-Neuston</span></span>
-<span><span class="co">#&gt; 3     Aquatic-Plankton        Aquatica-Plancton</span></span>
-<span><span class="co">#&gt; 4                Shrub                  Arbusto</span></span>
-<span><span class="co">#&gt; 5                 Tree                   Arvore</span></span>
-<span><span class="co">#&gt; 6               Bamboo                    Bambu</span></span>
-<span><span class="co">#&gt; 7              Cushion                    Coxim</span></span>
-<span><span class="co">#&gt; 8             Dendroid                Dendroide</span></span>
-<span><span class="co">#&gt; 9              Unknown             Desconhecida</span></span>
-<span><span class="co">#&gt; 10          Dracaenoid               Dracenoide</span></span>
-<span><span class="co">#&gt; 13                Herb                     Erva</span></span>
-<span><span class="co">#&gt; 14          Flabellate                Flabelado</span></span>
-<span><span class="co">#&gt; 15             Foliose                  Folhosa</span></span>
-<span><span class="co">#&gt; 16 Liana/scandent/vine Liana/voluvel/trepadeira</span></span>
-<span><span class="co">#&gt; 19           Palm_tree                 Palmeira</span></span>
-<span><span class="co">#&gt; 21             Pendent                 Pendente</span></span>
-<span><span class="co">#&gt; 23            Subshrub               Subarbusto</span></span>
-<span><span class="co">#&gt; 24           Succulent                Suculenta</span></span>
-<span><span class="co">#&gt; 25            Thallose                   Talosa</span></span>
-<span><span class="co">#&gt; 26                 Mat                   Tapete</span></span>
-<span><span class="co">#&gt; 27                Weft                    Trama</span></span>
-<span><span class="co">#&gt; 28                Tuft                     Tufo</span></span>
+<span><span class="co">#&gt;               lifeForm</span></span>
+<span><span class="co">#&gt; 1      Aquatic-Benthos</span></span>
+<span><span class="co">#&gt; 2      Aquatic-Neuston</span></span>
+<span><span class="co">#&gt; 3     Aquatic-Plankton</span></span>
+<span><span class="co">#&gt; 4                Shrub</span></span>
+<span><span class="co">#&gt; 5                 Tree</span></span>
+<span><span class="co">#&gt; 6               Bamboo</span></span>
+<span><span class="co">#&gt; 7              Cushion</span></span>
+<span><span class="co">#&gt; 8             Dendroid</span></span>
+<span><span class="co">#&gt; 9              Unknown</span></span>
+<span><span class="co">#&gt; 10          Dracaenoid</span></span>
+<span><span class="co">#&gt; 13                Herb</span></span>
+<span><span class="co">#&gt; 14          Flabellate</span></span>
+<span><span class="co">#&gt; 15             Foliose</span></span>
+<span><span class="co">#&gt; 16 Liana/scandent/vine</span></span>
+<span><span class="co">#&gt; 19           Palm_tree</span></span>
+<span><span class="co">#&gt; 21             Pendent</span></span>
+<span><span class="co">#&gt; 23            Subshrub</span></span>
+<span><span class="co">#&gt; 24           Succulent</span></span>
+<span><span class="co">#&gt; 25            Thallose</span></span>
+<span><span class="co">#&gt; 26                 Mat</span></span>
+<span><span class="co">#&gt; 27                Weft</span></span>
+<span><span class="co">#&gt; 28                Tuft</span></span>
 <span></span>
 <span><span class="co">#Get available options to filter by  Biome</span></span>
 <span><span class="fu"><a href="../reference/get_attributes.html">get_attributes</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf</span>,</span>
 <span>               attribute <span class="op">=</span> <span class="st">"Biome"</span>,</span>
 <span>               kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                 biome                bioma</span></span>
-<span><span class="co">#&gt; 1              Amazon             Amazonia</span></span>
-<span><span class="co">#&gt; 2     Atlantic_Forest       Mata_Atlantica</span></span>
-<span><span class="co">#&gt; 3            Caatinga             Caatinga</span></span>
-<span><span class="co">#&gt; 4             Cerrado              Cerrado</span></span>
-<span><span class="co">#&gt; 5               Pampa                Pampa</span></span>
-<span><span class="co">#&gt; 6            Pantanal             Pantanal</span></span>
-<span><span class="co">#&gt; 7 Not_found_in_Brazil Nao_ocorre_no_Brasil</span></span>
+<span><span class="co">#&gt;                 biome</span></span>
+<span><span class="co">#&gt; 1              Amazon</span></span>
+<span><span class="co">#&gt; 2     Atlantic_Forest</span></span>
+<span><span class="co">#&gt; 3            Caatinga</span></span>
+<span><span class="co">#&gt; 4             Cerrado</span></span>
+<span><span class="co">#&gt; 5               Pampa</span></span>
+<span><span class="co">#&gt; 6            Pantanal</span></span>
+<span><span class="co">#&gt; 7 Not_found_in_brazil</span></span>
 <span></span>
 <span><span class="co">#Get available options to filter by vegetation</span></span>
 <span><span class="fu"><a href="../reference/get_attributes.html">get_attributes</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf</span>,</span>
 <span>               attribute <span class="op">=</span> <span class="st">"vegetationType"</span>,</span>
 <span>               kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                     vegetation                               Vegetacao</span></span>
-<span><span class="co">#&gt; 1                   Anthropic_Area                          Area Antropica</span></span>
-<span><span class="co">#&gt; 2                         Caatinga                Caatinga (stricto sensu)</span></span>
-<span><span class="co">#&gt; 3            Amazonian_Campinarana                             Campinarana</span></span>
-<span><span class="co">#&gt; 4          High_Altitude_Grassland                       Campo de Altitude</span></span>
-<span><span class="co">#&gt; 5                    Flooded_Field                         Campo de Varzea</span></span>
-<span><span class="co">#&gt; 6                        Grassland                             Campo Limpo</span></span>
-<span><span class="co">#&gt; 7             Highland_Rocky_Field                          Campo rupestre</span></span>
-<span><span class="co">#&gt; 8                         Carrasco                                Carrasco</span></span>
-<span><span class="co">#&gt; 9                          Cerrado                    Cerrado (lato sensu)</span></span>
-<span><span class="co">#&gt; 10                  Gallery_Forest              Floresta Ciliar ou Galeria</span></span>
-<span><span class="co">#&gt; 11          Inundated_Forest_Igapo                       Floresta de Igapo</span></span>
-<span><span class="co">#&gt; 12              Terra_Firme_Forest                 Floresta de Terra Firme</span></span>
-<span><span class="co">#&gt; 13                Inundated_Forest                      Floresta de Varzea</span></span>
-<span><span class="co">#&gt; 14    Seasonallly_Deciduous_Forest            Floresta Estacional Decidual</span></span>
-<span><span class="co">#&gt; 15       Seasonal_Evergreen_Forest         Floresta Estacional Perenifolia</span></span>
-<span><span class="co">#&gt; 16 Seasonally_Semideciduous_Forest        Floresta Estacional Semidecidual</span></span>
-<span><span class="co">#&gt; 17                      Rainforest Floresta Ombrofila (= Floresta Pluvial)</span></span>
-<span><span class="co">#&gt; 18      Mixed_Ombrophyllous_Forest                Floresta Ombrofila Mista</span></span>
-<span><span class="co">#&gt; 19                        Mangrove                               Manguezal</span></span>
-<span><span class="co">#&gt; 20                      Palm_Grove                               Palmeiral</span></span>
-<span><span class="co">#&gt; 21                        Restinga                                Restinga</span></span>
-<span><span class="co">#&gt; 22               Amazonian_Savanna                        Savana Amazonica</span></span>
-<span><span class="co">#&gt; 23              Aquatic_vegetation                      Vegetacao Aquatica</span></span>
-<span><span class="co">#&gt; 24         Rock_outcrop_vegetation   Vegetacao Sobre Afloramentos Rochosos</span></span>
-<span><span class="co">#&gt; 25             Not_found_in_Brazil                    Nao ocorre no Brasil</span></span></code></pre></div>
+<span><span class="co">#&gt;                         vegetation</span></span>
+<span><span class="co">#&gt; 1                   Anthropic_Area</span></span>
+<span><span class="co">#&gt; 2                         Caatinga</span></span>
+<span><span class="co">#&gt; 3            Amazonian_Campinarana</span></span>
+<span><span class="co">#&gt; 4          High_Altitude_Grassland</span></span>
+<span><span class="co">#&gt; 5                    Flooded_Field</span></span>
+<span><span class="co">#&gt; 6                        Grassland</span></span>
+<span><span class="co">#&gt; 7             Highland_Rocky_Field</span></span>
+<span><span class="co">#&gt; 8                         Carrasco</span></span>
+<span><span class="co">#&gt; 9                          Cerrado</span></span>
+<span><span class="co">#&gt; 10                  Gallery_Forest</span></span>
+<span><span class="co">#&gt; 11          Inundated_Forest_Igapo</span></span>
+<span><span class="co">#&gt; 12              Terra_Firme_Forest</span></span>
+<span><span class="co">#&gt; 13                Inundated_Forest</span></span>
+<span><span class="co">#&gt; 14    Seasonallly_Deciduous_Forest</span></span>
+<span><span class="co">#&gt; 15       Seasonal_Evergreen_Forest</span></span>
+<span><span class="co">#&gt; 16 Seasonally_Semideciduous_Forest</span></span>
+<span><span class="co">#&gt; 17                      Rainforest</span></span>
+<span><span class="co">#&gt; 18      Mixed_Ombrophyllous_Forest</span></span>
+<span><span class="co">#&gt; 19                        Mangrove</span></span>
+<span><span class="co">#&gt; 20                      Palm_Grove</span></span>
+<span><span class="co">#&gt; 21                        Restinga</span></span>
+<span><span class="co">#&gt; 22               Amazonian_Savanna</span></span>
+<span><span class="co">#&gt; 23              Aquatic_vegetation</span></span>
+<span><span class="co">#&gt; 24         Rock_outcrop_vegetation</span></span>
+<span><span class="co">#&gt; 25             Not_found_in_Brazil</span></span></code></pre></div>
 <p>As an illustration, let’s consider the scenario where we aim to
 retrieve a list of all native and endemic trees with confirmed
 occurrences in the Atlantic Forest:</p>

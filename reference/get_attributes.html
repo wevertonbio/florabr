@@ -104,10 +104,8 @@ be "Plantae" or "Fungi". Default = "Plantae".</p></dd>
     <h2>Value</h2>
     
 
-<p>a data.frame with two columns. The first column provides the
-available options in English. Use this options in the
-<code><a href="select_species.html">select_species</a></code> function. The second columns provides the
-options in Portuguese.</p>
+<p>a data.frame with the available options to use in the
+<code><a href="select_species.html">select_species</a></code> function.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -127,69 +125,72 @@ http://floradobrasil.jbrj.gov.br/</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"bf_data"</span><span class="op">)</span> <span class="co">#Load Brazilian Flora data</span></span></span>
 <span class="r-in"><span><span class="co"># Get available biomes to filter species</span></span></span>
 <span class="r-in"><span><span class="fu">get_attributes</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>, kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, attribute <span class="op">=</span> <span class="st">"Biome"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 biome                bioma</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1              Amazon             Amazonia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     Atlantic_Forest       Mata_Atlantica</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3            Caatinga             Caatinga</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4             Cerrado              Cerrado</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5               Pampa                Pampa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6            Pantanal             Pantanal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7 Not_found_in_Brazil Nao_ocorre_no_Brasil</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 biome</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1              Amazon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     Atlantic_Forest</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3            Caatinga</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4             Cerrado</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 Not_found_in_brazil</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6               Pampa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7            Pantanal</span>
 <span class="r-in"><span><span class="co"># Get available life forms to filter species</span></span></span>
 <span class="r-in"><span><span class="fu">get_attributes</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>, kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, attribute <span class="op">=</span> <span class="st">"lifeForm"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               lifeForm              formaDeVida</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      Aquatic-Benthos          Aquatica-Bentos</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2      Aquatic-Neuston         Aquatica-Neuston</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     Aquatic-Plankton        Aquatica-Plancton</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                Shrub                  Arbusto</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                 Tree                   Arvore</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6               Bamboo                    Bambu</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7              Cushion                    Coxim</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8             Dendroid                Dendroide</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9              Unknown             Desconhecida</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10          Dracaenoid               Dracenoide</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                Herb                     Erva</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14          Flabellate                Flabelado</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15             Foliose                  Folhosa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16 Liana/scandent/vine Liana/voluvel/trepadeira</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19           Palm_tree                 Palmeira</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21             Pendent                 Pendente</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23            Subshrub               Subarbusto</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24           Succulent                Suculenta</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25            Thallose                   Talosa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26                 Mat                   Tapete</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27                Weft                    Trama</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28                Tuft                     Tufo</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               lifeForm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      Aquatic-Benthos</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      Aquatic-Neuston</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     Aquatic-Plankton</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4               Bamboo</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5              Cushion</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6             Dendroid</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7           Dracaenoid</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8           Flabellate</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9              Foliose</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10                Herb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 Liana/scandent/vine</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12                 Mat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 Not_found_in_brazil</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14           Palm_tree</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15             Pendent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16               Shrub</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17            Subshrub</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18           Succulent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19            Thallose</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20                Tree</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21                Tuft</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22             Unknown</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23                Weft</span>
 <span class="r-in"><span><span class="co"># Get available states to filter species</span></span></span>
 <span class="r-in"><span><span class="fu">get_attributes</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>, kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, attribute <span class="op">=</span> <span class="st">"States"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    sigla_acronym           nome_name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1             AC                Acre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2             AM            Amazonas</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3             PA                Para</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4             BA               Bahia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5             ES      Espirito Santo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6             RJ      Rio de Janeiro</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7             MT         Mato Grosso</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8             MA            Maranhao</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9             CE               Ceara</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10            MG        Minas Gerais</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11            PE          Pernambuco</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12            PI               Piaui</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13            SE             Sergipe</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14            MS  Mato Grosso do Sul</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15            PR              Parana</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16            RS   Rio Grande do Sul</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17            SC      Santa Catarina</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18            SP           Sao Paulo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19            AL             Alagoas</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20            DF    Distrito Federal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21            GO               Goias</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22            RO            Rondania</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23            AP               Amapa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24            PB             Paraiba</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25            RN Rio Grande do Norte</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26            RR             Roraima</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27            TO           Tocantins</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 states</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                   AC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                   AL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                   AM</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                   AP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                   BA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                   CE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7                   DF</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8                   ES</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9                   GO</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10                  MA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11                  MG</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12                  MS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13                  MT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 Not_found_in_brazil</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15                  PA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16                  PB</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17                  PE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18                  PI</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19                  PR</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20                  RJ</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21                  RN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22                  RO</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23                  RR</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24                  RS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25                  SC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26                  SE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27                  SP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28                  TO</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29             Unknown</span>
 </code></pre></div>
     </div>
   </div>
