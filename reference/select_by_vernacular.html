@@ -184,16 +184,16 @@ http://floradobrasil.jbrj.gov.br/</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 140902                                                                                                                                 pinheiro, japanese-red-pine</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 140986                                                                                                                                             pinus, pinheiro</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 140991                                                                                                                                             pinus, pinheiro</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        taxonRank</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 134218   Species</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 140840   Species</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 140842   Species</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 140856   Species</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 140864   Species</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 140890   Species</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 140902   Species</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 140986   Species</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 140991   Species</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        taxonRank     id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134218   Species 609385</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 140840   Species 616545</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 140842   Species 616547</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 140856   Species 616568</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 140864   Species 616576</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 140890   Species 616608</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 140902   Species 616620</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 140986   Species 616713</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 140991   Species 616718</span>
 <span class="r-in"><span><span class="co">#Search for species whose vernacular name is 'pinheiro', allowing non-exact</span></span></span>
 <span class="r-in"><span><span class="co">#matches</span></span></span>
 <span class="r-in"><span><span class="va">pinheiro_not_exact</span> <span class="op">&lt;-</span> <span class="fu">select_by_vernacular</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>,</span></span>
@@ -201,54 +201,54 @@ http://floradobrasil.jbrj.gov.br/</p>
 <span class="r-in"><span>                                          exact <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pinheiro_not_exact</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         species                              scientificName</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9862        Juniperus chinensis                      Juniperus chinensis L.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 26797    Araucaria angustifolia     Araucaria angustifolia (Bertol.) Kuntze</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 123595     Cryptomeria japonica Cryptomeria japonica (Thunb. ex L.f.) D.Don</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 123731       Taxodium distichum               Taxodium distichum (L.) Rich.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134088  Cunninghamia lanceolata       Cunninghamia lanceolata (Lamb.) Hook.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 134218     Araucaria columnaris     Araucaria columnaris (J.R.Forst.) Hook.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 134711 Chamaecyparis lawsoniana   Chamaecyparis lawsoniana (A.Murray) Parl.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        acceptedName kingdom       group subgroup        family         genus</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9862           &lt;NA&gt; Plantae Gymnosperms     &lt;NA&gt;  Cupressaceae     Juniperus</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 26797          &lt;NA&gt; Plantae Gymnosperms     &lt;NA&gt; Araucariaceae     Araucaria</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 123595         &lt;NA&gt; Plantae Gymnosperms     &lt;NA&gt;  Cupressaceae   Cryptomeria</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 123731         &lt;NA&gt; Plantae Gymnosperms     &lt;NA&gt;  Cupressaceae      Taxodium</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134088         &lt;NA&gt; Plantae Gymnosperms     &lt;NA&gt;  Cupressaceae  Cunninghamia</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 134218         &lt;NA&gt; Plantae Gymnosperms     &lt;NA&gt; Araucariaceae     Araucaria</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 134711         &lt;NA&gt; Plantae Gymnosperms     &lt;NA&gt;  Cupressaceae Chamaecyparis</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          lifeForm     habitat                 biome                     states</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9862   Shrub;Tree Terrestrial                                MG;PR;RJ;RS;SC;SP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26797        Tree Terrestrial Atlantic_Forest;Pampa          MG;PR;RJ;RS;SC;SP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123595       Tree Terrestrial                       DF;ES;MG;PA;PR;RJ;RS;SC;SP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123731       Tree Terrestrial                                MG;PR;RJ;RS;SC;SP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 134218       Tree Terrestrial                          MG;PB;PE;PR;RS;SC;SE;SP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 134711       Tree Terrestrial                                      PR;RJ;RS;SP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        lifeForm     habitat                 biome                     states</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26797      Tree Terrestrial Atlantic_Forest;Pampa          MG;PR;RJ;RS;SC;SP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 123595     Tree Terrestrial                       DF;ES;MG;PA;PR;RJ;RS;SC;SP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 123731     Tree Terrestrial                                MG;PR;RJ;RS;SC;SP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134088     Tree Terrestrial                                MG;PR;RJ;RS;SC;SP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134218     Tree Terrestrial                          MG;PB;PE;PR;RS;SC;SE;SP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134711     Tree Terrestrial                                      PR;RJ;RS;SP</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                vegetation</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9862                                                                       Anthropic_Area</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 26797  High_Altitude_Grassland;Mixed_Ombrophyllous_Forest;Seasonally_Semideciduous_Forest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 123595                                                                     Anthropic_Area</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 123731                                                                     Anthropic_Area</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134088                                                                     Anthropic_Area</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 134218                                                                     Anthropic_Area</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 134711                                                                     Anthropic_Area</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            origin    endemism taxonomicStatus nomenclaturalStatus</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9862   Cultivated Non-endemic        Accepted             Correct</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 26797      Native Non-endemic        Accepted             Correct</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 123595 Cultivated Non-endemic        Accepted             Correct</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 123731 Cultivated Non-endemic        Accepted             Correct</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134088 Cultivated Non-endemic        Accepted             Correct</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 134218 Cultivated Non-endemic        Accepted             Correct</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 134711 Cultivated Non-endemic        Accepted                &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                                                                                                                vernacularName</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9862                                                    junipero, zimbro, junipero-chines, zimbro-chines, junipero-kaizuka, pinheiro-kaizuka, cipreste-variegado, cipreste-grisalho, junipero-chines-rasteiro</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 26797                                                                                                                               araucaria, pinheiro-do-parana, curi, pinheiro-brasileiro, pinho-do-parana</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 123595                                                             pinheiro-vermelho, cedro-do-japao, cedro-japones, pinheiro-do-japao, araucaria-do-japao, arvore-de-natal, japanese-cedar, cedrinho-japones</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 123731 cipreste-calvo, cipreste-deciduo, cipreste-do-brejo, pinheiro-do-brejo, cipreste-vermelho, swamp-cypress, louisiana-cypress, marsh-cypress, cispreste-da-luisiana, bald-cypress, cipreste-dos-pantanos</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134088                                                                                                             cuningamia, cunninghamia, pinhao-chines, pinheiro-alemao, pinheiro-chines, arvore-do-natal</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 134218                                                                                                   pinheiro, pinheiro-de-natal, pinheiro-alemao, pinheiro-de-cook, araucaria-colunar, araucaria-excelsa</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 134711                 cedro-de-oregon, cerdo-branco, cipreste-de-lawson, tuia, falso-cipreste, pinheiro-prateado, cipreste-de-lawson, cipreste-nevado, cipreste, alumi, cipreste-alumi, cipreste-escaravelho</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        taxonRank</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9862     Species</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26797    Species</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123595   Species</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123731   Species</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 134218   Species</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 134711   Species</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        taxonRank     id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26797    Species  33971</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 123595   Species 596703</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 123731   Species 596865</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134088   Species 609253</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134218   Species 609385</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134711   Species 609897</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
