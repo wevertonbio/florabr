@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 ```
 
 ### Selecting a list of species
-Selecting a list of target species is a common task in macroecological and conservation studies. For example, a researcher may seek to model the distribution of exclusively endemic trees within a designated Biome, a particular state, or a specific vegetation type.
+Selecting a list of target species is a common task in macroecological and conservation studies. For example, a researcher may seek to model the distribution of exclusively endemic trees within a designated Biome, a particular State, or a specific vegetation type.
 
 By applying different filters to the database, anyone can obtain a verified taxonomic list of Brazilian species of algae, fungi, and plants for any Brazilian state, region, biome, and vegetation type. Additionally, the filter can be applied by family, genus, life form, habitat, endemism level, origin, nomenclatural status, and taxonomic status.
 In this vignette, users will learn how to use *florabr* package to select a list of species based on these features.
@@ -32,18 +32,18 @@ library(florabr)
 bf <- load_florabr(data_dir = my_dir,
                    data_version = "Latest_available",
                    type = "short") #short version
-#> Loading version 393.399
+#> Loading version 393.401
 ```
 
 ## Selecting a list of species
 One of the primary objectives of this package is to assist in selecting a species list based on taxonomic classification (Kingdom, Group, Family, and Genus), characteristics (life form, habitat), and distribution (federal states, biomes, vegetation types, and endemism). Specifically, you can filter by:
 
-* Kingdom, Group, Subgroup, Family and Genus;
-* Lifeform and Habitat;
-* Biome, State and VegetationType with confirmed occurrences;
-* Endemism (endemic or non-endemic to Brazil);
-* Origin (Native, Cultivated or Naturalized in Brazil);
-* TaxonomicStatus and NomenclaturalStatus of the species.
+* kingdom, group, subgroup, family and genus;
+* lifeForm and habitat;
+* biome, state and vegetation with confirmed occurrences;
+* endemism (endemic or non-endemic to Brazil);
+* origin (Native, Cultivated or Naturalized in Brazil);
+* taxonomicStatus and nomenclaturalStatus of the species.
 
 To explore all available options for each filter, use the `get_attributes()` function with the desired attribute. This function will provide a data.frame with two columns: one containing the available attributes in English (use these attributes) and another with the attributes in Portuguese.
 
@@ -51,8 +51,8 @@ To explore all available options for each filter, use the `get_attributes()` fun
 #Get available options to filter by lifeForm
 get_attributes(data = bf,
                attribute = "lifeForm",
-               Kingdom = "Plantae")
-#>               lifeForm            Forma_de_vida
+               kingdom = "Plantae")
+#>               lifeForm            formaDeVida
 #> 1      Aquatic-Benthos          Aquatica-Bentos
 #> 2      Aquatic-Neuston         Aquatica-Neuston
 #> 3     Aquatic-Plankton        Aquatica-Plancton
@@ -79,8 +79,8 @@ get_attributes(data = bf,
 #Get available options to filter by  Biome
 get_attributes(data = bf,
                attribute = "Biome",
-               Kingdom = "Plantae")
-#>                 Biome                Bioma
+               kingdom = "Plantae")
+#>                 biome                bioma
 #> 1              Amazon             Amazonia
 #> 2     Atlantic_Forest       Mata_Atlantica
 #> 3            Caatinga             Caatinga
@@ -89,11 +89,11 @@ get_attributes(data = bf,
 #> 6            Pantanal             Pantanal
 #> 7 Not_found_in_Brazil Nao_ocorre_no_Brasil
 
-#Get available options to filter by VegetationType
+#Get available options to filter by vegetation
 get_attributes(data = bf,
                attribute = "vegetationType",
-               Kingdom = "Plantae")
-#>                     VegetationType                           TipoVegetacao
+               kingdom = "Plantae")
+#>                     vegetation                               Vegetacao
 #> 1                   Anthropic_Area                          Area Antropica
 #> 2                         Caatinga                Caatinga (stricto sensu)
 #> 3            Amazonian_Campinarana                             Campinarana
@@ -116,8 +116,8 @@ get_attributes(data = bf,
 #> 20                      Palm_Grove                               Palmeiral
 #> 21                        Restinga                                Restinga
 #> 22               Amazonian_Savanna                        Savana Amazonica
-#> 23              Aquatic_Vegetation                      Vegetacao Aquatica
-#> 24         Rock_outcrop_Vegetation   Vegetacao Sobre Afloramentos Rochosos
+#> 23              Aquatic_vegetation                      Vegetacao Aquatica
+#> 24         Rock_outcrop_vegetation   Vegetacao Sobre Afloramentos Rochosos
 #> 25             Not_found_in_Brazil                    Nao ocorre no Brasil
 ```
 
@@ -126,24 +126,24 @@ As an illustration, let's consider the scenario where we aim to retrieve a list 
 ```{r}
 af_spp <- select_species(data = bf,
                       include_subspecies = FALSE, include_variety = FALSE,
-                      Kingdom = "Plantae", Group = "All", Subgroup = "All",
-                      Family = "All", Genus = "All",
-                      LifeForm = "Tree", #Specify tree species
-                      filter_LifeForm = "in",
-                      Habitat = "All", filter_Habitat = "in",
-                      Biome = "Atlantic_Forest", #Occuring in the At. Forest
-                      filter_Biome = "in", #In Atlantic Forest
-                      State = "All", filter_State = "in",
-                      VegetationType = "All", filter_Vegetation = "in",
-                      Endemism = "Endemic", #Only endemics to Brazil
-                      Origin = "Native", #Only natives
-                      TaxonomicStatus = "Accepted",
-                      NomenclaturalStatus = "All")
+                      kingdom = "Plantae", group = "All", subgroup = "All",
+                      family = "All", genus = "All",
+                      lifeForm = "Tree", #Specify tree species
+                      filter_lifeForm = "in",
+                      habitat = "All", filter_habitat = "in",
+                      biome = "Atlantic_Forest", #Occuring in the At. Forest
+                      filter_biome = "in", #In Atlantic Forest
+                      state = "All", filter_state = "in",
+                      vegetation = "All", filter_vegetation = "in",
+                      endemism = "Endemic", #Only endemics to Brazil
+                      origin = "Native", #Only natives
+                      taxonomicStatus = "Accepted",
+                      nomenclaturalStatus = "All")
 nrow(af_spp)
-#> [1] 2362
+#> [1] 2372
 ```
 
-The filter returned 2362 species that meet the specified criteria. It's important to note that these selections include species with confirmed occurrences in the Atlantic Forest, and some of them may also have confirmed occurrences in other biomes.
+The filter returned 2372 species that meet the specified criteria. It's important to note that these selections include species with confirmed occurrences in the Atlantic Forest, and some of them may also have confirmed occurrences in other biomes.
 
 ```{r}
 #First 7 unique values of biomes in the filtered dataset
@@ -157,56 +157,56 @@ unique(af_spp$Biome)[1:7]
 #> [7] "Amazon;Atlantic_Forest"
 ```
 
-If you wish to exclusively select species with confirmed occurrences in the Atlantic Forest, modify the *filter_Biome* parameter to "only":
+If you wish to exclusively select species with confirmed occurrences in the Atlantic Forest, modify the *filter_biome* parameter to "only":
 
 ```{r}
 only_af_spp <- select_species(data = bf,
                       include_subspecies = FALSE, include_variety = FALSE,
-                      Kingdom = "Plantae", Group = "All", Subgroup = "All",
-                      Family = "All", Genus = "All",
-                      LifeForm = "Tree", #Specify tree species
-                      filter_LifeForm = "in",
-                      Habitat = "All", filter_Habitat = "in",
-                      Biome = "Atlantic_Forest", #Occuring in the At. Forest
-                      filter_Biome = "only", #ONLY in Atlantic Forest
-                      State = "All", filter_State = "in",
-                      VegetationType = "All", filter_Vegetation = "in",
-                      Endemism = "Endemic", #Only endemics to Brazil
-                      Origin = "Native", #Only natives
-                      TaxonomicStatus = "Accepted",
-                      NomenclaturalStatus = "All")
+                      kingdom = "Plantae", group = "All", subgroup = "All",
+                      family = "All", genus = "All",
+                      lifeForm = "Tree", #Specify tree species
+                      filter_lifeForm = "in",
+                      habitat = "All", filter_habitat = "in",
+                      biome = "Atlantic_Forest", #Occuring in the At. Forest
+                      filter_biome = "only", #ONLY in Atlantic Forest
+                      state = "All", filter_state = "in",
+                      vegetation = "All", filter_vegetation = "in",
+                      endemism = "Endemic", #Only endemics to Brazil
+                      origin = "Native", #Only natives
+                      taxonomicStatus = "Accepted",
+                      nomenclaturalStatus = "All")
 nrow(only_af_spp)
-#> [1] 1849
-unique(only_af_spp$Biome)
+#> [1] 1858
+unique(only_af_spp$biome)
 #> [1] "Atlantic_Forest"
 ```
 
-Now, the filter has resulted in 1849 species, all exclusively confined to the Atlantic Forest biome.
+Now, the filter has resulted in 1858 species, all exclusively confined to the Atlantic Forest biome.
 
 Furthermore, the package offers the flexibility to apply various filtering options (please consult `?select_species` for comprehensive details). For instance, consider the scenario where we aim to compile a list of native and endemic trees with confirmed occurrences limited solely to the Atlantic Forest biome and with confirmed occurrences in the states of Paraná (PR), Santa Catarina (SC), and Rio Grande do Sul (RS):
 
 ```{r}
 south_af_spp <- select_species(data = bf,
                       include_subspecies = FALSE, include_variety = FALSE,
-                      Kingdom = "Plantae", Group = "All", Subgroup = "All",
-                      Family = "All", Genus = "All",
-                      LifeForm = "Tree", #Specify tree species
-                      filter_LifeForm = "in",
-                      Habitat = "All", filter_Habitat = "in",
-                      Biome = "Atlantic_Forest", #Occuring in the At. Forest
-                      filter_Biome = "only", #Only in Atlantic Forest
-                      State = c("PR", "SC", "RS"), #States - Use the acronynms
-                      filter_State = "in", #IN at least one of these states
-                      VegetationType = "All", filter_Vegetation = "in",
-                      Endemism = "Endemic", #Only endemics to Brazil
-                      Origin = "Native", #Only natives
-                      TaxonomicStatus = "Accepted",
-                      NomenclaturalStatus = "All")
+                      kingdom = "Plantae", group = "All", subgroup = "All",
+                      family = "All", genus = "All",
+                      lifeForm = "Tree", #Specify tree species
+                      filter_lifeForm = "in",
+                      habitat = "All", filter_habitat = "in",
+                      biome = "Atlantic_Forest", #Occuring in the At. Forest
+                      filter_biome = "only", #Only in Atlantic Forest
+                      state = c("PR", "SC", "RS"), #states - Use the acronynms
+                      filter_state = "in", #IN at least one of these states
+                      vegetation = "All", filter_vegetation = "in",
+                      endemism = "Endemic", #Only endemics to Brazil
+                      origin = "Native", #Only natives
+                      taxonomicStatus = "Accepted",
+                      nomenclaturalStatus = "All")
 nrow(south_af_spp)
-#> [1] 371
+#> [1] 372
 
 #First 10 unique values of states in the filtered dataset
-unique(south_af_spp$States)[1:10]
+unique(south_af_spp$states)[1:10]
 #>  [1] "BA;ES;PR;RJ;SC;SP"               "AL;BA;CE;ES;MA;MG;PB;PE;PR;RJ;SE;SP"
 #>  [3] "PR;RS;SC"                        "BA;CE;ES;MA;MG;PE;PR;RJ;SP"         
 #>  [5] "MG;PR;RJ;SC;SP"                  "MG;PR;RJ;RS;SC;SP"                  
@@ -214,58 +214,58 @@ unique(south_af_spp$States)[1:10]
 #>  [9] "PR;RJ;RS;SC;SP"                  "ES;MG;PR;RJ;RS;SC;SP"
 ```
 
-By utilizing *filter_State = "in"*, our selection encompassed species occurring in all three states, as well as those appearing in only two or even one of them. To impose a more rigorous criterion, selecting solely those species with confirmed occurrences in all three states, we can use *filter_State = "and"*:
+By utilizing *filter_state = "in"*, our selection encompassed species occurring in all three states, as well as those appearing in only two or even one of them. To impose a more rigorous criterion, selecting solely those species with confirmed occurrences in all three states, we can use *filter_state = "and"*:
 
 ```{r}
 south_af_spp2 <- select_species(data = bf,
                       include_subspecies = FALSE, include_variety = FALSE,
-                      Kingdom = "Plantae", Group = "All", Subgroup = "All",
-                      Family = "All", Genus = "All",
-                      LifeForm = "Tree", #Specify tree species
-                      filter_LifeForm = "in",
-                      Habitat = "All", filter_Habitat = "in",
-                      Biome = "Atlantic_Forest", #Occurring in the At. Forest
-                      filter_Biome = "only", #Only in Atlantic Forest
-                      State = c("PR", "SC", "RS"), #States - Use the acronynms
-                      filter_State = "and", #PR and SC and RS
-                      VegetationType = "All", filter_Vegetation = "in",
-                      Endemism = "Endemic", #Only endemics to Brazil
-                      Origin = "Native", #Only natives
-                      TaxonomicStatus = "Accepted",
-                      NomenclaturalStatus = "All")
+                      kingdom = "Plantae", group = "All", subgroup = "All",
+                      family = "All", genus = "All",
+                      lifeForm = "Tree", #Specify tree species
+                      filter_lifeForm = "in",
+                      habitat = "All", filter_habitat = "in",
+                      biome = "Atlantic_Forest", #Occurring in the At. Forest
+                      filter_biome = "only", #Only in Atlantic Forest
+                      state = c("PR", "SC", "RS"), #states - Use the acronynms
+                      filter_state = "and", #PR and SC and RS
+                      vegetation = "All", filter_vegetation = "in",
+                      endemism = "Endemic", #Only endemics to Brazil
+                      origin = "Native", #Only natives
+                      taxonomicStatus = "Accepted",
+                      nomenclaturalStatus = "All")
 nrow(south_af_spp2)
 #> [1] 29
 
 #All unique states in the filtered dataset
-unique(south_af_spp2$States)
+unique(south_af_spp2$states)
 #> [1] "PR;RS;SC"       "MG;PR;RS;SC;SP" "PR;RS;SC;SP"    "ES;PR;RS;SC;SP"
 #> [5] "MG;PR;RS;SC"
 ```
 
-Now, our selection consists solely of species with confirmed occurrences in all of the specified states. However, by utilizing the "and" argument, we permit the filter to include species with occurrences in additional states. To confine the filter exclusively to species with confirmed occurrences in all three states, without any occurrences elsewhere, we can use *filter_State = "only"*:
+Now, our selection consists solely of species with confirmed occurrences in all of the specified states. However, by utilizing the "and" argument, we permit the filter to include species with occurrences in additional states. To confine the filter exclusively to species with confirmed occurrences in all three states, without any occurrences elsewhere, we can use *filter_state = "only"*:
 
 ```{r}
 south_af_spp3 <- select_species(data = bf,
                       include_subspecies = FALSE, include_variety = FALSE,
-                      Kingdom = "Plantae", Group = "All", Subgroup = "All",
-                      Family = "All", Genus = "All",
-                      LifeForm = "Tree", #Specify tree species
-                      filter_LifeForm = "in",
-                      Habitat = "All", filter_Habitat = "in",
-                      Biome = "Atlantic_Forest", #Occuring in the At. Forest
-                      filter_Biome = "only", #Only in Atlantic Forest
-                      State = c("PR", "SC", "RS"), #States - Use the acronynms
-                      filter_State = "only", #PR and SC and RS, no other else
-                      VegetationType = "All", filter_Vegetation = "in",
-                      Endemism = "Endemic", #Only endemics to Brazil
-                      Origin = "Native", #Only natives
-                      TaxonomicStatus = "Accepted",
-                      NomenclaturalStatus = "All")
+                      kingdom = "Plantae", group = "All", subgroup = "All",
+                      family = "All", genus = "All",
+                      lifeForm = "Tree", #Specify tree species
+                      filter_lifeForm = "in",
+                      habitat = "All", filter_habitat = "in",
+                      biome = "Atlantic_Forest", #Occuring in the At. Forest
+                      filter_biome = "only", #Only in Atlantic Forest
+                      state = c("PR", "SC", "RS"), #states - Use the acronynms
+                      filter_state = "only", #PR and SC and RS, no other else
+                      vegetation = "All", filter_vegetation = "in",
+                      endemism = "Endemic", #Only endemics to Brazil
+                      origin = "Native", #Only natives
+                      taxonomicStatus = "Accepted",
+                      nomenclaturalStatus = "All")
 nrow(south_af_spp3)
 #> [1] 13
 
 #The unique state in the filtered dataset
-unique(south_af_spp3$States)
+unique(south_af_spp3$states)
 #> [1] "PR;RS;SC"
 ```
 Now, the filter return only 13 species, all of them occurring in PR, SC and RS; with no recorded occurrences in any other states.
@@ -274,13 +274,13 @@ Now, the filter return only 13 species, all of them occurring in PR, SC and RS; 
 ### Extracting binomial name
 In addition to selecting a species list based on their characteristics, the package also includes a function for subsetting species by name. Please note that this function exclusively operates with binomial names (Genus + specificEpithet), such as *Araucaria angustifolia*, and does not support complete scientific names (including Author or infraspecificEpithet), such as *Araucaria angustifolia (Bertol.) Kuntze* or *Araucaria angustifolia var. stricta Reitz*.
 
-If you have species with complete scientific names, you can extract the binomial names using the function `get_binomial()`:
+If you have species with complete scientific names, you can extract the binomial names using the function `get_binomial()`. Don't worry about excessive spaces between words; the function will remove any extra spaces from the names.
 
 ```{r}
 complete_names <- c("Araucaria brasiliana var. ridolfiana (Pi.Savi) Gordon",
-                    "Solanum restingae S.Knapp",
-                    "Butia cattarinensis Noblick & Lorenzi",
-                    "Homo sapiens")
+                    " Solanum restingae  S.Knapp",
+                    "Butia cattarinensis  Noblick & Lorenzi   ",
+                    "Homo   sapiens")
 #Human specie was used just as an example that will be used to illustrate the 
 #next function
 binomial_names <- get_binomial(species_names = complete_names)
@@ -297,7 +297,7 @@ To see how the function works, let's utilize the previously created binomial_nam
 checked_names <- check_names(data = bf, 
                              species = binomial_names,
                              max_distance = 0.1,
-                             Kingdom = "Plantae")
+                             kingdom = "Plantae")
 checked_names
 #             input_name           Spelling       Suggested_name Distance taxonomicStatus nomenclaturalStatus           acceptedName        family
 # 1 Araucaria brasiliana            Correct Araucaria brasiliana        0         Synonym                <NA> Araucaria angustifolia Araucariaceae
@@ -326,7 +326,7 @@ accepted_names <- na.omit(accepted_names) #Remove NA
 my_sp <- subset_species(data = bf, species = accepted_names,
                       include_subspecies = FALSE,
                       include_variety = FALSE,
-                      Kingdom = "Plantae")
+                      kingdom = "Plantae")
 my_sp
 #>                      species                          scientificName
 #> 11785      Solanum restingae               Solanum restingae S.Knapp
@@ -345,7 +345,7 @@ my_sp
 #> 26790 High_Altitude_Grassland;Mixed_Ombrophyllous_Forest;
 #>       Seasonally_Semideciduous_Forest
 #> 99881 Restinga
-#>       Origin    Endemism taxonomicStatus nomenclaturalStatus
+#>       origin    endemism taxonomicStatus nomenclaturalStatus
 #> 11785 Native     Endemic        Accepted             Correct
 #> 26790 Native Non-endemic        Accepted             Correct
 #> 99881 Native     Endemic        Accepted                <NA>
@@ -366,7 +366,7 @@ We can also include subspecies and/or varieties:
 my_sp2 <- subset_species(data = bf, species = accepted_names,
                       include_subspecies = TRUE,
                       include_variety = TRUE,
-                      Kingdom = "Plantae")
+                      kingdom = "Plantae")
 my_sp2[1:5,]
 #>                      species                            scientificName
 #> 11785      Solanum restingae                 Solanum restingae S.Knapp
@@ -393,7 +393,7 @@ my_sp2[1:5,]
 #> 35204                                                                         
 #> 35205                                                                          
 #> 35206                                                                        
-#>       Origin    Endemism taxonomicStatus nomenclaturalStatus
+#>       origin    endemism taxonomicStatus nomenclaturalStatus
 #> 11785 Native     Endemic        Accepted             Correct
 #> 26790 Native Non-endemic        Accepted             Correct
 #> 35204   <NA>        <NA>         Synonym                <NA>
@@ -414,5 +414,26 @@ my_sp2[1:5,]
 #> 35206   Variety
 ```
 
-
+### Retrieving synonyms
+We can retrieve all synonyms of a species list. This can be particularly useful, for example, when searching for records of a species and all its synonyms (as listed in the Brazilian Flora 2020) in online databases like GBIF. To accomplish this, utilize the function get_synonym. To understand how the function works, let's search for the synonyms of two species:
+```{r}
+spp <- c("Araucaria angustifolia", "Adesmia paranensis")
+spp_syn <- get_synonym(data = bf, species = spp)
+spp_syn
+#>                       synonym           acceptedName taxonomicStatus      nomenclaturalStatus
+#> 35323    Araucaria brasiliana Araucaria angustifolia         Synonym                     <NA>
+#> 35325  Araucaria brasiliensis Araucaria angustifolia         Synonym                     <NA>
+#> 35327        Araucaria dioica Araucaria angustifolia         Synonym                     <NA>
+#> 35328       Araucaria elegans Araucaria angustifolia         Synonym                     <NA>
+#> 35329    Araucaria ridolfiana Araucaria angustifolia         Synonym                     <NA>
+#> 35330       Araucaria saviana Araucaria angustifolia         Synonym                     <NA>
+#> 35332   Columbea angustifolia Araucaria angustifolia         Synonym Legitimate_but_incorrect
+#> 35333     Columbea brasiliana Araucaria angustifolia         Synonym Legitimate_but_incorrect
+#> 60644            Pinus dioica Araucaria angustifolia         Synonym                     <NA>
+#> 141020     Araucaria bibbiani Araucaria angustifolia         Synonym                     <NA>
+#> 141021   Araucaria lindleyana Araucaria angustifolia         Synonym                     <NA>
+#> 141041   Araucaria brasiliana Araucaria angustifolia         Synonym             Illegitimate
+#> 85308    Adesmia psoraleoides     Adesmia paranensis         Synonym Legitimate_but_incorrect
+```
+We can see that *Araucaria angustifolia* has 12 synonyms in Brazilian Flora database, while *Adesmia paranensis* has one synonym.
 
