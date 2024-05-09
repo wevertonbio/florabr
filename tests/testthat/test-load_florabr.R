@@ -1,5 +1,5 @@
 test_that("loading florabr works", {
-  skip_on_cran() #Skip test on CRAN
+  #skip_on_cran() #Skip test on CRAN
   #####It works when we downloaded the data using get_florabr####
   my_dir <- file.path(file.path(tempdir(), "florabr"))
   dir.create(my_dir, showWarnings = FALSE)
