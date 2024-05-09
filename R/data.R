@@ -110,16 +110,3 @@
 #'   \item{y}{Latitude}
 #' }
 "occurrences"
-
-#' Available attributes/parameters to filter and select species
-#'
-#' @description
-#'  A list of dataset containing the available attributes to filter and select
-#'  species. The dataset is used internally by \code{get_attributes}
-#'
-#' @usage data(Attributes)
-#'
-#' @format A \code{list} with 11 elements: States, Biome, vegetationType,
-#' lifeForm, habitat, nomenclaturalStatus, taxonomicStatus, Endemism, Origin,
-#' Group, and Subgroup
-"Attributes"

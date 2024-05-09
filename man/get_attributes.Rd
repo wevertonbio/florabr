@@ -18,10 +18,8 @@ the options.}
 be "Plantae" or "Fungi". Default = "Plantae".}
 }
 \value{
-a data.frame with two columns. The first column provides the
-available options in English. Use this options in the
-\code{\link{select_species}} function. The second columns provides the
-options in Portuguese.
+a data.frame with the available options to use in the
+\code{\link{select_species}} function.
 }
 \description{
 This function displays all the options available to filter species by its

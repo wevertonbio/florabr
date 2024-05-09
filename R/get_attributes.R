@@ -19,10 +19,8 @@
 #' taxonomicstatus or nomenclaturalstatus. These options represent different
 #' characteristics of species that can be used for filtering.
 #'
-#' @return a data.frame with two columns. The first column provides the
-#' available options in English. Use this options in the
-#' \code{\link{select_species}} function. The second columns provides the
-#' options in Portuguese.
+#' @return a data.frame with the available options to use in the
+#' \code{\link{select_species}} function.
 #'
 #' @usage get_attributes(data, attribute, kingdom = "Plantae")
 #'
@@ -48,11 +46,13 @@ get_attributes <- function(data, attribute,
     stop("Argument data is not defined")
   }
 
-  #Change all column names of data to lowercase
-  colnames(data) <- tolower(colnames(data))
+  #Change specified attribute to lowercase
+  attrib <- tolower(attribute)
 
-  #Change attribute to lowercase
-  attribute <- tolower(attribute)
+  #Correct attribute
+  attrib[which(attrib == "lifeform")] <- "lifeForm"
+  attrib[which(attrib == "taxonomicstatus")] <- "taxonomicStatus"
+  attrib[which(attrib == "nomenclaturalstatus")] <- "nomenclaturalStatus"
 
   #Change kingdom - First letter to upper case
   kingdom <- firstup(kingdom)
@@ -78,33 +78,21 @@ get_attributes <- function(data, attribute,
   }
 
 
-  atrib <- attribute
-
-  if(!(atrib %in% c("group", "subgroup", "family", "lifeform", "habitat",
+  if(!(attrib %in% c("group", "subgroup", "family", "lifeForm", "habitat",
                     "vegetation", "origin", "endemism", "biome", "states",
-                    "taxonomicstatus", "nomenclaturalstatus"))) {
+                    "taxonomicStatus", "nomenclaturalStatus"))) {
     stop("Informed attribute is not valid! Valid attributes:
-    group, subgroup, family, lifeform, habitat, vegetation, origin,
-    endemism, biome, states, taxonomicstatus or nomenclaturalstatus")
+    group, subgroup, family, lifeForm, habitat, vegetation, origin,
+    endemism, biome, states, taxonomicStatus or nomenclaturalStatus")
   }
 
   #Get unique attributes
   d <- subset(data, data$kingdom == kingdom)
-  d_at <- d[,atrib]
+  d_at <- d[,attrib]
   at <- unique(unlist(strsplit(d_at, ";")))
-
-  if(atrib != "family") {
-  #Get attribute translations
-  Attributes <- florabr::Attributes
-  names(Attributes) <- tolower(names(Attributes))
-  Attributes <- Attributes[[atrib]]
-
-  #Subset
-  att_f <- subset(Attributes, Attributes[,1] %in% at) }
-
-  if(atrib == "family"){
-    att_f <- data.frame(family = sort(at))
-  }
+  #Save in datafra,e
+  att_f <- data.frame(atrib = sort(at))
+  colnames(att_f) <- attrib
 
   return(att_f)
 }
