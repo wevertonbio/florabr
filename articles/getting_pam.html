@@ -131,7 +131,7 @@ with florabr</a></p>
 <span><span class="va">bf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_florabr.html">load_florabr</a></span><span class="op">(</span>data_dir <span class="op">=</span> <span class="va">my_dir</span>,</span>
 <span>                   data_version <span class="op">=</span> <span class="st">"Latest_available"</span>,</span>
 <span>                   type <span class="op">=</span> <span class="st">"short"</span><span class="op">)</span> <span class="co">#short version</span></span>
-<span><span class="co">#&gt; Loading version 393.389</span></span></code></pre></div>
+<span><span class="co">#&gt; Loading version 393.401</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="getting-a-presence-absence-matrix">Getting a presence-absence matrix<a class="anchor" aria-label="anchor" href="#getting-a-presence-absence-matrix"></a>
@@ -150,22 +150,22 @@ native and endemic to the Amazon biome:</p>
 <span><span class="va">am_trees</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/select_species.html">select_species</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>,</span>
 <span>                          include_subspecies <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                          include_variety <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                          Kingdom <span class="op">=</span> <span class="st">"Plantae"</span>,</span>
-<span>                          Group <span class="op">=</span> <span class="st">"All"</span>, Subgroup <span class="op">=</span> <span class="st">"All"</span>,</span>
-<span>                          Family <span class="op">=</span> <span class="st">"All"</span>, Genus <span class="op">=</span> <span class="st">"All"</span>,</span>
-<span>                          LifeForm <span class="op">=</span> <span class="st">"Tree"</span>, filter_LifeForm <span class="op">=</span> <span class="st">"only"</span>,</span>
-<span>                          Habitat <span class="op">=</span> <span class="st">"All"</span>, filter_Habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                          Biome <span class="op">=</span> <span class="st">"Amazon"</span>,</span>
-<span>                          filter_Biome <span class="op">=</span> <span class="st">"only"</span>,</span>
-<span>                          State <span class="op">=</span> <span class="st">"All"</span>, filter_State <span class="op">=</span> <span class="st">"and"</span>,</span>
-<span>                          VegetationType <span class="op">=</span> <span class="st">"All"</span>,</span>
-<span>                          filter_Vegetation <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                          Endemism <span class="op">=</span> <span class="st">"Endemic"</span>, Origin <span class="op">=</span> <span class="st">"Native"</span>,</span>
-<span>                          TaxonomicStatus <span class="op">=</span> <span class="st">"Accepted"</span>,</span>
-<span>                          NomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span>
+<span>                          kingdom <span class="op">=</span> <span class="st">"Plantae"</span>,</span>
+<span>                          group <span class="op">=</span> <span class="st">"All"</span>, subgroup <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                          family <span class="op">=</span> <span class="st">"All"</span>, genus <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                          lifeForm <span class="op">=</span> <span class="st">"Tree"</span>, filter_lifeForm <span class="op">=</span> <span class="st">"only"</span>,</span>
+<span>                          habitat <span class="op">=</span> <span class="st">"All"</span>, filter_habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                          biome <span class="op">=</span> <span class="st">"Amazon"</span>,</span>
+<span>                          filter_biome <span class="op">=</span> <span class="st">"only"</span>,</span>
+<span>                          state <span class="op">=</span> <span class="st">"All"</span>, filter_state <span class="op">=</span> <span class="st">"and"</span>,</span>
+<span>                          vegetation <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                          filter_vegetation <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                          endemism <span class="op">=</span> <span class="st">"Endemic"</span>, origin <span class="op">=</span> <span class="st">"Native"</span>,</span>
+<span>                          taxonomicStatus <span class="op">=</span> <span class="st">"Accepted"</span>,</span>
+<span>                          nomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span>
 <span><span class="co">#Get presence-absence matrix</span></span>
-<span><span class="va">pam_am</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_pam.html">get_pam</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">am_trees</span>, by_Biome <span class="op">=</span> <span class="cn">TRUE</span>, by_State <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                 by_vegetationType <span class="op">=</span> <span class="cn">FALSE</span>, remove_empty_sites <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span><span class="va">pam_am</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_pam.html">get_pam</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">am_trees</span>, by_biome <span class="op">=</span> <span class="cn">TRUE</span>, by_state <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                 by_vegetation <span class="op">=</span> <span class="cn">FALSE</span>, remove_empty_sites <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                 return_richness_summary <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                 return_spatial_richness <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                 return_plot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -189,13 +189,13 @@ returns a data frame containing the number of species per site.</p>
 <span><span class="co"># # A tibble: 7 × 3</span></span>
 <span><span class="co">#   Biome  States Richness</span></span>
 <span><span class="co">#   &lt;fct&gt;  &lt;fct&gt;     &lt;dbl&gt;</span></span>
-<span><span class="co"># 1 Amazon AM          599</span></span>
+<span><span class="co"># 1 Amazon AM          606</span></span>
 <span><span class="co"># 2 Amazon MA           34</span></span>
-<span><span class="co"># 3 Amazon PA          294</span></span>
+<span><span class="co"># 3 Amazon PA          296</span></span>
 <span><span class="co"># 4 Amazon TO            7</span></span>
 <span><span class="co"># 5 Amazon MT           63</span></span>
 <span><span class="co"># 6 Amazon RR           45</span></span>
-<span><span class="co"># 7 Amazon AC          109</span></span></code></pre></div>
+<span><span class="co"># 7 Amazon AC          107</span></span></code></pre></div>
 <p>If return_spatial_richness is set to TRUE, the function will return a
 SpatVector containing the number of species per site. Additionally, when
 return_plot is also set to TRUE, the function returns a plot. <img src="vignettes_img/Image_09.png"><!-- --></p>

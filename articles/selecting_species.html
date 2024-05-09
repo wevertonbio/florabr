@@ -115,7 +115,7 @@
 <p>Selecting a list of target species is a common task in
 macroecological and conservation studies. For example, a researcher may
 seek to model the distribution of exclusively endemic trees within a
-designated Biome, a particular state, or a specific vegetation type.</p>
+designated Biome, a particular State, or a specific vegetation type.</p>
 <p>By applying different filters to the database, anyone can obtain a
 verified taxonomic list of Brazilian species of algae, fungi, and plants
 for any Brazilian state, region, biome, and vegetation type.
@@ -138,7 +138,7 @@ vignette???</p>
 <span><span class="va">bf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_florabr.html">load_florabr</a></span><span class="op">(</span>data_dir <span class="op">=</span> <span class="va">my_dir</span>,</span>
 <span>                   data_version <span class="op">=</span> <span class="st">"Latest_available"</span>,</span>
 <span>                   type <span class="op">=</span> <span class="st">"short"</span><span class="op">)</span> <span class="co">#short version</span></span>
-<span><span class="co">#&gt; Loading version 393.399</span></span></code></pre></div>
+<span><span class="co">#&gt; Loading version 393.401</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="selecting-a-list-of-species-1">Selecting a list of species<a class="anchor" aria-label="anchor" href="#selecting-a-list-of-species-1"></a>
@@ -149,12 +149,12 @@ Group, Family, and Genus), characteristics (life form, habitat), and
 distribution (federal states, biomes, vegetation types, and endemism).
 Specifically, you can filter by:</p>
 <ul>
-<li>Kingdom, Group, Subgroup, Family and Genus;</li>
-<li>Lifeform and Habitat;</li>
-<li>Biome, State and VegetationType with confirmed occurrences;</li>
-<li>Endemism (endemic or non-endemic to Brazil);</li>
-<li>Origin (Native, Cultivated or Naturalized in Brazil);</li>
-<li>TaxonomicStatus and NomenclaturalStatus of the species.</li>
+<li>kingdom, group, subgroup, family and genus;</li>
+<li>lifeForm and habitat;</li>
+<li>biome, state and vegetation with confirmed occurrences;</li>
+<li>endemism (endemic or non-endemic to Brazil);</li>
+<li>origin (Native, Cultivated or Naturalized in Brazil);</li>
+<li>taxonomicStatus and nomenclaturalStatus of the species.</li>
 </ul>
 <p>To explore all available options for each filter, use the
 <code><a href="../reference/get_attributes.html">get_attributes()</a></code> function with the desired attribute. This
@@ -165,8 +165,8 @@ the attributes in Portuguese.</p>
 <code class="sourceCode R"><span><span class="co">#Get available options to filter by lifeForm</span></span>
 <span><span class="fu"><a href="../reference/get_attributes.html">get_attributes</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf</span>,</span>
 <span>               attribute <span class="op">=</span> <span class="st">"lifeForm"</span>,</span>
-<span>               Kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;               lifeForm            Forma_de_vida</span></span>
+<span>               kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;               lifeForm            formaDeVida</span></span>
 <span><span class="co">#&gt; 1      Aquatic-Benthos          Aquatica-Bentos</span></span>
 <span><span class="co">#&gt; 2      Aquatic-Neuston         Aquatica-Neuston</span></span>
 <span><span class="co">#&gt; 3     Aquatic-Plankton        Aquatica-Plancton</span></span>
@@ -193,8 +193,8 @@ the attributes in Portuguese.</p>
 <span><span class="co">#Get available options to filter by  Biome</span></span>
 <span><span class="fu"><a href="../reference/get_attributes.html">get_attributes</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf</span>,</span>
 <span>               attribute <span class="op">=</span> <span class="st">"Biome"</span>,</span>
-<span>               Kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                 Biome                Bioma</span></span>
+<span>               kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                 biome                bioma</span></span>
 <span><span class="co">#&gt; 1              Amazon             Amazonia</span></span>
 <span><span class="co">#&gt; 2     Atlantic_Forest       Mata_Atlantica</span></span>
 <span><span class="co">#&gt; 3            Caatinga             Caatinga</span></span>
@@ -203,11 +203,11 @@ the attributes in Portuguese.</p>
 <span><span class="co">#&gt; 6            Pantanal             Pantanal</span></span>
 <span><span class="co">#&gt; 7 Not_found_in_Brazil Nao_ocorre_no_Brasil</span></span>
 <span></span>
-<span><span class="co">#Get available options to filter by VegetationType</span></span>
+<span><span class="co">#Get available options to filter by vegetation</span></span>
 <span><span class="fu"><a href="../reference/get_attributes.html">get_attributes</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf</span>,</span>
 <span>               attribute <span class="op">=</span> <span class="st">"vegetationType"</span>,</span>
-<span>               Kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                     VegetationType                           TipoVegetacao</span></span>
+<span>               kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                     vegetation                               Vegetacao</span></span>
 <span><span class="co">#&gt; 1                   Anthropic_Area                          Area Antropica</span></span>
 <span><span class="co">#&gt; 2                         Caatinga                Caatinga (stricto sensu)</span></span>
 <span><span class="co">#&gt; 3            Amazonian_Campinarana                             Campinarana</span></span>
@@ -230,8 +230,8 @@ the attributes in Portuguese.</p>
 <span><span class="co">#&gt; 20                      Palm_Grove                               Palmeiral</span></span>
 <span><span class="co">#&gt; 21                        Restinga                                Restinga</span></span>
 <span><span class="co">#&gt; 22               Amazonian_Savanna                        Savana Amazonica</span></span>
-<span><span class="co">#&gt; 23              Aquatic_Vegetation                      Vegetacao Aquatica</span></span>
-<span><span class="co">#&gt; 24         Rock_outcrop_Vegetation   Vegetacao Sobre Afloramentos Rochosos</span></span>
+<span><span class="co">#&gt; 23              Aquatic_vegetation                      Vegetacao Aquatica</span></span>
+<span><span class="co">#&gt; 24         Rock_outcrop_vegetation   Vegetacao Sobre Afloramentos Rochosos</span></span>
 <span><span class="co">#&gt; 25             Not_found_in_Brazil                    Nao ocorre no Brasil</span></span></code></pre></div>
 <p>As an illustration, let’s consider the scenario where we aim to
 retrieve a list of all native and endemic trees with confirmed
@@ -239,22 +239,22 @@ occurrences in the Atlantic Forest:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">af_spp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/select_species.html">select_species</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf</span>,</span>
 <span>                      include_subspecies <span class="op">=</span> <span class="cn">FALSE</span>, include_variety <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                      Kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, Group <span class="op">=</span> <span class="st">"All"</span>, Subgroup <span class="op">=</span> <span class="st">"All"</span>,</span>
-<span>                      Family <span class="op">=</span> <span class="st">"All"</span>, Genus <span class="op">=</span> <span class="st">"All"</span>,</span>
-<span>                      LifeForm <span class="op">=</span> <span class="st">"Tree"</span>, <span class="co">#Specify tree species</span></span>
-<span>                      filter_LifeForm <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Habitat <span class="op">=</span> <span class="st">"All"</span>, filter_Habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occuring in the At. Forest</span></span>
-<span>                      filter_Biome <span class="op">=</span> <span class="st">"in"</span>, <span class="co">#In Atlantic Forest</span></span>
-<span>                      State <span class="op">=</span> <span class="st">"All"</span>, filter_State <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      VegetationType <span class="op">=</span> <span class="st">"All"</span>, filter_Vegetation <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Endemism <span class="op">=</span> <span class="st">"Endemic"</span>, <span class="co">#Only endemics to Brazil</span></span>
-<span>                      Origin <span class="op">=</span> <span class="st">"Native"</span>, <span class="co">#Only natives</span></span>
-<span>                      TaxonomicStatus <span class="op">=</span> <span class="st">"Accepted"</span>,</span>
-<span>                      NomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span>
+<span>                      kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, group <span class="op">=</span> <span class="st">"All"</span>, subgroup <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                      family <span class="op">=</span> <span class="st">"All"</span>, genus <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                      lifeForm <span class="op">=</span> <span class="st">"Tree"</span>, <span class="co">#Specify tree species</span></span>
+<span>                      filter_lifeForm <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      habitat <span class="op">=</span> <span class="st">"All"</span>, filter_habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occuring in the At. Forest</span></span>
+<span>                      filter_biome <span class="op">=</span> <span class="st">"in"</span>, <span class="co">#In Atlantic Forest</span></span>
+<span>                      state <span class="op">=</span> <span class="st">"All"</span>, filter_state <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      vegetation <span class="op">=</span> <span class="st">"All"</span>, filter_vegetation <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      endemism <span class="op">=</span> <span class="st">"Endemic"</span>, <span class="co">#Only endemics to Brazil</span></span>
+<span>                      origin <span class="op">=</span> <span class="st">"Native"</span>, <span class="co">#Only natives</span></span>
+<span>                      taxonomicStatus <span class="op">=</span> <span class="st">"Accepted"</span>,</span>
+<span>                      nomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">af_spp</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 2362</span></span></code></pre></div>
-<p>The filter returned 2362 species that meet the specified criteria.
+<span><span class="co">#&gt; [1] 2372</span></span></code></pre></div>
+<p>The filter returned 2372 species that meet the specified criteria.
 It’s important to note that these selections include species with
 confirmed occurrences in the Atlantic Forest, and some of them may also
 have confirmed occurrences in other biomes.</p>
@@ -269,29 +269,29 @@ have confirmed occurrences in other biomes.</p>
 <span><span class="co">#&gt; [6] "Atlantic_Forest;Caatinga;Cerrado"       </span></span>
 <span><span class="co">#&gt; [7] "Amazon;Atlantic_Forest"</span></span></code></pre></div>
 <p>If you wish to exclusively select species with confirmed occurrences
-in the Atlantic Forest, modify the <em>filter_Biome</em> parameter to
+in the Atlantic Forest, modify the <em>filter_biome</em> parameter to
 “only”:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">only_af_spp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/select_species.html">select_species</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf</span>,</span>
 <span>                      include_subspecies <span class="op">=</span> <span class="cn">FALSE</span>, include_variety <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                      Kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, Group <span class="op">=</span> <span class="st">"All"</span>, Subgroup <span class="op">=</span> <span class="st">"All"</span>,</span>
-<span>                      Family <span class="op">=</span> <span class="st">"All"</span>, Genus <span class="op">=</span> <span class="st">"All"</span>,</span>
-<span>                      LifeForm <span class="op">=</span> <span class="st">"Tree"</span>, <span class="co">#Specify tree species</span></span>
-<span>                      filter_LifeForm <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Habitat <span class="op">=</span> <span class="st">"All"</span>, filter_Habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occuring in the At. Forest</span></span>
-<span>                      filter_Biome <span class="op">=</span> <span class="st">"only"</span>, <span class="co">#ONLY in Atlantic Forest</span></span>
-<span>                      State <span class="op">=</span> <span class="st">"All"</span>, filter_State <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      VegetationType <span class="op">=</span> <span class="st">"All"</span>, filter_Vegetation <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Endemism <span class="op">=</span> <span class="st">"Endemic"</span>, <span class="co">#Only endemics to Brazil</span></span>
-<span>                      Origin <span class="op">=</span> <span class="st">"Native"</span>, <span class="co">#Only natives</span></span>
-<span>                      TaxonomicStatus <span class="op">=</span> <span class="st">"Accepted"</span>,</span>
-<span>                      NomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span>
+<span>                      kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, group <span class="op">=</span> <span class="st">"All"</span>, subgroup <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                      family <span class="op">=</span> <span class="st">"All"</span>, genus <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                      lifeForm <span class="op">=</span> <span class="st">"Tree"</span>, <span class="co">#Specify tree species</span></span>
+<span>                      filter_lifeForm <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      habitat <span class="op">=</span> <span class="st">"All"</span>, filter_habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occuring in the At. Forest</span></span>
+<span>                      filter_biome <span class="op">=</span> <span class="st">"only"</span>, <span class="co">#ONLY in Atlantic Forest</span></span>
+<span>                      state <span class="op">=</span> <span class="st">"All"</span>, filter_state <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      vegetation <span class="op">=</span> <span class="st">"All"</span>, filter_vegetation <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      endemism <span class="op">=</span> <span class="st">"Endemic"</span>, <span class="co">#Only endemics to Brazil</span></span>
+<span>                      origin <span class="op">=</span> <span class="st">"Native"</span>, <span class="co">#Only natives</span></span>
+<span>                      taxonomicStatus <span class="op">=</span> <span class="st">"Accepted"</span>,</span>
+<span>                      nomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">only_af_spp</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 1849</span></span>
-<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">only_af_spp</span><span class="op">$</span><span class="va">Biome</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1858</span></span>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">only_af_spp</span><span class="op">$</span><span class="va">biome</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Atlantic_Forest"</span></span></code></pre></div>
-<p>Now, the filter has resulted in 1849 species, all exclusively
+<p>Now, the filter has resulted in 1858 species, all exclusively
 confined to the Atlantic Forest biome.</p>
 <p>Furthermore, the package offers the flexibility to apply various
 filtering options (please consult <code><a href="../reference/select_species.html">?select_species</a></code> for
@@ -303,57 +303,57 @@ Grande do Sul (RS):</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">south_af_spp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/select_species.html">select_species</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf</span>,</span>
 <span>                      include_subspecies <span class="op">=</span> <span class="cn">FALSE</span>, include_variety <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                      Kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, Group <span class="op">=</span> <span class="st">"All"</span>, Subgroup <span class="op">=</span> <span class="st">"All"</span>,</span>
-<span>                      Family <span class="op">=</span> <span class="st">"All"</span>, Genus <span class="op">=</span> <span class="st">"All"</span>,</span>
-<span>                      LifeForm <span class="op">=</span> <span class="st">"Tree"</span>, <span class="co">#Specify tree species</span></span>
-<span>                      filter_LifeForm <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Habitat <span class="op">=</span> <span class="st">"All"</span>, filter_Habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occuring in the At. Forest</span></span>
-<span>                      filter_Biome <span class="op">=</span> <span class="st">"only"</span>, <span class="co">#Only in Atlantic Forest</span></span>
-<span>                      State <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PR"</span>, <span class="st">"SC"</span>, <span class="st">"RS"</span><span class="op">)</span>, <span class="co">#States - Use the acronynms</span></span>
-<span>                      filter_State <span class="op">=</span> <span class="st">"in"</span>, <span class="co">#IN at least one of these states</span></span>
-<span>                      VegetationType <span class="op">=</span> <span class="st">"All"</span>, filter_Vegetation <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Endemism <span class="op">=</span> <span class="st">"Endemic"</span>, <span class="co">#Only endemics to Brazil</span></span>
-<span>                      Origin <span class="op">=</span> <span class="st">"Native"</span>, <span class="co">#Only natives</span></span>
-<span>                      TaxonomicStatus <span class="op">=</span> <span class="st">"Accepted"</span>,</span>
-<span>                      NomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span>
+<span>                      kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, group <span class="op">=</span> <span class="st">"All"</span>, subgroup <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                      family <span class="op">=</span> <span class="st">"All"</span>, genus <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                      lifeForm <span class="op">=</span> <span class="st">"Tree"</span>, <span class="co">#Specify tree species</span></span>
+<span>                      filter_lifeForm <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      habitat <span class="op">=</span> <span class="st">"All"</span>, filter_habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occuring in the At. Forest</span></span>
+<span>                      filter_biome <span class="op">=</span> <span class="st">"only"</span>, <span class="co">#Only in Atlantic Forest</span></span>
+<span>                      state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PR"</span>, <span class="st">"SC"</span>, <span class="st">"RS"</span><span class="op">)</span>, <span class="co">#states - Use the acronynms</span></span>
+<span>                      filter_state <span class="op">=</span> <span class="st">"in"</span>, <span class="co">#IN at least one of these states</span></span>
+<span>                      vegetation <span class="op">=</span> <span class="st">"All"</span>, filter_vegetation <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      endemism <span class="op">=</span> <span class="st">"Endemic"</span>, <span class="co">#Only endemics to Brazil</span></span>
+<span>                      origin <span class="op">=</span> <span class="st">"Native"</span>, <span class="co">#Only natives</span></span>
+<span>                      taxonomicStatus <span class="op">=</span> <span class="st">"Accepted"</span>,</span>
+<span>                      nomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">south_af_spp</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 371</span></span>
+<span><span class="co">#&gt; [1] 372</span></span>
 <span></span>
 <span><span class="co">#First 10 unique values of states in the filtered dataset</span></span>
-<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">south_af_spp</span><span class="op">$</span><span class="va">States</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">south_af_spp</span><span class="op">$</span><span class="va">states</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span>
 <span><span class="co">#&gt;  [1] "BA;ES;PR;RJ;SC;SP"               "AL;BA;CE;ES;MA;MG;PB;PE;PR;RJ;SE;SP"</span></span>
 <span><span class="co">#&gt;  [3] "PR;RS;SC"                        "BA;CE;ES;MA;MG;PE;PR;RJ;SP"         </span></span>
 <span><span class="co">#&gt;  [5] "MG;PR;RJ;SC;SP"                  "MG;PR;RJ;RS;SC;SP"                  </span></span>
 <span><span class="co">#&gt;  [7] "BA;ES;MG;PR;RJ;SC;SP"            "MG;PR;RS;SC;SP"                     </span></span>
 <span><span class="co">#&gt;  [9] "PR;RJ;RS;SC;SP"                  "ES;MG;PR;RJ;RS;SC;SP"</span></span></code></pre></div>
-<p>By utilizing <em>filter_State = “in”</em>, our selection encompassed
+<p>By utilizing <em>filter_state = “in”</em>, our selection encompassed
 species occurring in all three states, as well as those appearing in
 only two or even one of them. To impose a more rigorous criterion,
 selecting solely those species with confirmed occurrences in all three
-states, we can use <em>filter_State = “and”</em>:</p>
+states, we can use <em>filter_state = “and”</em>:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">south_af_spp2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/select_species.html">select_species</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf</span>,</span>
 <span>                      include_subspecies <span class="op">=</span> <span class="cn">FALSE</span>, include_variety <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                      Kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, Group <span class="op">=</span> <span class="st">"All"</span>, Subgroup <span class="op">=</span> <span class="st">"All"</span>,</span>
-<span>                      Family <span class="op">=</span> <span class="st">"All"</span>, Genus <span class="op">=</span> <span class="st">"All"</span>,</span>
-<span>                      LifeForm <span class="op">=</span> <span class="st">"Tree"</span>, <span class="co">#Specify tree species</span></span>
-<span>                      filter_LifeForm <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Habitat <span class="op">=</span> <span class="st">"All"</span>, filter_Habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occurring in the At. Forest</span></span>
-<span>                      filter_Biome <span class="op">=</span> <span class="st">"only"</span>, <span class="co">#Only in Atlantic Forest</span></span>
-<span>                      State <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PR"</span>, <span class="st">"SC"</span>, <span class="st">"RS"</span><span class="op">)</span>, <span class="co">#States - Use the acronynms</span></span>
-<span>                      filter_State <span class="op">=</span> <span class="st">"and"</span>, <span class="co">#PR and SC and RS</span></span>
-<span>                      VegetationType <span class="op">=</span> <span class="st">"All"</span>, filter_Vegetation <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Endemism <span class="op">=</span> <span class="st">"Endemic"</span>, <span class="co">#Only endemics to Brazil</span></span>
-<span>                      Origin <span class="op">=</span> <span class="st">"Native"</span>, <span class="co">#Only natives</span></span>
-<span>                      TaxonomicStatus <span class="op">=</span> <span class="st">"Accepted"</span>,</span>
-<span>                      NomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span>
+<span>                      kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, group <span class="op">=</span> <span class="st">"All"</span>, subgroup <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                      family <span class="op">=</span> <span class="st">"All"</span>, genus <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                      lifeForm <span class="op">=</span> <span class="st">"Tree"</span>, <span class="co">#Specify tree species</span></span>
+<span>                      filter_lifeForm <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      habitat <span class="op">=</span> <span class="st">"All"</span>, filter_habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occurring in the At. Forest</span></span>
+<span>                      filter_biome <span class="op">=</span> <span class="st">"only"</span>, <span class="co">#Only in Atlantic Forest</span></span>
+<span>                      state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PR"</span>, <span class="st">"SC"</span>, <span class="st">"RS"</span><span class="op">)</span>, <span class="co">#states - Use the acronynms</span></span>
+<span>                      filter_state <span class="op">=</span> <span class="st">"and"</span>, <span class="co">#PR and SC and RS</span></span>
+<span>                      vegetation <span class="op">=</span> <span class="st">"All"</span>, filter_vegetation <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      endemism <span class="op">=</span> <span class="st">"Endemic"</span>, <span class="co">#Only endemics to Brazil</span></span>
+<span>                      origin <span class="op">=</span> <span class="st">"Native"</span>, <span class="co">#Only natives</span></span>
+<span>                      taxonomicStatus <span class="op">=</span> <span class="st">"Accepted"</span>,</span>
+<span>                      nomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">south_af_spp2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 29</span></span>
 <span></span>
 <span><span class="co">#All unique states in the filtered dataset</span></span>
-<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">south_af_spp2</span><span class="op">$</span><span class="va">States</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">south_af_spp2</span><span class="op">$</span><span class="va">states</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "PR;RS;SC"       "MG;PR;RS;SC;SP" "PR;RS;SC;SP"    "ES;PR;RS;SC;SP"</span></span>
 <span><span class="co">#&gt; [5] "MG;PR;RS;SC"</span></span></code></pre></div>
 <p>Now, our selection consists solely of species with confirmed
@@ -361,29 +361,29 @@ occurrences in all of the specified states. However, by utilizing the
 “and” argument, we permit the filter to include species with occurrences
 in additional states. To confine the filter exclusively to species with
 confirmed occurrences in all three states, without any occurrences
-elsewhere, we can use <em>filter_State = “only”</em>:</p>
+elsewhere, we can use <em>filter_state = “only”</em>:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">south_af_spp3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/select_species.html">select_species</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf</span>,</span>
 <span>                      include_subspecies <span class="op">=</span> <span class="cn">FALSE</span>, include_variety <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                      Kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, Group <span class="op">=</span> <span class="st">"All"</span>, Subgroup <span class="op">=</span> <span class="st">"All"</span>,</span>
-<span>                      Family <span class="op">=</span> <span class="st">"All"</span>, Genus <span class="op">=</span> <span class="st">"All"</span>,</span>
-<span>                      LifeForm <span class="op">=</span> <span class="st">"Tree"</span>, <span class="co">#Specify tree species</span></span>
-<span>                      filter_LifeForm <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Habitat <span class="op">=</span> <span class="st">"All"</span>, filter_Habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occuring in the At. Forest</span></span>
-<span>                      filter_Biome <span class="op">=</span> <span class="st">"only"</span>, <span class="co">#Only in Atlantic Forest</span></span>
-<span>                      State <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PR"</span>, <span class="st">"SC"</span>, <span class="st">"RS"</span><span class="op">)</span>, <span class="co">#States - Use the acronynms</span></span>
-<span>                      filter_State <span class="op">=</span> <span class="st">"only"</span>, <span class="co">#PR and SC and RS, no other else</span></span>
-<span>                      VegetationType <span class="op">=</span> <span class="st">"All"</span>, filter_Vegetation <span class="op">=</span> <span class="st">"in"</span>,</span>
-<span>                      Endemism <span class="op">=</span> <span class="st">"Endemic"</span>, <span class="co">#Only endemics to Brazil</span></span>
-<span>                      Origin <span class="op">=</span> <span class="st">"Native"</span>, <span class="co">#Only natives</span></span>
-<span>                      TaxonomicStatus <span class="op">=</span> <span class="st">"Accepted"</span>,</span>
-<span>                      NomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span>
+<span>                      kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, group <span class="op">=</span> <span class="st">"All"</span>, subgroup <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                      family <span class="op">=</span> <span class="st">"All"</span>, genus <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>                      lifeForm <span class="op">=</span> <span class="st">"Tree"</span>, <span class="co">#Specify tree species</span></span>
+<span>                      filter_lifeForm <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      habitat <span class="op">=</span> <span class="st">"All"</span>, filter_habitat <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      biome <span class="op">=</span> <span class="st">"Atlantic_Forest"</span>, <span class="co">#Occuring in the At. Forest</span></span>
+<span>                      filter_biome <span class="op">=</span> <span class="st">"only"</span>, <span class="co">#Only in Atlantic Forest</span></span>
+<span>                      state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PR"</span>, <span class="st">"SC"</span>, <span class="st">"RS"</span><span class="op">)</span>, <span class="co">#states - Use the acronynms</span></span>
+<span>                      filter_state <span class="op">=</span> <span class="st">"only"</span>, <span class="co">#PR and SC and RS, no other else</span></span>
+<span>                      vegetation <span class="op">=</span> <span class="st">"All"</span>, filter_vegetation <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>                      endemism <span class="op">=</span> <span class="st">"Endemic"</span>, <span class="co">#Only endemics to Brazil</span></span>
+<span>                      origin <span class="op">=</span> <span class="st">"Native"</span>, <span class="co">#Only natives</span></span>
+<span>                      taxonomicStatus <span class="op">=</span> <span class="st">"Accepted"</span>,</span>
+<span>                      nomenclaturalStatus <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">south_af_spp3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 13</span></span>
 <span></span>
 <span><span class="co">#The unique state in the filtered dataset</span></span>
-<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">south_af_spp3</span><span class="op">$</span><span class="va">States</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">south_af_spp3</span><span class="op">$</span><span class="va">states</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "PR;RS;SC"</span></span></code></pre></div>
 <p>Now, the filter return only 13 species, all of them occurring in PR,
 SC and RS; with no recorded occurrences in any other states.</p>
@@ -403,12 +403,14 @@ angustifolia</em>, and does not support complete scientific names
 angustifolia (Bertol.) Kuntze</em> or <em>Araucaria angustifolia var.
 stricta Reitz</em>.</p>
 <p>If you have species with complete scientific names, you can extract
-the binomial names using the function <code><a href="../reference/get_binomial.html">get_binomial()</a></code>:</p>
+the binomial names using the function <code><a href="../reference/get_binomial.html">get_binomial()</a></code>. Don’t
+worry about excessive spaces between words; the function will remove any
+extra spaces from the names.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">complete_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Araucaria brasiliana var. ridolfiana (Pi.Savi) Gordon"</span>,</span>
-<span>                    <span class="st">"Solanum restingae S.Knapp"</span>,</span>
-<span>                    <span class="st">"Butia cattarinensis Noblick &amp; Lorenzi"</span>,</span>
-<span>                    <span class="st">"Homo sapiens"</span><span class="op">)</span></span>
+<span>                    <span class="st">" Solanum restingae  S.Knapp"</span>,</span>
+<span>                    <span class="st">"Butia cattarinensis  Noblick &amp; Lorenzi   "</span>,</span>
+<span>                    <span class="st">"Homo   sapiens"</span><span class="op">)</span></span>
 <span><span class="co">#Human specie was used just as an example that will be used to illustrate the </span></span>
 <span><span class="co">#next function</span></span>
 <span><span class="va">binomial_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_binomial.html">get_binomial</a></span><span class="op">(</span>species_names <span class="op">=</span> <span class="va">complete_names</span><span class="op">)</span></span>
@@ -430,7 +432,7 @@ works, let’s utilize the previously created binomial_names dataset:</p>
 <span><span class="va">checked_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check_names.html">check_names</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf</span>, </span>
 <span>                             species <span class="op">=</span> <span class="va">binomial_names</span>,</span>
 <span>                             max_distance <span class="op">=</span> <span class="fl">0.1</span>,</span>
-<span>                             Kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span>
+<span>                             kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span>
 <span><span class="va">checked_names</span></span>
 <span><span class="co">#             input_name           Spelling       Suggested_name Distance taxonomicStatus nomenclaturalStatus           acceptedName        family</span></span>
 <span><span class="co"># 1 Araucaria brasiliana            Correct Araucaria brasiliana        0         Synonym                &lt;NA&gt; Araucaria angustifolia Araucariaceae</span></span>
@@ -471,7 +473,7 @@ previously:</p>
 <span><span class="va">my_sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/subset_species.html">subset_species</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf</span>, species <span class="op">=</span> <span class="va">accepted_names</span>,</span>
 <span>                      include_subspecies <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                      include_variety <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                      Kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span>
+<span>                      kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span>
 <span><span class="va">my_sp</span></span>
 <span><span class="co">#&gt;                      species                          scientificName</span></span>
 <span><span class="co">#&gt; 11785      Solanum restingae               Solanum restingae S.Knapp</span></span>
@@ -490,7 +492,7 @@ previously:</p>
 <span><span class="co">#&gt; 26790 High_Altitude_Grassland;Mixed_Ombrophyllous_Forest;</span></span>
 <span><span class="co">#&gt;       Seasonally_Semideciduous_Forest</span></span>
 <span><span class="co">#&gt; 99881 Restinga</span></span>
-<span><span class="co">#&gt;       Origin    Endemism taxonomicStatus nomenclaturalStatus</span></span>
+<span><span class="co">#&gt;       origin    endemism taxonomicStatus nomenclaturalStatus</span></span>
 <span><span class="co">#&gt; 11785 Native     Endemic        Accepted             Correct</span></span>
 <span><span class="co">#&gt; 26790 Native Non-endemic        Accepted             Correct</span></span>
 <span><span class="co">#&gt; 99881 Native     Endemic        Accepted                &lt;NA&gt;</span></span>
@@ -508,7 +510,7 @@ previously:</p>
 <code class="sourceCode R"><span><span class="va">my_sp2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/subset_species.html">subset_species</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf</span>, species <span class="op">=</span> <span class="va">accepted_names</span>,</span>
 <span>                      include_subspecies <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                      include_variety <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                      Kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span>
+<span>                      kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span>
 <span><span class="va">my_sp2</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span></span>
 <span><span class="co">#&gt;                      species                            scientificName</span></span>
 <span><span class="co">#&gt; 11785      Solanum restingae                 Solanum restingae S.Knapp</span></span>
@@ -535,7 +537,7 @@ previously:</p>
 <span><span class="co">#&gt; 35204                                                                         </span></span>
 <span><span class="co">#&gt; 35205                                                                          </span></span>
 <span><span class="co">#&gt; 35206                                                                        </span></span>
-<span><span class="co">#&gt;       Origin    Endemism taxonomicStatus nomenclaturalStatus</span></span>
+<span><span class="co">#&gt;       origin    endemism taxonomicStatus nomenclaturalStatus</span></span>
 <span><span class="co">#&gt; 11785 Native     Endemic        Accepted             Correct</span></span>
 <span><span class="co">#&gt; 26790 Native Non-endemic        Accepted             Correct</span></span>
 <span><span class="co">#&gt; 35204   &lt;NA&gt;        &lt;NA&gt;         Synonym                &lt;NA&gt;</span></span>
@@ -554,6 +556,37 @@ previously:</p>
 <span><span class="co">#&gt; 35204   Variety</span></span>
 <span><span class="co">#&gt; 35205   Variety</span></span>
 <span><span class="co">#&gt; 35206   Variety</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="retrieving-synonyms">Retrieving synonyms<a class="anchor" aria-label="anchor" href="#retrieving-synonyms"></a>
+</h3>
+<p>We can retrieve all synonyms of a species list. This can be
+particularly useful, for example, when searching for records of a
+species and all its synonyms (as listed in the Brazilian Flora 2020) in
+online databases like GBIF. To accomplish this, utilize the function
+get_synonym. To understand how the function works, let’s search for the
+synonyms of two species:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">spp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Araucaria angustifolia"</span>, <span class="st">"Adesmia paranensis"</span><span class="op">)</span></span>
+<span><span class="va">spp_syn</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_synonym.html">get_synonym</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf</span>, species <span class="op">=</span> <span class="va">spp</span><span class="op">)</span></span>
+<span><span class="va">spp_syn</span></span>
+<span><span class="co">#&gt;                       synonym           acceptedName taxonomicStatus      nomenclaturalStatus</span></span>
+<span><span class="co">#&gt; 35323    Araucaria brasiliana Araucaria angustifolia         Synonym                     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 35325  Araucaria brasiliensis Araucaria angustifolia         Synonym                     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 35327        Araucaria dioica Araucaria angustifolia         Synonym                     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 35328       Araucaria elegans Araucaria angustifolia         Synonym                     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 35329    Araucaria ridolfiana Araucaria angustifolia         Synonym                     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 35330       Araucaria saviana Araucaria angustifolia         Synonym                     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 35332   Columbea angustifolia Araucaria angustifolia         Synonym Legitimate_but_incorrect</span></span>
+<span><span class="co">#&gt; 35333     Columbea brasiliana Araucaria angustifolia         Synonym Legitimate_but_incorrect</span></span>
+<span><span class="co">#&gt; 60644            Pinus dioica Araucaria angustifolia         Synonym                     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 141020     Araucaria bibbiani Araucaria angustifolia         Synonym                     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 141021   Araucaria lindleyana Araucaria angustifolia         Synonym                     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 141041   Araucaria brasiliana Araucaria angustifolia         Synonym             Illegitimate</span></span>
+<span><span class="co">#&gt; 85308    Adesmia psoraleoides     Adesmia paranensis         Synonym Legitimate_but_incorrect</span></span></code></pre></div>
+<p>We can see that <em>Araucaria angustifolia</em> has 12 synonyms in
+Brazilian Flora database, while <em>Adesmia paranensis</em> has one
+synonym.</p>
 </div>
 </div>
   </div>
