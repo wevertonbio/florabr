@@ -34,11 +34,13 @@ The florabR package includes a collection of functions designed to retrieve, fil
 -   `check_version()`: Check if you have the latest version of Brazilian Flora dataset available.
 -   `get_florabr()`: Download the latest version of Brazilian Flora 2020 database.
 -   `load_florabr()`: Load Brazilian Flora database.
+-   `solve_discrepancies`: Resolve discrepancies between species and subspecies/varieties information.
 
 ### Check names
 
 -   `check_names()`: Check species names.
 -   `get_binomial()`: Extract the binomial name (Genus + specific epithet) from a complete Scientific Name.
+-   `get_synonym()`: Retrieve synonyms for species.
 
 ### Select or subset species
 

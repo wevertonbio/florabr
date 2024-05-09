@@ -5,12 +5,13 @@
 
 <!-- badges: start -->
 
-[![CRAN status](https://www.r-pkg.org/badges/version/florabr)](https://CRAN.R-project.org/package=florabr)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/florabr)](https://CRAN.R-project.org/package=florabr)
 [![downloads](https://cranlogs.r-pkg.org/badges/grand-total/florabr)](https://cranlogs.r-pkg.org:443/badges/grand-total/florabr)
 [![R-CMD-check](https://github.com/wevertonbio/florabr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/wevertonbio/florabr/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/wevertonbio/florabr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/wevertonbio/florabr?branch=main)
+[![Codecov test
+coverage](https://codecov.io/gh/wevertonbio/florabr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/wevertonbio/florabr?branch=main)
 [![License](https://img.shields.io/badge/license-GPL%20(%3E=%203)-lightgrey.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html)
-
 <!-- badges: end -->
 
 [Brazilian Flora 2020](https://floradobrasil.jbrj.gov.br/consulta/) is
@@ -35,12 +36,15 @@ dataset.
 - `get_florabr()`: Download the latest version of Brazilian Flora 2020
   database.
 - `load_florabr()`: Load Brazilian Flora database.
+- `solve_discrepancies`: Resolve discrepancies between species and
+  subspecies/varieties information.
 
 ### Check names
 
 - `check_names()`: Check species names.
 - `get_binomial()`: Extract the binomial name (Genus + specific epithet)
   from a complete Scientific Name.
+- `get_synonym()`: Retrieve synonyms for species.
 
 ### Select or subset species
 
