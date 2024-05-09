@@ -80,6 +80,17 @@ solve_discrepancies <- function(data) {
 
   #Add attribute
   attr(data_solved, "solve_discrepancies") <- TRUE
+
+  #Remove Unknown when there are info
+  columns <- c("lifeForm", "habitat", "biome",
+               "states", "vegetation", "origin", "endemism")
+  for(i in columns) {
+    data_solved[[i]][which(
+      grepl(";Unknown|Unknown;", data_solved[[i]]))] <- gsub(
+        ";Unknown|Unknown;", "", data_solved[[i]][which(grepl(";Unknown|Unknown;",
+                                                     data_solved[[i]]))])
+  }
+
   #Return
   return(data_solved)
 }
