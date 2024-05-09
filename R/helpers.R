@@ -7,6 +7,19 @@ firstup <- function(x) {
   x
 }
 
+firstup_collapse <- function(x, collapse = "_") {
+  res <- sapply(x, function(text){
+    # Split words
+    words <- strsplit(text, collapse)[[1]]
+    # First letter to upper case
+    words <- sapply(words, firstup)
+    # Merge words
+    text_final <- paste(words, collapse = collapse)
+  })
+  names(res) <- NULL
+  return(res)
+}
+
 #Extract string between patterns
 extract_between <- function(str, left, right) {
   inicio <- regexpr(left, str) + attr(regexpr(left, str), "match.length")
@@ -19,9 +32,9 @@ extract_between <- function(str, left, right) {
 
 #Translate lifeform from portuguese to english
 translate_lifeform <- function(lifeform) {
-  newlifeform <- gsub("Aquatica-Bentos", "Aquatic-Benthos", lifeform)
-  newlifeform <- gsub("Aquatica-Neuston", "Aquatic-Neuston", newlifeform)
-  newlifeform <- gsub("Aquatica-Plancton", "Aquatic-Plankton", newlifeform)
+  newlifeform <- gsub("Aquatica-Bentos", "Aquatic-benthos", lifeform)
+  newlifeform <- gsub("Aquatica-Neuston", "Aquatic-neuston", newlifeform)
+  newlifeform <- gsub("Aquatica-Plancton", "Aquatic-plankton", newlifeform)
   newlifeform <- gsub("Arbusto", "Shrub", newlifeform)
   newlifeform <- gsub("Arvore", "Tree", newlifeform)
   newlifeform <- gsub("Bambu", "Bamboo", newlifeform)
@@ -74,15 +87,15 @@ translate_habitat <- function(habitat) {
   newhabitat <- gsub("Outro", "Other", newhabitat)
   newhabitat <- gsub("Parasita", "Parasite", newhabitat)
   newhabitat <- gsub("Planta viva - cortex do caule",
-                     "Living_plant-stem_cortex",
+                     "Living_plant_stem_cortex",
                      newhabitat)
-  newhabitat <- gsub("Planta viva - cortex galho", "Living_plant-branch_cortex",
+  newhabitat <- gsub("Planta viva - cortex galho", "Living_plant_branch_cortex",
                      newhabitat)
-  newhabitat <- gsub("Planta viva - folha", "Living plant-leaf", newhabitat)
-  newhabitat <- gsub("Planta viva - fruto", "Living plant-fruit", newhabitat)
+  newhabitat <- gsub("Planta viva - folha", "Living_plant_leaf", newhabitat)
+  newhabitat <- gsub("Planta viva - fruto", "Living_plant_fruit", newhabitat)
   newhabitat <- gsub("Planta viva - inflorescencia",
-                     "Living_plant-inflorescence", newhabitat)
-  newhabitat <- gsub("Planta viva - raiz", "Living_plant-root", newhabitat)
+                     "Living_plant_inflorescence", newhabitat)
+  newhabitat <- gsub("Planta viva - raiz", "Living_plant_root", newhabitat)
   newhabitat <- gsub("Rocha", "Rock", newhabitat)
   newhabitat <- gsub("Rupicola", "Rupicolous", newhabitat)
   newhabitat <- gsub("Saprofita", "Saprophyte", newhabitat)
@@ -104,7 +117,7 @@ translate_habitat <- function(habitat) {
 translate_biome <- function(biome) {
   newbiome <- gsub("Amazonia", "Amazon", biome)
   newbiome <- gsub("Mata Atlantica", "Atlantic_Forest", newbiome)
-  newbiome <- gsub("Nao ocorre no Brasil", "Not_found_in_Brazil", newbiome)
+  newbiome <- gsub("Nao ocorre no Brasil", "Not_found_in_brazil", newbiome)
   return(newbiome)
 }
 
@@ -145,8 +158,8 @@ translate_vegetation <- function(vegetation) {
   newvegetation <- gsub("Vegetacao Aquatica", "Aquatic_Vegetation",
                         newvegetation)
   newvegetation <- gsub("Vegetacao Sobre Afloramentos Rochosos",
-                        "Rock_outcrop_Vegetation", newvegetation)
-  newvegetation <- gsub("Nao ocorre no Brasil", "Not_found_in_Brazil",
+                        "Rock_Outcrop_Vegetation", newvegetation)
+  newvegetation <- gsub("Nao ocorre no Brasil", "Not_found_in_brazil",
                         newvegetation)
   return(newvegetation)
 }
@@ -157,7 +170,7 @@ translate_endemism <- function(endemism) {
                       ifelse(endemism == "Nao endemica", "Non-endemic",
                               ifelse(endemism == "Endemica", "Endemic",
                                     ifelse (endemism == "Nao ocorre no Brasil",
-                                            "Not_found_in_Brazil", NA))))
+                                            "Not_found_in_brazil", NA))))
 
   return(newendemism)
 }
@@ -169,7 +182,7 @@ translate_origin <- function(origin) {
                         ifelse(origin == "CULTIVADA", "Cultivated",
                               ifelse(origin == "NATURALIZADA", "Naturalized",
                                         ifelse(origin == "Nao ocorre no Brasil",
-                                              "Not_found_in_Brazil", NA)))))
+                                              "Not_found_in_brazil", NA)))))
 
   return(neworigin)
 }
@@ -478,11 +491,11 @@ merge_data <- function(path_data, version_data, solve_discrepancy,
   sp_out_dup <- duplicated(sp_out_df[, c("acceptedName")])
   sp_out_unique <- sp_out_df[!sp_out_dup, ]
   #Update distribution - They do not occur in Brazil
-  sp_out_unique$vegetation <- "Not_found_in_Brazil"
-  sp_out_unique$endemism <- "Not_found_in_Brazil"
-  sp_out_unique$origin <- "Not_found_in_Brazil"
-  sp_out_unique$locationID <- "Not_found_in_Brazil"
-  sp_out_unique$phytogeographicDomain <- "Not_found_in_Brazil"
+  sp_out_unique$vegetation <- "Not_found_in_brazil"
+  sp_out_unique$endemism <- "Not_found_in_brazil"
+  sp_out_unique$origin <- "Not_found_in_brazil"
+  sp_out_unique$locationID <- "Not_found_in_brazil"
+  sp_out_unique$phytogeographicDomain <- "Not_found_in_brazil"
   #Update taxonomic info
   sp_out_unique$species <- sp_out_unique$acceptedName
   sp_out_unique$scientificName <- sp_out_unique$acceptedNameUsage
@@ -553,7 +566,7 @@ merge_data <- function(path_data, version_data, solve_discrepancy,
   #   spp_var <- subset(df_join,
   #                     df_join$taxonRank %in% c("Variety", "Subspecies", "Form") &
   #                       df_join$taxonomicStatus == "Accepted" &
-  #                       df_join$endemism != "Not_found_in_Brazil")[["species"]]
+  #                       df_join$endemism != "Not_found_in_brazil")[["species"]]
   #
   #   #Get only species that exists as Species in dataframe
   #   spp_var_yes <- intersect(df_join$species[which(df_join$taxonRank == "Species")],
@@ -585,14 +598,49 @@ merge_data <- function(path_data, version_data, solve_discrepancy,
 
   if(solve_discrepancy){
     df_solved <- solve_discrepancies(df_join)
+
+    #Fill NAs
+    df_solved <- fill_NA(df_solved)
+
+    #Save
     saveRDS(df_solved,
             file = file.path(path_data, version_data,
                              "CompleteBrazilianFlora.rds"))
   } else {
   #Save as RDS
+  #Fill NAs
+  df_join <- fill_NA(df_join)
   attr(df_join, "solve_discrepancies") <- FALSE
   saveRDS(df_join,
           file = file.path(path_data, version_data,
                            "CompleteBrazilianFlora.rds"))
   }
+}
+
+#Fill NAs and empty values with Unknown
+fill_NA <- function(data){
+  #taxon ranks to fix
+  tr <- c("Species", "Subspecies", "Variety")
+
+  #Replace empty space by NA
+  for(i in c("lifeForm", "habitat", "biome", "states", "vegetation")) {
+    data[[i]][which(data[[i]] == "" | data[[i]] == "NA")] <- NA
+  }
+
+  #Fill NA with "Unknown"
+  for(i in c("lifeForm", "habitat", "biome", "states", "vegetation",
+             "endemism", "origin")) {
+    data[[i]][which(is.na(data[[i]]) & data$taxonRank %in% tr &
+                      data$taxonomicStatus == "Accepted" &
+                      (data$biome != "Not_found_in_brazil" |
+                         is.na(data$biome)))] <- "Unknown"
+  }
+  for(i in c("lifeForm", "habitat", "biome", "states", "vegetation",
+             "endemism", "origin")) {
+    data[[i]][which(is.na(data[[i]]) & data$taxonRank %in% tr &
+                      data$taxonomicStatus == "Accepted" &
+                      data$biome == "Not_found_in_brazil")] <- "Not_found_in_brazil"
+  }
+
+  return(data)
 }

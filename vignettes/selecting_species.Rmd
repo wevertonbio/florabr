@@ -45,80 +45,80 @@ One of the primary objectives of this package is to assist in selecting a specie
 * origin (Native, Cultivated or Naturalized in Brazil);
 * taxonomicStatus and nomenclaturalStatus of the species.
 
-To explore all available options for each filter, use the `get_attributes()` function with the desired attribute. This function will provide a data.frame with two columns: one containing the available attributes in English (use these attributes) and another with the attributes in Portuguese.
+To explore all available options for each filter, use the `get_attributes()` function with the desired attribute. This function will provide a data.frame with the available options to use in the `select_species()` function.
 
 ```{r}
 #Get available options to filter by lifeForm
 get_attributes(data = bf,
                attribute = "lifeForm",
                kingdom = "Plantae")
-#>               lifeForm            formaDeVida
-#> 1      Aquatic-Benthos          Aquatica-Bentos
-#> 2      Aquatic-Neuston         Aquatica-Neuston
-#> 3     Aquatic-Plankton        Aquatica-Plancton
-#> 4                Shrub                  Arbusto
-#> 5                 Tree                   Arvore
-#> 6               Bamboo                    Bambu
-#> 7              Cushion                    Coxim
-#> 8             Dendroid                Dendroide
-#> 9              Unknown             Desconhecida
-#> 10          Dracaenoid               Dracenoide
-#> 13                Herb                     Erva
-#> 14          Flabellate                Flabelado
-#> 15             Foliose                  Folhosa
-#> 16 Liana/scandent/vine Liana/voluvel/trepadeira
-#> 19           Palm_tree                 Palmeira
-#> 21             Pendent                 Pendente
-#> 23            Subshrub               Subarbusto
-#> 24           Succulent                Suculenta
-#> 25            Thallose                   Talosa
-#> 26                 Mat                   Tapete
-#> 27                Weft                    Trama
-#> 28                Tuft                     Tufo
+#>               lifeForm
+#> 1      Aquatic-Benthos
+#> 2      Aquatic-Neuston
+#> 3     Aquatic-Plankton
+#> 4                Shrub
+#> 5                 Tree
+#> 6               Bamboo
+#> 7              Cushion
+#> 8             Dendroid
+#> 9              Unknown
+#> 10          Dracaenoid
+#> 13                Herb
+#> 14          Flabellate
+#> 15             Foliose
+#> 16 Liana/scandent/vine
+#> 19           Palm_tree
+#> 21             Pendent
+#> 23            Subshrub
+#> 24           Succulent
+#> 25            Thallose
+#> 26                 Mat
+#> 27                Weft
+#> 28                Tuft
 
 #Get available options to filter by  Biome
 get_attributes(data = bf,
                attribute = "Biome",
                kingdom = "Plantae")
-#>                 biome                bioma
-#> 1              Amazon             Amazonia
-#> 2     Atlantic_Forest       Mata_Atlantica
-#> 3            Caatinga             Caatinga
-#> 4             Cerrado              Cerrado
-#> 5               Pampa                Pampa
-#> 6            Pantanal             Pantanal
-#> 7 Not_found_in_Brazil Nao_ocorre_no_Brasil
+#>                 biome
+#> 1              Amazon
+#> 2     Atlantic_Forest
+#> 3            Caatinga
+#> 4             Cerrado
+#> 5               Pampa
+#> 6            Pantanal
+#> 7 Not_found_in_brazil
 
 #Get available options to filter by vegetation
 get_attributes(data = bf,
                attribute = "vegetationType",
                kingdom = "Plantae")
-#>                     vegetation                               Vegetacao
-#> 1                   Anthropic_Area                          Area Antropica
-#> 2                         Caatinga                Caatinga (stricto sensu)
-#> 3            Amazonian_Campinarana                             Campinarana
-#> 4          High_Altitude_Grassland                       Campo de Altitude
-#> 5                    Flooded_Field                         Campo de Varzea
-#> 6                        Grassland                             Campo Limpo
-#> 7             Highland_Rocky_Field                          Campo rupestre
-#> 8                         Carrasco                                Carrasco
-#> 9                          Cerrado                    Cerrado (lato sensu)
-#> 10                  Gallery_Forest              Floresta Ciliar ou Galeria
-#> 11          Inundated_Forest_Igapo                       Floresta de Igapo
-#> 12              Terra_Firme_Forest                 Floresta de Terra Firme
-#> 13                Inundated_Forest                      Floresta de Varzea
-#> 14    Seasonallly_Deciduous_Forest            Floresta Estacional Decidual
-#> 15       Seasonal_Evergreen_Forest         Floresta Estacional Perenifolia
-#> 16 Seasonally_Semideciduous_Forest        Floresta Estacional Semidecidual
-#> 17                      Rainforest Floresta Ombrofila (= Floresta Pluvial)
-#> 18      Mixed_Ombrophyllous_Forest                Floresta Ombrofila Mista
-#> 19                        Mangrove                               Manguezal
-#> 20                      Palm_Grove                               Palmeiral
-#> 21                        Restinga                                Restinga
-#> 22               Amazonian_Savanna                        Savana Amazonica
-#> 23              Aquatic_vegetation                      Vegetacao Aquatica
-#> 24         Rock_outcrop_vegetation   Vegetacao Sobre Afloramentos Rochosos
-#> 25             Not_found_in_Brazil                    Nao ocorre no Brasil
+#>                         vegetation
+#> 1                   Anthropic_Area
+#> 2                         Caatinga
+#> 3            Amazonian_Campinarana
+#> 4          High_Altitude_Grassland
+#> 5                    Flooded_Field
+#> 6                        Grassland
+#> 7             Highland_Rocky_Field
+#> 8                         Carrasco
+#> 9                          Cerrado
+#> 10                  Gallery_Forest
+#> 11          Inundated_Forest_Igapo
+#> 12              Terra_Firme_Forest
+#> 13                Inundated_Forest
+#> 14    Seasonallly_Deciduous_Forest
+#> 15       Seasonal_Evergreen_Forest
+#> 16 Seasonally_Semideciduous_Forest
+#> 17                      Rainforest
+#> 18      Mixed_Ombrophyllous_Forest
+#> 19                        Mangrove
+#> 20                      Palm_Grove
+#> 21                        Restinga
+#> 22               Amazonian_Savanna
+#> 23              Aquatic_vegetation
+#> 24         Rock_outcrop_vegetation
+#> 25             Not_found_in_Brazil
 ```
 
 As an illustration, let's consider the scenario where we aim to retrieve a list of all native and endemic trees with confirmed occurrences in the Atlantic Forest:

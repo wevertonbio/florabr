@@ -232,6 +232,8 @@ select_species <- function(data,
   #Start to filter...
 
   #kingdom
+  #Make sure first letter of group is upper case
+  kingdom <- firstup(trimws(kingdom))
   d <- subset(data, data$kingdom %in% kingdom)
 
   #Taxon Rank
@@ -247,35 +249,45 @@ select_species <- function(data,
   #group
   if(all(group == "All")) {
     d <- d } else {
+      #Make sure first letter of group is upper case
+      group <- firstup(trimws(group))
+      if(group == "Ferns and lycophytes") {
+        group <- "Ferns and Lycophytes"}
       gr <- paste(group, collapse = "|")
       d <- subset(d, grepl(gr, d$group))
     }
 
-  #subgroup
-  if(all(subgroup == "All")) {
-    d <- d } else {
-      subgr <- paste(subgroup, collapse = "|")
-      d <- subset(d, grepl(subgr, d$subgroup))
-    }
+  # #subgroup
+  # if(all(subgroup == "All")) {
+  #   d <- d } else {
+  #     #Make sure first letter of group is upper case
+  #     subgroup <- firstup(trimws(subgroup))
+  #     subgr <- paste(subgroup, collapse = "|")
+  #     d <- subset(d, grepl(subgr, d$subgroup))
+  #   }
 
   #subgroup
   if(subgroup == "All") {
     d <- d } else {
-      d <- subset(d, d$subgroup %in% subgroup)
+      #Make sure first letter is upper case
+      subgroup_c <- firstup(trimws(subgroup))
+      d <- subset(d, d$subgroup %in% subgroup_c)
     }
 
   #family
   if(all(family == "All")) {
     d <- d } else {
-      ffam <- paste(family, collapse = "|")
-      d <- subset(d, grepl(ffam, d$family))
+      #Make sure first letter  is upper case
+      family_c <- firstup(trimws(family))
+      d <- subset(d, d$family %in% family_c)
     }
 
   #genus
   if(all(genus == "All")) {
     d <- d } else {
-      ggen <- paste(genus, collapse = "|")
-      d <- subset(d, grepl(ggen, d$genus))
+      #Make sure first letter is upper case
+      genus_c <- firstup(trimws(genus))
+      d <- subset(d, d$genus %in% genus_c)
     }
 
   #lifeForm ####
@@ -284,16 +296,18 @@ select_species <- function(data,
 
   #Check if it is a valid lifeForm
   if(all(lifeForm != "All")) {
+    #Make sure first letter of group is upper case
+    newlifeForm<- firstup(trimws(lifeForm))
     all_lf <- unique(unlist(strsplit(d$lifeForm, split = ";")))
-    newlifeForm <- gsub(" ", "", lifeForm)
-    newlifeForm <- vapply(lifeForm, FUN.VALUE = character(1), function(x){
-      paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
-            collapse = ";")
-    }, USE.NAMES = FALSE)
     newlifeForm <- sort(newlifeForm)
-    #Check if all lifeForm exists
-    newlifeForm2 <- unique(unlist(strsplit(newlifeForm, split = ";")))
-    any_diff <- setdiff(newlifeForm2 , all_lf)
+    # # newlifeForm <- gsub(" ", "", lifeForm)
+    # # newlifeForm <- vapply(lifeForm, FUN.VALUE = character(1), function(x){
+    # #   paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
+    # #         collapse = ";")
+    # # }, USE.NAMES = FALSE)
+    # #Check if all lifeForm exists
+    # newlifeForm2 <- unique(unlist(strsplit(newlifeForm, split = ";")))
+    any_diff <- setdiff(newlifeForm, all_lf)
     if(length(any_diff) > 0) {
       warning(paste("The following life forms are not valid:\n",
                     paste(any_diff, collapse = ", ")))
@@ -326,16 +340,19 @@ select_species <- function(data,
 
   #Check if it is a valid habitat
   if(all(habitat != "All")) {
-    all_hab <- unique(unlist(strsplit(d$habitat, split = ";")))
-    newhabitat <- gsub(" ", "", habitat)
-    newhabitat <- vapply(habitat, FUN.VALUE = character(1), function(x){
-      paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
-            collapse = ";")
-    }, USE.NAMES = FALSE)
+    #Make sure first letter is upper case
+    newhabitat<- firstup(trimws(habitat))
     newhabitat <- sort(newhabitat)
+    all_hab <- unique(unlist(strsplit(d$habitat, split = ";")))
+    # newhabitat <- gsub(" ", "", habitat)
+    # newhabitat <- vapply(habitat, FUN.VALUE = character(1), function(x){
+    #   paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
+    #         collapse = ";")
+    # }, USE.NAMES = FALSE)
+    # newhabitat <- sort(newhabitat)
     #Check if all habitat exists
-    newhabitat2 <- unique(unlist(strsplit(newhabitat, split = ";")))
-    any_diff <- setdiff(newhabitat2 , all_hab)
+    # newhabitat2 <- unique(unlist(strsplit(newhabitat, split = ";")))
+    any_diff <- setdiff(newhabitat , all_hab)
     if(length(any_diff) > 0) {
       warning(paste("The following habitats are not valid:\n",
                     paste(any_diff, collapse = ", ")))
@@ -367,16 +384,20 @@ select_species <- function(data,
 
   #Check if it is a valid biome
   if(all(biome != "All")) {
+    #Make sure first letter is upper case
+    newbiome <- firstup_collapse(trimws(biome))
     all_biome <- unique(unlist(strsplit(d$biome, split = ";")))
-    newbiome <- gsub(" ", "", biome)
-    newbiome <- vapply(biome, FUN.VALUE = character(1), function(x){
-      paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
-            collapse = ";")
-    }, USE.NAMES = FALSE)
     newbiome <- sort(newbiome)
-    #Check if all biome exists
-    newbiome2 <- unique(unlist(strsplit(newbiome, split = ";")))
-    any_diff <- setdiff(newbiome2 , all_biome)
+    # all_biome <- unique(unlist(strsplit(d$biome, split = ";")))
+    # newbiome <- gsub(" ", "", biome)
+    # newbiome <- vapply(biome, FUN.VALUE = character(1), function(x){
+    #   paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
+    #         collapse = ";")
+    # }, USE.NAMES = FALSE)
+    # newbiome <- sort(newbiome)
+    # #Check if all biome exists
+    # newbiome2 <- unique(unlist(strsplit(newbiome, split = ";")))
+    any_diff <- setdiff(newbiome, all_biome)
     if(length(any_diff) > 0) {
       warning(paste("The following biomes are not valid:\n",
                     paste(any_diff, collapse = ", ")))
@@ -407,16 +428,18 @@ select_species <- function(data,
 
   #Check if it is a valid state
   if(all(state != "All")) {
-    all_state <- unique(unlist(strsplit(d$states, split = ";")))
-    newstate <- gsub(" ", "", state)
-    newstate <- vapply(state, FUN.VALUE = character(1), function(x){
-      paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
-            collapse = ";")
-    }, USE.NAMES = FALSE)
+    #Make sure all letter is upper case
+    newstate <- toupper(trimws(state))
     newstate <- sort(newstate)
+    all_state <- unique(unlist(strsplit(d$states, split = ";")))
+    # newstate <- gsub(" ", "", state)
+    # newstate <- vapply(state, FUN.VALUE = character(1), function(x){
+    #   paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
+    #         collapse = ";")
+    # }, USE.NAMES = FALSE)
+    # newstate <- sort(newstate)
     #Check if all state exists
-    newstate2 <- unique(unlist(strsplit(newstate, split = ";")))
-    any_diff <- setdiff(newstate2 , all_state)
+    any_diff <- setdiff(newstate, all_state)
     if(length(any_diff) > 0) {
       warning(paste("The following states are not valid:\n",
                     paste(any_diff, collapse = ", ")))
@@ -448,16 +471,18 @@ select_species <- function(data,
 
   #Check if it is a valid vegetation
   if(all(vegetation != "All")) {
-    all_vegetation <- unique(unlist(strsplit(d$vegetation, split = ";")))
-    newvegetation <- gsub(" ", "", vegetation)
-    newvegetation <- vapply(newvegetation, FUN.VALUE = character(1),function(x){
-      paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
-            collapse = ";")
-    }, USE.NAMES = FALSE)
+    #Make sure first letter is upper case
+    newvegetation<- firstup_collapse(trimws(vegetation))
     newvegetation <- sort(newvegetation)
+    all_vegetation <- unique(unlist(strsplit(d$vegetation, split = ";")))
+    # newvegetation <- gsub(" ", "", vegetation)
+    # newvegetation <- vapply(newvegetation, FUN.VALUE = character(1),function(x){
+    #   paste(sort(gsub(" ", "", unlist(strsplit(x, split = ",")))),
+    #         collapse = ";")
+    # }, USE.NAMES = FALSE)
+    # newvegetation <- sort(newvegetation)
     #Check if all vegetation exists
-    newvegetation2 <- unique(unlist(strsplit(newvegetation, split = ";")))
-    any_diff <- setdiff(newvegetation2 , all_vegetation)
+    any_diff <- setdiff(newvegetation , all_vegetation)
     if(length(any_diff) > 0) {
       warning(paste("The following vegetation types are not valid:\n",
                     paste(any_diff, collapse = ", ")))
@@ -466,21 +491,21 @@ select_species <- function(data,
 
   #Filter by vegetation
   if(all(vegetation != "All") & filter_vegetation == "in") {
-    d <- subset(d, grepl(paste(newvegetation2, collapse = "|"),
+    d <- subset(d, grepl(paste(newvegetation, collapse = "|"),
                          d$vegetation)) }
 
   if(all(vegetation != "All") & filter_vegetation == "only") {
-    d <- subset(d, d$vegetation == paste(newvegetation2, collapse = ";"))
+    d <- subset(d, d$vegetation == paste(newvegetation, collapse = ";"))
   }
 
   if(all(vegetation != "All") & filter_vegetation == "not_in") {
-    d <- subset(d, !grepl(paste(newvegetation2, collapse = "|"),
+    d <- subset(d, !grepl(paste(newvegetation, collapse = "|"),
                           d$vegetation))
 
   }
 
   if(all(vegetation != "All") & filter_vegetation == "and") {
-    d <- subset(d, grepl(paste(newvegetation2, collapse = ";"),
+    d <- subset(d, grepl(paste(newvegetation, collapse = ";"),
                          d$vegetation))
   }
 
@@ -490,14 +515,15 @@ select_species <- function(data,
 
   #Filter by endemism
   if(all(endemism != "All")) {
-    endemism2 <- endemism
+    #Make sure first letter is upper case
+    newendemism <- firstup(trimws(endemism))
     all_endemism <- unique(d$endemism)
-    any_diff <- setdiff(endemism, all_endemism)
+    any_diff <- setdiff(newendemism, all_endemism)
     if(length(any_diff) > 0) {
       warning(paste("The following endemisms are not valid:\n",
                     paste(any_diff, collapse = ", ")))
     }
-    d <- subset(d, d$endemism == endemism2) }
+    d <- subset(d, d$endemism %in% newendemism) }
 
   #origin ####
   if(all(origin == "All")) {
@@ -505,14 +531,15 @@ select_species <- function(data,
 
   #Filter by origin
   if(all(origin != "All")) {
-    origin2 <- origin
+    #Make sure first letter is upper case
+    neworigin <- firstup(trimws(origin))
     all_origin <- unique(d$origin)
-    any_diff <- setdiff(origin, all_origin)
+    any_diff <- setdiff(neworigin, all_origin)
     if(length(any_diff) > 0) {
       warning(paste("The following origins are not valid:\n",
                     paste(any_diff, collapse = ", ")))
     }
-    d <- subset(d, d$origin %in% origin2) }
+    d <- subset(d, d$origin %in% neworigin) }
 
   #taxonomicStatus ####
   if(all(taxonomicStatus == "All")) {
@@ -520,14 +547,15 @@ select_species <- function(data,
 
   #Filter by taxonomicStatus
   if(all(taxonomicStatus != "All")) {
-    taxonomicStatus2 <- taxonomicStatus
+    #Make sure first letter is upper case
+    newtaxonomicStatus <- firstup(trimws(taxonomicStatus))
     all_taxonomicStatus <- unique(d$taxonomicStatus)
-    any_diff <- setdiff(taxonomicStatus, all_taxonomicStatus)
+    any_diff <- setdiff(newtaxonomicStatus, all_taxonomicStatus)
     if(length(any_diff) > 0) {
       warning(paste("The following taxonomicStatuss are not valid:\n",
                     paste(any_diff, collapse = ", ")))
     }
-    d <- subset(d, d$taxonomicStatus %in% taxonomicStatus2) }
+    d <- subset(d, d$taxonomicStatus %in% newtaxonomicStatus) }
 
   #nomenclaturalStatus ####
   if(all(nomenclaturalStatus == "All")) {
@@ -535,14 +563,15 @@ select_species <- function(data,
 
   #Filter by nomenclaturalStatus
   if(all(nomenclaturalStatus != "All")) {
-    nomenclaturalStatus2 <- nomenclaturalStatus
+    #Make sure first letter is upper case
+    newnomenclaturalStatus <- firstup(trimws(nomenclaturalStatus))
     all_nomenclaturalStatus <- unique(d$nomenclaturalStatus)
-    any_diff <- setdiff(nomenclaturalStatus2, all_nomenclaturalStatus)
+    any_diff <- setdiff(newnomenclaturalStatus, all_nomenclaturalStatus)
     if(length(any_diff) > 0) {
       warning(paste("The following nomenclaturalStatuss are not valid:\n",
                     paste(any_diff, collapse = ", ")))
     }
-    d <- subset(d, d$nomenclaturalStatus %in% nomenclaturalStatus2) }
+    d <- subset(d, d$nomenclaturalStatus %in% newnomenclaturalStatus) }
 
   if(nrow(d) == 0) {
     warning("Combination of characteristics return 0 species")
