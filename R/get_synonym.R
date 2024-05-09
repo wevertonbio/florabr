@@ -33,7 +33,7 @@ get_synonym <- function(data, species){
 
   #Check if there is any species absent in d
   no_match <- setdiff(species, unique(data$species))
-  if(length(no_match) > 0) {
+  if(length(no_match) > 0 & length(no_match) < length(species)) {
     warning(paste("Some species are absent of Brazilian Flora database\n",
                   "Check the species names using the check_names() function"))
   }
