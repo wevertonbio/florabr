@@ -105,7 +105,7 @@ check_version(data_dir = my_dir)
 
 ## Loading the data
 In order to use the other functions of the package, you need to load the data into your environment. To achieve this, utilize the `load_florabr()` function. By default, the function will automatically search for the latest available version in your directory. However, you have the option to specify a particular version using the *data_version* parameter.
-Additionally, you can choose between two versions of the data: the 'short' version (containing the 19 columns required for run the other functions of the package) or the 'complete' version (with all original 39 columns). The function imports the 'short' version by default.
+Additionally, you can choose between two versions of the data: the 'short' version (containing the 20 columns required for run the other functions of the package) or the 'complete' version (with all original 39 columns). The function imports the 'short' version by default.
 
 ```{r}
 #Short version
@@ -120,7 +120,7 @@ colnames(bf) #See variables from short version
 #> [10] "habitat"             "Biome"               "States"             
 #> [13] "vegetationType"      "Origin"              "Endemism"           
 #> [16] "taxonomicStatus"     "nomenclaturalStatus" "vernacularName"     
-#> [19] "taxonRank"
+#> [19] "taxonRank"           "id"
 ```
 Note that the complete version has 20 more columns:
 

@@ -5,14 +5,14 @@ test_that("loading florabr works", {
   dir.create(my_dir, showWarnings = FALSE)
   #Download, merge and save data
   get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE,
-              verbose = TRUE, solve_incongruences = FALSE)
+              verbose = TRUE, solve_discrepancy = FALSE)
 
   #Load data: short
   df <- load_florabr(data_dir = my_dir, data_version = "Latest_available",
                      type = "short")
 
   expect_equal(class(df), "data.frame")
-  expect_equal(ncol(df), 19)
+  expect_equal(ncol(df), 20)
 
   #Load data: complete
   df_complete <- load_florabr(data_dir = my_dir,

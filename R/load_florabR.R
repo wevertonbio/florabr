@@ -13,11 +13,11 @@
 #' Default = TRUE.
 #' @details
 #' The parameter type accepts two arguments. If type = short, it will load a
-#' data.frame with the 19 columns needed to run the other functions of the
+#' data.frame with the 20 columns needed to run the other functions of the
 #' package: species, scientificName, acceptedName, kingdom, Group, Subgroup,
 #' family, genus, lifeForm, habitat, Biome, States, vegetationType, Origin,
-#' Endemism, taxonomicStatus, nomenclaturalStatus, vernacularName, and
-#' taxonRank.
+#' Endemism, taxonomicStatus, nomenclaturalStatus, vernacularName, taxonRank,
+#' and id
 #' If type = complete, it will load a data.frame with all 39 variables available
 #'  in Brazilian Flora database.
 #'
@@ -100,11 +100,13 @@ load_florabr <- function(data_dir, data_version = "Latest_available",
   if(type == "short") {
     ds <- readRDS(file.path(path_data, version_data,
                             "CompleteBrazilianFlora.rds"))
+    solve_discrepancy <- attr(ds, "solve_discrepancies")
     ds <- ds[,c(c("species", "scientificName", "acceptedName", "kingdom",
                   "group", "subgroup", "family", "genus", "lifeForm", "habitat",
                   "biome", "states", "vegetation", "origin", "endemism",
                   "taxonomicStatus", "nomenclaturalStatus", "vernacularName",
-                  "taxonRank"))]
+                  "taxonRank", "id"))]
+    attr(ds, "solve_discrepancies") <- solve_discrepancy
   }
   return(ds)
 }
