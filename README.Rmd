@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 
 [Brazilian Flora 2020](https://floradobrasil.jbrj.gov.br/consulta/) is the most comprehensive work to reliably document Brazilian plant diversity. It involves the work of hundreds of taxonomists, integrating data from plant and fungi collected in Brazil during the last two centuries. The database contains detailed and standardized morphological descriptions, illustrations, nomenclatural data, geographic distribution, and keys for the identification of all native and non-native plants found in Brazil.
 
-The florabR package includes a collection of functions designed to retrieve, filter and spatialize data from the Brazilian Flora 2020 dataset.
+The florabr package includes a collection of functions designed to retrieve, filter and spatialize data from the Brazilian Flora 2020 dataset.
 
 ## Overview of functions
 

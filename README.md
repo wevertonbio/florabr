@@ -23,7 +23,7 @@ descriptions, illustrations, nomenclatural data, geographic
 distribution, and keys for the identification of all native and
 non-native plants found in Brazil.
 
-The florabR package includes a collection of functions designed to
+The florabr package includes a collection of functions designed to
 retrieve, filter and spatialize data from the Brazilian Flora 2020
 dataset.
 
