@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">florabr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.0</span>
       </span>
     </div>
 
@@ -72,14 +72,33 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="1.0.0" id="florabr-100-november-2023">florabr 1.0.0 (November 2023)<a class="anchor" aria-label="anchor" href="#florabr-100-november-2023"></a></h2>
-<ul><li>Initial CRAN submission.</li>
+<h2 class="page-header" data-toc-text="1.2.0" id="florabr-120-may-2024">florabr 1.2.0 (May 2024)<a class="anchor" aria-label="anchor" href="#florabr-120-may-2024"></a></h2>
+<div class="section level3">
+<h3 id="new-features-and-enhancements-1-2-0">New Features and Enhancements<a class="anchor" aria-label="anchor" href="#new-features-and-enhancements-1-2-0"></a></h3>
+<ul><li>Introducing the <code><a href="../reference/get_synonym.html">get_synonym()</a></code> function, which retrieves synonyms for species.</li>
+<li>Introducing the <code><a href="../reference/solve_discrepancies.html">solve_discrepancies()</a></code> function, designed to resolve inconsistencies between species and subspecies/varieties information.</li>
+<li>The <code><a href="../reference/get_florabr.html">get_florabr()</a></code> function now integrates the solve_discrepancies() function to address discrepancies when the solve_discrepancy parameter is set to TRUE.</li>
+<li>Fixed a bug with <code>get_binomial</code> related to species whose Genus or Specific epithet contains ‘-’ or ‘×’ characters.</li>
+<li>Improved handling of whitespace in <code>get_binomial</code>, addressing leading, trailing, and between words.</li>
+<li>The filtering procedure in <code><a href="../reference/select_species.html">select_species()</a></code> and <code><a href="../reference/get_attributes.html">get_attributes()</a></code> is now case insensitive, treating uppercase and lowercase letters as equivalent.</li>
+<li>Updated data example (<code>bf_data</code>) to use a subset of version 393.401 of the Brazilian Flora database.</li>
+<li>Removed <code>Attributes</code> data, as it is no longer necessary for <code><a href="../reference/get_attributes.html">get_attributes()</a></code> to function.</li>
+<li>Updated README, DESCRIPTION and vignettes to include descriptions of the new functions and modifications.</li>
 </ul></div>
+<div class="section level3">
+<h3 id="testing-1-2-0">Testing<a class="anchor" aria-label="anchor" href="#testing-1-2-0"></a></h3>
+<ul><li>Added <code>test_that</code> statements for all functions.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.1.0" id="florabr-110-march-2024">florabr 1.1.0 (March 2024)<small>2024-03-14</small><a class="anchor" aria-label="anchor" href="#florabr-110-march-2024"></a></h2>
 <ul><li>get_florabr now fixes inconsistencies between species and subspecies/varieties information</li>
 <li>Introducing <code>get_pam</code> function, which converts a dataframe containing species distribution information into a presence-absence matrix.</li>
 <li>Added a new vignette providing a detailed description of the <code>get_pam</code> function and its usage.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.0.0" id="florabr-100-november-2023">florabr 1.0.0 (November 2023)<a class="anchor" aria-label="anchor" href="#florabr-100-november-2023"></a></h2>
+<ul><li>Initial CRAN submission.</li>
 </ul></div>
   </div>
 
