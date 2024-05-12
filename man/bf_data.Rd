@@ -3,9 +3,9 @@
 \docType{data}
 \name{bf_data}
 \alias{bf_data}
-\title{Brazilian Flora 2020 database - Version 393.387}
+\title{Brazilian Flora 2020 database - Version 393.401}
 \format{
-A \code{data.frame} with 45890 rows and 19 variables:
+A \code{data.frame} with 45890 rows and 20 variables:
 \describe{
 \item{species}{Species names}
 \item{acceptedName}{Accepted name of the species (NA when the name in
@@ -35,6 +35,7 @@ species name (Correct, Illegitimate, Uncertain_Application, etc.)}
 \item{vernacularName}{Locally or culturally used name for the species}
 \item{taxonRank}{Taxonomic rank (Species, Genus, Family, Order, etc). This
 data contains only Species}
+\item{id}{Unique id for species}
 }
 }
 \usage{
@@ -42,7 +43,7 @@ bf_data
 }
 \description{
 A dataset containing a subset of the Brazilian Flora database (version
-393.399)
+393.401)
 
 @usage data(bf_data)
 }
