@@ -10,6 +10,8 @@
 - The filtering procedure in `select_species()` and `get_attributes()` is now case insensitive, treating uppercase and lowercase letters as equivalent.
 - Updated data example (`bf_data`) to use a subset of version 393.401 of the Brazilian Flora database.
 - Removed `Attributes` data, as it is no longer necessary for `get_attributes()` to function.
+- Short version of data loaded with `load_florabr` now incorporates three additional columns: phylum, class, and order.
+- The `select_species` function now allows filtering by phylum, class, and order.
 - Updated README, DESCRIPTION and vignettes to include descriptions of the new functions and modifications.
 
 ## Testing
