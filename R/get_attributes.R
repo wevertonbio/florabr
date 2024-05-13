@@ -59,8 +59,9 @@ get_attributes <- function(data, attribute,
 
   if (missing(attribute)) {
     stop("Argument attribute is not defined. Valid attributes:
-    group, subgroup, family, lifeForm, habitat, vegetation, origin,
-    endemism, biome, states, taxonomicStatus or nomenclaturalStatus")
+    group, subgroup, phylum, class, order, family, lifeForm, habitat,
+    vegetation, origin, endemism, biome, states, taxonomicStatus or
+         nomenclaturalStatus")
   }
 
   #Check classes
@@ -80,14 +81,16 @@ get_attributes <- function(data, attribute,
 
   if(!(attrib %in% c("group", "subgroup", "family", "lifeForm", "habitat",
                     "vegetation", "origin", "endemism", "biome", "states",
-                    "taxonomicStatus", "nomenclaturalStatus"))) {
+                    "taxonomicStatus", "nomenclaturalStatus", "phylum", "class",
+                    "order"))) {
     stop("Informed attribute is not valid! Valid attributes:
-    group, subgroup, family, lifeForm, habitat, vegetation, origin,
-    endemism, biome, states, taxonomicStatus or nomenclaturalStatus")
+    group, subgroup, phylum, class, order, family, lifeForm, habitat,
+    vegetation, origin, endemism, biome, states, taxonomicStatus or
+    nomenclaturalStatus")
   }
 
   #Get unique attributes
-  d <- subset(data, data$kingdom == kingdom)
+  d <- data[data$kingdom == kingdom,]
   d_at <- d[,attrib]
   at <- unique(unlist(strsplit(d_at, ";")))
   #Save in datafra,e

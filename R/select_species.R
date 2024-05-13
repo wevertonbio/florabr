@@ -97,6 +97,7 @@
 #' @usage select_species(data,
 #'                       include_subspecies = FALSE, include_variety = FALSE,
 #'                       kingdom = "Plantae", group = "All", subgroup = "All",
+#'                       phylum = "All", class ="All", order = "All",
 #'                       family = "All", genus = "All",
 #'                       lifeForm = "All", filter_lifeForm = "in",
 #'                       habitat = "All", filter_habitat = "in",
@@ -120,6 +121,7 @@
 #'                              include_variety = FALSE,
 #'                              kingdom = "Plantae",
 #'                              group = "All", subgroup = "All",
+#'                              phylum = "All", class ="All", order = "All",
 #'                              family = "All", genus = "All",
 #'                              lifeForm = "Tree", filter_lifeForm = "only",
 #'                              habitat = "All", filter_habitat = "in",
@@ -137,6 +139,7 @@ select_species <- function(data,
                            include_variety = FALSE,
                            kingdom = "Plantae",
                            group = "All", subgroup = "All",
+                           phylum = "All", class ="All", order = "All",
                            family = "All",
                            genus = "All",
                            lifeForm = "All", filter_lifeForm = "in",
@@ -280,6 +283,30 @@ select_species <- function(data,
       #Make sure first letter  is upper case
       family_c <- firstup(trimws(family))
       d <- subset(d, d$family %in% family_c)
+    }
+
+  #phylum
+  if(all(phylum == "All")) {
+    d <- d } else {
+      #Make sure first letter  is upper case
+      phylum_c <- firstup(trimws(phylum))
+      d <- subset(d, d$phylum %in% phylum_c)
+    }
+
+  #class
+  if(all(class == "All")) {
+    d <- d } else {
+      #Make sure first letter  is upper case
+      class_c <- firstup(trimws(class))
+      d <- subset(d, d$class %in% class_c)
+    }
+
+  #order
+  if(all(order == "All")) {
+    d <- d } else {
+      #Make sure first letter  is upper case
+      order_c <- firstup(trimws(order))
+      d <- subset(d, d$order %in% order_c)
     }
 
   #genus

@@ -102,7 +102,8 @@ load_florabr <- function(data_dir, data_version = "Latest_available",
                             "CompleteBrazilianFlora.rds"))
     solve_discrepancy <- attr(ds, "solve_discrepancies")
     ds <- ds[,c(c("species", "scientificName", "acceptedName", "kingdom",
-                  "group", "subgroup", "family", "genus", "lifeForm", "habitat",
+                  "group", "subgroup", "phylum", "class", "order", "family",
+                  "genus", "lifeForm", "habitat",
                   "biome", "states", "vegetation", "origin", "endemism",
                   "taxonomicStatus", "nomenclaturalStatus", "vernacularName",
                   "taxonRank", "id"))]
