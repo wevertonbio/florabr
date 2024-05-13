@@ -23,6 +23,12 @@
 #' "Hornworts" and "Liverworts" . To use more than one group, put the available
 #' items in a vector, for example: subgroup = c("Mosses", "Hornworts").
 #' Default = "All".
+#' @param phylum (character) The phyla for filtering the dataset. It can
+#' be included more than one phylum. Default = "All".
+#' @param class (character) The classes for filtering the dataset. It can
+#' be included more than one class. Default = "All".
+#' @param order (character) The orders for filtering the dataset. It can
+#' be included more than one order. Default = "All".
 #' @param family (character) The families for filtering the dataset. It can
 #' be included more than one family. Default = "All".
 #' @param genus (character) The genus for filtering the dataset. It can

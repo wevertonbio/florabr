@@ -7,6 +7,7 @@
 select_species(data,
                       include_subspecies = FALSE, include_variety = FALSE,
                       kingdom = "Plantae", group = "All", subgroup = "All",
+                      phylum = "All", class ="All", order = "All",
                       family = "All", genus = "All",
                       lifeForm = "All", filter_lifeForm = "in",
                       habitat = "All", filter_habitat = "in",
@@ -43,6 +44,15 @@ Only available if the group is "Fungi" or "Bryophytes". For Fungi, it can be
 "Hornworts" and "Liverworts" . To use more than one group, put the available
 items in a vector, for example: subgroup = c("Mosses", "Hornworts").
 Default = "All".}
+
+\item{phylum}{(character) The phyla for filtering the dataset. It can
+be included more than one phylum. Default = "All".}
+
+\item{class}{(character) The classes for filtering the dataset. It can
+be included more than one class. Default = "All".}
+
+\item{order}{(character) The orders for filtering the dataset. It can
+be included more than one order. Default = "All".}
 
 \item{family}{(character) The families for filtering the dataset. It can
 be included more than one family. Default = "All".}
@@ -143,6 +153,7 @@ am_af_only <- select_species(data = bf_data,
                              include_variety = FALSE,
                              kingdom = "Plantae",
                              group = "All", subgroup = "All",
+                             phylum = "All", class ="All", order = "All",
                              family = "All", genus = "All",
                              lifeForm = "Tree", filter_lifeForm = "only",
                              habitat = "All", filter_habitat = "in",
