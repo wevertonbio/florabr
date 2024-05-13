@@ -12,7 +12,7 @@ test_that("loading florabr works", {
                      type = "short")
 
   expect_equal(class(df), "data.frame")
-  expect_equal(ncol(df), 20)
+  expect_equal(ncol(df), 23)
 
   #Load data: complete
   df_complete <- load_florabr(data_dir = my_dir,
