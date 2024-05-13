@@ -1,5 +1,5 @@
 #' Get Spatial polygons (SpatVectors) of species based on its distribution
-#' (states and biomes) according to Brazilian Flora 2020
+#' (states and biomes) according to Flora e Funga do Brasil
 #'
 #' @param data (data.frame) the data.frame imported with the
 #' \code{\link{load_florabr}} function.
@@ -37,11 +37,11 @@
 #' @importFrom data.table rbindlist
 #' @export
 #' @references
-#' Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+#' Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 #' http://floradobrasil.jbrj.gov.br/
 #' @examples
 #' library(terra)
-#' data("bf_data") #Load Brazilian Flora data
+#' data("bf_data") #Load Flora e Funga do Brasil data
 #' spp <- c("Araucaria angustifolia", "Adesmia paranensis") #Example species
 #' #Get states, biomes and intersection states-biomes of species
 #' spp_spt <- get_spat_occ(data = bf_data, species = spp, state = TRUE,
@@ -135,7 +135,7 @@ get_spat_occ <- function(data, species, state = TRUE,
   #Load data
   d <- data[,c("species", "states", "biome")]
 
-  #Check if all species are in Brazilin Flora data
+  #Check if all species are in Flora e Funga do Brasil data
   spp <- get_binomial(species_names = species)
   #Get binomial names of species
   spp_out <- setdiff(spp, unique(data$species))

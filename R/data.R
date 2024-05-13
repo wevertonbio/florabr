@@ -1,10 +1,10 @@
-#' Brazilian Flora 2020 database - Version 393.401
+#' Flora e Funga do Brasil database - Version 393.401
 #'
 #' @description
-#'  A dataset containing a subset of the Brazilian Flora database (version
-#'  393.401)
+#'  A dataset containing a subset of the Flora e Funga do Brasil database
+#'  (version 393.401)
 #'
-#'  @usage data(bf_data)
+#' @usage data(bf_data)
 #'
 #' @format A \code{data.frame} with 50010 rows and 23 variables:
 #' \describe{
@@ -42,6 +42,9 @@
 #'   data contains only Species}
 #'   \item{id}{Unique id for species}
 #' }
+#' @references
+#' Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
+#' http://floradobrasil.jbrj.gov.br/
 "bf_data"
 
 #' SpatVector of the federal states of Brazil

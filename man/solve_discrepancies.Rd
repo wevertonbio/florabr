@@ -27,7 +27,7 @@ recorded in a specific biome, it implies that the species also occurs in that
 biome.
 }
 \examples{
-data("bf_data") #Load Brazilian Flora data
+data("bf_data") #Load Flora e Funga do Brasil data
 #Check if discrepancies were solved in the dataset
 attr(bf_data, "solve_discrepancies")
 #Solve discrepancies

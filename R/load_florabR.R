@@ -1,10 +1,10 @@
-#' Load Brazilian Flora database
+#' Load Flora e Funga do Brasil database
 #'
 #' @param data_dir (character) the same directory used to save the data
-#' downloaded from Brazilian Flora 2020 using the \link{get_florabr} function.
-#' @param data_version (character) the version of Brazilian Flora database to
-#' be loaded. It can be "Latest_available", which will load the latest version
-#' available; or another specified version, for example "393.364".
+#' downloaded from Flora e Funga do Brasil using the \link{get_florabr} function.
+#' @param data_version (character) the version of Flora e Funga do Brasil
+#' database to be loaded. It can be "Latest_available", which will load the
+#' latest version available; or another specified version, for example "393.364".
 #' Default = "Latest_available".
 #' @param type (character) it determines the number of columns that will be
 #' loaded. It can be "short" or "complete". Default = "short". See details.
@@ -19,17 +19,17 @@
 #' Endemism, taxonomicStatus, nomenclaturalStatus, vernacularName, taxonRank,
 #' and id
 #' If type = complete, it will load a data.frame with all 39 variables available
-#'  in Brazilian Flora database.
+#' in Flora e Funga do Brasil database.
 #'
 #' @return A data.frame with the specified version (Default is the latest
-#' available) of the Brazilian Flora database. This data.frame is necessary to
-#' run most of the functions of the package.
+#' available) of the Flora e Funga do Brasil database. This data.frame is
+#' necessary to run most of the functions of the package.
 #'
 #' @usage load_florabr(data_dir, data_version = "Latest_available",
 #'                     type = "short", verbose = TRUE)
 #' @export
 #' @references
-#' Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+#' Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 #' http://floradobrasil.jbrj.gov.br/
 #'
 #' @examples

@@ -49,7 +49,7 @@ The `get_pam()` function facilitates the utilization of species distribution inf
 
 As an example, let's obtain a PAM consisting of all tree species native and endemic to the Amazon biome:
 ```{r}
-#Load Brazilian Flora data
+#Load Flora e Funga do Brasil data
 data("bf_data")
 #Select endemic and native species of trees with occurrence only in Amazon
 am_trees <- select_species(data = bf_data,

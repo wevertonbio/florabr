@@ -15,10 +15,10 @@
 #' input names
 #' @export
 #' @references
-#' Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+#' Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 #' http://floradobrasil.jbrj.gov.br/
 #' @examples
-#' data("bf_data") #Load Brazilian Flora data
+#' data("bf_data") #Load Flora e Funga do Brasil data
 #' #Search for species whose vernacular name is 'pinheiro'
 #' pinheiro_exact <- select_by_vernacular(data = bf_data,
 #'                                        names = "pinheiro",
@@ -32,7 +32,7 @@
 #' head(pinheiro_not_exact)
 #'
 #' @references
-#' Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+#' Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 #' http://floradobrasil.jbrj.gov.br/
 #'
 select_by_vernacular <- function(data, names,
@@ -76,7 +76,7 @@ select_by_vernacular <- function(data, names,
   }
 
   if(nrow(dv) == 0) {
-    stop(paste("There isn't any species in the Brazilian Flora 2020 with this",
+    stop(paste("There isn't any species in the Flora e Funga do Brasil with this",
     "\nvernacular name"))
   }
 

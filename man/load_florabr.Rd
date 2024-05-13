@@ -2,18 +2,18 @@
 % Please edit documentation in R/load_florabr.R
 \name{load_florabr}
 \alias{load_florabr}
-\title{Load Brazilian Flora database}
+\title{Load Flora e Funga do Brasil database}
 \usage{
 load_florabr(data_dir, data_version = "Latest_available",
                     type = "short", verbose = TRUE)
 }
 \arguments{
 \item{data_dir}{(character) the same directory used to save the data
-downloaded from Brazilian Flora 2020 using the \link{get_florabr} function.}
+downloaded from Flora e Funga do Brasil using the \link{get_florabr} function.}
 
-\item{data_version}{(character) the version of Brazilian Flora database to
-be loaded. It can be "Latest_available", which will load the latest version
-available; or another specified version, for example "393.364".
+\item{data_version}{(character) the version of Flora e Funga do Brasil
+database to be loaded. It can be "Latest_available", which will load the
+latest version available; or another specified version, for example "393.364".
 Default = "Latest_available".}
 
 \item{type}{(character) it determines the number of columns that will be
@@ -25,11 +25,11 @@ Default = TRUE.}
 }
 \value{
 A data.frame with the specified version (Default is the latest
-available) of the Brazilian Flora database. This data.frame is necessary to
-run most of the functions of the package.
+available) of the Flora e Funga do Brasil database. This data.frame is
+necessary to run most of the functions of the package.
 }
 \description{
-Load Brazilian Flora database
+Load Flora e Funga do Brasil database
 }
 \details{
 The parameter type accepts two arguments. If type = short, it will load a
@@ -39,7 +39,7 @@ family, genus, lifeForm, habitat, Biome, States, vegetationType, Origin,
 Endemism, taxonomicStatus, nomenclaturalStatus, vernacularName, taxonRank,
 and id
 If type = complete, it will load a data.frame with all 39 variables available
-in Brazilian Flora database.
+in Flora e Funga do Brasil database.
 }
 \examples{
 \dontrun{
@@ -57,6 +57,6 @@ type = "short")
 }
 }
 \references{
-Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 http://floradobrasil.jbrj.gov.br/
 }

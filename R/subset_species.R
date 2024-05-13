@@ -1,13 +1,13 @@
-#' Extract a subset of species from Brazilian Flora 2020 database
+#' Extract a subset of species from Flora e Funga do Brasil database
 #' @description
-#' Returns a data.frame with a subset of species from Brazilian Flora 2020
+#' Returns a data.frame with a subset of species from Flora e Funga do Brasil
 #' database
 #'
 #'
 #' @param data (data.frame) the data.frame imported with the
 #' \code{\link{load_florabr}} function.
 #' @param species (character) names of the species to be extracted from
-#' Brazilian Flora database.
+#' Flora e Funga do Brasil database.
 #' @param include_subspecies (logical) include subspecies?
 #' Default = FALSE
 #' @param include_variety (logical) include varieties of the species?
@@ -22,12 +22,12 @@
 #'                       include_variety = FALSE,
 #'                       kingdom = "Plantae")
 #' @references
-#' Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+#' Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 #' http://floradobrasil.jbrj.gov.br/
 #' @export
 #'
 #' @examples
-#' data("bf_data") #Load Brazilian Flora data
+#' data("bf_data") #Load Flora e Funga do Brasil data
 #' #Species to extract from database
 #' spp <- c("Araucaria angustifolia", "Adesmia paranensis")
 #' spp_bf <- subset_species(data = bf_data, species = spp,
@@ -86,7 +86,7 @@ subset_species <- function(data,
   #Check if there is any species absent in d
   no_match <- setdiff(Species, unique(d$species))
   if(length(no_match) > 0) {
-    warning(paste("Some species are absent of Brazilian Flora database\n",
+    warning(paste("Some species are absent of Flora e Funga do Brasil database\n",
                   "Check the species names using the check_names() function"))
   }
 

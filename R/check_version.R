@@ -1,13 +1,14 @@
-#' Check if you have the latest version of Brazilian Flora data available
+#' Check if you have the latest version of Flora e Funga do Brasil data
+#' available
 #'
 #' @description
-#' This function checks if you have the latest version of the Brazilian Flora
-#' data available in a specified directory.
+#' This function checks if you have the latest version of the Flora e Funga do
+#' Brasil data available in a specified directory.
 #'
 #' @param data_dir the directory where the data should be located.
 #'
-#' @return A message informing whether you have the latest version of Brazilian
-#' Flora data available in the data_dir
+#' @return A message informing whether you have the latest version of Flora e
+#' Funga do Brasil available in the data_dir
 #' @usage check_version(data_dir)
 #' @export
 #'
@@ -15,8 +16,8 @@
 #' @importFrom XML htmlParse xpathSApply xmlGetAttr
 #'
 #' @examples
-#' #Check if there is a version of Brazilian Flora data available in the current
-#' #directory
+#' #Check if there is a version of Flora e Funga do Brasil data available in the
+#' #current directory
 #' check_version(data_dir = getwd())
 
 check_version <- function(data_dir) {
@@ -72,26 +73,26 @@ check_version <- function(data_dir) {
 
   if(length(dir_versions) == 0) {
     message(
-    "You do not have any version of Flora do Brazil 2020 in this directory.
+    "You do not have any version of Flora e Funga do Brasil in this directory.
     The latest version is ", latest_version, ". Please, change the directory or
-    run the function get_florabr() to download the latest version of Brazilian
-    Flora 2020.", "\n")
+    run the function get_florabr() to download the latest version of Flora e
+    Funga do Brasil.", "\n")
   }
 
   if(isTRUE(is_latest) & isFALSE(many_versions)) {
-    message(paste("You have the latest version of Brazilian Flora 2020 Data -
+    message(paste("You have the latest version of Flora e Funga do Brasil. Data -
               Version", latest_version, "\n"))
   }
 
   if(isTRUE(is_latest) & isTRUE(many_versions)) {
-    message(paste("You have the following versions of Brazilian Flora:\n",
+    message(paste("You have the following versions of Flora e Funga do Brasil:\n",
               paste(dir_versions, collapse = "\n"),
               "\n It includes the latest version: ",
               latest_version, "\n"))
   }
 
   if(isFALSE(is_latest) & isTRUE(many_versions)) {
-    message(paste0("You have the following versions of Brazilian Flora:\n",
+    message(paste0("You have the following versions of Flora e Funga do Brasil:\n",
               paste0(dir_versions, collapse = "\n"),
               "\nHowever, it does not include the latest version: ",
               latest_version,

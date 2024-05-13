@@ -2,7 +2,7 @@
 % Please edit documentation in R/subset_species.R
 \name{subset_species}
 \alias{subset_species}
-\title{Extract a subset of species from Brazilian Flora 2020 database}
+\title{Extract a subset of species from Flora e Funga do Brasil database}
 \usage{
 subset_species(data, species,
                       include_subspecies = FALSE,
@@ -14,7 +14,7 @@ subset_species(data, species,
 \code{\link{load_florabr}} function.}
 
 \item{species}{(character) names of the species to be extracted from
-Brazilian Flora database.}
+Flora e Funga do Brasil database.}
 
 \item{include_subspecies}{(logical) include subspecies?
 Default = FALSE}
@@ -30,11 +30,11 @@ use c("Plantae", "Fungi")}
 A data.frame with the selected species.
 }
 \description{
-Returns a data.frame with a subset of species from Brazilian Flora 2020
+Returns a data.frame with a subset of species from Flora e Funga do Brasil
 database
 }
 \examples{
-data("bf_data") #Load Brazilian Flora data
+data("bf_data") #Load Flora e Funga do Brasil data
 #Species to extract from database
 spp <- c("Araucaria angustifolia", "Adesmia paranensis")
 spp_bf <- subset_species(data = bf_data, species = spp,
@@ -43,6 +43,6 @@ spp_bf <- subset_species(data = bf_data, species = spp,
 spp_bf
 }
 \references{
-Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 http://floradobrasil.jbrj.gov.br/
 }

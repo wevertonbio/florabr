@@ -3,7 +3,7 @@
 \name{get_spat_occ}
 \alias{get_spat_occ}
 \title{Get Spatial polygons (SpatVectors) of species based on its distribution
-(states and biomes) according to Brazilian Flora 2020}
+(states and biomes) according to Flora e Funga do Brasil}
 \usage{
 get_spat_occ(
   data,
@@ -64,11 +64,11 @@ for each specie.
 }
 \description{
 Get Spatial polygons (SpatVectors) of species based on its distribution
-(states and biomes) according to Brazilian Flora 2020
+(states and biomes) according to Flora e Funga do Brasil
 }
 \examples{
 library(terra)
-data("bf_data") #Load Brazilian Flora data
+data("bf_data") #Load Flora e Funga do Brasil data
 spp <- c("Araucaria angustifolia", "Adesmia paranensis") #Example species
 #Get states, biomes and intersection states-biomes of species
 spp_spt <- get_spat_occ(data = bf_data, species = spp, state = TRUE,
@@ -86,6 +86,6 @@ plot(spp_spt[[1]]$states_biomes)
 
 }
 \references{
-Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 http://floradobrasil.jbrj.gov.br/
 }

@@ -14,28 +14,27 @@ coverage](https://codecov.io/gh/wevertonbio/florabr/branch/main/graph/badge.svg)
 [![License](https://img.shields.io/badge/license-GPL%20(%3E=%203)-lightgrey.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html)
 <!-- badges: end -->
 
-[Brazilian Flora 2020](https://floradobrasil.jbrj.gov.br/consulta/) is
-the most comprehensive work to reliably document Brazilian plant
-diversity. It involves the work of hundreds of taxonomists, integrating
-data from plant and fungi collected in Brazil during the last two
-centuries. The database contains detailed and standardized morphological
-descriptions, illustrations, nomenclatural data, geographic
-distribution, and keys for the identification of all native and
-non-native plants found in Brazil.
+[Flora e Funga do Brasil](https://floradobrasil.jbrj.gov.br/consulta/) is
+the most comprehensive work to reliably document Brazilian plant, algae and
+fungi diversity. It involves the work of hundreds of taxonomists, integrating
+data from plant (including algae) and fungi collected in Brazil during the last
+two centuries. The database contains detailed and standardized morphological
+descriptions, illustrations, nomenclatural data, geographic distribution, and
+keys for the identification of all native and non-native plants and fungi found
+in Brazil.
 
-The florabr package includes a collection of functions designed to
-retrieve, filter and spatialize data from the Brazilian Flora 2020
-dataset.
+The florabr package includes a collection of functions designed to retrieve,
+filter and spatialize data from the Flora e Funga do Brasil dataset.
 
 ## Overview of functions
 
-### Download and import Brazilian Flora Dataset
+### Download and import Flora e Funga do Brasil Dataset
 
-- `check_version()`: Check if you have the latest version of Brazilian
-  Flora dataset available.
-- `get_florabr()`: Download the latest version of Brazilian Flora 2020
+- `check_version()`: Check if you have the latest version of Flora e Funga do
+  Brasil dataset available.
+- `get_florabr()`: Download the latest version of Flora e Funga do Brasil
   database.
-- `load_florabr()`: Load Brazilian Flora database.
+- `load_florabr()`: Load Flora e Funga do Brasil database.
 - `solve_discrepancies`: Resolve discrepancies between species and
   subspecies/varieties information.
 
@@ -52,17 +51,16 @@ dataset.
 - `select_by_vernacular()`: Search for taxa using vernacular names.
 - `select_species()`: Select species based on its characteristics and
   distribution.
-- `subset_species()`: Extract a subset of species from Brazilian Flora
-  2020 database.
+- `subset_species()`: Extract a subset of species from Flora e Funga do Brasil
+  database.
 
-### Spatialize distribution and use Brazilian Flora to flag records
+### Spatialize distribution and use Flora e Funga do Brasil to flag records
 
 - `get_pam()`: Get a presence-absence matrix of species.
 - `filter_florabr()`: Identify records outside natural ranges according
-  to Brazilian Flora 2020.
+  to Flora e Funga do Brasil.
 - `get_spat_occ()`: Get Spatial polygons (SpatVectors) of species based
-  on its distribution (States and Biomes) according to Brazilian Flora
-  2020.
+  on its distribution (States and Biomes) according to Flora e Funga do Brasil
 
 ## Installation
 
@@ -92,8 +90,8 @@ devtools::install_github('wevertonbio/florabr')}
 library(florabr)
 ```
 
-Before downloading the data available in the Brazilian Flora 2020, we
-need to create a folder to save the data:
+Before downloading the data available in the Flora e Funga do Brasil, we need to
+create a folder to save the data:
 
 ``` r
 #Creating a folder in a temporary directory
@@ -111,10 +109,9 @@ get_florabr(output_dir = my_dir, #directory to save the data
             overwrite = T) #Overwrite data, if it exists
 ```
 
-You also have the option to download an older, specific version of the
-Brazilian Flora dataset. To explore the available versions, please refer
-to [this
-link](https://ipt.jbrj.gov.br/jbrj/resource?r=lista_especies_flora_brasil).
+You also have the option to download an older, specific version of the Flora e
+Funga do Brasil dataset. To explore the available versions, please refer to
+[this link](https://ipt.jbrj.gov.br/jbrj/resource?r=lista_especies_flora_brasil).
 For downloading a particular version, simply replace ‘latest’ with the
 desired version number. For example:
 

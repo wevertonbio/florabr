@@ -18,7 +18,7 @@
 #' @export
 #'
 #' @examples
-#' data("bf_data") #Load Brazilian Flora data
+#' data("bf_data") #Load Flora e Funga do Brasil data
 #' #Check if discrepancies were solved in the dataset
 #' attr(bf_data, "solve_discrepancies")
 #' #Solve discrepancies

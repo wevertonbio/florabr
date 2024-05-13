@@ -20,10 +20,14 @@ along with relevant information on taxonomic and nomenclatural statuses.
 Retrieve synonyms for species
 }
 \examples{
-data("bf_data") #Load Brazilian Flora data
+data("bf_data") #Load Flora e Funga do Brasil data
 #Species to extract synonyms
 spp <- c("Araucaria angustifolia", "Adesmia paranensis")
 spp_synonyms <- get_synonym(data = bf_data, species = spp)
 spp_synonyms
 
+}
+\references{
+Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
+http://floradobrasil.jbrj.gov.br/
 }

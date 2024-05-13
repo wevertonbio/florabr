@@ -1,7 +1,7 @@
 #' Selection of species based on its characteristics and distribution
 #'
 #' @description select_species allows filter species based on its
-#' characteristics and distribution available in Brazilian Flora 2020
+#' characteristics and distribution available in Flora e Funga do Brasil
 #'
 #' @param data (data.frame) the data.frame imported with the
 #' \code{\link{load_florabr}} function.
@@ -115,11 +115,11 @@
 #'                       nomenclaturalStatus = "All")
 #' @export
 #' @references
-#' Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+#' Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 #' http://floradobrasil.jbrj.gov.br/
 #'
 #' @examples
-#' data("bf_data") #Load Brazilian Flora data
+#' data("bf_data") #Load Flora e Funga do Brasil data
 #' #'Select endemic and native species of trees with disjunct occurrence in
 #' # Atlantic Forest and Amazon
 #' am_af_only <- select_species(data = bf_data,

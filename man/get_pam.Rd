@@ -50,10 +50,10 @@ return a presence-absence matrix
 }
 \description{
 Get a presence-absence matrix of species based on its distribution
-(states, biomes and vegetation types) according to Brazilian Flora 2020
+(states, biomes and vegetation types) according to Flora e Funga do Brasil.
 }
 \examples{
-data("bf_data") #Load Brazilian Flora data
+data("bf_data") #Load Flora e Funga do Brasil data
 #Select endemic and native species of trees with occurrence only in Amazon
 am_trees <- select_species(data = bf_data,
                           include_subspecies = FALSE,
@@ -80,6 +80,6 @@ pam_am <- get_pam(data = am_trees, by_biome = TRUE, by_state = TRUE,
 
 }
 \references{
-Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 http://floradobrasil.jbrj.gov.br/
 }

@@ -43,7 +43,7 @@ bf <- load_florabr(data_dir = my_dir,
 
 
 ## Get spatial polygons of species distribution
-Brazilian Flora 2020 provides information on the federal states and biomes with confirmed occurrences of the species in Brazil. The `get_spat_occ` function extracts these information and return Spatial polygons (SpatVectors) representing the distribution of the specie. We can choose getting the Spatialvector of the federal states, biomes and the intersection between states and biomes.
+Flora e Funga do Brasil provides information on the federal states and biomes with confirmed occurrences of the species in Brazil. The `get_spat_occ` function extracts these information and return Spatial polygons (SpatVectors) representing the distribution of the specie. We can choose getting the Spatialvector of the federal states, biomes and the intersection between states and biomes.
 
 ```{r}
 #Example species
@@ -143,12 +143,12 @@ br_biomes <- terra::subset(br_biomes,
                            br_biomes$name_biome != "Sistema Costeiro")
 ```
 
-The names of the biomes are in Portuguese. We need to translate Amazonia and Mata Atlantica to English to match with the names in Brazilian Flora database:
+The names of the biomes are in Portuguese. We need to translate Amazonia and Mata Atlantica to English to match with the names in Flora e Funga do Brasil:
 
 ```{r, results='hide'}
 #See names of biomes
 br_biomes$name_biome
-#Names that must be in the Spatvector to match with Brazilian Flora:
+#Names that must be in the Spatvector to match with Flora e Funga do Brasil:
 biomes$name_biome
 #> [1] "Amazônia"       "Caatinga"       "Cerrado"        "Mata Atlântica"
 #> [5] "Pampa"          "Pantanal"
@@ -190,12 +190,12 @@ knitr::include_graphics("vignettes_img/IMG04.png")
 The choose between using the simplified version (default) or using a personal e more complex polygons depends on the objectives and resolution of your work. For a objective that depends on more fine resolution, we suggest to use more complex polygons that represent better the real shapes and boundaries of states and biomes.
 
 
-## Filtering occurrence records using distribution information in Brazilian Flora
+## Filtering occurrence records using distribution information in Flora e Funga do Brasil
 
 Georeferencing errors in online species records can introduce significant bias into ecological and biogeographical research findings. Some R packages, as `CoordinateCleaner`, help to flagging common spatial errors in biological collection data, for example, records of terrestrial organism that fall in the sea or were assigned to capital and province centroids.
-Since the distributions of species in Brazilian Flora are based on the expertise of taxonomists, it represents a valuable information to add an additional step on checking the validity of occurrence records got from online databases (as GBIF or SpeciesLink). 
+Since the distributions of species in Flora e Funga do Brasil are based on the expertise of taxonomists, it represents a valuable information to add an additional step on checking the validity of occurrence records got from online databases (as GBIF or SpeciesLink). 
 The `filter_florabr` function automatized this flagging. You can use the function to flag and/or remove:
-* Records that fall outside the states and biomes which confirmed occurrence according to Brazilian Flora.
+* Records that fall outside the states and biomes which confirmed occurrence according to Flora e Funga do Brasil.
 * For species endemic to Brazil, records that falls in other countries.
 
 As example, let's use the occurrence records of two species. *Abatia americana* is an endemic shrub with confirmed occurrences in 4 states (ES, MG, RJ and SP) and two biomes (Atlantic Forest and Cerrado). *Araucaria angustifolia* is a non-endemic tree that in Brazil has confirmed occurrences in 6 states (MG, PR, RJ, RS, SC and SP) and two biomes (Atlantic Forest and Pampa). Let's plot these information using the function `get_spat_occ`:

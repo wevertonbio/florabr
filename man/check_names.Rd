@@ -25,7 +25,7 @@ a data.frame with the following columns:
 \itemize{
 \item input_name: the species names informed in species argument
 \item Spelling: indicates if the species name is Correct (a perfect match with a
-species name in the Brazilian Flora 2020), Probably_incorrect
+species name in the Flora e Funga do Brasil), Probably_incorrect
 (partial match), or Not_found (no match with any species).
 \item Suggested name: If Spelling is Correct, it is the same as the input_name.
 If Spelling is Probably_correct, one or more suggested names are listed,
@@ -46,8 +46,8 @@ the same as input_name and Suggested_name.
 }
 \description{
 check_names checks if the species names are correct and searches
-for suggestions if the name is misspelled or not found in the Brazilian
-Flora 2020 database.
+for suggestions if the name is misspelled or not found in the Flora e Funga
+do Brasil database
 }
 \examples{
 data("bf_data", package = "florabr")
@@ -55,6 +55,6 @@ spp <- c("Butia cattarinensis", "Araucaria angustifolia")
 check_names(data = bf_data, species = spp)
 }
 \references{
-Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 http://floradobrasil.jbrj.gov.br/
 }

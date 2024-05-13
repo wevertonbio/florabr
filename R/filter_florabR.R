@@ -1,8 +1,8 @@
-#' Identify records outside natural ranges according to Brazilian Flora 2020
+#' Identify records outside natural ranges according to Flora e Funga do Brasil
 #'
 #' @description This function removes or flags records outside of the species'
-#' natural ranges according to information provided by the Brazilian Flora 2020
-#' database.
+#' natural ranges according to information provided by the Flora e Funga do
+#' Brasil database.
 #'
 #' @param data (data.frame) the data.frame imported with the
 #' \code{\link{load_florabr}} function.
@@ -79,10 +79,10 @@
 
 #'
 #' @references
-#' Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+#' Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 #' http://floradobrasil.jbrj.gov.br/
 #' @examples
-#' data("bf_data") #Load Brazilian Flora data
+#' data("bf_data") #Load Flora e Funga do Brasil data
 #' data("occurrences") #Load occurrences
 #' pts <- subset(occurrences, species == "Myrcia hatschbachii")
 #' fd <- filter_florabr(data = bf_data, occ = pts,

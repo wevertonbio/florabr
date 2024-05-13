@@ -28,7 +28,7 @@ input names
 Search for taxa using vernacular names
 }
 \examples{
-data("bf_data") #Load Brazilian Flora data
+data("bf_data") #Load Flora e Funga do Brasil data
 #Search for species whose vernacular name is 'pinheiro'
 pinheiro_exact <- select_by_vernacular(data = bf_data,
                                        names = "pinheiro",
@@ -43,9 +43,9 @@ head(pinheiro_not_exact)
 
 }
 \references{
-Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 http://floradobrasil.jbrj.gov.br/
 
-Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 http://floradobrasil.jbrj.gov.br/
 }

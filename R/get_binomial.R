@@ -5,9 +5,6 @@
 #'
 #' @return A vector with the binomial names (Genus + specific epithet).
 #' @usage get_binomial(species_names)
-#' @references
-#' Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
-#' http://floradobrasil.jbrj.gov.br/
 #' @export
 #'
 #' @examples

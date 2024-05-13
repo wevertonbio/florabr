@@ -8,9 +8,11 @@
 #' along with relevant information on taxonomic and nomenclatural statuses.
 #' @usage get_synonym(data, species)
 #' @export
-#'
+#' @references
+#' Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
+#' http://floradobrasil.jbrj.gov.br/
 #' @examples
-#' data("bf_data") #Load Brazilian Flora data
+#' data("bf_data") #Load Flora e Funga do Brasil data
 #' #Species to extract synonyms
 #' spp <- c("Araucaria angustifolia", "Adesmia paranensis")
 #' spp_synonyms <- get_synonym(data = bf_data, species = spp)
@@ -34,7 +36,7 @@ get_synonym <- function(data, species){
   #Check if there is any species absent in d
   no_match <- setdiff(species, unique(data$species))
   if(length(no_match) > 0 & length(no_match) < length(species)) {
-    warning(paste("Some species are absent of Brazilian Flora database\n",
+    warning(paste("Some species are absent of Flora e Funga do Brasil database\n",
                   "Check the species names using the check_names() function"))
   }
   #Get match
@@ -55,7 +57,8 @@ get_synonym <- function(data, species){
   res <- subset(res, !(res$synonym %in% species))
 
   return(res) } else {
-    warning(paste("All specified species are absent of Brazilian Flora database\n",
+    warning(paste("All specified species are absent of Flora e Funga do Brasil
+                  database\n",
                "Check the species names using the check_names() function"))
   }
 

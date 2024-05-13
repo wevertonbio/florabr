@@ -2,7 +2,7 @@
 % Please edit documentation in R/filter_florabr.R
 \name{filter_florabr}
 \alias{filter_florabr}
-\title{Identify records outside natural ranges according to Brazilian Flora 2020}
+\title{Identify records outside natural ranges according to Flora e Funga do Brasil}
 \usage{
 filter_florabr(data, occ, species = "species", long = "x", lat = "y",
                       by_state = TRUE, buffer_state = 20, by_biome = TRUE,
@@ -85,8 +85,8 @@ with the cleaned records.
 }
 \description{
 This function removes or flags records outside of the species'
-natural ranges according to information provided by the Brazilian Flora 2020
-database.
+natural ranges according to information provided by the Flora e Funga do
+Brasil database.
 }
 \details{
 If by_state = TRUE and/or by_biome = TRUE, the function takes polygons
@@ -98,7 +98,7 @@ brazil. If it is endemic, the function tests if the records of the specie
 fall inside a polygon representing the boundaries of brazil (with a buffer).
 }
 \examples{
-data("bf_data") #Load Brazilian Flora data
+data("bf_data") #Load Flora e Funga do Brasil data
 data("occurrences") #Load occurrences
 pts <- subset(occurrences, species == "Myrcia hatschbachii")
 fd <- filter_florabr(data = bf_data, occ = pts,
@@ -111,6 +111,6 @@ fd <- filter_florabr(data = bf_data, occ = pts,
                     verbose = FALSE)
 }
 \references{
-Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 http://floradobrasil.jbrj.gov.br/
 }

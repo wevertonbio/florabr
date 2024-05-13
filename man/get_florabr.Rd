@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_florabr.R
 \name{get_florabr}
 \alias{get_florabr}
-\title{Download the latest version of Brazilian Flora 2020 database}
+\title{Download the latest version of Flora e Funga do Brasil database}
 \usage{
 get_florabr(output_dir, data_version = "latest",
                  solve_discrepancy = FALSE, overwrite = TRUE,
@@ -10,10 +10,10 @@ get_florabr(output_dir, data_version = "latest",
 }
 \arguments{
 \item{output_dir}{(character) a directory to save the data downloaded from
-Brazilian Flora 2020}
+Flora e Funga do Brasil.}
 
-\item{data_version}{(character) Version of the Brazilian Flora database to
-download. Use "latest" to get the most recent version, updated weekly.
+\item{data_version}{(character) Version of the Flora e Funga do Brasil
+database to download. Use "latest" to get the most recent version, updated weekly.
 Alternatively, specify an older version (e.g., data_version = "393.319").
 Default value is "latest".}
 
@@ -30,7 +30,7 @@ execution. Set to TRUE to enable display, or FALSE to run silently.
 Default = TRUE.}
 }
 \value{
-The function downloads the latest version of the Brazilian Flora 2020
+The function downloads the latest version of the Flora e Funga do Brasil
 database from the official source. It then merges the information into a
 single data.frame, containing details on species, taxonomy, occurrence,
 and other relevant data.
@@ -39,8 +39,8 @@ directory. The data is saved in a format that allows easy loading using the
 \code{\link{load_florabr}} function for further analysis in R.
 }
 \description{
-This function downloads the latest or an older version of Brazilian Flora
-2020 database, merges the information into a single data.frame, and saves
+This function downloads the latest or an older version of Flora e Funga do
+Brasil database, merges the information into a single data.frame, and saves
 this data.frame in the specified directory.
 }
 \examples{
@@ -56,6 +56,6 @@ get_florabr(output_dir = my_dir, data_version = "latest",
 }
 }
 \references{
-Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 http://floradobrasil.jbrj.gov.br/
 }

@@ -17,21 +17,21 @@ knitr::opts_chunk$set(
 ```
 
 ## Introduction
-### What is Brazilian Flora 2020?
-Brazilian Flora 2020 is the most comprehensive work to reliably document Brazilian plant diversity. It involves the work of hundreds of taxonomists, integrating data from plant and fungi collected in Brazil during the last two centuries. The database contains detailed and standardized morphological descriptions, illustrations, nomenclatural data, geographic distribution, and keys for the identification of all native and non-native plants found in Brazil.
+### What is Flora e Funga do Brasil?
+Flora e Funga do Brasil is the most comprehensive work to reliably document Brazilian plant, fungi and algae diversity. It involves the work of hundreds of taxonomists, integrating data from plant(including algae) and fungi collected in Brazil during the last two centuries. The database contains detailed and standardized morphological descriptions, illustrations, nomenclatural data, geographic distribution, and keys for the identification of all native and non-native plants and fungi found in Brazil.
 
-The florabr package includes a collection of functions designed to retrieve, filter and spatialize data from the [Brazilian Flora 2020 dataset](https://floradobrasil.jbrj.gov.br/reflora/listaBrasil/PrincipalUC/PrincipalUC.do?lingua=en#CondicaoTaxonCP).
+The florabr package includes a collection of functions designed to retrieve, filter and spatialize data from the [Flora e Funga do Brasil dataset](https://floradobrasil.jbrj.gov.br/reflora/listaBrasil/PrincipalUC/PrincipalUC.do?lingua=en#CondicaoTaxonCP).
 
 ## Overview of the functions:
 
-+ `get_florabr`: download the latest or an older version of Brazilian Flora 2020 database.
-+ `check_version`: check if you have the latest version of Brazilian Flora data available in a directory.
-+ `load_florabr`: load Brazilian Flora database.
++ `get_florabr`: download the latest or an older version of Flora e Funga do Brasil database.
++ `check_version`: check if you have the latest version of Flora e Funga do Brasil data available in a directory.
++ `load_florabr`: load Flora e Funga do Brasil database.
 + `get_attributes`: display all the options available to filter species by its characteristics.
 + `select_species`: filter species based on its characteristics and distribution.
 + `get_binomial`: extract the binomial name (Genus + specific epithet) from a Scientific Name.
 + `check_names`: check if the species names are correct.
-+ `subset_species`: subset a list of species from Brazilian Flora 2020.
++ `subset_species`: subset a list of species from Flora e Funga do Brasil.
 + `get_spat_occ`: get Spatial polygons (SpatVectors) of species based on its distribution.
 + `filter_florabr`: removes or flags records outside of the species' natural ranges.
 
@@ -62,8 +62,8 @@ devtools::install_github('wevertonbio/florabr')}
 library(florabr)
 ```
 
-## Get data from Brazilian Flora
-All data included in the Brazilian Flora (i.e., nomenclature, life form, and distribution) are stored in Darwin Core Archive data sets, which is updated weekly. Before downloading the data available in the Brazilian Flora 2020, we need to create a folder to save the data:
+## Get data from Flora e Funga do Brasil
+All data included in the Flora e Funga do Brasil (i.e., nomenclature, life form, and distribution) are stored in Darwin Core Archive data sets, which is updated weekly. Before downloading the data available in the Flora e Funga do Brasil, we need to create a folder to save the data:
 
 ```{r}
 #Creating a folder in a temporary directory
@@ -81,9 +81,9 @@ get_florabr(output_dir = my_dir, #directory to save the data
             overwrite = T) #Overwrite data, if it exists
 ```
 
-The function will take a few seconds to download the data and a few minutes to merge the datasets into a single data.frame. Upon successful completion, you will find a folder named with the version of Brazilian Flora. This folder contains the downloaded raw dataset (TXT files in Portuguese) and a file named **CompleteBrazilianFlora.rds**. The latter represents the finalized dataset, merged and translated into English.
+The function will take a few seconds to download the data and a few minutes to merge the datasets into a single data.frame. Upon successful completion, you will find a folder named with the version of Flora e Funga do Brasil. This folder contains the downloaded raw dataset (TXT files in Portuguese) and a file named **CompleteBrazilianFlora.rds**. The latter represents the finalized dataset, merged and translated into English.
 
-You also have the option to download an older, specific version of the Brazilian Flora dataset. To explore the available versions, please refer to [this link](https://ipt.jbrj.gov.br/jbrj/resource?r=lista_especies_flora_brasil). For downloading a particular version, simply replace 'latest' with the desired version number. For example:
+You also have the option to download an older, specific version of the Flora e Funga do Brasil dataset. To explore the available versions, please refer to [this link](https://ipt.jbrj.gov.br/jbrj/resource?r=lista_especies_flora_brasil). For downloading a particular version, simply replace 'latest' with the desired version number. For example:
 
 ```{r, results='hide', message=FALSE, warning=FALSE}
 get_florabr(output_dir = my_dir, #directory to save the data
@@ -97,7 +97,7 @@ To view the available versions in your specified directory, run:
 
 ```{r}
 check_version(data_dir = my_dir)
-#> You have the following versions of Brazilian Flora:
+#> You have the following versions of Flora e Funga do Brasil:
 #>  393.385
 #> 393.399 
 #>  It includes the latest version:  393.399

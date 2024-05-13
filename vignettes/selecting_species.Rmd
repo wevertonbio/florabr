@@ -314,7 +314,7 @@ The spelling of *Homo sapiens* was flagged as Not_found (as expected, given that
 
 ### Subsetting species
 
-To retrieve species information from the Brazilian Flora database, employ the `subset_species()` function. For optimal performance, we highly recommend utilizing the `get_binomial()` and `check_names()` functions beforehand. This ensures that you're exclusively working with species present in the Brazilian Flora database.
+To retrieve species information from the Flora e Funga do Brasil database, employ the `subset_species()` function. For optimal performance, we highly recommend utilizing the `get_binomial()` and `check_names()` functions beforehand. This ensures that you're exclusively working with species present in the Flora e Funga do Brasil database.
 To see how the function works, let's use the accepted names in *checked_names* created previously:
 
 ```{r}
@@ -415,7 +415,7 @@ my_sp2[1:5,]
 ```
 
 ### Retrieving synonyms
-We can retrieve all synonyms of a species list. This can be particularly useful, for example, when searching for records of a species and all its synonyms (as listed in the Brazilian Flora 2020) in online databases like GBIF. To accomplish this, utilize the function get_synonym. To understand how the function works, let's search for the synonyms of two species:
+We can retrieve all synonyms of a species list. This can be particularly useful, for example, when searching for records of a species and all its synonyms (as listed in the Flora e Funga do Brasil) in online databases like GBIF. To accomplish this, utilize the function get_synonym. To understand how the function works, let's search for the synonyms of two species:
 ```{r}
 spp <- c("Araucaria angustifolia", "Adesmia paranensis")
 spp_syn <- get_synonym(data = bf, species = spp)
@@ -435,5 +435,5 @@ spp_syn
 #> 141041   Araucaria brasiliana Araucaria angustifolia         Synonym             Illegitimate
 #> 85308    Adesmia psoraleoides     Adesmia paranensis         Synonym Legitimate_but_incorrect
 ```
-We can see that *Araucaria angustifolia* has 12 synonyms in Brazilian Flora database, while *Adesmia paranensis* has one synonym.
+We can see that *Araucaria angustifolia* has 12 synonyms in Flora e Funga do Brasil, while *Adesmia paranensis* has one synonym.
 

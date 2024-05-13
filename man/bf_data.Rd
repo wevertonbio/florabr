@@ -3,7 +3,7 @@
 \docType{data}
 \name{bf_data}
 \alias{bf_data}
-\title{Brazilian Flora 2020 database - Version 393.401}
+\title{Flora e Funga do Brasil database - Version 393.401}
 \format{
 A \code{data.frame} with 50010 rows and 23 variables:
 \describe{
@@ -43,12 +43,14 @@ data contains only Species}
 }
 }
 \usage{
-bf_data
+data(bf_data)
 }
 \description{
-A dataset containing a subset of the Brazilian Flora database (version
-393.401)
-
-@usage data(bf_data)
+A dataset containing a subset of the Flora e Funga do Brasil database
+(version 393.401)
+}
+\references{
+Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
+http://floradobrasil.jbrj.gov.br/
 }
 \keyword{datasets}

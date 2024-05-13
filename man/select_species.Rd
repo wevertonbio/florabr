@@ -113,7 +113,7 @@ A new dataframe with the filtered species.
 }
 \description{
 select_species allows filter species based on its
-characteristics and distribution available in Brazilian Flora 2020
+characteristics and distribution available in Flora e Funga do Brasil
 }
 \details{
 It's possible to choose 4 ways to filter by lifeForm, by habitat,
@@ -145,7 +145,7 @@ habitat, biome, state, and nomenclaturalStatus, use the function
 \code{\link{get_attributes}}
 }
 \examples{
-data("bf_data") #Load Brazilian Flora data
+data("bf_data") #Load Flora e Funga do Brasil data
 #'Select endemic and native species of trees with disjunct occurrence in
 # Atlantic Forest and Amazon
 am_af_only <- select_species(data = bf_data,
@@ -167,6 +167,6 @@ am_af_only <- select_species(data = bf_data,
                              nomenclaturalStatus = "All")
 }
 \references{
-Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 http://floradobrasil.jbrj.gov.br/
 }

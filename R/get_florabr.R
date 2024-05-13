@@ -1,15 +1,15 @@
-#' Download the latest version of Brazilian Flora 2020 database
+#' Download the latest version of Flora e Funga do Brasil database
 #'
 #' @description
-#' This function downloads the latest or an older version of Brazilian Flora
-#' 2020 database, merges the information into a single data.frame, and saves
+#' This function downloads the latest or an older version of Flora e Funga do
+#' Brasil database, merges the information into a single data.frame, and saves
 #' this data.frame in the specified directory.
 #'
 #'
 #' @param output_dir (character) a directory to save the data downloaded from
-#' Brazilian Flora 2020
-#' @param data_version (character) Version of the Brazilian Flora database to
-#' download. Use "latest" to get the most recent version, updated weekly.
+#' Flora e Funga do Brasil.
+#' @param data_version (character) Version of the Flora e Funga do Brasil
+#' database to download. Use "latest" to get the most recent version, updated weekly.
 #' Alternatively, specify an older version (e.g., data_version = "393.319").
 #' Default value is "latest".
 #' @param solve_discrepancy Resolve discrepancies between species and
@@ -23,7 +23,7 @@
 #' Default = TRUE.
 #'
 #' @returns
-#' The function downloads the latest version of the Brazilian Flora 2020
+#' The function downloads the latest version of the Flora e Funga do Brasil
 #' database from the official source. It then merges the information into a
 #' single data.frame, containing details on species, taxonomy, occurrence,
 #' and other relevant data.
@@ -40,7 +40,7 @@
 #' @importFrom utils unzip
 #' @importFrom utils read.csv
 #' @references
-#' Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+#' Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 #' http://floradobrasil.jbrj.gov.br/
 #' @examples
 #' \dontrun{
