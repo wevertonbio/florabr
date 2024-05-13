@@ -79,7 +79,7 @@ characteristics</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_attributes</span><span class="op">(</span><span class="va">data</span>, <span class="va">attribute</span>, kingdom <span class="op">=</span> <span class="st">"Plantae"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_attributes</span><span class="op">(</span><span class="va">data</span>, <span class="va">attribute</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -91,107 +91,37 @@ characteristics</p>
 
 
 <dt>attribute</dt>
-<dd><p>(character) the type of characteristic. See detail to see
-the options.</p></dd>
-
-
-<dt>kingdom</dt>
-<dd><p>(character) the kingdom to which the species belong. It can
-be "Plantae" or "Fungi". Default = "Plantae".</p></dd>
+<dd><p>(character) the type of characteristic. Accept more than one
+option. See detail to see the options.</p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     
 
-<p>a data.frame with the available options to use in the
+<p>a list of data.frames with the available options to use in the
 <code><a href="select_species.html">select_species</a></code> function.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>The attribute argument accepts the following options: group, subgroup,
-family, lifeform, habitat, vegetation, origin, endemism, biome, states,
-taxonomicstatus or nomenclaturalstatus. These options represent different
-characteristics of species that can be used for filtering.</p>
+    <p>The attribute argument accepts the following options: kingdom, group,
+subgroup, phylum, class, order, family, lifeform, habitat, vegetation,
+origin, endemism, biome, states, taxonomicstatus or nomenclaturalstatus.
+These options represent different characteristics of species that can be used
+for filtering.</p>
     </div>
     <div id="references">
     <h2>References</h2>
-    <p>Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+    <p>Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 http://floradobrasil.jbrj.gov.br/</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"bf_data"</span><span class="op">)</span> <span class="co">#Load Brazilian Flora data</span></span></span>
-<span class="r-in"><span><span class="co"># Get available biomes to filter species</span></span></span>
-<span class="r-in"><span><span class="fu">get_attributes</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>, kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, attribute <span class="op">=</span> <span class="st">"Biome"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 biome</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1              Amazon</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     Atlantic_Forest</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3            Caatinga</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4             Cerrado</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 Not_found_in_brazil</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6               Pampa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7            Pantanal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8             Unknown</span>
-<span class="r-in"><span><span class="co"># Get available life forms to filter species</span></span></span>
-<span class="r-in"><span><span class="fu">get_attributes</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>, kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, attribute <span class="op">=</span> <span class="st">"lifeForm"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               lifeForm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      Aquatic-benthos</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2      Aquatic-neuston</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     Aquatic-plankton</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4               Bamboo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5              Cushion</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6             Dendroid</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7           Dracaenoid</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8           Flabellate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9              Foliose</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                Herb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 Liana/scandent/vine</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                 Mat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 Not_found_in_brazil</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14           Palm_tree</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15             Pendent</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16               Shrub</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17            Subshrub</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18           Succulent</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19            Thallose</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20                Tree</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21                Tuft</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22             Unknown</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23                Weft</span>
-<span class="r-in"><span><span class="co"># Get available states to filter species</span></span></span>
-<span class="r-in"><span><span class="fu">get_attributes</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>, kingdom <span class="op">=</span> <span class="st">"Plantae"</span>, attribute <span class="op">=</span> <span class="st">"States"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 states</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                   AC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                   AL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                   AM</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                   AP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                   BA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                   CE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                   DF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                   ES</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                   GO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                  MA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                  MG</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                  MS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                  MT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 Not_found_in_brazil</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                  PA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16                  PB</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17                  PE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18                  PI</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19                  PR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20                  RJ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21                  RN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22                  RO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23                  RR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24                  RS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25                  SC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26                  SE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27                  SP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28                  TO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29             Unknown</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"bf_data"</span><span class="op">)</span> <span class="co">#Load Flora e Funga do Brasil data</span></span></span>
+<span class="r-in"><span><span class="co"># Get available biomes, life forms and states to filter species</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu">get_attributes</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>,</span></span>
+<span class="r-in"><span>                    attribute <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"biome"</span>, <span class="st">"lifeform"</span>, <span class="st">"states"</span><span class="op">)</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>

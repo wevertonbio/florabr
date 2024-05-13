@@ -129,8 +129,8 @@ with florabr</a></p>
 <div class="section level2">
 <h2 id="get-spatial-polygons-of-species-distribution">Get spatial polygons of species distribution<a class="anchor" aria-label="anchor" href="#get-spatial-polygons-of-species-distribution"></a>
 </h2>
-<p>Brazilian Flora 2020 provides information on the federal states and
-biomes with confirmed occurrences of the species in Brazil. The
+<p>Flora e Funga do Brasil provides information on the federal states
+and biomes with confirmed occurrences of the species in Brazil. The
 <code>get_spat_occ</code> function extracts these information and return
 Spatial polygons (SpatVectors) representing the distribution of the
 specie. We can choose getting the Spatialvector of the federal states,
@@ -215,12 +215,12 @@ original polygons of biomes:</p>
 <span><span class="va">br_biomes</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">br_biomes</span>, </span>
 <span>                           <span class="va">br_biomes</span><span class="op">$</span><span class="va">name_biome</span> <span class="op">!=</span> <span class="st">"Sistema Costeiro"</span><span class="op">)</span></span></code></pre></div>
 <p>The names of the biomes are in Portuguese. We need to translate
-Amazonia and Mata Atlantica to English to match with the names in
-Brazilian Flora database:</p>
+Amazonia and Mata Atlantica to English to match with the names in Flora
+e Funga do Brasil:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#See names of biomes</span></span>
 <span><span class="va">br_biomes</span><span class="op">$</span><span class="va">name_biome</span></span>
-<span><span class="co">#Names that must be in the Spatvector to match with Brazilian Flora:</span></span>
+<span><span class="co">#Names that must be in the Spatvector to match with Flora e Funga do Brasil:</span></span>
 <span><span class="va">biomes</span><span class="op">$</span><span class="va">name_biome</span></span>
 <span><span class="co">#&gt; [1] "Amazônia"       "Caatinga"       "Cerrado"        "Mata Atlântica"</span></span>
 <span><span class="co">#&gt; [5] "Pampa"          "Pantanal"</span></span>
@@ -260,8 +260,8 @@ better the real shapes and boundaries of states and biomes.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="filtering-occurrence-records-using-distribution-information-in-brazilian-flora">Filtering occurrence records using distribution information in
-Brazilian Flora<a class="anchor" aria-label="anchor" href="#filtering-occurrence-records-using-distribution-information-in-brazilian-flora"></a>
+<h2 id="filtering-occurrence-records-using-distribution-information-in-flora-e-funga-do-brasil">Filtering occurrence records using distribution information in Flora
+e Funga do Brasil<a class="anchor" aria-label="anchor" href="#filtering-occurrence-records-using-distribution-information-in-flora-e-funga-do-brasil"></a>
 </h2>
 <p>Georeferencing errors in online species records can introduce
 significant bias into ecological and biogeographical research findings.
@@ -269,14 +269,14 @@ Some R packages, as <code>CoordinateCleaner</code>, help to flagging
 common spatial errors in biological collection data, for example,
 records of terrestrial organism that fall in the sea or were assigned to
 capital and province centroids. Since the distributions of species in
-Brazilian Flora are based on the expertise of taxonomists, it represents
-a valuable information to add an additional step on checking the
-validity of occurrence records got from online databases (as GBIF or
+Flora e Funga do Brasil are based on the expertise of taxonomists, it
+represents a valuable information to add an additional step on checking
+the validity of occurrence records got from online databases (as GBIF or
 SpeciesLink). The <code>filter_florabr</code> function automatized this
 flagging. You can use the function to flag and/or remove: * Records that
 fall outside the states and biomes which confirmed occurrence according
-to Brazilian Flora. * For species endemic to Brazil, records that falls
-in other countries.</p>
+to Flora e Funga do Brasil. * For species endemic to Brazil, records
+that falls in other countries.</p>
 <p>As example, let’s use the occurrence records of two species.
 <em>Abatia americana</em> is an endemic shrub with confirmed occurrences
 in 4 states (ES, MG, RJ and SP) and two biomes (Atlantic Forest and

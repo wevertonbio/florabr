@@ -98,10 +98,15 @@
 <p>A data.frame containing unique synonyms of the specified species
 along with relevant information on taxonomic and nomenclatural statuses.</p>
     </div>
+    <div id="references">
+    <h2>References</h2>
+    <p>Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
+http://floradobrasil.jbrj.gov.br/</p>
+    </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"bf_data"</span><span class="op">)</span> <span class="co">#Load Brazilian Flora data</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"bf_data"</span><span class="op">)</span> <span class="co">#Load Flora e Funga do Brasil data</span></span></span>
 <span class="r-in"><span><span class="co">#Species to extract synonyms</span></span></span>
 <span class="r-in"><span><span class="va">spp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Araucaria angustifolia"</span>, <span class="st">"Adesmia paranensis"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">spp_synonyms</span> <span class="op">&lt;-</span> <span class="fu">get_synonym</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>, species <span class="op">=</span> <span class="va">spp</span><span class="op">)</span></span></span>
