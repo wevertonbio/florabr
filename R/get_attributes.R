@@ -8,39 +8,34 @@
 #' @param data (data.frame) a data.frame imported with the
 #' \code{\link{load_florabr}} function or a data.frame generated with the
 #'  \code{\link{select_species}} function.
-#' @param attribute (character) the type of characteristic. See detail to see
-#' the options.
-#' @param kingdom (character) the kingdom to which the species belong. It can
-#' be "Plantae" or "Fungi". Default = "Plantae".
+#' @param attribute (character) the type of characteristic. Accept more than one
+#' option. See detail to see the options.
 #'
 #' @details
-#' The attribute argument accepts the following options: group, subgroup,
-#' family, lifeform, habitat, vegetation, origin, endemism, biome, states,
-#' taxonomicstatus or nomenclaturalstatus. These options represent different
-#' characteristics of species that can be used for filtering.
+#' The attribute argument accepts the following options: kingdom, group,
+#' subgroup, phylum, class, order, family, lifeform, habitat, vegetation,
+#' origin, endemism, biome, states, taxonomicstatus or nomenclaturalstatus.
+#' These options represent different characteristics of species that can be used
+#' for filtering.
 #'
-#' @return a data.frame with the available options to use in the
+#' @return a list of data.frames with the available options to use in the
 #' \code{\link{select_species}} function.
 #'
-#' @usage get_attributes(data, attribute, kingdom = "Plantae")
+#' @usage get_attributes(data, attribute)
 #'
 #' @export
 #'
 #' @references
-#' Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+#' Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 #' http://floradobrasil.jbrj.gov.br/
 #'
 #' @examples
-#' data("bf_data") #Load Brazilian Flora data
-#' # Get available biomes to filter species
-#' get_attributes(data = bf_data, kingdom = "Plantae", attribute = "Biome")
-#' # Get available life forms to filter species
-#' get_attributes(data = bf_data, kingdom = "Plantae", attribute = "lifeForm")
-#' # Get available states to filter species
-#' get_attributes(data = bf_data, kingdom = "Plantae", attribute = "States")
+#' data("bf_data") #Load Flora e Funga do Brasil data
+#' # Get available biomes, life forms and states to filter species
+#' d <- get_attributes(data = bf_data,
+#'                     attribute = c("biome", "lifeform", "states"))
 
-get_attributes <- function(data, attribute,
-                           kingdom = "Plantae") {
+get_attributes <- function(data, attribute) {
 
   if (missing(data)) {
     stop("Argument data is not defined")
@@ -54,12 +49,9 @@ get_attributes <- function(data, attribute,
   attrib[which(attrib == "taxonomicstatus")] <- "taxonomicStatus"
   attrib[which(attrib == "nomenclaturalstatus")] <- "nomenclaturalStatus"
 
-  #Change kingdom - First letter to upper case
-  kingdom <- firstup(kingdom)
-
   if (missing(attribute)) {
     stop("Argument attribute is not defined. Valid attributes:
-    group, subgroup, phylum, class, order, family, lifeForm, habitat,
+    kingdom, group, subgroup, phylum, class, order, family, lifeForm, habitat,
     vegetation, origin, endemism, biome, states, taxonomicStatus or
          nomenclaturalStatus")
   }
@@ -74,30 +66,50 @@ get_attributes <- function(data, attribute,
                 class(attribute)))
   }
 
-  if (!(kingdom %in% c("Plantae", "Fungi"))) {
-    stop("Argument kingdom must be 'Plantae' or 'Fungi'")
-  }
 
+  #Check attributes
+  no_valid <- setdiff(attrib, c("kingdom", "group", "subgroup", "family", "lifeForm", "habitat",
+                                "vegetation", "origin", "endemism", "biome", "states",
+                                "taxonomicStatus", "nomenclaturalStatus", "phylum", "class",
+                                "order"))
 
-  if(!(attrib %in% c("group", "subgroup", "family", "lifeForm", "habitat",
-                    "vegetation", "origin", "endemism", "biome", "states",
-                    "taxonomicStatus", "nomenclaturalStatus", "phylum", "class",
-                    "order"))) {
-    stop("Informed attribute is not valid! Valid attributes:
-    group, subgroup, phylum, class, order, family, lifeForm, habitat,
+  if(length(no_valid) > 0) {
+    stop(paste0("The informed attributes is/are not valid:\n",
+                paste(no_valid, collapse = "\n")),
+    "\nValid attributes:
+    kingdom, group, subgroup, phylum, class, order, family, lifeForm, habitat,
     vegetation, origin, endemism, biome, states, taxonomicStatus or
     nomenclaturalStatus")
   }
 
   #Get unique attributes
-  d <- data[data$kingdom == kingdom,]
-  d_at <- d[,attrib]
+  d_l <- lapply(attrib, function(i){
+  d_at <- data[,i]
   at <- unique(unlist(strsplit(d_at, ";")))
-  #Save in datafra,e
-  att_f <- data.frame(atrib = sort(at))
-  colnames(att_f) <- attrib
+  #Save in dataframe
+  att_f <- data.frame(var = sort(at))
+  colnames(att_f) <- i
+
+  #If states, return name of the states in another column
+  if(i == "states") {
+  s_df <- data.frame(
+    states = c("AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT",
+              "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO",
+              "RR", "SC", "SP", "SE", "TO"),
+    states_name = c("Acre", "Alagoas", "Amapa", "Amazonas", "Bahia", "Ceara",
+                   "Distrito Federal", "Espirito Santo", "Goias", "Maranhao",
+                   "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Para",
+                   "Paraiba", "Parana", "Pernambuco", "Piaui", "Rio de Janeiro",
+                   "Rio Grande do Norte", "Rio Grande do Sul", "Rondonia",
+                   "Roraima", "Santa Catarina", "Sao Paulo", "Sergipe",
+                   "Tocantins"))
+  att_f <- s_df[which(s_df$states %in% att_f$states),] }
 
   return(att_f)
+  })
+  names(d_l) <- attrib
+
+  return(d_l)
 }
 
 

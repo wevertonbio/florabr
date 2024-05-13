@@ -4,21 +4,18 @@
 \alias{get_attributes}
 \title{Get available attributes to filter species}
 \usage{
-get_attributes(data, attribute, kingdom = "Plantae")
+get_attributes(data, attribute)
 }
 \arguments{
 \item{data}{(data.frame) a data.frame imported with the
 \code{\link{load_florabr}} function or a data.frame generated with the
 \code{\link{select_species}} function.}
 
-\item{attribute}{(character) the type of characteristic. See detail to see
-the options.}
-
-\item{kingdom}{(character) the kingdom to which the species belong. It can
-be "Plantae" or "Fungi". Default = "Plantae".}
+\item{attribute}{(character) the type of characteristic. Accept more than one
+option. See detail to see the options.}
 }
 \value{
-a data.frame with the available options to use in the
+a list of data.frames with the available options to use in the
 \code{\link{select_species}} function.
 }
 \description{
@@ -26,21 +23,19 @@ This function displays all the options available to filter species by its
 characteristics
 }
 \details{
-The attribute argument accepts the following options: group, subgroup,
-family, lifeform, habitat, vegetation, origin, endemism, biome, states,
-taxonomicstatus or nomenclaturalstatus. These options represent different
-characteristics of species that can be used for filtering.
+The attribute argument accepts the following options: kingdom, group,
+subgroup, phylum, class, order, family, lifeform, habitat, vegetation,
+origin, endemism, biome, states, taxonomicstatus or nomenclaturalstatus.
+These options represent different characteristics of species that can be used
+for filtering.
 }
 \examples{
-data("bf_data") #Load Brazilian Flora data
-# Get available biomes to filter species
-get_attributes(data = bf_data, kingdom = "Plantae", attribute = "Biome")
-# Get available life forms to filter species
-get_attributes(data = bf_data, kingdom = "Plantae", attribute = "lifeForm")
-# Get available states to filter species
-get_attributes(data = bf_data, kingdom = "Plantae", attribute = "States")
+data("bf_data") #Load Flora e Funga do Brasil data
+# Get available biomes, life forms and states to filter species
+d <- get_attributes(data = bf_data,
+                    attribute = c("biome", "lifeform", "states"))
 }
 \references{
-Brazilian Flora 2020. Jardim Botânico do Rio de Janeiro. Available at:
+Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 http://floradobrasil.jbrj.gov.br/
 }

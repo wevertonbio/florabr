@@ -3,86 +3,84 @@ test_that("get_attributes works", {
   data("bf_data")
 
   #Group attributes
-  Group <- get_attributes(data = bf_data, kingdom = "Plantae",
+  Group <- get_attributes(data = bf_data,
                           attribute = "Group")
-  expect_equal(class(Group), "data.frame")
+  expect_equal(class(Group), "list")
 
 
   #SubGroup attributes
-  SubGroup <- get_attributes(data = bf_data, kingdom = "Plantae",
+  SubGroup <- get_attributes(data = bf_data,
                               attribute = "Subgroup")
-  expect_equal(class(SubGroup), "data.frame")
+  expect_equal(class(SubGroup), "list")
 
   #family attributes
-  family <- get_attributes(data = bf_data, kingdom = "Plantae",
+  family <- get_attributes(data = bf_data,
                              attribute = "family")
-  expect_equal(class(family), "data.frame")
-  expect_equal(ncol(family), 1)
-  expect_equal(colnames(family), c("family"))
+  expect_equal(class(family), "list")
+  expect_equal(ncol(family[[1]]), 1)
+  expect_equal(colnames(family[[1]]), c("family"))
 
   #lifeForm attributes
-  lifeForm <- get_attributes(data = bf_data, kingdom = "Plantae",
+  lifeForm <- get_attributes(data = bf_data,
                            attribute = "lifeForm")
-  expect_equal(class(lifeForm), "data.frame")
+  expect_equal(class(lifeForm), "list")
 
   #habitat attributes
-  habitat <- get_attributes(data = bf_data, kingdom = "Plantae",
+  habitat <- get_attributes(data = bf_data,
                              attribute = "habitat")
-  expect_equal(class(habitat), "data.frame")
+  expect_equal(class(habitat), "list")
 
   #vegetationType attributes
-  vegetationType <- get_attributes(data = bf_data, kingdom = "Plantae",
+  vegetationType <- get_attributes(data = bf_data,
                             attribute = "vegetation")
-  expect_equal(class(vegetationType), "data.frame")
+  expect_equal(class(vegetationType), "list")
 
 
   #Origin attributes
-  Origin <- get_attributes(data = bf_data, kingdom = "Plantae",
+  Origin <- get_attributes(data = bf_data,
                                    attribute = "Origin")
-  expect_equal(class(Origin), "data.frame")
+  expect_equal(class(Origin), "list")
 
   #Endemism attributes
-  Endemism <- get_attributes(data = bf_data, kingdom = "Plantae",
+  Endemism <- get_attributes(data = bf_data,
                                    attribute = "Endemism")
-  expect_equal(class(Endemism), "data.frame")
+  expect_equal(class(Endemism), "list")
 
 
   #Biome attributes
-  Biome <- get_attributes(data = bf_data, kingdom = "Plantae",
+  Biome <- get_attributes(data = bf_data,
                                    attribute = "Biome")
-  expect_equal(class(Biome), "data.frame")
+  expect_equal(class(Biome), "list")
 
 
   #States attributes
-  States <- get_attributes(data = bf_data, kingdom = "Plantae",
+  States <- get_attributes(data = bf_data,
                                    attribute = "States")
-  expect_equal(class(States), "data.frame")
+  expect_equal(class(States), "list")
+  expect_equal(ncol(States[[1]]), 2)
 
 
   #taxonomicStatus attributes
-  taxonomicStatus <- get_attributes(data = bf_data, kingdom = "Plantae",
+  taxonomicStatus <- get_attributes(data = bf_data,
                                    attribute = "taxonomicStatus")
-  expect_equal(class(taxonomicStatus), "data.frame")
+  expect_equal(class(taxonomicStatus), "list")
 
 
   #vegetationType attributes
-  nomenclaturalStatus <- get_attributes(data = bf_data, kingdom = "Plantae",
+  nomenclaturalStatus <- get_attributes(data = bf_data,
                                    attribute = "nomenclaturalStatus")
-  expect_equal(class(nomenclaturalStatus), "data.frame")
+  expect_equal(class(nomenclaturalStatus), "list")
 
 
   ####It does not work with attribut not available####
-  expect_error(get_attributes(data = bf_data, kingdom = "Plantae",
+  expect_error(get_attributes(data = bf_data,
                  attribute = "size"))
 
   ####It does not work when we don't set data ####
-  expect_error(get_attributes(kingdom = "Plantae",
+  expect_error(get_attributes(
                               attribute = "Biome"))
 
-  ####It does not work when we don't set correct kingdom ####
-  expect_error(get_attributes(data = bf_data, kingdom = "Animal",
-                              attribute = "Biome"))
-})
+  })
 
 ####Get more errors####
 test_that("get_attributes works", {
