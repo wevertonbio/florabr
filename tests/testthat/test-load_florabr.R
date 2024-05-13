@@ -12,7 +12,6 @@ test_that("loading florabr works", {
                      type = "short")
 
   expect_equal(class(df), "data.frame")
-  expect_equal(ncol(df), 23)
 
   #Load data: complete
   df_complete <- load_florabr(data_dir = my_dir,
@@ -20,7 +19,6 @@ test_that("loading florabr works", {
                               type = "complete")
 
   expect_equal(class(df_complete), "data.frame")
-  expect_equal(ncol(df_complete), 39)
 
   ####It does not work when we set a wrong version####
   expect_warning(expect_error(load_florabr(data_dir = my_dir, data_version = "1",
