@@ -5,28 +5,32 @@
 \alias{bf_data}
 \title{Brazilian Flora 2020 database - Version 393.401}
 \format{
-A \code{data.frame} with 45890 rows and 20 variables:
+A \code{data.frame} with 50010 rows and 23 variables:
 \describe{
 \item{species}{Species names}
+\item{scientificName}{Complete scientific name of the species}
 \item{acceptedName}{Accepted name of the species (NA when the name in
 species is already an accepted name)}
 \item{kingdom}{Kingdom to which species belongs (Plantae or Fungi)}
-\item{Group}{Major group to which species belongs (Angiosperms,
+\item{group}{Major group to which species belongs (Angiosperms,
 Gymnosperms, Ferns and Lycophytes, Bryophytes, and Algae)}
-\item{Subgroup}{Subgroup to which species belongs. Only available for
+\item{subgroup}{Subgroup to which species belongs. Only available for
 Bryophytes (Mosses, Hornworts, and Liverworts)}
+\item{phylum}{Phylum to which species belongs}
+\item{class}{Class to which species belongs}
+\item{order}{Order to which species belongs}
 \item{family}{Family to which species belongs}
 \item{genus}{Genus to which species belongs}
 \item{lifeForm}{Life form of the species (e.g: Tree, Herb, Shrub, etc.)}
 \item{habitat}{Habitat type of the species (e.g., Terrestrial, Rupicolous,
 Epiphytic, etc.)}
-\item{Biome}{Biomes with confirmed occurrences of the species}
-\item{States}{Federal states with confirmed occurrences of the species}
-\item{vegetationType}{Vegetation types with confirmed occurrences of the
+\item{biome}{Biomes with confirmed occurrences of the species}
+\item{states}{Federal states with confirmed occurrences of the species}
+\item{vegetation}{Vegetation types with confirmed occurrences of the
 species}
-\item{Origin}{Indicates whether the species is Native, Naturalized, or
+\item{origin}{Indicates whether the species is Native, Naturalized, or
 Cultivated in Brazil}
-\item{Endemism}{Indicates whether the species is Endemic or Non-endemic to
+\item{endemism}{Indicates whether the species is Endemic or Non-endemic to
 Brazil}
 \item{taxonomicStatus}{Indicates the level of recognition and acceptance
 of the species (Accepted or Synonym)}
