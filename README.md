@@ -35,7 +35,7 @@ filter and spatialize data from the Flora e Funga do Brasil dataset.
 - `get_florabr()`: Download the latest version of Flora e Funga do Brasil
   database.
 - `load_florabr()`: Load Flora e Funga do Brasil database.
-- `solve_discrepancies`: Resolve discrepancies between species and
+- `solve_discrepancies()`: Resolve discrepancies between species and
   subspecies/varieties information.
 
 ### Check names

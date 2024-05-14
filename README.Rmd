@@ -34,7 +34,7 @@ The florabr package includes a collection of functions designed to retrieve, fil
 -   `check_version()`: Check if you have the latest version of Flora e Funga do Brasil dataset available.
 -   `get_florabr()`: Download the latest version of Flora e Funga do Brasil database.
 -   `load_florabr()`: Load Flora e Funga do Brasil database.
--   `solve_discrepancies`: Resolve discrepancies between species and subspecies/varieties information.
+-   `solve_discrepancies()`: Resolve discrepancies between species and subspecies/varieties information.
 
 ### Check names
 
