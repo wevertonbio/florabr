@@ -1,3 +1,58 @@
+##  Submission florabr 1.2.0
+This is the first submission of version 1.2.0.
+
+## Test environments
+* Windows 11, R 4.3.1 (local)
+* MacOS 12.6.9, R release (GitHub Actions)
+* Windows 10.0.20348, R release (GitHub Actions)
+* Ubuntu 22.04.3 LTS, R release (GitHub Actions)
+* Ubuntu 22.04.3 LTS, R devel (GitHub Actions)
+* Ubuntu 22.04.3 LTS, R oldrel-1 (GitHub Actions)
+
+
+## R CMD check results
+There were no ERRORs:
+
+There were no WARNINGs:
+
+There were 1 NOTE:
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: 'Weverton Trindade <wevertonf1993@gmail.com>'
+A Note that reminds CRAN maintainers to check that the submission comes actually from his maintainer and not anybody else.
+
+## Downstream dependencies
+There are currently no downstream dependencies for this package.
+
+<br>
+<hr>
+
+##  Resubmission florabr 1.2.0
+
+## Test environments
+* Windows 11, R 4.3.1 (local)
+* MacOS 12.6.9, R release (GitHub Actions)
+* Windows 10.0.20348, R release (GitHub Actions)
+* Ubuntu 22.04.3 LTS, R release (GitHub Actions)
+* Ubuntu 22.04.3 LTS, R devel (GitHub Actions)
+* Ubuntu 22.04.3 LTS, R oldrel-1 (GitHub Actions)
+
+
+## R CMD check results
+There were no ERRORs:
+
+There were no WARNINGs:
+
+There were 1 NOTE:
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: 'Weverton Trindade <wevertonf1993@gmail.com>'
+A Note that reminds CRAN maintainers to check that the submission comes actually from his maintainer and not anybody else.
+
+## Downstream dependencies
+There are currently no downstream dependencies for this package.
+
+<br>
+<hr>
+
 ## Resubmission florabr 1.0.1
 > Please omit the redundant "Tools for" at the start of your title.
 
@@ -41,6 +96,9 @@ examples/vignettes/tests you can write to tempdir(). ->
 man/get_florabr.Rd, man/load_florabr.Rd
 
 * In the examples and vignettes of `get_florabr` and `load_florabr`, the functions write data to the temporary directory (`tempdir()`).
+
+<br>
+<hr>
 
 ## Resubmission florabr 1.0.0
 > Please omit "+ file LICENSE" and the file itself which is part of R
