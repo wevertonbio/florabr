@@ -21,4 +21,7 @@ data(occurrences)
 A dataset containing records of 7 plant species downloaded from GBIF. The
 records were obtained with \code{plantR::rgbif2}
 }
+\references{
+GBIF, 2024. florabr R package: Records of plant species. https://doi.org/10.15468/DD.QPGEB7
+}
 \keyword{datasets}

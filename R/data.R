@@ -117,4 +117,5 @@
 #'   \item{x}{Longitude}
 #'   \item{y}{Latitude}
 #' }
+#' @references GBIF, 2024. florabr R package: Records of plant species. https://doi.org/10.15468/DD.QPGEB7
 "occurrences"

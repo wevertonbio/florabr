@@ -644,3 +644,76 @@ fill_NA <- function(data){
 
   return(data)
 }
+
+
+# ####Generate data to filter_florabR#####
+# library(dplyr)
+# library(data.table)
+# library(terra)
+# library(geobr)
+
+# ####Get Flora do Brazil dataset####
+# my_dir <- "../BrazilianFlora"
+# dir.create(my_dir)
+# get_florabr(output_dir = my_dir)
+#
+# #Flora do Brazil data
+# df <- load_florabr(data_dir = my_dir, type = "short")
+# #Get only species and Plantae
+# p <- df %>% filter(kingdom == "Plantae", taxonRank == "Species")
+# #Get only accepted names
+# pac <- p %>% filter(taxonomicStatus == "Accepted")
+# #Subset some species
+# bf_data <- pac
+# usethis::use_data(bf_data, overwrite = TRUE)
+#
+#
+# ####Get species occurrences####
+# library(plantR)
+# library(CoordinateCleaner)
+# library(pbapply)
+# library(dplyr)
+#
+# spp <- c("Araucaria angustifolia", "Abatia americana", "Passiflora edmundoi",
+#          "Myrcia hatschbachii", "Serjania pernambucensis", "Inga virescens",
+#          "Solanum restingae")
+#
+# oc.gbif <- pblapply(spp, function(i) {
+#   rgbif2(species = i, force = TRUE, remove_na = TRUE) })
+# oc.gbif <- bind_rows(oc.gbif)
+#
+#
+# #Clean data
+# library(CoordinateCleaner)
+# oc_n <- oc.gbif %>% mutate(decimalLatitude = as.numeric(decimalLatitude),
+#                            decimalLongitude = as.numeric(decimalLongitude))
+#
+# occ_f <- clean_coordinates(x = oc_n, lon = "decimalLongitude",
+#                            lat = "decimalLatitude",
+#                            species = "species", countries = "countryCode",
+#                            tests = c("capitals", "centroids", "equal", "gbif",
+#                                      "institutions","seas", "zeros"))
+# #Select only valid records
+# occ <- occ_f %>% filter(.summary == TRUE) %>%
+#   dplyr::select(species, x = "decimalLongitude", y = "decimalLatitude",
+#                 datasetKey) #To get DOI
+# #Remove duplicates
+# occ_dup <- cc_dupl(occ, species = "species", lon = "x", lat = "y")
+# occurrences <- data.frame(occ_dup)
+# #Data set key
+# ds_key <- occurrences %>% count(datasetKey)
+#
+# derived_dataset(
+#   citation_data = ds_key,
+#   title = "florabr R package: Records of plant species",
+#   description="This data was downloaded using plantR::rgbif2, filtered using
+#   CoordinateCleaner::clean_coordinates and later incorported as data example in
+#   florabr R Package",
+#   source_url="https://github.com/wevertonbio/florabr/raw/main/data/occurrences.rda",
+#   gbif_download_doi = NULL,
+#   user = user, #User in GBIF
+#   pwd = pwd) #Password in GBIF
+#
+# #Remove datasetKey column
+# occurrences <- occurrences %>% dplyr::select(-datasetKey)
+# usethis::use_data(occurrences, overwrite = TRUE)
