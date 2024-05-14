@@ -26,7 +26,8 @@ There are currently no downstream dependencies for this package.
 <br>
 <hr>
 
-##  Resubmission florabr 1.2.0
+## Submission florabr 1.1.0
+This is the first submission of version 1.1.0.
 
 ## Test environments
 * Windows 11, R 4.3.1 (local)
