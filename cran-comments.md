@@ -20,6 +20,16 @@ There were 1 NOTE:
 Maintainer: 'Weverton Trindade <wevertonf1993@gmail.com>'
 A Note that reminds CRAN maintainers to check that the submission comes actually from his maintainer and not anybody else.
 
+* Possibly misspelled words in DESCRIPTION:
+    Brasil (2:33, 7:115)
+    Funga (2:24, 7:106)
+* The Title field should be in title case. Current version is:
+  'Explore Flora e Funga do Brasil Database'
+  In title case that is:
+  'Explore Flora e Funga Do Brasil Database'
+These notes were generated due to the presence of the words "Flora do Brasil" in the package title. I've updated the name of the project that provides the data used in the package. The project, formerly titled "Brazilian Flora 2020," is now called "Flora e Funga do Brasil".
+
+
 ## Downstream dependencies
 There are currently no downstream dependencies for this package.
 
