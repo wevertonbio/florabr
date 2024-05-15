@@ -133,35 +133,44 @@ e Funga do Brasil dataset</a>.</p>
 </h2>
 <ul>
 <li>
-<code>get_florabr</code>: download the latest or an older version of
-Flora e Funga do Brasil database.</li>
+<code><a href="../reference/get_florabr.html">get_florabr()</a></code>: download the latest or an older version
+of Flora e Funga do Brasil database.</li>
 <li>
-<code>check_version</code>: check if you have the latest version of
-Flora e Funga do Brasil data available in a directory.</li>
+<code><a href="../reference/check_version.html">check_version()</a></code>: check if you have the latest version
+of Flora e Funga do Brasil data available in a directory.</li>
 <li>
-<code>load_florabr</code>: load Flora e Funga do Brasil
+<code><a href="../reference/load_florabr.html">load_florabr()</a></code>: load Flora e Funga do Brasil
 database.</li>
 <li>
-<code>get_attributes</code>: display all the options available to
+<code><a href="../reference/solve_discrepancies.html">solve_discrepancies()</a></code>: Resolve discrepancies between
+species and subspecies/varieties information in the original
+dataset.</li>
+<li>
+<code><a href="../reference/get_attributes.html">get_attributes()</a></code>: display all the options available to
 filter species by its characteristics.</li>
 <li>
-<code>select_species</code>: filter species based on its
+<code><a href="../reference/select_species.html">select_species()</a></code>: filter species based on its
 characteristics and distribution.</li>
 <li>
-<code>get_binomial</code>: extract the binomial name (Genus +
+<code><a href="../reference/get_binomial.html">get_binomial()</a></code>: extract the binomial name (Genus +
 specific epithet) from a Scientific Name.</li>
 <li>
-<code>check_names</code>: check if the species names are
+<code><a href="../reference/get_synonym.html">get_synonym()</a></code>: Retrieve synonyms for species.</li>
+<li>
+<code><a href="../reference/check_names.html">check_names()</a></code>: check if the species names are
 correct.</li>
 <li>
-<code>subset_species</code>: subset a list of species from Flora e
+<code><a href="../reference/subset_species.html">subset_species()</a></code>: subset a list of species from Flora e
 Funga do Brasil.</li>
 <li>
-<code>get_spat_occ</code>: get Spatial polygons (SpatVectors) of
+<code><a href="../reference/get_spat_occ.html">get_spat_occ()</a></code>: get Spatial polygons (SpatVectors) of
 species based on its distribution.</li>
 <li>
-<code>filter_florabr</code>: removes or flags records outside of the
-species’ natural ranges.</li>
+<code><a href="../reference/filter_florabr.html">filter_florabr()</a></code>: removes or flags records outside of
+the species’ natural ranges.</li>
+<li>
+<code><a href="../reference/get_pam.html">get_pam()</a></code>: get a presence-absence matrix of species
+based on its distribution.</li>
 </ul>
 </div>
 <div class="section level2">
@@ -233,8 +242,8 @@ within the designated directory.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/check_version.html">check_version</a></span><span class="op">(</span>data_dir <span class="op">=</span> <span class="va">my_dir</span><span class="op">)</span></span>
 <span><span class="co">#&gt; You have the following versions of Flora e Funga do Brasil:</span></span>
 <span><span class="co">#&gt;  393.385</span></span>
-<span><span class="co">#&gt; 393.399 </span></span>
-<span><span class="co">#&gt;  It includes the latest version:  393.399</span></span></code></pre></div>
+<span><span class="co">#&gt;  393.401 </span></span>
+<span><span class="co">#&gt;  It includes the latest version:  393.401</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="loading-the-data">Loading the data<a class="anchor" aria-label="anchor" href="#loading-the-data"></a>
@@ -245,7 +254,7 @@ the data into your environment. To achieve this, utilize the
 automatically search for the latest available version in your directory.
 However, you have the option to specify a particular version using the
 <em>data_version</em> parameter. Additionally, you can choose between
-two versions of the data: the ‘short’ version (containing the 20 columns
+two versions of the data: the ‘short’ version (containing the 23 columns
 required for run the other functions of the package) or the ‘complete’
 version (with all original 39 columns). The function imports the ‘short’
 version by default.</p>
@@ -254,15 +263,16 @@ version by default.</p>
 <span><span class="va">bf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_florabr.html">load_florabr</a></span><span class="op">(</span>data_dir <span class="op">=</span> <span class="va">my_dir</span>,</span>
 <span>                   data_version <span class="op">=</span> <span class="st">"Latest_available"</span>,</span>
 <span>                   type <span class="op">=</span> <span class="st">"short"</span><span class="op">)</span> <span class="co">#short</span></span>
-<span><span class="co">#&gt; Loading version 393.399</span></span>
+<span><span class="co">#&gt; Loading version 393.401</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">bf</span><span class="op">)</span> <span class="co">#See variables from short version</span></span>
 <span><span class="co">#&gt;  [1] "species"             "scientificName"      "acceptedName"       </span></span>
-<span><span class="co">#&gt;  [4] "kingdom"             "Group"               "Subgroup"           </span></span>
-<span><span class="co">#&gt;  [7] "family"              "genus"               "lifeForm"           </span></span>
-<span><span class="co">#&gt; [10] "habitat"             "Biome"               "States"             </span></span>
-<span><span class="co">#&gt; [13] "vegetationType"      "Origin"              "Endemism"           </span></span>
-<span><span class="co">#&gt; [16] "taxonomicStatus"     "nomenclaturalStatus" "vernacularName"     </span></span>
-<span><span class="co">#&gt; [19] "taxonRank"           "id"</span></span></code></pre></div>
+<span><span class="co">#&gt;  [4] "kingdom"             "group"               "subgroup"</span></span>
+<span><span class="co">#&gt;  [7] "phylum"              "class"               "order"             </span></span>
+<span><span class="co">#&gt; [10] "family"              "genus"               "lifeForm"           </span></span>
+<span><span class="co">#&gt; [13] "habitat"             "biome"               "states"             </span></span>
+<span><span class="co">#&gt; [16] "vegetation"          "origin"              "endemism"           </span></span>
+<span><span class="co">#&gt; [19] "taxonomicStatus"     "nomenclaturalStatus" "vernacularName"     </span></span>
+<span><span class="co">#&gt; [22] "taxonRank"           "id"</span></span></code></pre></div>
 <p>Note that the complete version has 20 more columns:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Complete version</span></span>
@@ -273,8 +283,8 @@ version by default.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">bf_complete</span><span class="op">)</span> <span class="co">#See variables from complete version</span></span>
 <span><span class="co">#&gt;  [1] "id"                       "taxonID"                 </span></span>
 <span><span class="co">#&gt;  [3] "acceptedNameUsageID"      "parentNameUsageID"       </span></span>
-<span><span class="co">#&gt;  [5] "originalNameUsageID"      "Group"                   </span></span>
-<span><span class="co">#&gt;  [7] "Subgroup"                 "species"                 </span></span>
+<span><span class="co">#&gt;  [5] "originalNameUsageID"      "group"                   </span></span>
+<span><span class="co">#&gt;  [7] "subgroup"                 "species"                 </span></span>
 <span><span class="co">#&gt;  [9] "acceptedName"             "scientificName"          </span></span>
 <span><span class="co">#&gt; [11] "acceptedNameUsage"        "parentNameUsage"         </span></span>
 <span><span class="co">#&gt; [13] "namePublishedIn"          "namePublishedInYear"     </span></span>
@@ -286,9 +296,9 @@ version by default.</p>
 <span><span class="co">#&gt; [25] "scientificNameAuthorship" "taxonomicStatus"         </span></span>
 <span><span class="co">#&gt; [27] "nomenclaturalStatus"      "vernacularName"          </span></span>
 <span><span class="co">#&gt; [29] "lifeForm"                 "habitat"                 </span></span>
-<span><span class="co">#&gt; [31] "vegetationType"           "Origin"                  </span></span>
-<span><span class="co">#&gt; [33] "Endemism"                 "Biome"                   </span></span>
-<span><span class="co">#&gt; [35] "States"                   "countryCode"             </span></span>
+<span><span class="co">#&gt; [31] "vegetation"               "origin"                  </span></span>
+<span><span class="co">#&gt; [33] "endemism"                 "biome"                   </span></span>
+<span><span class="co">#&gt; [35] "states"                   "countryCode"             </span></span>
 <span><span class="co">#&gt; [37] "modified"                 "bibliographicCitation"   </span></span>
 <span><span class="co">#&gt; [39] "references"</span></span></code></pre></div>
 <p>If you want to save the datasets to open with an external editor
@@ -297,6 +307,75 @@ version by default.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bf</span>,</span>
 <span>          file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">my_dir</span>, <span class="st">"BrazilianFlora.csv"</span><span class="op">)</span>,</span>
 <span>          row.names <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="solve-discrepancies">Solve discrepancies<a class="anchor" aria-label="anchor" href="#solve-discrepancies"></a>
+</h2>
+<p>Discrepancies may arise in the original dataset, particularly between
+species and subspecies/varieties information. One common scenario is
+when a species is reported in one biome (e.g., Amazon), while a
+subspecies or variety of the same species is found in another biome
+(e.g., Cerrado). The <code><a href="../reference/solve_discrepancies.html">solve_discrepancies()</a></code> function
+rectifies such discrepancies by considering distribution (states,
+biomes, and vegetation), life form, and habitat. For example, if a
+subspecies is documented in a specific biome, it suggests that the
+species also exists in that biome You can resolve these discrepancies by
+setting <em>solve_discrepancy = FALSE</em> in
+<code><a href="../reference/get_florabr.html">get_florabr()</a></code>:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_florabr.html">get_florabr</a></span><span class="op">(</span><span class="va">output_dir</span>, data_version <span class="op">=</span> <span class="st">"latest"</span>,</span>
+<span>            solve_discrepancy <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co">#Default is false</span></span>
+<span>            overwrite <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>            verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p>By resolving discrepancies internally in get_florabr(), the dataset
+loaded with load_florabr() will already have these issues addressed. You
+can verify if the dataset has resolved discrepancies by examining its
+attributes:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">bf</span>, <span class="st">"solve_discrepancies"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; FALSE</span></span></code></pre></div>
+<p>Since we downloaded the data with the default option
+(solve_discrepancy = FALSE), the loaded dataset may contain
+discrepancies. For instance, let’s explore the biomes with confirmed
+occurrences of species and subspecies of <em>Acianthera
+ochreata</em>:</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">acianthera</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/subset_species.html">subset_species</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf</span>, species <span class="op">=</span> <span class="st">"Acianthera ochreata"</span>,</span>
+<span>                             include_subspecies <span class="op">=</span> <span class="cn">TRUE</span>, include_variety <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#Check biomes with confirmed occurrence</span></span>
+<span><span class="va">acianthera</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"scientificName"</span>, <span class="st">"taxonRank"</span>, <span class="st">"biome"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="co">#&gt;                                                          scientificName  taxonRank                            biome</span></span>
+<span><span class="co">#&gt; 8134                  Acianthera ochreata (Lindl.) Pridgeon &amp; M.W.Chase    Species                 Caatinga;Cerrado</span></span>
+<span><span class="co">#&gt; 24923    Acianthera ochreata subsp. cylindrifolia (Borba &amp; Semir) Borba Subspecies                          Cerrado</span></span>
+<span><span class="co">#&gt; 29550 Acianthera ochreata (Lindl.) Pridgeon &amp; M.W.Chase subsp. ochreata Subspecies Atlantic_Forest;Caatinga;Cerrado</span></span></code></pre></div>
+<p>We observe that the species <em>Acianthera ochreata</em> has
+confirmed occurrences in two biomes: Caatinga and Cerrado. However,
+there are two subspecies of <em>A. ochreata</em>: <em>A. ochreata subsp.
+cylindrifolia</em>, confirmed in the Cerrado, and <em>Acianthera
+ochreata subsp. ochreata</em>, confirmed in the Caatinga, Cerrado, and
+Atlantic Forest. Through the solve_discrepancies() function, we can
+retrieve information from subspecies and varieties with accepted names
+to update the information of the related species</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">bf_solved</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/solve_discrepancies.html">solve_discrepancies</a></span><span class="op">(</span><span class="va">bf</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#See attribute</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">bf_solved</span>, <span class="st">"solve_discrepancies"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; TRUE</span></span></code></pre></div>
+<p>In this new dataset with discrepancies solved, let’s examine the
+biomes where <em>Acianthera ochreata</em> has confirmed occurrences:</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">acianthera_solved</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/subset_species.html">subset_species</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_solved</span>, species <span class="op">=</span> <span class="st">"Acianthera ochreata"</span>,</span>
+<span>                             include_subspecies <span class="op">=</span> <span class="cn">TRUE</span>, include_variety <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#Check biomes with confirmed occurrence</span></span>
+<span><span class="va">acianthera_solved</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"scientificName"</span>, <span class="st">"taxonRank"</span>, <span class="st">"biome"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="co">#&gt;                                                          scientificName  taxonRank                            biome</span></span>
+<span><span class="co">#&gt; 16108                 Acianthera ochreata (Lindl.) Pridgeon &amp; M.W.Chase    Species Atlantic_Forest;Caatinga;Cerrado</span></span>
+<span><span class="co">#&gt; 24923    Acianthera ochreata subsp. cylindrifolia (Borba &amp; Semir) Borba Subspecies                          Cerrado</span></span>
+<span><span class="co">#&gt; 29550 Acianthera ochreata (Lindl.) Pridgeon &amp; M.W.Chase subsp. ochreata Subspecies Atlantic_Forest;Caatinga;Cerrado</span></span></code></pre></div>
+<p>Now, we can see that the biomes with confirmed occurrences of the
+species <em>A. ochreata</em> are updated to Caatinga, Cerrado, and
+Atlantic Forest (the latter retrieved from the subspecies).</p>
 </div>
   </div>
 
