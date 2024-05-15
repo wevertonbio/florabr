@@ -2,7 +2,7 @@
 title: "1. Getting started with florabr"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Getting started with florabr}
+  %\VignetteIndexEntry{1. Getting started with florabr}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -24,16 +24,19 @@ The florabr package includes a collection of functions designed to retrieve, fil
 
 ## Overview of the functions:
 
-+ `get_florabr`: download the latest or an older version of Flora e Funga do Brasil database.
-+ `check_version`: check if you have the latest version of Flora e Funga do Brasil data available in a directory.
-+ `load_florabr`: load Flora e Funga do Brasil database.
-+ `get_attributes`: display all the options available to filter species by its characteristics.
-+ `select_species`: filter species based on its characteristics and distribution.
-+ `get_binomial`: extract the binomial name (Genus + specific epithet) from a Scientific Name.
-+ `check_names`: check if the species names are correct.
-+ `subset_species`: subset a list of species from Flora e Funga do Brasil.
-+ `get_spat_occ`: get Spatial polygons (SpatVectors) of species based on its distribution.
-+ `filter_florabr`: removes or flags records outside of the species' natural ranges.
++ `get_florabr()`: download the latest or an older version of Flora e Funga do Brasil database.
++ `check_version()`: check if you have the latest version of Flora e Funga do Brasil data available in a directory.
++ `load_florabr()`: load Flora e Funga do Brasil database.
++ `solve_discrepancies()`: Resolve discrepancies between species and subspecies/varieties information in the original dataset.
++ `get_attributes()`: display all the options available to filter species by its characteristics.
++ `select_species()`: filter species based on its characteristics and distribution.
++ `get_binomial()`: extract the binomial name (Genus + specific epithet) from a Scientific Name.
++ `get_synonym()`: Retrieve synonyms for species.
++ `check_names()`: check if the species names are correct.
++ `subset_species()`: subset a list of species from Flora e Funga do Brasil.
++ `get_spat_occ()`: get Spatial polygons (SpatVectors) of species based on its distribution.
++ `filter_florabr()`: removes or flags records outside of the species' natural ranges.
++ `get_pam()`: get a presence-absence matrix of species based on its distribution.
 
 
 ## Installation
@@ -99,28 +102,29 @@ To view the available versions in your specified directory, run:
 check_version(data_dir = my_dir)
 #> You have the following versions of Flora e Funga do Brasil:
 #>  393.385
-#> 393.399 
-#>  It includes the latest version:  393.399
+#>  393.401 
+#>  It includes the latest version:  393.401
 ```
 
 ## Loading the data
 In order to use the other functions of the package, you need to load the data into your environment. To achieve this, utilize the `load_florabr()` function. By default, the function will automatically search for the latest available version in your directory. However, you have the option to specify a particular version using the *data_version* parameter.
-Additionally, you can choose between two versions of the data: the 'short' version (containing the 20 columns required for run the other functions of the package) or the 'complete' version (with all original 39 columns). The function imports the 'short' version by default.
+Additionally, you can choose between two versions of the data: the 'short' version (containing the 23 columns required for run the other functions of the package) or the 'complete' version (with all original 39 columns). The function imports the 'short' version by default.
 
 ```{r}
 #Short version
 bf <- load_florabr(data_dir = my_dir,
                    data_version = "Latest_available",
                    type = "short") #short
-#> Loading version 393.399
+#> Loading version 393.401
 colnames(bf) #See variables from short version
 #>  [1] "species"             "scientificName"      "acceptedName"       
-#>  [4] "kingdom"             "Group"               "Subgroup"           
-#>  [7] "family"              "genus"               "lifeForm"           
-#> [10] "habitat"             "Biome"               "States"             
-#> [13] "vegetationType"      "Origin"              "Endemism"           
-#> [16] "taxonomicStatus"     "nomenclaturalStatus" "vernacularName"     
-#> [19] "taxonRank"           "id"
+#>  [4] "kingdom"             "group"               "subgroup"
+#>  [7] "phylum"              "class"               "order"             
+#> [10] "family"              "genus"               "lifeForm"           
+#> [13] "habitat"             "biome"               "states"             
+#> [16] "vegetation"          "origin"              "endemism"           
+#> [19] "taxonomicStatus"     "nomenclaturalStatus" "vernacularName"     
+#> [22] "taxonRank"           "id"
 ```
 Note that the complete version has 20 more columns:
 
@@ -133,8 +137,8 @@ bf_complete <- load_florabr(data_dir = my_dir,
 colnames(bf_complete) #See variables from complete version
 #>  [1] "id"                       "taxonID"                 
 #>  [3] "acceptedNameUsageID"      "parentNameUsageID"       
-#>  [5] "originalNameUsageID"      "Group"                   
-#>  [7] "Subgroup"                 "species"                 
+#>  [5] "originalNameUsageID"      "group"                   
+#>  [7] "subgroup"                 "species"                 
 #>  [9] "acceptedName"             "scientificName"          
 #> [11] "acceptedNameUsage"        "parentNameUsage"         
 #> [13] "namePublishedIn"          "namePublishedInYear"     
@@ -146,9 +150,9 @@ colnames(bf_complete) #See variables from complete version
 #> [25] "scientificNameAuthorship" "taxonomicStatus"         
 #> [27] "nomenclaturalStatus"      "vernacularName"          
 #> [29] "lifeForm"                 "habitat"                 
-#> [31] "vegetationType"           "Origin"                  
-#> [33] "Endemism"                 "Biome"                   
-#> [35] "States"                   "countryCode"             
+#> [31] "vegetation"               "origin"                  
+#> [33] "endemism"                 "biome"                   
+#> [35] "states"                   "countryCode"             
 #> [37] "modified"                 "bibliographicCitation"   
 #> [39] "references"
 ```
@@ -159,3 +163,56 @@ write.csv(x = bf,
           file = file.path(my_dir, "BrazilianFlora.csv"),
           row.names = F)
 ```
+
+## Solve discrepancies
+Discrepancies may arise in the original dataset, particularly between species and subspecies/varieties information. One common scenario is when a species is reported in one biome (e.g., Amazon), while a subspecies or variety of the same species is found in another biome (e.g., Cerrado). The `solve_discrepancies()` function rectifies such discrepancies by considering distribution (states, biomes, and vegetation), life form, and habitat. For example, if a subspecies is documented in a specific biome, it suggests that the species also exists in that biome
+You can resolve these discrepancies by setting *solve_discrepancy = FALSE* in `get_florabr()`:
+
+```{r eval = FALSE}
+get_florabr(output_dir, data_version = "latest",
+            solve_discrepancy = TRUE, #Default is false
+            overwrite = TRUE,
+            verbose = TRUE)
+```
+
+By resolving discrepancies internally in get_florabr(), the dataset loaded with load_florabr() will already have these issues addressed. You can verify if the dataset has resolved discrepancies by examining its attributes:
+
+```{r}
+attr(bf, "solve_discrepancies")
+#> FALSE
+```
+Since we downloaded the data with the default option (solve_discrepancy = FALSE), the loaded dataset may contain discrepancies. For instance, let's explore the biomes with confirmed occurrences of species and subspecies of *Acianthera ochreata*:
+
+```{r}
+acianthera <- subset_species(data = bf, species = "Acianthera ochreata",
+                             include_subspecies = TRUE, include_variety = TRUE)
+#Check biomes with confirmed occurrence
+acianthera[,c("scientificName", "taxonRank", "biome")]
+#>                                                          scientificName  taxonRank                            biome
+#> 8134                  Acianthera ochreata (Lindl.) Pridgeon & M.W.Chase    Species                 Caatinga;Cerrado
+#> 24923    Acianthera ochreata subsp. cylindrifolia (Borba & Semir) Borba Subspecies                          Cerrado
+#> 29550 Acianthera ochreata (Lindl.) Pridgeon & M.W.Chase subsp. ochreata Subspecies Atlantic_Forest;Caatinga;Cerrado
+```
+We observe that the species *Acianthera ochreata* has confirmed occurrences in two biomes: Caatinga and Cerrado. However, there are two subspecies of *A. ochreata*: *A. ochreata subsp. cylindrifolia*, confirmed in the Cerrado, and *Acianthera ochreata subsp. ochreata*, confirmed in the Caatinga, Cerrado, and Atlantic Forest. Through the solve_discrepancies() function, we can retrieve information from subspecies and varieties with accepted names to update the information of the related species
+
+```{r}
+bf_solved <- solve_discrepancies(bf)
+
+#See attribute
+attr(bf_solved, "solve_discrepancies")
+#> TRUE
+```
+In this new dataset with discrepancies solved, let's examine the biomes where *Acianthera ochreata* has confirmed occurrences:
+
+```{r}
+acianthera_solved <- subset_species(data = bf_solved, species = "Acianthera ochreata",
+                             include_subspecies = TRUE, include_variety = TRUE)
+#Check biomes with confirmed occurrence
+acianthera_solved[,c("scientificName", "taxonRank", "biome")]
+#>                                                          scientificName  taxonRank                            biome
+#> 16108                 Acianthera ochreata (Lindl.) Pridgeon & M.W.Chase    Species Atlantic_Forest;Caatinga;Cerrado
+#> 24923    Acianthera ochreata subsp. cylindrifolia (Borba & Semir) Borba Subspecies                          Cerrado
+#> 29550 Acianthera ochreata (Lindl.) Pridgeon & M.W.Chase subsp. ochreata Subspecies Atlantic_Forest;Caatinga;Cerrado
+
+```
+Now, we can see that the biomes with confirmed occurrences of the species *A. ochreata* are updated to Caatinga, Cerrado, and Atlantic Forest (the latter retrieved from the subspecies).
