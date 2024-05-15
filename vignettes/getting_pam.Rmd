@@ -2,7 +2,7 @@
 title: "4. Obtaining a Presence-Absence Matrix"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Obtaining a Presence-Absence Matrix}
+  %\VignetteIndexEntry{4. Obtaining a Presence-Absence Matrix}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

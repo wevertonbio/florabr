@@ -2,7 +2,7 @@
 title: "2. Selecting and filtering species"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Selecting and filtering species}
+  %\VignetteIndexEntry{2. Selecting and filtering species}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
