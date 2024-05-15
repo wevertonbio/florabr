@@ -1,5 +1,5 @@
 test_that("get florabr works", {
-  #skip_on_cran() #Skip test on CRAN
+  skip_on_cran() #Skip test on CRAN
   #####It works when we set a folder that already exists####
   my_dir <- file.path(file.path(tempdir(), "florabr"))
   dir.create(my_dir, showWarnings = FALSE)
