@@ -175,7 +175,64 @@ select_species <- function(data,
                 class(include_variety)))
   }
 
+  ####Make text case insensitive####
+  kingdom <- firstup(trimws(kingdom))
+  filter_lifeForm <- tolower(filter_lifeForm)
+  filter_habitat <- tolower(filter_habitat)
+  filter_biome <- tolower(filter_biome)
+  filter_vegetation <- tolower(filter_vegetation)
 
+  if(all(group != "All")) {
+    group <- firstup(trimws(group))
+    if(group == "Ferns and lycophytes") {
+      group <- "Ferns and Lycophytes"}}
+
+  if(all(subgroup != "All")) {
+    subgroup_c <- firstup(trimws(subgroup))} else{subgroup_c = subgroup}
+
+  if(all(family != "All")) {
+    family_c <- firstup(trimws(family))} else{family_c = family}
+
+  if(all(phylum != "All")) {
+    phylum_c <- firstup(trimws(phylum))} else {(phylum_c = phylum)}
+
+  if(all(class != "All")) {
+    class_c <- firstup(trimws(class))} else {(class_c = class)}
+
+  if(all(order != "All")) {
+    order_c <- firstup(trimws(order))} else {(order_c = order)}
+
+  if(all(genus != "All")) {
+    genus_c <- firstup(trimws(genus))} else {(genus_c = genus)}
+
+  if(all(lifeForm != "All")) {
+    lifeForm <- firstup(trimws(lifeForm))}
+
+  if(all(habitat != "All")) {
+    habitat <- firstup(trimws(habitat))}
+
+  if(all(biome != "All")) {
+    biome <- firstup_collapse(trimws(biome))}
+
+  if(all(state != "All")) {
+    state <- toupper(trimws(state))}
+
+  if(all(vegetation != "All")) {
+    vegetation <- firstup_collapse(trimws(vegetation))}
+
+  if(all(endemism != "All")) {
+    endemism <- firstup(trimws(endemism))}
+
+  if(all(origin != "All")) {
+    origin <- firstup(trimws(origin))}
+
+  if(all(taxonomicStatus != "All")) {
+    taxonomicStatus <- firstup(trimws(taxonomicStatus))}
+
+  if(all(nomenclaturalStatus != "All")) {
+    nomenclaturalStatus <- firstup(trimws(nomenclaturalStatus))}
+
+  ####Check arguments####
   if(!(filter_lifeForm %in% c("in", "only", "not_in", "and"))) {
     stop(paste0("Argument filter_lifeForm must be:\n",
                 "'in', 'only', 'not_in' or 'and'"))
@@ -201,39 +258,43 @@ select_species <- function(data,
     stop(paste("group not valid. The groups availables are:\n",
                paste(unique(data$group), collapse = ", ")))  }
 
-  if(subgroup != "All" & !(subgroup %in% unique(data$subgroup))) {
+  if(all(subgroup_c != "All") & !all(subgroup_c %in% unique(data$subgroup))) {
     stop(paste("subgroup not valid.
                The subgroups are only available for non-Plants:\n",
                paste(na.omit(unique(data$subgroup)), collapse = ", ")))  }
 
-  if(all(family != "All") & !all(family %in% unique(data$family))) {
+  if(all(family_c != "All") & !all(family_c %in% unique(data$family))) {
     stop(paste("family not valid.\n",
                "Check the available families with the function
                get_attributes()")
-         ) }
+    ) }
 
-  if(genus != "All" & !(genus %in% unique(data$genus))) {
+  if(any(genus_c != "All") & any(!(genus_c %in% unique(data$genus)))) {
     stop(paste("genus not valid.\n")) }
 
-  if(endemism != "All" & !(endemism %in% c('All', 'Endemic', 'Non-endemic'))) {
+  if(any(endemism != "All") &
+     any(!(endemism %in% c('All', 'Endemic', 'Non-endemic')))) {
     stop(paste("endemism not valid. The options availables are:\n",
                "'All', 'Endemic', or 'Non-endemic'"))}
-  if(origin != "All" & !(origin %in% c('All', 'Native', 'Cultivated',
-  'Naturalized'))) {
+
+  if(any(origin != "All") & any(!(origin %in% c('All', 'Native', 'Cultivated',
+                                                'Naturalized')))) {
     stop(paste("origin not valid. The options availables are:\n",
                "'All', 'Native', 'Cultivated', or 'Naturalized'"))}
-  if(taxonomicStatus != "All" &
-     !(taxonomicStatus %in% c('All', 'Accepted', 'Synonym'))) {
+
+  if(any(taxonomicStatus != "All") &
+     any(!(taxonomicStatus %in% c('All', 'Accepted', 'Synonym')))) {
     stop(paste("taxonomicStatus not valid. The options availables are:\n",
                "'All', 'Accepted', or 'Synonym'"))}
-  if(nomenclaturalStatus != "All" &
-     !(nomenclaturalStatus %in% c("Correct", "Legitimate_but_incorrect",
-                                  "Correct_name_by_conservation",
-                                  "Orthographical_variant",
-                                  "Illegitimate", "Not_effectively_published",
-                                  "Not_validly_published",
-                                  "Uncertain_Application", "Rejected",
-                                  "Misapplied"))) {
+
+  if(any(nomenclaturalStatus != "All") &
+     any(!(nomenclaturalStatus %in% c("Correct", "Legitimate_but_incorrect",
+                                      "Correct_name_by_conservation",
+                                      "Orthographical_variant",
+                                      "Illegitimate", "Not_effectively_published",
+                                      "Not_validly_published",
+                                      "Uncertain_Application", "Rejected",
+                                      "Misapplied")))) {
     stop(paste("nomenclaturalStatus not valid.\n",
                "Check the available nomenclaturalStatus with the function\n",
                "get_attributes()")) }
@@ -242,7 +303,6 @@ select_species <- function(data,
 
   #kingdom
   #Make sure first letter of group is upper case
-  kingdom <- firstup(trimws(kingdom))
   d <- subset(data, data$kingdom %in% kingdom)
 
   #Taxon Rank
@@ -259,9 +319,6 @@ select_species <- function(data,
   if(all(group == "All")) {
     d <- d } else {
       #Make sure first letter of group is upper case
-      group <- firstup(trimws(group))
-      if(group == "Ferns and lycophytes") {
-        group <- "Ferns and Lycophytes"}
       gr <- paste(group, collapse = "|")
       d <- subset(d, grepl(gr, d$group))
     }
@@ -276,50 +333,38 @@ select_species <- function(data,
   #   }
 
   #subgroup
-  if(subgroup == "All") {
+  if(subgroup_c == "All") {
     d <- d } else {
-      #Make sure first letter is upper case
-      subgroup_c <- firstup(trimws(subgroup))
       d <- subset(d, d$subgroup %in% subgroup_c)
     }
 
   #family
-  if(all(family == "All")) {
+  if(all(family_c == "All")) {
     d <- d } else {
-      #Make sure first letter  is upper case
-      family_c <- firstup(trimws(family))
       d <- subset(d, d$family %in% family_c)
     }
 
   #phylum
-  if(all(phylum == "All")) {
+  if(all(phylum_c == "All")) {
     d <- d } else {
-      #Make sure first letter  is upper case
-      phylum_c <- firstup(trimws(phylum))
       d <- subset(d, d$phylum %in% phylum_c)
     }
 
   #class
-  if(all(class == "All")) {
+  if(all(class_c == "All")) {
     d <- d } else {
-      #Make sure first letter  is upper case
-      class_c <- firstup(trimws(class))
       d <- subset(d, d$class %in% class_c)
     }
 
   #order
-  if(all(order == "All")) {
+  if(all(order_c == "All")) {
     d <- d } else {
-      #Make sure first letter  is upper case
-      order_c <- firstup(trimws(order))
       d <- subset(d, d$order %in% order_c)
     }
 
   #genus
-  if(all(genus == "All")) {
+  if(all(genus_c == "All")) {
     d <- d } else {
-      #Make sure first letter is upper case
-      genus_c <- firstup(trimws(genus))
       d <- subset(d, d$genus %in% genus_c)
     }
 
@@ -330,7 +375,7 @@ select_species <- function(data,
   #Check if it is a valid lifeForm
   if(all(lifeForm != "All")) {
     #Make sure first letter of group is upper case
-    newlifeForm<- firstup(trimws(lifeForm))
+    newlifeForm<- lifeForm
     all_lf <- unique(unlist(strsplit(d$lifeForm, split = ";")))
     newlifeForm <- sort(newlifeForm)
     # # newlifeForm <- gsub(" ", "", lifeForm)
@@ -374,7 +419,7 @@ select_species <- function(data,
   #Check if it is a valid habitat
   if(all(habitat != "All")) {
     #Make sure first letter is upper case
-    newhabitat<- firstup(trimws(habitat))
+    newhabitat<- habitat
     newhabitat <- sort(newhabitat)
     all_hab <- unique(unlist(strsplit(d$habitat, split = ";")))
     # newhabitat <- gsub(" ", "", habitat)
@@ -418,7 +463,7 @@ select_species <- function(data,
   #Check if it is a valid biome
   if(all(biome != "All")) {
     #Make sure first letter is upper case
-    newbiome <- firstup_collapse(trimws(biome))
+    newbiome <- biome
     all_biome <- unique(unlist(strsplit(d$biome, split = ";")))
     newbiome <- sort(newbiome)
     # all_biome <- unique(unlist(strsplit(d$biome, split = ";")))
@@ -462,7 +507,7 @@ select_species <- function(data,
   #Check if it is a valid state
   if(all(state != "All")) {
     #Make sure all letter is upper case
-    newstate <- toupper(trimws(state))
+    newstate <- state
     newstate <- sort(newstate)
     all_state <- unique(unlist(strsplit(d$states, split = ";")))
     # newstate <- gsub(" ", "", state)
@@ -505,7 +550,7 @@ select_species <- function(data,
   #Check if it is a valid vegetation
   if(all(vegetation != "All")) {
     #Make sure first letter is upper case
-    newvegetation<- firstup_collapse(trimws(vegetation))
+    newvegetation<- vegetation
     newvegetation <- sort(newvegetation)
     all_vegetation <- unique(unlist(strsplit(d$vegetation, split = ";")))
     # newvegetation <- gsub(" ", "", vegetation)
@@ -549,7 +594,7 @@ select_species <- function(data,
   #Filter by endemism
   if(all(endemism != "All")) {
     #Make sure first letter is upper case
-    newendemism <- firstup(trimws(endemism))
+    newendemism <- endemism
     all_endemism <- unique(d$endemism)
     any_diff <- setdiff(newendemism, all_endemism)
     if(length(any_diff) > 0) {
@@ -565,7 +610,7 @@ select_species <- function(data,
   #Filter by origin
   if(all(origin != "All")) {
     #Make sure first letter is upper case
-    neworigin <- firstup(trimws(origin))
+    neworigin <- origin
     all_origin <- unique(d$origin)
     any_diff <- setdiff(neworigin, all_origin)
     if(length(any_diff) > 0) {
@@ -581,7 +626,7 @@ select_species <- function(data,
   #Filter by taxonomicStatus
   if(all(taxonomicStatus != "All")) {
     #Make sure first letter is upper case
-    newtaxonomicStatus <- firstup(trimws(taxonomicStatus))
+    newtaxonomicStatus <- taxonomicStatus
     all_taxonomicStatus <- unique(d$taxonomicStatus)
     any_diff <- setdiff(newtaxonomicStatus, all_taxonomicStatus)
     if(length(any_diff) > 0) {
@@ -597,7 +642,7 @@ select_species <- function(data,
   #Filter by nomenclaturalStatus
   if(all(nomenclaturalStatus != "All")) {
     #Make sure first letter is upper case
-    newnomenclaturalStatus <- firstup(trimws(nomenclaturalStatus))
+    newnomenclaturalStatus <- nomenclaturalStatus
     all_nomenclaturalStatus <- unique(d$nomenclaturalStatus)
     any_diff <- setdiff(newnomenclaturalStatus, all_nomenclaturalStatus)
     if(length(any_diff) > 0) {
