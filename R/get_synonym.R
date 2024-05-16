@@ -60,6 +60,7 @@ get_synonym <- function(data, species){
     warning(paste("All specified species are absent of Flora e Funga do Brasil
                   database\n",
                "Check the species names using the check_names() function"))
+    return(NULL)
   }
 
 }
