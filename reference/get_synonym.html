@@ -77,7 +77,8 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_synonym</span><span class="op">(</span><span class="va">data</span>, <span class="va">species</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_synonym</span><span class="op">(</span><span class="va">data</span>, <span class="va">species</span>,</span>
+<span>                   include_subspecies <span class="op">=</span> <span class="cn">TRUE</span>, include_variety <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -89,6 +90,16 @@
 
 <dt>species</dt>
 <dd><p>(character) names of the species</p></dd>
+
+
+<dt>include_subspecies</dt>
+<dd><p>(logical) include subspecies that are synonyms of
+the species? Default = TRUE</p></dd>
+
+
+<dt>include_variety</dt>
+<dd><p>(logical) include varieties that are synonyms of the
+species? Default = TRUE</p></dd>
 
 </dl></div>
     <div id="value">
@@ -109,22 +120,24 @@ http://floradobrasil.jbrj.gov.br/</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"bf_data"</span><span class="op">)</span> <span class="co">#Load Flora e Funga do Brasil data</span></span></span>
 <span class="r-in"><span><span class="co">#Species to extract synonyms</span></span></span>
 <span class="r-in"><span><span class="va">spp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Araucaria angustifolia"</span>, <span class="st">"Adesmia paranensis"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">spp_synonyms</span> <span class="op">&lt;-</span> <span class="fu">get_synonym</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>, species <span class="op">=</span> <span class="va">spp</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">spp_synonyms</span> <span class="op">&lt;-</span> <span class="fu">get_synonym</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bf_data</span>, species <span class="op">=</span> <span class="va">spp</span>,</span></span>
+<span class="r-in"><span>                            include_subspecies <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>                            include_variety <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">spp_synonyms</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                       synonym           acceptedName taxonomicStatus</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35323    Araucaria brasiliana Araucaria angustifolia         Synonym</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35325  Araucaria brasiliensis Araucaria angustifolia         Synonym</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35327        Araucaria dioica Araucaria angustifolia         Synonym</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35328       Araucaria elegans Araucaria angustifolia         Synonym</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35329    Araucaria ridolfiana Araucaria angustifolia         Synonym</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35330       Araucaria saviana Araucaria angustifolia         Synonym</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35332   Columbea angustifolia Araucaria angustifolia         Synonym</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35333     Columbea brasiliana Araucaria angustifolia         Synonym</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60644            Pinus dioica Araucaria angustifolia         Synonym</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 141020     Araucaria bibbiani Araucaria angustifolia         Synonym</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 141021   Araucaria lindleyana Araucaria angustifolia         Synonym</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 141041   Araucaria brasiliana Araucaria angustifolia         Synonym</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 85308    Adesmia psoraleoides     Adesmia paranensis         Synonym</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  acceptedName                synonym taxonomicStatus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35323  Araucaria angustifolia   Araucaria brasiliana         Synonym</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35325  Araucaria angustifolia Araucaria brasiliensis         Synonym</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35327  Araucaria angustifolia       Araucaria dioica         Synonym</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35328  Araucaria angustifolia      Araucaria elegans         Synonym</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35329  Araucaria angustifolia   Araucaria ridolfiana         Synonym</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35330  Araucaria angustifolia      Araucaria saviana         Synonym</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35332  Araucaria angustifolia  Columbea angustifolia         Synonym</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35333  Araucaria angustifolia    Columbea brasiliana         Synonym</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60644  Araucaria angustifolia           Pinus dioica         Synonym</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 141020 Araucaria angustifolia     Araucaria bibbiani         Synonym</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 141021 Araucaria angustifolia   Araucaria lindleyana         Synonym</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 141041 Araucaria angustifolia   Araucaria brasiliana         Synonym</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 85308      Adesmia paranensis   Adesmia psoraleoides         Synonym</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             nomenclaturalStatus</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 35323                      &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 35325                      &lt;NA&gt;</span>
