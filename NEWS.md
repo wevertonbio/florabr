@@ -4,7 +4,7 @@
 
 - The package now distinguishes species, subspecies and varieties.
 - `get_binomial` allows extracting infraspecific epithet (subspecie or variety).
-- `get_synonym()` allows returns the subspecies and varieties that are synonyms of a species.
+- `get_synonym()` allows returns the subspecies and varieties that are synonyms of a species
 
 # florabr 1.2.0 (May 2024)
 
