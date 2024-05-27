@@ -184,8 +184,8 @@ select_species <- function(data,
 
   if(all(group != "All")) {
     group <- firstup(trimws(group))
-    if(group == "Ferns and lycophytes") {
-      group <- "Ferns and Lycophytes"}}
+    if(any(group == "Ferns and lycophytes")) {
+      group[group == "Ferns and lycophytes"] <- "Ferns and Lycophytes"}}
 
   if(all(subgroup != "All")) {
     subgroup_c <- firstup(trimws(subgroup))} else{subgroup_c = subgroup}

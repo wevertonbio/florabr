@@ -39,27 +39,32 @@ solve_discrepancies <- function(data) {
   }
 
   #Get varieties, subspecies (and forms) with accepted names that occurs in Brazil
-  spp_var <- subset(data,
-                    data$taxonRank %in% c("Variety", "Subspecies", "Form") &
-                      data$taxonomicStatus == "Accepted" &
-                      data$endemism != "Not_found_in_Brazil")[["species"]]
-
+  ind_spp <- which(data$taxonRank %in% c("Variety", "Subspecies", "Form") &
+    data$taxonomicStatus == "Accepted" &
+    data$endemism != "Not_found_in_Brazil")
+  spp_var <- data[ind_spp, "species"]
+  #Create temporarily column with binomial species name
+  spp_var_bin <- get_binomial(spp_var, include_variety = FALSE,
+                              include_subspecies = FALSE)
+  data$species_bin <- get_binomial(data$species, include_variety = FALSE,
+                              include_subspecies = FALSE)
   #Get only species that exists as Species in dataframe
-  spp_var_yes <- intersect(data$species[which(
+  spp_var_yes <- intersect(data$species_bin[which(
     data$taxonRank == "Species" & data$taxonomicStatus == "Accepted")],
-                           spp_var)
+                           spp_var_bin)
   #Other species
-  spp_var_no <- setdiff(spp_var, data$species[which(
-    data$taxonRank == "Species")])
+  spp_var_no <- na.omit(setdiff(na.omit(spp_var_bin),
+                        data$species_bin[which(
+    data$taxonRank == "Species")]))
 
   #Get dataframe to update
-  d_upt <- subset(data, data$species %in% spp_var_yes)
+  d_upt <- subset(data, data$species_bin %in% spp_var_yes)
 
   #Update columns
-  dd_updated_list <- lapply(split(d_upt, d_upt$species), update_columns)
+  dd_updated_list <- lapply(split(d_upt, d_upt$species_bin), update_columns)
 
   # Merge dataframes
-  d_upt <- do.call(rbind, dd_updated_list)
+  d_upt2 <- do.call(rbind, dd_updated_list)
   row.names(d_upt) <- NULL
 
   #Update final dataframe
@@ -67,7 +72,7 @@ solve_discrepancies <- function(data) {
 
   #Fix varieties and subspecies that does not appear as species
   if(length(spp_var_no) > 0) {
-  df_no_species <- subset(data, data$species %in% spp_var_no)
+  df_no_species <- data[data$species_bin %in% na.omit(spp_var_no),]
   #Change taxonrank
   df_no_species$taxonRank <- "Species"
   #Create new id
@@ -90,6 +95,9 @@ solve_discrepancies <- function(data) {
         ";Unknown|Unknown;", "", data_solved[[i]][which(grepl(";Unknown|Unknown;",
                                                      data_solved[[i]]))])
   }
+
+  #Remove column with binomial name without var or subsp
+  data_solved$species_bin <- NULL
 
   #Return
   return(data_solved)

@@ -2,25 +2,39 @@
 % Please edit documentation in R/get_binomial.R
 \name{get_binomial}
 \alias{get_binomial}
-\title{Extract the binomial name (Genus + specific epithet) from a Scientific Name}
+\title{Extract the binomial name (Genus + specific epithet + infraspecific epithet
+(optional)) from a full Scientific Name}
 \usage{
-get_binomial(species_names)
+get_binomial(species_names,
+                   include_subspecies = TRUE,
+                   include_variety = TRUE)
 }
 \arguments{
 \item{species_names}{(character) Scientific names to be converted to
 binomial names}
+
+\item{include_subspecies}{(logical) include subspecies? If TRUE (default),
+the function extracts any infraspecific epithet after the pattern "subsp."}
+
+\item{include_variety}{(logical) include subspecies? If TRUE (default),
+the function extracts any infraspecific epithet after the pattern "var."}
 }
 \value{
 A vector with the binomial names (Genus + specific epithet).
 }
 \description{
-Extract the binomial name (Genus + specific epithet) from a Scientific Name
+Extract the binomial name (Genus + specific epithet + infraspecific epithet
+(optional)) from a full Scientific Name
 }
 \examples{
 spp <- c("Araucaria angustifolia (Bertol.) Kuntze",
-"Butia catarinensis Noblick & Lorenzi",
-"Adesmia paranensis Burkart")
-spp_new <- get_binomial(species_names = spp)
+         "Araucaria angustifolia var. alba Reitz",
+         "Butia catarinensis Noblick & Lorenzi",
+         "Butia eriospatha subsp. punctata",
+         "Adesmia paranensis Burkart")
+spp_new <- get_binomial(species_names = spp,
+                       include_subspecies = TRUE,
+                       include_variety = TRUE)
 spp_new
 
 }

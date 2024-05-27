@@ -411,13 +411,28 @@ merge_data <- function(path_data, version_data, solve_discrepancy,
 
   #Create columns with name of the specie and accepted name
   df_final3$species <- NA
-  #Ignore this ranks
-  ignore_rank <- c("ORDEM", "FAMILIA", "GENERO", "CLASSE", "TRIBO",
-                   "SUB_FAMILIA", "DIVISAO")
-  df_final3$species[which(!(df_final3$taxonRank %in%
-                              ignore_rank))] <- get_binomial(
-                                df_final3$scientificName[which(
-                                  !(df_final3$taxonRank %in% ignore_rank))])
+  #Subspecies and varieties rank
+  subvar_rank <- c("VARIEDADE", "SUB_ESPECIE")
+  #Species
+  df_final3$species[which(df_final3$taxonRank == "ESPECIE")] <- paste(
+    df_final3$genus[which(df_final3$taxonRank == "ESPECIE")],
+    df_final3$specificEpithet[which(df_final3$taxonRank == "ESPECIE")]
+  )
+  #Varieties
+  df_final3$species[which(df_final3$taxonRank == "VARIEDADE")] <- paste(
+    df_final3$genus[which(df_final3$taxonRank == "VARIEDADE")],
+    df_final3$specificEpithet[which(df_final3$taxonRank == "VARIEDADE")],
+    "var.",
+    df_final3$infraspecificEpithet[which(df_final3$taxonRank == "VARIEDADE")]
+  )
+  #Varieties
+  df_final3$species[which(df_final3$taxonRank == "SUB_ESPECIE")] <- paste(
+    df_final3$genus[which(df_final3$taxonRank == "SUB_ESPECIE")],
+    df_final3$specificEpithet[which(df_final3$taxonRank == "SUB_ESPECIE")],
+    "subsp.",
+    df_final3$infraspecificEpithet[which(df_final3$taxonRank == "SUB_ESPECIE")]
+  )
+
     # Old version of binomial extraction
     # gsub("^([[:alnum:]]+[-[:alnum:]]*(?:[[:space:]]+[[:alnum:]]+[-[:alnum:]]*)?)\\b.*",
     #      "\\1",
@@ -430,6 +445,8 @@ merge_data <- function(path_data, version_data, solve_discrepancy,
   #                                           ignore_rank))])
 
   #Accepted name when is synonymn
+  ignore_rank <- na.omit(setdiff(unique(df_final3$taxonRank),
+                         c("ESPECIE", "VARIEDADE", "SUB_ESPECIE")))
   df_final3$acceptedName <- NA
   df_final3$acceptedName[which(!(df_final3$taxonRank %in%
                                    ignore_rank))] <- get_binomial(
@@ -490,14 +507,16 @@ merge_data <- function(path_data, version_data, solve_discrepancy,
   #Identify duplicates
   sp_out_dup <- duplicated(sp_out_df[, c("acceptedName")])
   sp_out_unique <- sp_out_df[!sp_out_dup, ]
-  #Update distribution - They do not occur in Brazil
+  #Update distribution - Unknown
   sp_out_unique$vegetation <- "Not_found_in_brazil"
   sp_out_unique$endemism <- "Not_found_in_brazil"
   sp_out_unique$origin <- "Not_found_in_brazil"
   sp_out_unique$locationID <- "Not_found_in_brazil"
   sp_out_unique$phytogeographicDomain <- "Not_found_in_brazil"
   #Update taxonomic info
-  sp_out_unique$species <- sp_out_unique$acceptedName
+  sp_out_unique$species <- get_binomial(sp_out_unique$acceptedName,
+                                        include_variety = FALSE,
+                                        include_subspecies = FALSE)
   sp_out_unique$scientificName <- sp_out_unique$acceptedNameUsage
   sp_out_unique$nomenclaturalStatus <- "NOME_CORRETO"
   sp_out_unique$taxonomicStatus <- "NOME_ACEITO"
@@ -505,6 +524,7 @@ merge_data <- function(path_data, version_data, solve_discrepancy,
   sp_out_unique$specificEpithet <- gsub( ".* ", "", sp_out_unique$species)
   sp_out_unique$id <- sp_out_unique$acceptedNameUsageID
   sp_out_unique$taxonID <- sp_out_unique$acceptedNameUsageID
+  sp_out_unique$taxonRank <- "Species"
   #Join info
   df_join <- rbind(df_final, sp_out_unique)
 
@@ -645,6 +665,17 @@ fill_NA <- function(data){
   return(data)
 }
 
+#Extract varieties
+extract_varieties <- function(species) {
+  varieties <- sub(".*var\\.\\s+(\\w+).*", "\\1", species)
+  return(varieties)
+}
+
+#Extract subspecies
+extract_subspecies <- function(species) {
+  subspecies <- sub(".*subsp\\.\\s+(\\w+).*", "\\1", species)
+  return(subspecies)
+}
 
 # ####Generate data to filter_florabR#####
 # library(dplyr)
