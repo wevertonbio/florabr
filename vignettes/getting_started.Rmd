@@ -55,12 +55,12 @@ install.packages("florabr")
 
 You can install the released version of *florabr* from [github](https://github.com/wevertonbio/florabr) with:
 ```{r, results='hide', message=FALSE}
-if(!require(devtools)){
-    install.packages("devtools")
+if(!require(remotes)){
+    install.packages("remotes")
 }
 
-if(!require(florabr)){
-devtools::install_github('wevertonbio/florabr')}
+if(!require(faunabr)){
+remotes::install_github('wevertonbio/faunabr')}
 
 library(florabr)
 ```

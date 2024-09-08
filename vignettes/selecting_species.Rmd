@@ -45,13 +45,12 @@ One of the primary objectives of this package is to assist in selecting a specie
 * origin (Native, Cultivated or Naturalized in Brazil);
 * taxonomicStatus and nomenclaturalStatus of the species.
 
-To explore all available options for each filter, use the `get_attributes()` function with the desired attribute. This function will provide a data.frame with the available options to use in the `select_species()` function.
+To explore all available options for each filter, use the `get_attributes()` function with the desired attribute. This function will provide a list with the available options to use in the `select_species()` function.
 
 ```{r}
 #Get available options to filter by lifeForm
 get_attributes(data = bf,
-               attribute = "lifeForm",
-               kingdom = "Plantae")
+               attribute = "lifeForm")[[1]]
 #>               lifeForm
 #> 1      Aquatic-Benthos
 #> 2      Aquatic-Neuston
@@ -78,8 +77,7 @@ get_attributes(data = bf,
 
 #Get available options to filter by  Biome
 get_attributes(data = bf,
-               attribute = "Biome",
-               kingdom = "Plantae")
+               attribute = "Biome")[[1]]
 #>                 biome
 #> 1              Amazon
 #> 2     Atlantic_Forest
@@ -91,8 +89,7 @@ get_attributes(data = bf,
 
 #Get available options to filter by vegetation
 get_attributes(data = bf,
-               attribute = "vegetationType",
-               kingdom = "Plantae")
+               attribute = "vegetation")[[1]]
 #>                         vegetation
 #> 1                   Anthropic_Area
 #> 2                         Caatinga
@@ -147,7 +144,7 @@ The filter returned 2372 species that meet the specified criteria. It's importan
 
 ```{r}
 #First 7 unique values of biomes in the filtered dataset
-unique(af_spp$Biome)[1:7]
+unique(af_spp$biome)[1:7]
 #> [1] "Atlantic_Forest"                        
 #> [2] "Atlantic_Forest;Cerrado"                
 #> [3] "Atlantic_Forest;Caatinga"               
