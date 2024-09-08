@@ -27,10 +27,9 @@
 get_binomial <- function(species_names,
                          include_subspecies = TRUE,
                          include_variety = TRUE) {
-  if (!is.character(species_names)) {
-    stop(paste0("Argument species_names must be a character, not ",
-                class(species_names)))
-  }
+   if (!is.character(species_names)) {
+     stop("Argument species_names must be a character")
+   }
 
   # Remove excess of whitespace between words
   species_names <- gsub("\\s+", " ", species_names)
