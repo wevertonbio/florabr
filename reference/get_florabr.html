@@ -83,7 +83,7 @@ this data.frame in the specified directory.</p>
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_florabr</span><span class="op">(</span><span class="va">output_dir</span>, data_version <span class="op">=</span> <span class="st">"latest"</span>,</span>
 <span>                 solve_discrepancy <span class="op">=</span> <span class="cn">FALSE</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                 verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span>                 verbose <span class="op">=</span> <span class="cn">TRUE</span>, remove_files <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -118,6 +118,11 @@ species also occurs in that biome. Default = FALSE.</p></dd>
 <dd><p>(logical) Whether to display messages during function
 execution. Set to TRUE to enable display, or FALSE to run silently.
 Default = TRUE.</p></dd>
+
+
+<dt id="arg-remove-files">remove_files<a class="anchor" aria-label="anchor" href="#arg-remove-files"></a></dt>
+<dd><p>(logical) Whether to remove the downloaded files used in
+building the final dataset. Default is TRUE.</p></dd>
 
 </dl></div>
     <div id="value">
