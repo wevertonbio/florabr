@@ -1,90 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/404.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/articles/Spatialize_florabr.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/articles/getting_pam.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/articles/getting_started.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/articles/selecting_species.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/index.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/bf_data.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/biomes.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/brazil.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/check_names.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/check_version.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/filter_florabr.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/get_attributes.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/get_binomial.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/get_florabr.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/get_pam.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/get_spat_occ.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/get_synonym.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/load_florabr.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/occurrences.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/select_by_vernacular.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/select_species.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/solve_discrepancies.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/states.html</loc>
-  </url>
-  <url>
-    <loc>https://wevertonbio.github.io/florabr/reference/subset_species.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://wevertonbio.github.io/florabr/404.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/articles/Spatialize_florabr.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/articles/getting_pam.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/articles/getting_started.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/articles/index.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/articles/selecting_species.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/authors.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/index.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/news/index.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/bf_data.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/biomes.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/brazil.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/check_names.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/check_version.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/filter_florabr.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/get_attributes.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/get_binomial.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/get_florabr.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/get_pam.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/get_spat_occ.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/get_synonym.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/index.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/load_florabr.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/occurrences.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/select_by_vernacular.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/select_species.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/solve_discrepancies.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/states.html</loc></url>
+<url><loc>https://wevertonbio.github.io/florabr/reference/subset_species.html</loc></url>
 </urlset>
+
