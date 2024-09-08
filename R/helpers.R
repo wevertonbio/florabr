@@ -278,7 +278,7 @@ update_columns <- function(df) {
 }
 
 merge_data <- function(path_data, version_data, solve_discrepancy,
-                       encoding = "UTF-8", verbose = verbose) {
+                       encoding = "UTF-8", verbose) {
 
   #Set folder
   if(is.null(path_data)) {
@@ -449,7 +449,7 @@ merge_data <- function(path_data, version_data, solve_discrepancy,
                          c("ESPECIE", "VARIEDADE", "SUB_ESPECIE")))
   df_final3$acceptedName <- NA
   df_final3$acceptedName[which(!(df_final3$taxonRank %in%
-                                   ignore_rank))] <- get_binomial(
+                                   ignore_rank))] <- get_binomial(species_names =
                                      df_final3$acceptedNameUsage[which(
                                        !(df_final3$taxonRank %in%
                                            ignore_rank))])
