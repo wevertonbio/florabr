@@ -83,13 +83,19 @@ subset_species <- function(data,
   if(include_subspecies & include_variety) {
     d <- subset(d, d$taxonRank %in% c("Species", "Subspecies", "Variety")) }
 
+  #Create column with binomial name
+  d$binomial <- get_binomial(d$species, include_subspecies = FALSE,
+                             include_variety = FALSE)
+
+
   #Check if there is any species absent in d
-  no_match <- setdiff(Species, unique(d$species))
+  no_match <- setdiff(Species, unique(d$binomial))
   if(length(no_match) > 0) {
     warning(paste("Some species are absent of Flora e Funga do Brasil database\n",
                   "Check the species names using the check_names() function"))
   }
 
-  d <- subset(d, d$species %in% Species)
+  d <- subset(d, d$binomial %in% Species)
+  d$binomial <- NULL #Remove column
   return(d)
 }
