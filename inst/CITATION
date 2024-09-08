@@ -1,0 +1,9 @@
+bibentry(
+  bibtype  = "Article",
+  title    = "florabr: An R package to explore and spatialize species distribution using Flora e Funga do Brasil",
+  author   = "Weverton C. F. Trindade",
+  journal  = "Applications in Plant Sciences",
+  year     = "2024",
+  pages    = "e11616",
+  doi      = "10.1002/aps3.11616"
+)
