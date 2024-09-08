@@ -9,7 +9,7 @@ test_that("get_synonym works", {
   #Return a message when there are species absent in database
   spp2 <- c("Araucaria angustifolia", "Adesmia paranensis", "Homo sapiens")
   expect_warning(get_synonym(data = bf_data,
-                                            species = spp2))
+                             species = spp2))
   expect_warning(get_synonym(data = bf_data,
                              species = "Homo sapiens"))
   })
