@@ -5,6 +5,11 @@
 - The package now distinguishes species, subspecies and varieties.
 - `get_binomial` allows extracting infraspecific epithet (subspecie or variety).
 - `get_synonym()` allows returns the subspecies and varieties that are synonyms of a species
+- `check_names()` supports parallel processing.
+- Fix bugs and improve performance of `filter_florabr()`, `get_pam()`, `get_synonym()` and `solve_discrepancies()` functions.
+- Update data example: added varieties and subspecies to the dataset.
+- `get_florabr()`: Added argument to remove unnecessary downloaded files.
+- Added package citation to the paper describing the package.
 
 # florabr 1.2.0 (May 2024)
 
