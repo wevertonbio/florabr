@@ -6,7 +6,7 @@
 \usage{
 get_florabr(output_dir, data_version = "latest",
                  solve_discrepancy = FALSE, overwrite = TRUE,
-                 verbose = TRUE)
+                 verbose = TRUE, remove_files = TRUE)
 }
 \arguments{
 \item{output_dir}{(character) a directory to save the data downloaded from
@@ -28,6 +28,9 @@ species also occurs in that biome. Default = FALSE.}
 \item{verbose}{(logical) Whether to display messages during function
 execution. Set to TRUE to enable display, or FALSE to run silently.
 Default = TRUE.}
+
+\item{remove_files}{(logical) Whether to remove the downloaded files used in
+building the final dataset. Default is TRUE.}
 }
 \value{
 The function downloads the latest version of the Flora e Funga do Brasil

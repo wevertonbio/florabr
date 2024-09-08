@@ -21,6 +21,8 @@
 #' @param verbose (logical) Whether to display messages during function
 #' execution. Set to TRUE to enable display, or FALSE to run silently.
 #' Default = TRUE.
+#' @param remove_files (logical) Whether to remove the downloaded files used in
+#' building the final dataset. Default is TRUE.
 #'
 #' @returns
 #' The function downloads the latest version of the Flora e Funga do Brasil
@@ -32,13 +34,12 @@
 #' \code{\link{load_florabr}} function for further analysis in R.
 #' @usage get_florabr(output_dir, data_version = "latest",
 #'                  solve_discrepancy = FALSE, overwrite = TRUE,
-#'                  verbose = TRUE)
+#'                  verbose = TRUE, remove_files = TRUE)
 #' @export
 #'
 #' @importFrom httr GET write_disk
 #' @importFrom XML htmlParse xpathSApply xmlGetAttr
-#' @importFrom utils unzip
-#' @importFrom utils read.csv
+#' @importFrom utils unzip read.csv
 #' @references
 #' Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 #' http://floradobrasil.jbrj.gov.br/
@@ -56,7 +57,8 @@
 get_florabr <- function(output_dir, data_version = "latest",
                         solve_discrepancy = FALSE,
                         overwrite = TRUE,
-                        verbose = TRUE) {
+                        verbose = TRUE,
+                        remove_files = TRUE) {
   #Set folder
   if(is.null(output_dir)) {
     stop(paste("Argument output_dir is not defined, this is necessary for",
@@ -135,6 +137,18 @@ get_florabr <- function(output_dir, data_version = "latest",
   #Merge data
   merge_data(path_data = path_data, version_data = version_data,
              solve_discrepancy = solve_discrepancy, verbose = verbose)
+
+  #Remove downloades files
+  if(remove_files){
+    try(invisible(unlink(paste0(file.path(path_data, version_data), ".zip"), recursive = TRUE,
+           force = TRUE)))
+    to_remove <- list.files(path = file.path(path_data, version_data),
+                            full.names = TRUE, recursive = TRUE)
+    to_remove <- to_remove[!grepl("CompleteBrazilianFlora.rds", to_remove,
+                                 fixed = TRUE)]
+    try(invisible(unlink(to_remove, recursive = TRUE, force = TRUE)))
+  }
+
 
   #Print final message
   if(verbose){
