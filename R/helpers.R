@@ -691,7 +691,8 @@ extract_subspecies <- function(species) {
 # #Flora do Brazil data
 # df <- load_florabr(data_dir = my_dir, type = "short")
 # #Get only species and Plantae
-# p <- df %>% filter(kingdom == "Plantae", taxonRank == "Species")
+# p <- df %>%
+#   filter(kingdom == "Plantae", taxonRank %in% c("Species", "Variety" , "Subspecies"))
 # #Get only accepted names
 # pac <- p %>% filter(taxonomicStatus == "Accepted")
 # #Subset some species
