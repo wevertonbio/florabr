@@ -2,9 +2,22 @@
 % Please edit documentation in R/check_names.R
 \name{check_names}
 \alias{check_names}
+\alias{match_names}
 \title{Check species names}
 \usage{
-check_names(data, species, max_distance = 0.1, kingdom = "Plantae")
+check_names(data, species, max_distance = 0.1,
+                   include_subspecies= FALSE, include_variety = FALSE,
+                   kingdom = "Plantae", parallel = FALSE, ncores = 1,
+                   progress_bar = FALSE)
+
+match_names(
+  species,
+  species_to_match,
+  max_distance = 0.1,
+  parallel = FALSE,
+  ncores = 1,
+  progress_bar = FALSE
+)
 }
 \arguments{
 \item{data}{(data.frame) the data.frame imported with the
@@ -17,8 +30,24 @@ searching suggestions when the name is misspelled. It can be any value
 between 0 and 1. The higher the value, the more suggestions are returned.
 For more details, see \code{\link[base:agrep]{agrep}}. Default = 0.1.}
 
+\item{include_subspecies}{(logical) whether to include subspecies. Default = FALSE}
+
+\item{include_variety}{(logical) whether to include varieties. Default = FALSE}
+
 \item{kingdom}{(character) the kingdom to which the species belong. It can
 be "Plantae" or "Fungi". Default = "Plantae".}
+
+\item{parallel}{(logical) whether to run in parallel. Setting this to \code{TRUE}
+is recommended for improved performance when working with 100 or more species.}
+
+\item{ncores}{(numeric) number of cores to use for parallel processing.
+Default is 1. This is only applicable if \code{parallel = TRUE}.}
+
+\item{progress_bar}{(logical) whether to display a progress bar during processing.
+Default is FALSE}
+
+\item{species_to_match}{(character) a vector of species names to match against
+the \code{species} parameter.}
 }
 \value{
 a data.frame with the following columns:
@@ -45,9 +74,13 @@ the same as input_name and Suggested_name.
 }
 }
 \description{
-check_names checks if the species names are correct and searches
+\code{check_names} checks if the species names are correct and searches
 for suggestions if the name is misspelled or not found in the Flora e Funga
 do Brasil database
+
+\code{match_names} finds approximate matches to the specified pattern (species)
+within each element of the string \code{x} (species_to_match). It is used internally
+by \code{check_names}.
 }
 \examples{
 data("bf_data", package = "florabr")

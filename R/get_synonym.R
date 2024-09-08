@@ -67,18 +67,40 @@ get_synonym <- function(data, species,
 
   #Check if there is any species absent in d
   no_match <- setdiff(species, unique(data$species))
-  if(length(no_match) > 0 & length(no_match) < length(species)) {
+  if(length(no_match) > 0) {
     warning(paste("Some species are absent of Flora e Funga do Brasil database\n",
                   "Check the species names using the check_names() function"))
   }
   #Get match
   order <- setdiff(species, no_match)
 
-  res <- unique(data[which(get_binomial(data$acceptedName,
-                                        include_variety = F,
-                                        include_subspecies = F) %in% species),
+  res <- unique(data[which(data$acceptedName %in% species),
                      c("acceptedName", "species", "taxonomicStatus",
                        "nomenclaturalStatus")])
+
+  # res <- unique(data[which(get_binomial(data$acceptedName,
+  #                                       include_variety = F,
+  #                                       include_subspecies = F) %in% species),
+  #                    c("acceptedName", "species", "taxonomicStatus",
+  #                      "nomenclaturalStatus")])
+
+  #Get species without synonyms
+  no_syn <- setdiff(species, res$acceptedName)
+  if(length(no_syn) > 0){
+    res_no_syn <- data[data$species %in% no_syn,
+                       c("acceptedName", "species", "taxonomicStatus",
+                         "nomenclaturalStatus")]
+    if(nrow(res_no_syn) == 0){
+      res_no_syn <- data.frame("acceptedName" = no_syn,
+                               "species" = "Not found",
+                               "taxonomicStatus" = "Not found",
+                               "nomenclaturalStatus" = "Not found")
+    }
+    # res_no_syn$acceptedName <- res_no_syn$species
+    # res_no_syn$species <- NA
+    res <- rbind(res, res_no_syn)
+  }
+
 
   if(nrow(res) > 0) {
   #Reorder

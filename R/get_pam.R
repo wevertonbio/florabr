@@ -104,6 +104,11 @@ get_pam <- function(data, by_biome = TRUE, by_state = TRUE,
                 class(return_spatial_richness)))
   }
 
+  if (!is.logical(return_richness_summary)) {
+    stop(paste0("Argument return_richness_summary must be logical, not ",
+                class(return_richness_summary)))
+  }
+
   #Check colnames in data
   if(!all(c("species", "states", "biome") %in%
           colnames(data))) {

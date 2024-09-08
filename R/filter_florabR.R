@@ -216,8 +216,20 @@ filter_florabr <- function(data,
   })
   sp_info <- unique(data.table::rbindlist(sp_info))
   occ_info <- merge(occ_info, sp_info, by = "species")
-  occ_info <- terra::vect(occ_info, geom = c("x", "y"))
-  brazil <- terra::unwrap(florabr::brazil)
+  occ_info <- terra::vect(occ_info, geom = c("x", "y"),
+                          crs = "+init=epsg:4326")
+
+  #Get vector of Brazil
+  if(is.null(br_vect)){
+  brazil <- terra::unwrap(florabr::brazil) } else {
+    brazil <- br_vect
+  }
+  #Buffer around Brazil
+  br_v <- terra::buffer(brazil, width = buffer_brazil *
+                          1000)
+  #Check records inside Brazil
+  occ_info$inside_br <- terra::is.related(occ_info, br_v, "within")
+
   if (by_state == TRUE) {
     states <- terra::unwrap(florabr::states)
   }
@@ -247,14 +259,15 @@ filter_florabr <- function(data,
     }
   }
   if (by_state == FALSE) {
-    occ_state <- occ_info
+    occ_info$inside_state <- NA
   }
+
   if (by_state == TRUE) {
     l_state <- lapply(seq_along(spp), function(i) {
       if (verbose) {
         message("Filtering", spp[i], "by state\n")
       }
-      occ_i <- subset(occ_info, occ_info$species == spp[i])
+      occ_i <- occ_info[occ_info$species == spp[i]]
       sp_i_state <- unique(gsub(";", "|", occ_i$states[1]))
       if (sp_i_state == "" | is.na(sp_i_state)) {
         if (verbose) {
@@ -268,31 +281,26 @@ filter_florabr <- function(data,
                                                    grepl(sp_i_state, states$abbrev_state)))
         states_v <- terra::buffer(states_v, width = buffer_state *
                                     1000)
-        occ_br <- occ_i[brazil]
-        occ_out <- terra::mask(occ_i, brazil, inverse = TRUE)
-        occ_out$inside_state <- NA
-        occ_in_states <- occ_br[states_v]
-        occ_in_states$inside_state <- TRUE
-        occ_out_states <- terra::mask(occ_br, states_v,
-                                      inverse = TRUE)
-        occ_out_states$inside_state <- FALSE
-        states_final <- rbind(occ_in_states, occ_out,
-                              occ_out_states)
-      }
-      return(states_final)
+        #Create columns
+        occ_i$inside_state <- NA
+        #Fill inside_state of records inside br
+        occ_i$inside_state[occ_i$inside_br] <- terra::is.related(occ_i[occ_i$inside_br],
+                                                                 states_v,
+                                                                 "within")
+        }
+      return(occ_i)
     })
-    occ_state <- do.call("rbind", l_state)
+    occ_info <- do.call("rbind", l_state)
   }
   if (by_biome == FALSE) {
-    occ_biome <- occ_state
-    occ_biome$inside_biome <- NA
+    occ_info$inside_biome <- NA
   }
   if (by_biome == TRUE) {
     l_biome <- lapply(seq_along(spp), function(i) {
       if (verbose) {
         message("Filtering", spp[i], "by biome\n")
       }
-      occ_i <- terra::subset(occ_state, occ_state$species ==
+      occ_i <- terra::subset(occ_info, occ_info$species ==
                                spp[i])
       sp_i_biome <- unique(gsub(";", "|", occ_i$biome[1]))
       if (sp_i_biome == "" | is.na(sp_i_biome)) {
@@ -307,55 +315,26 @@ filter_florabr <- function(data,
                                                    grepl(sp_i_biome, biomes$name_biome)))
         biomes_v <- terra::buffer(biomes_v, width = buffer_biome *
                                     1000)
-        occ_br <- occ_i[brazil]
-        occ_out <- terra::mask(occ_i, brazil, inverse = TRUE)
-        occ_out$inside_biome <- NA
-        occ_in_biomes <- occ_br[biomes_v]
-        occ_in_biomes$inside_biome <- TRUE
-        occ_out_biomes <- terra::mask(occ_br, biomes_v,
-                                      inverse = TRUE)
-        occ_out_biomes$inside_biome <- FALSE
-        biomes_final <- rbind(occ_in_biomes, occ_out,
-                              occ_out_biomes)
+        #Create columns
+        occ_i$inside_biome <- NA
+        #Fill inside_state of records inside br
+        occ_i$inside_biome[occ_i$inside_br] <- terra::is.related(occ_i[occ_i$inside_br],
+                                                                 biomes_v,
+                                                                 "within")
       }
-      return(biomes_final)
+      return(occ_i)
     })
-    occ_biome <- do.call("rbind", l_biome)
+    occ_info <- do.call("rbind", l_biome)
   }
-  if (by_endemism == FALSE) {
-    occ_flag <- terra::as.data.frame(occ_biome)
-    occ_flag$inside_br <- NA
+
+  #Fix flags by endemism: if is non-endemic, is NA
+  if (by_endemism) {
+    occ_info$inside_br[occ_info$endemism != "Endemic"] <- NA
   }
-  if (by_endemism == TRUE) {
-    l_end <- lapply(seq_along(spp), function(i) {
-      occ_i <- terra::subset(occ_biome, occ_biome$species ==
-                               spp[i])
-      sp_i_end <- unique(gsub(";", "|", occ_i$endemism[1]))
-      if (sp_i_end != "Endemic") {
-        if (verbose) {
-          message(spp[i], "is non-endemic - Filter not applicable\n")
-        }
-        occ_BR <- terra::as.data.frame(occ_i)
-        occ_BR$inside_br <- "Non-endemic"
-      }
-      else {
-        if (verbose) {
-          message("Filtering", spp[i], "by endemism\n")
-        }
-        br_v <- terra::buffer(brazil, width = buffer_brazil *
-                                1000)
-        occ_in_BR <- occ_i[brazil]
-        occ_in_BR$inside_br <- TRUE
-        occ_out_BR <- terra::mask(occ_i, brazil, inverse = TRUE)
-        occ_out_BR$inside_br <- FALSE
-        occ_BR <- rbind(occ_in_BR, occ_out_BR)
-        occ_BR <- terra::as.data.frame(occ_BR)
-      }
-      return(occ_BR)
-    })
-    occ_flag <- data.frame(data.table::rbindlist(l_end))
-  }
-  if (isTRUE(keep_columns)) {
+
+  occ_flag <- as.data.frame(occ_info)
+
+  if (keep_columns) {
     occ_flag <- merge(occ_flag, occ, by = c("species", "id_f"))
     occ_flag$id_f <- NULL
     occ_flag <- occ_flag[, c(species, long, lat, colnames(occ_flag)[!(colnames(occ_flag) %in%
@@ -363,7 +342,7 @@ filter_florabr <- function(data,
     colnames(occ_flag)[colnames(occ_flag) %in% c(species,
                                                  long, lat)] <- c(species, long, lat)
   }
-  if (isFALSE(keep_columns)) {
+  if (!keep_columns) {
     occ_flag <- merge(occ_flag, occ[, c(species, lat, long,
                                         "id_f")], by = c("species", "id_f"))
     occ_flag$id_f <- NULL
@@ -372,13 +351,13 @@ filter_florabr <- function(data,
     colnames(occ_flag)[colnames(occ_flag) %in% c(species,
                                                  long, lat)] <- c(species, long, lat)
   }
-  if (by_state == FALSE) {
+  if (!by_state) {
     occ_flag$inside_state <- NULL
   }
-  if (by_biome == FALSE) {
+  if (!by_biome) {
     occ_flag$inside_biome <- NULL
   }
-  if (by_endemism == FALSE) {
+  if (!by_endemism) {
     occ_flag$inside_br <- NULL
   }
   col_check <- intersect(c("inside_state", "inside_biome",

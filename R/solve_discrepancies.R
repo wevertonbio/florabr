@@ -68,7 +68,7 @@ solve_discrepancies <- function(data) {
   row.names(d_upt) <- NULL
 
   #Update final dataframe
-  data_solved <- rbind(subset(data, !(data$id %in% d_upt$id)), d_upt)
+  data_solved <- rbind(subset(data, !(data$id %in% d_upt2$id)), d_upt2)
 
   #Fix varieties and subspecies that does not appear as species
   if(length(spp_var_no) > 0) {
