@@ -26,6 +26,9 @@ in Brazil.
 The florabr package includes a collection of functions designed to retrieve,
 filter and spatialize data from the Flora e Funga do Brasil dataset.
 
+## Package citation
+Trindade, W. C. (2024). florabr: An R package to explore and spatialize species distribution using Flora e Funga do Brasil. Applications in Plant Sciences, e11616. [10.1002/aps3.11616](10.1002/aps3.11616)
+
 ## Overview of functions
 
 ### Download and import Flora e Funga do Brasil Dataset
