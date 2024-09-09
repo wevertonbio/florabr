@@ -1,4 +1,4 @@
-# florabr 1.2.1 (currently in development)
+# florabr 1.3.0 (September 2024)
 
 ## New Features and Enhancements
 

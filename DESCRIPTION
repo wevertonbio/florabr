@@ -1,6 +1,6 @@
 Package: florabr
 Title: Explore Flora e Funga do Brasil Database
-Version: 1.2.0
+Version: 1.3.0
 Authors@R: 
     person("Weverton", "Trindade", , "wevertonf1993@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-2045-4555"))
