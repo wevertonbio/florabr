@@ -184,6 +184,10 @@ filter_florabr <- function(data,
                 class(verbose)))
   }
 
+  if(inherits(occ, "data.table")){
+    occ <- as.data.frame(occ)
+  }
+
   #Convert colnames to lower case
   original_colnames <- colnames(data)
   colnames(data) <- tolower(colnames(data))
@@ -200,6 +204,10 @@ filter_florabr <- function(data,
   occ_info <- occ[, c(species, long, lat, "id_f")]
   colnames(occ_info) <- c("species", "x", "y", "id_f")
   spp <- unique(occ_info$species)
+
+  #Change names in occ
+  colnames(occ)[which(colnames(occ) == species)] <- "species"
+
   spp_out <- setdiff(spp, unique(data$species))
   if (length(spp_out) > 0) {
     stop(paste(length(spp_out), "species are not in the data. Check the species\n               names using the check_names() function or remove the species from\n               data.frame"))
@@ -265,7 +273,7 @@ filter_florabr <- function(data,
   if (by_state == TRUE) {
     l_state <- lapply(seq_along(spp), function(i) {
       if (verbose) {
-        message("Filtering", spp[i], "by state\n")
+        message("Filtering ", spp[i], " by state\n")
       }
       occ_i <- occ_info[occ_info$species == spp[i]]
       sp_i_state <- unique(gsub(";", "|", occ_i$states[1]))
@@ -298,7 +306,7 @@ filter_florabr <- function(data,
   if (by_biome == TRUE) {
     l_biome <- lapply(seq_along(spp), function(i) {
       if (verbose) {
-        message("Filtering", spp[i], "by biome\n")
+        message("Filtering ", spp[i], " by biome\n")
       }
       occ_i <- terra::subset(occ_info, occ_info$species ==
                                spp[i])
@@ -335,17 +343,21 @@ filter_florabr <- function(data,
   occ_flag <- as.data.frame(occ_info)
 
   if (keep_columns) {
-    occ_flag <- merge(occ_flag, occ, by = c("species", "id_f"))
+    occ_flag <- merge(occ_flag, occ, by.x = c("species", "id_f"))
     occ_flag$id_f <- NULL
+    #Return name of species
+    colnames(occ_flag)[which(colnames(occ_flag) == "species")] <- species
     occ_flag <- occ_flag[, c(species, long, lat, colnames(occ_flag)[!(colnames(occ_flag) %in%
                                                                         c(species, long, lat))])]
     colnames(occ_flag)[colnames(occ_flag) %in% c(species,
                                                  long, lat)] <- c(species, long, lat)
   }
   if (!keep_columns) {
-    occ_flag <- merge(occ_flag, occ[, c(species, lat, long,
+    occ_flag <- merge(occ_flag, occ[, c("species", lat, long,
                                         "id_f")], by = c("species", "id_f"))
     occ_flag$id_f <- NULL
+    #Return name of species
+    colnames(occ_flag)[which(colnames(occ_flag) == "species")] <- species
     occ_flag <- occ_flag[, c(species, long, lat, names(occ_flag)[!(names(occ_flag) %in%
                                                                      c(species, long, lat))])]
     colnames(occ_flag)[colnames(occ_flag) %in% c(species,
