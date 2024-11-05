@@ -83,12 +83,12 @@ You can install the development version of florabr from
 [GitHub](https://github.com/wevertonbio/florabr) with:
 
 ``` r
-if(!require(devtools)){
-    install.packages("devtools")
+if(!require(remotes)){
+    install.packages("remotes")
 }
 
 if(!require(florabr)){
-devtools::install_github('wevertonbio/florabr')}
+remotes::install_github("wevertonbio/florabr")}
 
 library(florabr)
 ```
