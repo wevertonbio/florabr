@@ -94,7 +94,7 @@
       <h1 data-toc-skip>3. Using florabr to flag erroneous records</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/wevertonbio/florabr/blob/v1.3.0/vignettes/Spatialize_florabr.Rmd" class="external-link"><code>vignettes/Spatialize_florabr.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/wevertonbio/florabr/blob/main/vignettes/Spatialize_florabr.Rmd" class="external-link"><code>vignettes/Spatialize_florabr.Rmd</code></a></small>
       <div class="hidden name"><code>Spatialize_florabr.Rmd</code></div>
 
     </div>
@@ -155,7 +155,7 @@ biomes and the intersection between states and biomes.</p>
 <span>     main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">spp_spt</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, <span class="st">" - Biomes"</span><span class="op">)</span>, mar <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">spp_spt</span><span class="op">$</span><span class="va">`Adesmia paranensis`</span><span class="op">$</span><span class="va">states_biomes</span>,</span>
 <span>     main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">spp_spt</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, <span class="st">" - Intersection"</span><span class="op">)</span>, mar <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_img/IMG01.png"><!-- --></p>
+<p><img src="vignettes_img%2FIMG01.png"><!-- --></p>
 <div class="section level3">
 <h3 id="including-a-more-complex-polygon-of-states-and-biomes">Including a more complex polygon of states and biomes<a class="anchor" aria-label="anchor" href="#including-a-more-complex-polygon-of-states-and-biomes"></a>
 </h3>
@@ -171,7 +171,7 @@ boundaries of states and biomes (check
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">states</span>, main <span class="op">=</span> <span class="st">"Brazilian states with simplified geometries"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">biomes</span>, main <span class="op">=</span> <span class="st">"Brazilian biomes with simplified geometries"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_img/IMG02.png"><!-- --></p>
+<p><img src="vignettes_img%2FIMG02.png"><!-- --></p>
 <p>We can work with the original spatial polygons, which represents
 better the real shapes and boundaries of states and biomes. To do that,
 let’s get the original data from <code>geobr</code>package:</p>
@@ -197,7 +197,7 @@ are more complex than the simplified <em>states</em>:</p>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">states</span><span class="op">[</span><span class="va">states</span><span class="op">$</span><span class="va">abbrev_state</span> <span class="op">==</span> <span class="st">"PR"</span><span class="op">]</span>,</span>
 <span>     main <span class="op">=</span> <span class="st">"Simplified geometries"</span>,</span>
 <span>     mar <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_img/IMG03.png"><!-- --> Now, let’s get the
+<p><img src="vignettes_img%2FIMG03.png"><!-- --> Now, let’s get the
 original polygons of biomes:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">br_biomes</span> <span class="op">&lt;-</span> <span class="fu">geobr</span><span class="fu">::</span><span class="fu">read_biomes</span><span class="op">(</span><span class="op">)</span></span>
@@ -243,7 +243,7 @@ of species in states and biomes are more complex:</p>
 <span>     main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">spp_spt</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="st">" - Biomes simplified"</span><span class="op">)</span>, mar <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">spp_spt</span><span class="op">$</span><span class="va">`Araucaria angustifolia`</span><span class="op">$</span><span class="va">biomes</span>,</span>
 <span>     main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">spp_spt</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="st">" - Biomes non-simplified"</span><span class="op">)</span>, mar <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_img/IMG04.png"><!-- --></p>
+<p><img src="vignettes_img%2FIMG04.png"><!-- --></p>
 <p>The choose between using the simplified version (default) or using a
 personal e more complex polygons depends on the objectives and
 resolution of your work. For a objective that depends on more fine
@@ -290,7 +290,7 @@ using the function <code>get_spat_occ</code>:</p>
 <span>     main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">pol_spp</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, <span class="st">" - States"</span><span class="op">)</span>, mar <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pol_spp</span><span class="op">$</span><span class="va">`Araucaria angustifolia`</span><span class="op">$</span><span class="va">biomes</span>,</span>
 <span>     main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">pol_spp</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, <span class="st">" - Biomes"</span><span class="op">)</span>, mar <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_img/IMG05.png"><!-- --> We downloaded the
+<p><img src="vignettes_img%2FIMG05.png"><!-- --> We downloaded the
 occurrences of these two species from GBIF using the
 <code>plantR::rgbif2()</code> function. These occurrences are saved as
 data examples in the package and we can import it:</p>
@@ -349,7 +349,7 @@ because they falls outside Brazil (Ecuador and Belarus).</p>
 <span><span class="fu">mapview</span><span class="op">(</span><span class="va">pol_spp</span><span class="op">$</span><span class="va">`Abatia americana`</span><span class="op">$</span><span class="va">states</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">mapview</span><span class="op">(</span><span class="va">abatia_occ</span>, zcol <span class="op">=</span> <span class="st">"inside_state"</span>,</span>
 <span>          col.regions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"green"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_img/IMG06.png" width="90%"></p>
+<p><img src="vignettes_img%2FIMG06.png" width="90%"></p>
 <p>We can see the same with biomes: green dots represents records that
 passed in the test, green dots represents records that did not passed
 the test, and gray dots are records not tested because they fall outside
@@ -359,7 +359,7 @@ Brazil.</p>
 <span><span class="fu">mapview</span><span class="op">(</span><span class="va">pol_spp</span><span class="op">$</span><span class="va">`Abatia americana`</span><span class="op">$</span><span class="va">biomes</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">mapview</span><span class="op">(</span><span class="va">abatia_occ</span>, zcol <span class="op">=</span> <span class="st">"inside_biome"</span>,</span>
 <span>          col.regions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"green"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_img/IMG07.png" width="90%"></p>
+<p><img src="vignettes_img%2FIMG07.png" width="90%"></p>
 <p>Finally, since <em>Abatia americana</em> is a specie endemic to
 Brazil, we don’t expect records outside the country. The records in
 Ecuador and Belarus were flagging in this test:</p>
@@ -371,7 +371,7 @@ Ecuador and Belarus were flagging in this test:</p>
 <span><span class="fu">mapview</span><span class="op">(</span><span class="va">br</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">mapview</span><span class="op">(</span><span class="va">abatia_occ</span>, zcol <span class="op">=</span> <span class="st">"inside_br"</span>,</span>
 <span>          col.regions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"green"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_img/IMG08.png" width="90%"></p>
+<p><img src="vignettes_img%2FIMG08.png" width="90%"></p>
 </div>
   </div>
 
@@ -390,7 +390,7 @@ Ecuador and Belarus were flagging in this test:</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer>
