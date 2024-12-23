@@ -192,7 +192,9 @@ match_names <- function(species, species_to_match, max_distance = 0.1,
   if (progress_bar) {
     pb <- utils::txtProgressBar(min = 0, max = length(sp_out), style = 3)
     progress <- function(n) utils::setTxtProgressBar(pb, n)
-    opts <- list(progress = progress)}
+    opts <- list(progress = progress)} else {
+      opts <- NULL
+    }
 
     if (parallel) {
       cl <- parallel::makeCluster(ncores)
@@ -231,19 +233,20 @@ match_names <- function(species, species_to_match, max_distance = 0.1,
           setTxtProgressBar(pb, x) }
       }
     } #End of else
-  } #End of lenght sp_out
+
 
   #Merge results
   sp_l <- as.data.frame(rbindlist(sp_l))
 
   if(length(sp_in) > 0 & length(sp_out) > 0){
     sp_l <- rbind(sp_in_df, sp_l)}
+  } #End of lenght sp_out
 
   if(length(sp_in) > 0 & length(sp_out) == 0){
     sp_l <- sp_in_df}
 
   #Close parallel
-  if(parallel)
+  if(parallel & length(sp_out) > 0)
     parallel::stopCluster(cl)
 
   return(sp_l)
