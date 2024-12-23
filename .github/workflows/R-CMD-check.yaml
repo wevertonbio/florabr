@@ -44,6 +44,11 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
 
+     # Passo para instalar o pacote terra com a opção --no-staged
+      - name: Install terra package without staged installation
+        run: |
+          Rscript -e 'install.packages("terra", repos = "https://cloud.r-project.org", INSTALL_opts = c("--no-staged"))'
+
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
