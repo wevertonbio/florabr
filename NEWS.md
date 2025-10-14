@@ -3,7 +3,7 @@
 ## bug fixes
 
 - `check_names()` now returns results correctly when all species names are valid [#17](https://github.com/wevertonbio/florabr/issues/17) by Lobz.
-- `filter_floabr`now accepts data.table objects as input for occ and works with custom species column names (not limited to "species").
+- `filter_florabr()` now accepts data.table objects as input for occ and works with custom species column names (not limited to "species").
 
 
 # florabr 1.3.0 (September 2024)
