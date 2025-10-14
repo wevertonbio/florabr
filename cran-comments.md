@@ -1,4 +1,4 @@
-##  Submission florabr 1.3.1
+##  Submission florabr 1.3.1 (October 2025)
 This is the first submission of version 1.3.1.
 
 ## Test environments
@@ -10,13 +10,15 @@ This is the first submission of version 1.3.1.
 * Ubuntu 24.04.3 LTS, R oldrel-1 (GitHub Actions)
 
 ## R CMD check results
-There were no ERRORs:
-There were no WARNINGs:
-There were 1 NOTE:
-* checking CRAN incoming feasibility ... NOTE
-Maintainer: 'Weverton Trindade <wevertonf1993@gmail.com>'
-A Note that reminds CRAN maintainers to check that the submission comes actually from his maintainer and not anybody else.
+There were no ERRORs.
+There were no WARNINGs.
+There were no NOTEs.
 
+## Downstream dependencies
+There are currently no downstream dependencies for this package.
+
+<br>
+<hr>
 
 ##  Submission florabr 1.3.0
 This is the first submission of version 1.3.0.
