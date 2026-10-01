@@ -19,7 +19,7 @@ this data.frame in the specified directory."><meta property="og:image" content="
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">florabr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4</span>
       </span>
     </div>
 
@@ -83,7 +83,8 @@ this data.frame in the specified directory.</p>
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_florabr</span><span class="op">(</span><span class="va">output_dir</span>, data_version <span class="op">=</span> <span class="st">"latest"</span>,</span>
 <span>                 solve_discrepancy <span class="op">=</span> <span class="cn">FALSE</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                 verbose <span class="op">=</span> <span class="cn">TRUE</span>, remove_files <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span>                 verbose <span class="op">=</span> <span class="cn">TRUE</span>, remove_files <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                 get_fixed_version <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -123,6 +124,12 @@ Default = TRUE.</p></dd>
 <dt id="arg-remove-files">remove_files<a class="anchor" aria-label="anchor" href="#arg-remove-files"></a></dt>
 <dd><p>(logical) Whether to remove the downloaded files used in
 building the final dataset. Default is TRUE.</p></dd>
+
+
+<dt id="arg-get-fixed-version">get_fixed_version<a class="anchor" aria-label="anchor" href="#arg-get-fixed-version"></a></dt>
+<dd><p>(logical) If TRUE, download the fixed and
+already-merged version 393.432 from Zenodo instead of downloading and
+processing an IPT archive. Default is FALSE.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -167,7 +174,7 @@ http://floradobrasil.jbrj.gov.br/</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>
