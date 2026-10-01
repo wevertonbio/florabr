@@ -12,91 +12,65 @@
 #' @usage check_version(data_dir)
 #' @export
 #'
-#' @importFrom httr GET
-#' @importFrom XML htmlParse xpathSApply xmlGetAttr
-#'
 #' @examples
+#' \dontrun{
 #' #Check if there is a version of Flora e Funga do Brasil data available in the
 #' #current directory
 #' check_version(data_dir = getwd())
-
+#' }
+#'
 check_version <- function(data_dir) {
-  #Set folder
-  if (missing(data_dir)) {
-    stop("Argument data_dir is not defined")
+  if (missing(data_dir) || !is.character(data_dir) ||
+      length(data_dir) != 1L || is.na(data_dir) ||
+      !dir.exists(data_dir)) {
+    stop("data_dir must be an existing directory.", call. = FALSE)
   }
 
-  if (!is.character(data_dir)) {
-    stop(paste0("Argument data_dir must be a character, not ", class(data_dir)))
+  # Find version folders containing a merged dataset.
+  directories <- list.dirs(
+    path = data_dir, recursive = FALSE, full.names = FALSE
+  )
+  local_versions <- directories[
+    grepl("^[0-9]+(\\.[0-9]+)+$", directories) &
+      file.exists(file.path(
+        data_dir, directories, "CompleteBrazilianFlora.rds"
+      ))
+  ]
+
+  base_url <- paste0(
+    "https://ipt.jbrj.gov.br/jbrj/archive.do",
+    "?r=lista_especies_flora_brasil"
+  )
+  ua <- paste(
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+    "AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36"
+  )
+
+  latest_version <- tryCatch(
+    ipt_latest_version(base_url, ua),
+    error = function(e) {
+      message("Could not check the latest version on the IPT: ",
+              conditionMessage(e))
+      NULL
+    }
+  )
+
+  if (length(local_versions) == 0L) {
+    message("No local version of Flora e Funga do Brasil was found.")
   } else {
-    path_data <- data_dir
+    message("Local versions: ", paste(local_versions, collapse = ", "))
   }
 
-  #Search for directories
-  all_dirs <- list.dirs(path = path_data, recursive = FALSE,
-                        full.names = FALSE)
-  dir_versions <- subset(all_dirs, grepl("393", all_dirs)) #Actual version
-  #Get highest version
-  if(length(dir_versions) > 0) {
-  high_version <- max(as.numeric(gsub("393.", "", dir_versions)))
-  current_version <- paste0("393.", high_version) } else {
-    current_version <- 0
-  }
-
-  #Get link of latest version
-  response <- httr::GET(
-    "https://ipt.jbrj.gov.br/jbrj/resource?r=lista_especies_flora_brasil")
-  parse <- XML::htmlParse(response)
-  links <- unlist(XML::xpathSApply(parse, path = "//a", XML::xmlGetAttr,"href"))
-  download_pattern <- "https://ipt.jbrj.gov.br/jbrj/archive.do?r=lista_especies_flora_brasil&v="
-  link_download <- subset(links, grepl(download_pattern, links,
-                                       fixed = TRUE))
-
-  #Get version
-  latest_version <- gsub(".*lista_especies_flora_brasil&v=([0-9.]+).*", "\\1",
-                       link_download)
-
-  #Check if you have the latest version
-  is_latest <- current_version == latest_version
-
-  #Check if final data exists in the folder
-  file_exist <- file.exists(file.path(path_data, dir_versions,
-                                      "CompleteBrazilianFlora.rds"))
-
-  #Get only dir_versions with merged data
-  dir_versions <- dir_versions[file_exist]
-
-  #Check how many versions exists
-  many_versions <- length(dir_versions) > 1
-
-  #Print messages
-
-  if(length(dir_versions) == 0) {
+  if (is.null(latest_version)) {
+    message("The latest online version could not be verified.")
+  } else if (latest_version %in% local_versions) {
+    message("You have the latest version: ", latest_version)
+  } else {
     message(
-    "You do not have any version of Flora e Funga do Brasil in this directory.
-    The latest version is ", latest_version, ". Please, change the directory or
-    run the function get_florabr() to download the latest version of Flora e
-    Funga do Brasil.", "\n")
+      "The latest version is ", latest_version,
+      " and is not available in this directory."
+    )
   }
 
-  if(isTRUE(is_latest) & isFALSE(many_versions)) {
-    message(paste("You have the latest version of Flora e Funga do Brasil. Data -
-              Version", latest_version, "\n"))
-  }
-
-  if(isTRUE(is_latest) & isTRUE(many_versions)) {
-    message(paste("You have the following versions of Flora e Funga do Brasil:\n",
-              paste(dir_versions, collapse = "\n"),
-              "\n It includes the latest version: ",
-              latest_version, "\n"))
-  }
-
-  if(isFALSE(is_latest) & isTRUE(many_versions)) {
-    message(paste0("You have the following versions of Flora e Funga do Brasil:\n",
-              paste0(dir_versions, collapse = "\n"),
-              "\nHowever, it does not include the latest version: ",
-              latest_version,
-    "\nIf you want to download the latest version, run the function
-    get_florabr() again"))
-  }
+  invisible(NULL)
 }

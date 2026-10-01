@@ -19,7 +19,10 @@ This function checks if you have the latest version of the Flora e Funga do
 Brasil data available in a specified directory.
 }
 \examples{
+\dontrun{
 #Check if there is a version of Flora e Funga do Brasil data available in the
 #current directory
 check_version(data_dir = getwd())
+}
+
 }
