@@ -466,7 +466,7 @@ merge_data <- function(path_data, version_data = "latest",
     c("biome", "states")
   )
 
-  # These functions expect data.frame behavior, not data.table's [ method.
+  # These functions expect data.frame behavior, not data.table's
   result <- as.data.frame(df)
 
   if (solve_discrepancy) {
@@ -480,8 +480,8 @@ merge_data <- function(path_data, version_data = "latest",
   if (verbose) message("Saving final dataset...")
 
   data.table::fwrite(
-    df, file = file.path(target_dir,
-                               "CompleteBrazilianFlora.gz"),
+    result,
+    file = file.path(target_dir, "CompleteBrazilianFlora.gz"),
     row.names = FALSE, compress = "gzip")
 
   if (verbose) message("Done!")
