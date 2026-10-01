@@ -1,3 +1,11 @@
+# florabr 1.4 (October 2026)
+
+* `merge_data()` is now exported and uses data.table to speed up the merging process.
+* Update `get_florabr()` to notify users when the IPT is unavailable and allow downloading a fixed version from Zenodo.
+* Update `check_version()` to notify users when the IPT is unavailable and allow version checking in this case.
+* Update `solve_discrepancies()` to use data.table functions for faster processing.
+* Update `load_florabr()` to use data.table for faster dataset import.
+
 # florabr 1.3.1 (October 2025)
 
 ## bug fixes
