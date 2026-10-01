@@ -17,6 +17,7 @@ Imports:
     foreach (>= 1.5.2),
     jsonlite,
     R.utils,
+    stringi,
     tools
 License: GPL (>= 3)
 Encoding: UTF-8

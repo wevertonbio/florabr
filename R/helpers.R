@@ -428,6 +428,11 @@ ipt_latest_version <- function(base_url, ua) {
   })
 }
 
+# Use ICU transliteration rather than platform-dependent iconv(ASCII//TRANSLIT).
+normalize_ascii <- function(x) {
+  stringi::stri_trans_general(x, "Latin-ASCII")
+}
+
 # Parse each distinct JSON remark only once.
 parse_remark <- function(text) {
   result <- list(
@@ -450,10 +455,7 @@ parse_remark <- function(text) {
 
   if (length(metadata$endemism) > 0L &&
       !is.na(metadata$endemism[1L])) {
-    result$endemism <- iconv(
-      as.character(metadata$endemism[1L]),
-      to = "ASCII//TRANSLIT"
-    )
+    result$endemism <- normalize_ascii(as.character(metadata$endemism[1L]))
   }
 
   domains <- as.character(metadata$phytogeographicDomain)
@@ -461,7 +463,7 @@ parse_remark <- function(text) {
 
   if (length(domains) > 0L) {
     result$phytogeographicDomain <- paste(
-      iconv(domains, to = "ASCII//TRANSLIT"),
+      normalize_ascii(domains),
       collapse = ","
     )
   }
@@ -510,7 +512,7 @@ parse_profile <- function(text) {
     }
 
     paste(
-      iconv(values, to = "ASCII//TRANSLIT"),
+      normalize_ascii(values),
       collapse = ","
     )
   }

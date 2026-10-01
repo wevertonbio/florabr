@@ -115,11 +115,11 @@ merge_data <- function(path_data, version_data = "latest",
   # Preserve the text transformations performed by the original function.
   data.table::set(
     taxon, j = "higherClassification",
-    value = iconv(taxon[["higherClassification"]], to = "ASCII//TRANSLIT")
+    value = normalize_ascii(taxon[["higherClassification"]])
   )
   data.table::set(
     vernacular, j = "vernacularName",
-    value = iconv(vernacular[["vernacularName"]], to = "ASCII//TRANSLIT")
+    value = normalize_ascii(vernacular[["vernacularName"]])
   )
 
   if (verbose) message("Aggregating vernacular names...")
