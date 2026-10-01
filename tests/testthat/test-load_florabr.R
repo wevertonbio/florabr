@@ -1,57 +1,106 @@
-test_that("loading florabr works", {
-  skip_on_cran() #Skip test on CRAN
-  #####It works when we downloaded the data using get_florabr####
-  my_dir <- file.path(file.path(tempdir(), "florabr"))
-  dir.create(my_dir, showWarnings = FALSE)
-  #Download, merge and save data
-  get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE,
-              verbose = TRUE, solve_discrepancy = FALSE)
+test_that("load_florabr loads short and complete datasets", {
+  my_dir <- tempfile("florabr-load-")
+  on.exit(unlink(my_dir, recursive = TRUE), add = TRUE)
 
-  #Load data: short
-  df <- load_florabr(data_dir = my_dir, data_version = "Latest_available",
-                     type = "short")
+  short_columns <- c(
+    "species", "scientificName", "acceptedName", "kingdom",
+    "group", "subgroup", "phylum", "class", "order", "family",
+    "genus", "lifeForm", "habitat", "biome", "states",
+    "vegetation", "origin", "endemism", "taxonomicStatus",
+    "nomenclaturalStatus", "vernacularName", "taxonRank", "id"
+  )
 
-  expect_equal(class(df), "data.frame")
+  # Provide every column selected by load_florabr(type = "short").
+  example_data <- as.data.frame(
+    setNames(
+      rep(list(c("value_1", "value_2")), length(short_columns)),
+      short_columns
+    ),
+    stringsAsFactors = FALSE
+  )
+  example_data$id <- c(1L, 2L)
+  example_data$species <- c(
+    "Araucaria angustifolia",
+    "Abatia americana"
+  )
+  example_data$sourceNote <- c("first record", "second record")
 
-  #Load data: complete
-  df_complete <- load_florabr(data_dir = my_dir,
-                              data_version = "Latest_available",
-                              type = "complete")
+  older_dir <- file.path(my_dir, "393.431")
+  latest_dir <- file.path(my_dir, "393.432")
+  dir.create(older_dir, recursive = TRUE)
+  dir.create(latest_dir, recursive = TRUE)
 
-  expect_equal(class(df_complete), "data.frame")
+  older_data <- example_data
+  older_data$species[1] <- "Older version"
 
-  ####It does not work when we set a wrong version####
-  expect_error(load_florabr(data_dir = my_dir, data_version = "1",
-                              type = "complete"))
+  data.table::fwrite(
+    older_data,
+    file.path(older_dir, "CompleteBrazilianFlora.gz"),
+    compress = "gzip"
+  )
+  data.table::fwrite(
+    example_data,
+    file.path(latest_dir, "CompleteBrazilianFlora.gz"),
+    compress = "gzip"
+  )
 
-  ####It does not work when we set a wrong type####
-  expect_error(load_florabr(data_dir = my_dir,
-                            data_version = "Latest_available",
-                            type = "anytype"))
+  short <- load_florabr(
+    data_dir = my_dir,
+    data_version = "Latest_available",
+    type = "short",
+    verbose = FALSE
+  )
 
+  expect_s3_class(short, "data.frame")
+  expect_identical(names(short), short_columns)
+  expect_identical(short$species, example_data$species)
+  expect_false("sourceNote" %in% names(short))
 
-  ####It does not work when we don't set the correct folder with the data downloaded####
-  wrong_dir <- file.path(file.path(tempdir(), "wrong_dir"))
-  dir.create(wrong_dir, showWarnings = FALSE)
-  expect_error(load_florabr(data_dir = wrong_dir,
-                            data_version = "Latest_available",
-                           type = "short"))
+  complete <- load_florabr(
+    data_dir = my_dir,
+    data_version = "393.432",
+    type = "complete",
+    verbose = FALSE
+  )
 
+  expect_s3_class(complete, "data.frame")
+  expect_true("sourceNote" %in% names(complete))
+  expect_identical(complete$sourceNote, example_data$sourceNote)
+
+  expect_error(
+    load_florabr(
+      data_dir = my_dir,
+      data_version = "1",
+      type = "complete"
+    )
+  )
+  expect_error(
+    load_florabr(
+      data_dir = my_dir,
+      data_version = "393.432",
+      type = "anytype"
+    )
+  )
 })
-#unlink(my_dir, recursive = T, force = T)
-#unlink(wrong_dir, recursive = T, force = T)
 
-####Others errors####
-test_that("loading florabr does not work", {
-  my_dir<- file.path(file.path(tempdir(), "wrong_dir"))
-  dir.create(my_dir, showWarnings = FALSE)
-  expect_error(load_florabr(data_version = "Latest_available",
-                            type = "short"))
-  expect_error(load_florabr(data_dir = TRUE,
-                            data_version = "Latest_available",
-                            type = "short"))
-  expect_error(load_florabr(data_dir = my_dir,
-                            data_version = TRUE,
-                            type = "short"))
+test_that("load_florabr rejects invalid arguments and missing data", {
+  empty_dir <- tempfile("florabr-empty-")
+  dir.create(empty_dir)
+  on.exit(unlink(empty_dir, recursive = TRUE), add = TRUE)
 
+  expect_error(load_florabr())
+  expect_error(load_florabr(data_dir = TRUE))
+  expect_error(
+    load_florabr(
+      data_dir = empty_dir,
+      data_version = TRUE
+    )
+  )
+  expect_error(
+    load_florabr(
+      data_dir = empty_dir,
+      data_version = "Latest_available",
+      type = "short"
+    )
+  )
 })

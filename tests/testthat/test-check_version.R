@@ -1,41 +1,38 @@
-test_that("Check_version works", {
-  skip_on_cran() #Skip test on CRAN
-  #####It works when we set a folder that already exists####
-  my_dir <- file.path(file.path(tempdir(), "florabr"))
-  dir.create(my_dir)
-  #Download, merge and save LATEST data
-  get_florabr(output_dir = my_dir, data_version = "latest", overwrite = TRUE,
-              verbose = TRUE, solve_discrepancy = FALSE)
-  expect_message(check_version(my_dir))
+test_that("check_version reports an available version", {
+  my_dir <- tempfile("florabr-check-")
+  version_dir <- file.path(my_dir, "393.432")
+  dir.create(version_dir, recursive = TRUE)
+  on.exit(unlink(my_dir, recursive = TRUE), add = TRUE)
 
-  #Now, Download, merge and save OLDER version in the same folder of latest
-  get_florabr(output_dir = my_dir, data_version = "393.397",
-              overwrite = TRUE,
-              verbose = TRUE, solve_discrepancy = FALSE)
-  expect_message(check_version(my_dir))
+  file.create(file.path(
+    version_dir, "CompleteBrazilianFlora.gz"
+  ))
 
-  #Now, Download, merge and save OLDER versions in another folder
-  my_dir2 <- file.path(file.path(tempdir(), "florabr2"))
-  dir.create(my_dir2)
-  get_florabr(output_dir = my_dir2, data_version = "393.397",
-              overwrite = TRUE,
-              verbose = TRUE, solve_discrepancy = FALSE)
-  get_florabr(output_dir = my_dir2, data_version = "393.398",
-              overwrite = TRUE,
-              verbose = TRUE, solve_discrepancy = FALSE)
-  expect_message(check_version(my_dir2))
+  testthat::local_mocked_bindings(
+    ipt_latest_version = function(...) "393.432",
+    .package = "florabr"
+  )
 
-
-  #Random folder without any data
-  random_dir <- file.path(tempdir(), "Random_folder")
-  dir.create(random_dir)
-  expect_message(check_version(random_dir))
-
-  #It does not work if data_dir is missing or an object with invalid class
-  expect_error(check_version())
-  expect_error(check_version(data_dir = TRUE))
-
+  expect_message(
+    check_version(my_dir),
+    "You have the latest version"
+  )
 })
-#unlink(my_dir, recursive = T, force = T)
-#unlink(my_dir2, recursive = T, force = T)
-#unlink(random_dir, recursive = T, force = T)
+
+test_that("check_version handles an unavailable IPT", {
+  my_dir <- tempfile("florabr-check-offline-")
+  dir.create(my_dir)
+  on.exit(unlink(my_dir, recursive = TRUE), add = TRUE)
+
+  testthat::local_mocked_bindings(
+    ipt_latest_version = function(...) {
+      stop("Forbidden (HTTP 403)")
+    },
+    .package = "florabr"
+  )
+
+  expect_message(
+    check_version(my_dir),
+    "could not be verified"
+  )
+})
