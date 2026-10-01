@@ -27,7 +27,11 @@
 #'
 #' @usage load_florabr(data_dir, data_version = "Latest_available",
 #'                     type = "short", verbose = TRUE)
+#'
+#' @importFrom data.table fread
+#'
 #' @export
+#'
 #' @references
 #' Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Available at:
 #' http://floradobrasil.jbrj.gov.br/
@@ -94,12 +98,14 @@ load_florabr <- function(data_dir, data_version = "Latest_available",
   message("Loading version ", version_data) }
 
   if(type == "complete") {
-    ds <- readRDS(file.path(path_data, version_data,
-                            "CompleteBrazilianFlora.rds")) }
+    ds <- data.table::fread(file.path(path_data, version_data,
+                            "CompleteBrazilianFlora.gz"),
+                            data.table = FALSE) }
 
   if(type == "short") {
-    ds <- readRDS(file.path(path_data, version_data,
-                            "CompleteBrazilianFlora.rds"))
+    ds <- data.table::fread(file.path(path_data, version_data,
+                            "CompleteBrazilianFlora.gz"),
+                            data.table = FALSE)
     solve_discrepancy <- attr(ds, "solve_discrepancies")
     ds <- ds[,c(c("species", "scientificName", "acceptedName", "kingdom",
                   "group", "subgroup", "phylum", "class", "order", "family",
