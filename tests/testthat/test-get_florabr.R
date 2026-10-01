@@ -9,7 +9,7 @@ test_that("get florabr works", {
   #Get files downloaded
   d <- list.files(my_dir, recursive = TRUE, full.names = FALSE)
   d <- gsub(".*/","",d)
-  expect_in("CompleteBrazilianFlora.rds", d)
+  expect_in("CompleteBrazilianFlora.gz", d)
 
   ####It does not work when we set a wrong data_version####
   expect_error(get_florabr(output_dir = my_dir, data_version = "any", overwrite = TRUE,

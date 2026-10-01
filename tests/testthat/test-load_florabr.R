@@ -21,8 +21,8 @@ test_that("loading florabr works", {
   expect_equal(class(df_complete), "data.frame")
 
   ####It does not work when we set a wrong version####
-  expect_warning(expect_error(load_florabr(data_dir = my_dir, data_version = "1",
-                              type = "complete")))
+  expect_error(load_florabr(data_dir = my_dir, data_version = "1",
+                              type = "complete"))
 
   ####It does not work when we set a wrong type####
   expect_error(load_florabr(data_dir = my_dir,
