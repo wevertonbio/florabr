@@ -16,7 +16,8 @@ Imports:
     parallel (>= 4.3.1),
     foreach (>= 1.5.2),
     jsonlite,
-    R.utils
+    R.utils,
+    tools
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
