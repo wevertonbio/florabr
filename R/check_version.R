@@ -33,7 +33,7 @@ check_version <- function(data_dir) {
   local_versions <- directories[
     grepl("^[0-9]+(\\.[0-9]+)+$", directories) &
       file.exists(file.path(
-        data_dir, directories, "CompleteBrazilianFlora.rds"
+        data_dir, directories, "CompleteBrazilianFlora.gz"
       ))
   ]
 
