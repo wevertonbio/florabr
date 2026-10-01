@@ -6,7 +6,8 @@
 \usage{
 get_florabr(output_dir, data_version = "latest",
                  solve_discrepancy = FALSE, overwrite = TRUE,
-                 verbose = TRUE, remove_files = TRUE)
+                 verbose = TRUE, remove_files = TRUE,
+                 get_fixed_version = FALSE)
 }
 \arguments{
 \item{output_dir}{(character) a directory to save the data downloaded from
@@ -31,6 +32,10 @@ Default = TRUE.}
 
 \item{remove_files}{(logical) Whether to remove the downloaded files used in
 building the final dataset. Default is TRUE.}
+
+\item{get_fixed_version}{(logical) If TRUE, download the fixed and
+already-merged version 393.432 from Zenodo instead of downloading and
+processing an IPT archive. Default is FALSE.}
 }
 \value{
 The function downloads the latest version of the Flora e Funga do Brasil
