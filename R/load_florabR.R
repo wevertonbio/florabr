@@ -20,6 +20,8 @@
 #' and id
 #' If type = complete, it will load a data.frame with all 39 variables available
 #' in Flora e Funga do Brasil database.
+#' In the selected version directory, a .gz file is preferred. Older .rds
+#' files are supported when the .gz file is not present.
 #'
 #' @return A data.frame with the specified version (Default is the latest
 #' available) of the Flora e Funga do Brasil database. This data.frame is
@@ -97,15 +99,20 @@ load_florabr <- function(data_dir, data_version = "Latest_available",
   if(verbose){
   message("Loading version ", version_data) }
 
-  if(type == "complete") {
-    ds <- data.table::fread(file.path(path_data, version_data,
-                            "CompleteBrazilianFlora.gz"),
-                            data.table = FALSE) }
+  version_dir <- file.path(path_data, version_data)
+  gz_file <- file.path(version_dir, "CompleteBrazilianFlora.gz")
+  rds_file <- file.path(version_dir, "CompleteBrazilianFlora.rds")
+
+  if (file.exists(gz_file)) {
+    ds <- data.table::fread(gz_file, data.table = FALSE)
+  } else if (file.exists(rds_file)) {
+    ds <- readRDS(rds_file)
+  } else {
+    stop("No CompleteBrazilianFlora.gz or CompleteBrazilianFlora.rds ",
+         "found in: ", version_dir, call. = FALSE)
+  }
 
   if(type == "short") {
-    ds <- data.table::fread(file.path(path_data, version_data,
-                            "CompleteBrazilianFlora.gz"),
-                            data.table = FALSE)
     solve_discrepancy <- attr(ds, "solve_discrepancies")
     ds <- ds[,c(c("species", "scientificName", "acceptedName", "kingdom",
                   "group", "subgroup", "phylum", "class", "order", "family",
@@ -117,4 +124,3 @@ load_florabr <- function(data_dir, data_version = "Latest_available",
   }
   return(ds)
 }
-

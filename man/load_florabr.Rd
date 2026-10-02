@@ -40,6 +40,8 @@ Endemism, taxonomicStatus, nomenclaturalStatus, vernacularName, taxonRank,
 and id
 If type = complete, it will load a data.frame with all 39 variables available
 in Flora e Funga do Brasil database.
+In the selected version directory, a .gz file is preferred. Older .rds
+files are supported when the .gz file is not present.
 }
 \examples{
 \dontrun{

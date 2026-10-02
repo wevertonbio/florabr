@@ -104,3 +104,51 @@ test_that("load_florabr rejects invalid arguments and missing data", {
     )
   )
 })
+
+test_that("load_florabr reads legacy RDS data and prefers gz", {
+  my_dir <- tempfile("florabr-legacy-")
+  version_dir <- file.path(my_dir, "393.420")
+  dir.create(version_dir, recursive = TRUE)
+  on.exit(unlink(my_dir, recursive = TRUE), add = TRUE)
+
+  short_columns <- c(
+    "species", "scientificName", "acceptedName", "kingdom",
+    "group", "subgroup", "phylum", "class", "order", "family",
+    "genus", "lifeForm", "habitat", "biome", "states",
+    "vegetation", "origin", "endemism", "taxonomicStatus",
+    "nomenclaturalStatus", "vernacularName", "taxonRank", "id"
+  )
+  legacy <- as.data.frame(
+    setNames(rep(list("legacy"), length(short_columns)), short_columns),
+    stringsAsFactors = FALSE
+  )
+  legacy$id <- 1L
+  legacy$sourceNote <- "RDS only"
+  attr(legacy, "solve_discrepancies") <- TRUE
+  saveRDS(legacy, file.path(version_dir, "CompleteBrazilianFlora.rds"))
+
+  complete <- load_florabr(my_dir, "Latest_available", "complete",
+                           verbose = FALSE)
+  expect_identical(complete$sourceNote, "RDS only")
+
+  short <- load_florabr(my_dir, "393.420", "short", verbose = FALSE)
+  expect_identical(names(short), short_columns)
+  expect_false("sourceNote" %in% names(short))
+  expect_true(attr(short, "solve_discrepancies"))
+
+  current <- legacy
+  current$species <- "current"
+  data.table::fwrite(
+    current, file.path(version_dir, "CompleteBrazilianFlora.gz"),
+    compress = "gzip"
+  )
+  loaded <- load_florabr(my_dir, "393.420", "complete", verbose = FALSE)
+  expect_identical(loaded$species, "current")
+
+  unlink(file.path(version_dir, c("CompleteBrazilianFlora.gz",
+                                  "CompleteBrazilianFlora.rds")))
+  expect_error(
+    load_florabr(my_dir, "393.420", "complete", verbose = FALSE),
+    "No CompleteBrazilianFlora.gz or CompleteBrazilianFlora.rds"
+  )
+})
